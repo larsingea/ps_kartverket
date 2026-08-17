@@ -2,6 +2,7 @@ metadataId: 28c896d0-8a0d-4209-bf31-4931033b1082
 output_directory: produktspesifikasjon
 product_slug: nasjonalt_register_over_luftfartshindre
 updated: '2026-08-17'
+outputs: geopackage,xsd,jsonschema,odcs
 scopes:
 - name: Ny datakilde
   url: https://sosi.geonorge.no/svn/SOSI/SOSI Del 3/Statens kartverk/NasjonaltRegisterOverLuftfartshindre_20180322.xml
