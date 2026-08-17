@@ -22,7 +22,16 @@ NB! Luftfartshinder under 15 meter med registreringsdato etter 3.7.2025 inngår 
   - **Til**: 2026-08-16
 
 ## Om spesifikasjonen
+Denne produktspesifikasjonen beskriver datasettet og hvordan det skal forstås av brukere som skal lese, produsere eller utveksle data.
 
+## Historikk
+
+Første versjon.
+
+## Endringslogg
+
+| Versjon | Dato | Endring |
+|---------|------|---------|
 
 > **Denne versjonen av produktspesifikasjonen:** <br>
 > **Opprettet dato:** 2014-04-01<br>
