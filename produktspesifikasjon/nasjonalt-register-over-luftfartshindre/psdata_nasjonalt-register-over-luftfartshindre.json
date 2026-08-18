@@ -140,7 +140,7 @@
     },
     {
       "specificationScope": {
-        "scopeIdentification": "Ny datakilde",
+        "scopeIdentification": "Filleveranse",
         "level": "dataset"
       }
     }
@@ -226,6 +226,9 @@
           }
         },
         "deliveryFormat": [
+          {
+            "formatName": "FGDB"
+          },
           {
             "formatName": "GML"
           },

@@ -84,7 +84,7 @@ Egnet til bruk i elektroniske kart- og varslingssystemer i fly og helikoptre. Si
 
 **Nivåbeskrivelse**: Gjelder hele datasettet. Hvis omfang ikke er oppgitt under en overskrift, gjelder teksten for hele datasettet og alle leveranser
 
-### Ny datakilde
+### Filleveranse
 
 **Nivå**: dataset
 
@@ -93,15 +93,15 @@ Egnet til bruk i elektroniske kart- og varslingssystemer i fly og helikoptre. Si
 
 
 
-### Datamodell - Ny datakilde
+### Datamodell - Filleveranse
 
 
 
-<a href="ny-datakilde/ny-datakilde_feature_catalogue.png" title="Klikk for stor visning"><img src="ny-datakilde/ny-datakilde_feature_catalogue.png" alt="Datamodell Ny datakilde" style="max-width: 100%; height: auto;" /></a>
+<a href="filleveranse/filleveranse_feature_catalogue.png" title="Klikk for stor visning"><img src="filleveranse/filleveranse_feature_catalogue.png" alt="Datamodell Filleveranse" style="max-width: 100%; height: auto;" /></a>
 
 
 
-➡️ [Se full datamodell for omfang "Ny datakilde" (diagram per pakke og objektkatalog)](ny-datakilde/objektkatalog.html)
+➡️ [Se full datamodell for omfang "Filleveranse" (diagram per pakke og objektkatalog)](filleveranse/objektkatalog.html)
 
 ## Referansesystem
 
@@ -153,7 +153,7 @@ Egnet til bruk i elektroniske kart- og varslingssystemer i fly og helikoptre. Si
 
 | Tjeneste | Endepunkt | Type | Format | Leveranseenheter |
 | --- | --- | --- | --- | --- |
-| Geonorge nedlastning | [Lenke](https://nedlasting.geonorge.no/api/capabilities/) | GEONORGE:DOWNLOAD | GML, PostGIS | fylkesvis, landsfiler |
+| Geonorge nedlastning | [Lenke](https://nedlasting.geonorge.no/api/capabilities/) | GEONORGE:DOWNLOAD | FGDB, GML, PostGIS | fylkesvis, landsfiler |
 | Atom Feed | [Lenke](http://nedlasting.geonorge.no/geonorge/ATOM-feeds/Luftfartshindre_AtomFeedGML.xml) | W3C:AtomFeed | GML | fylkesvis, landsfiler |
 | Atom Feed | [Lenke](http://nedlasting.geonorge.no/geonorge/ATOM-feeds/Luftfartshindre_AtomFeedPostGIS.xml) | W3C:AtomFeed | PostGIS | fylkesvis, landsfiler |
 | UTGÅTT - Nasjonalt register over luftfartshindre WMS |  | WMS-tjeneste | png |  |
