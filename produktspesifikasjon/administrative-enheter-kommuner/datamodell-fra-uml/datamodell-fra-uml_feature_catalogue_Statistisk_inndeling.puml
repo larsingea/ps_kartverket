@@ -1,0 +1,162 @@
+@startuml
+' For wide diagrams, render with: plantuml -DPLANTUML_LIMIT_SIZE=16384 ...
+' The 'scale max' directive below caps the rendered output to prevent the
+' default PlantUML 4096px size limit from cropping the diagram.
+scale max 4000*4000
+
+title Administrative enheter kommuner - Datamodell fra UML - Statistisk_inndeling
+
+skinparam backgroundColor #F5F5F5
+skinparam shadowing false
+skinparam RoundCorner 6
+skinparam ArrowColor #6C8198
+skinparam wrapWidth 200
+skinparam class {
+  BackgroundColor #FBF2E8
+  BorderColor #9C8578
+  FontColor #2D201A
+  HeaderBackgroundColor #EFE1D6
+  HeaderFontColor #2D201A
+  AttributeIconSize 0
+}
+skinparam note {
+  BackgroundColor #FFFFFF
+  BorderColor #6C8198
+  FontColor #2D201A
+}
+skinparam stereotypeCBackgroundColor #EAD9CE
+skinparam stereotypeCBorderColor #9C8578
+skinparam stereotypeCFontColor #2D201A
+
+package "Statistisk_inndeling" {
+
+  class "Delområde" as Delomr_de <<featureType>> {
+    + område [1..*] : Flate
+    + posisjon [0..1] : Punkt
+    + delområdeId [1] : DelområdeId
+    + kommunenummer [1] : Kommunenummer
+  }
+
+  abstract class Supertype_SOSI_Objekt_statistiske_grenser <<featureType>> {
+    + identifikasjon [1] : Identifikasjon
+    + datafangstdato [0..1] : Date
+    + oppdateringsdato [0..1] : Date
+    + sluttdato [0..1] : Date
+    + gyldigFra [0..1] : Date
+    + gyldigTil [0..1] : Date
+    + datauttaksdato [0..1] : Date
+    + endringsflagg [0..1] : Endringsflagg
+    + kvalitet [0..1] : Posisjonskvalitet
+    + opphav [0..1] : CharacterString
+    + informasjon [0..*] : CharacterString
+    + registreringsversjon [0..1] : Registreringsversjon
+    + kopidata [0..1] : Kopidata
+  }
+
+  class Grunnkrets <<featureType>> {
+    + område [1..*] : Flate
+    + posisjon [0..1] : Punkt
+    + grunnkretsId [1] : GrunnkretsId
+    + kommunenummer [1] : Kommunenummer
+  }
+
+  class "Delområdegrense" as Delomr_degrense <<featureType>> {
+    + grense [1] : Kurve
+    + følgerTerrengdetalj [0..1] : TerrengdetaljKode
+    + følgerTeiggrense [0..1] : Boolean
+    + nøyaktighetsklasse [0..1] : NøyaktighetsklasseKode
+  }
+
+  abstract class Supertype_SOSI_Objekt_statistiske_enheter <<featureType>> {
+    + identifikasjon [1] : Identifikasjon
+    + datafangstdato [0..1] : Date
+    + oppdateringsdato [0..1] : Date
+    + sluttdato [0..1] : Date
+    + gyldigFra [0..1] : Date
+    + gyldigTil [0..1] : Date
+    + datauttaksdato [0..1] : Date
+    + endringsflagg [0..1] : Endringsflagg
+    + opphav [0..1] : CharacterString
+    + informasjon [0..*] : CharacterString
+    + registreringsversjon [0..1] : Registreringsversjon
+    + kopidata [0..1] : Kopidata
+  }
+
+  class Grunnkretsgrense <<featureType>> {
+    + grense [1] : Kurve
+    + følgerTerrengdetalj [0..1] : TerrengdetaljKode
+    + følgerTeiggrense [0..1] : Boolean
+    + nøyaktighetsklasse [0..1] : NøyaktighetsklasseKode
+  }
+
+  class "DelområdeId" as Delomr_deId <<dataType>> {
+    + delområdenummer [1] : CharacterString
+    + delområdenavn [0..1] : CharacterString
+  }
+
+  class Identifikasjon <<dataType>> {
+    + lokalId [1] : CharacterString
+    + navnerom [1] : CharacterString
+    + versjonId [0..1] : CharacterString
+  }
+
+  class Endringsflagg <<dataType>> {
+    + typeEndring [1] : TypeEndring
+    + tidspunktEndring [1] : Date
+  }
+
+  class Posisjonskvalitet <<dataType>> {
+    + målemetode [1] : Målemetode
+    + nøyaktighet [0..1] : Integer
+  }
+
+  class Registreringsversjon <<dataType>> {
+    + produkt [1] : CharacterString
+    + versjon [1] : CharacterString
+  }
+
+  class Kopidata <<dataType>> {
+    + områdeId [1] : Integer
+    + originalDatavert [1] : CharacterString
+    + kopidato [1] : Date
+  }
+
+  class GrunnkretsId <<dataType>> {
+    + grunnkretsnummer [1] : CharacterString
+    + grunnkretsnavn [0..1] : CharacterString
+  }
+}
+
+package "Eksterne referanser" <<Frame>> {
+  class AvtaltAvgrensningslinje <<Maritime_grenser>> {
+  }
+  class Fylkesgrense <<Nasjonal_hovedinndeling>> {
+  }
+  class Kommunegrense <<Nasjonal_hovedinndeling>> {
+  }
+  class Riksgrense <<Riksgrense>> {
+  }
+  class Territorialgrense <<Maritime_grenser>> {
+  }
+}
+
+Supertype_SOSI_Objekt_statistiske_enheter <|-- Delomr_de
+Delomr_de --> Kommunegrense : kommunegrense [0..*]
+Delomr_de --> Fylkesgrense : fylkesgrense [0..*]
+Delomr_de --> Riksgrense : riksgrense [0..*]
+Delomr_de --> Territorialgrense : territorialgrense [0..*]
+Delomr_de --> Grunnkrets : grunnkretsinndeling [0..*]
+Delomr_de --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+Delomr_de --> Delomr_degrense : delområdegrens [0..*]
+Supertype_SOSI_Objekt_statistiske_enheter <|-- Grunnkrets
+Grunnkrets --> Kommunegrense : kommunegrense [0..*]
+Grunnkrets --> Fylkesgrense : fylkesgrense [0..*]
+Grunnkrets --> Riksgrense : riksgrense [0..*]
+Grunnkrets --> Grunnkretsgrense : grunnkretsgrense [0..*]
+Grunnkrets --> Delomr_degrense : delområdegrense [0..*]
+Grunnkrets --> Territorialgrense : territorialgrense [0..*]
+Grunnkrets --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+Supertype_SOSI_Objekt_statistiske_grenser <|-- Delomr_degrense
+Supertype_SOSI_Objekt_statistiske_grenser <|-- Grunnkretsgrense
+
+@enduml

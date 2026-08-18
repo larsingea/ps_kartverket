@@ -1,0 +1,224 @@
+@startuml
+' For wide diagrams, render with: plantuml -DPLANTUML_LIMIT_SIZE=16384 ...
+' The 'scale max' directive below caps the rendered output to prevent the
+' default PlantUML 4096px size limit from cropping the diagram.
+scale max 4000*4000
+
+title Administrative enheter kommuner - Datamodell fra UML - Nasjonal_hovedinndeling
+
+skinparam backgroundColor #F5F5F5
+skinparam shadowing false
+skinparam RoundCorner 6
+skinparam ArrowColor #6C8198
+skinparam wrapWidth 200
+skinparam class {
+  BackgroundColor #FBF2E8
+  BorderColor #9C8578
+  FontColor #2D201A
+  HeaderBackgroundColor #EFE1D6
+  HeaderFontColor #2D201A
+  AttributeIconSize 0
+}
+skinparam note {
+  BackgroundColor #FFFFFF
+  BorderColor #6C8198
+  FontColor #2D201A
+}
+skinparam stereotypeCBackgroundColor #EAD9CE
+skinparam stereotypeCBorderColor #9C8578
+skinparam stereotypeCFontColor #2D201A
+
+package "Nasjonal_hovedinndeling" {
+
+  class Kommune <<featureType>> {
+    + kommunenummer [1] : Kommunenummer
+    + kommunenavn [1..*] : AdministrativEnhetNavn
+    + samiskForvaltningsområde [1] : Boolean
+  }
+
+  class GrensemerkeLand <<featureType>> {
+    + posisjon [1] : Punkt
+    + grensemerketype [1] : GrensepunkttypeKode
+    + punktreferanse [0..*] : Punktreferanse
+    + beskrivelse [0..1] : CharacterString
+    + etableringsdato [0..1] : Date
+    + egenhøyde [0..1] : Real
+    + land [0..1] : Landkode
+  }
+
+  class Kommunegrense <<featureType>> {
+    ' Ingen attributter
+  }
+
+  abstract class AdministrativGrense <<featureType>> {
+    + grense [1] : Kurve
+    + omtvistet [0..1] : Boolean
+    + dokumentasjonsreferanse [0..*] : Dokumentasjonsreferanse
+    + grensestatus [0..1] : Grensestatus
+    + fastsettingstype [0..1] : Fastsettingstype
+    + følgerTerrengdetalj [0..1] : TerrengdetaljKode
+    + nøyaktighetsklasse [0..1] : NøyaktighetsklasseKode
+  }
+
+  abstract class Supertype_SOSI_Objekt_adm_punkter <<featureType>> {
+    + identifikasjon [1] : Identifikasjon
+    + oppdateringsdato [0..1] : Date
+    + sluttdato [0..1] : Date
+    + datauttaksdato [0..1] : Date
+    + endringsflagg [0..1] : Endringsflagg
+    + kvalitet [0..1] : Posisjonskvalitet
+    + opphav [0..1] : CharacterString
+    + informasjon [0..*] : CharacterString
+    + registreringsversjon [0..1] : Registreringsversjon
+    + gyldigFra [0..1] : Date
+    + gyldigTil [0..1] : Date
+    + kopidata [0..1] : Kopidata
+    + datafangstdato [0..1] : Date
+  }
+
+  abstract class AdministrativEnhet <<featureType>> {
+    + område [1..*] : Flate
+    + posisjon [0..*] : Punkt
+    + land [0..1] : Landkode
+    + administrativtNivå [0..1] : AdministrativtNivå
+    + administrativKode [0..1] : CharacterString
+  }
+
+  abstract class Supertype_SOSI_Objekt_adm_grenser <<featureType>> {
+    + identifikasjon [1] : Identifikasjon
+    + oppdateringsdato [1] : Date
+    + sluttdato [0..1] : Date
+    + datauttaksdato [0..1] : Date
+    + endringsflagg [0..1] : Endringsflagg
+    + kvalitet [0..1] : Posisjonskvalitet
+    + opphav [0..1] : CharacterString
+    + informasjon [0..*] : CharacterString
+    + registreringsversjon [0..1] : Registreringsversjon
+    + gyldigFra [0..1] : Date
+    + gyldigTil [0..1] : Date
+    + kopidata [0..1] : Kopidata
+    + datafangstdato [0..1] : Date
+  }
+
+  class Fylkesgrense <<featureType>> {
+    ' Ingen attributter
+  }
+
+  class Nasjon <<featureType>> {
+    + nasjonsnavn [1..*] : AdministrativEnhetNavn
+  }
+
+  class Fylke <<featureType>> {
+    + fylkesnummer [1] : Fylkesnummer
+    + fylkesnavn [1..*] : AdministrativEnhetNavn
+    + samiskForvaltningsområde [0..1] : Boolean
+  }
+
+  abstract class Supertype_SOSI_Objekt_adm_enheter <<featureType>> {
+    + identifikasjon [1] : Identifikasjon
+    + oppdateringsdato [0..1] : Date
+    + sluttdato [0..1] : Date
+    + datauttaksdato [0..1] : Date
+    + opphav [0..1] : CharacterString
+    + informasjon [0..*] : CharacterString
+    + registreringsversjon [0..1] : Registreringsversjon
+    + gyldigFra [0..1] : Date
+    + gyldigTil [0..1] : Date
+    + kopidata [0..1] : Kopidata
+    + datafangstdato [0..1] : Date
+  }
+
+  class AdministrativEnhetNavn <<dataType>> {
+    + navn [1] : CharacterString
+    + språk [1] : Språkkode
+    + rekkefølge [0..1] : Integer
+  }
+
+  class Punktreferanse <<dataType>> {
+    + grenselinjeidentifikasjon [0..*] : Identifikasjon
+    + punktnummer [0..1] : CharacterString
+    + punktnavn [0..1] : CharacterString
+  }
+
+  class Identifikasjon <<dataType>> {
+    + lokalId [1] : CharacterString
+    + navnerom [1] : CharacterString
+    + versjonId [0..1] : CharacterString
+  }
+
+  class Dokumentasjonsreferanse <<dataType>> {
+    + rettskildeTittel [1] : CharacterString
+    + rettskildeId [0..1] : CharacterString
+    + hjemmel [0..1] : CharacterString
+    + fastsettingsmyndighet [0..1] : CharacterString
+    + fastsettingsdato [1] : Date
+    + dokumentlink [0..*] : CharacterString
+    + internReferanseKartverket [0..*] : CharacterString
+  }
+
+  class Endringsflagg <<dataType>> {
+    + typeEndring [1] : TypeEndring
+    + tidspunktEndring [1] : Date
+  }
+
+  class Posisjonskvalitet <<dataType>> {
+    + målemetode [1] : Målemetode
+    + nøyaktighet [0..1] : Integer
+  }
+
+  class Registreringsversjon <<dataType>> {
+    + produkt [1] : CharacterString
+    + versjon [1] : CharacterString
+  }
+
+  class Kopidata <<dataType>> {
+    + områdeId [1] : Integer
+    + originalDatavert [1] : CharacterString
+    + kopidato [1] : Date
+  }
+
+  class "AdministrativtNivå" as AdministrativtNiv_ <<dataType>> {
+    + nivånummer [1] : Nivånummer
+    + nivånavn [0..1] : AdministrativEnhetNavn
+  }
+}
+
+package "Eksterne referanser" <<Frame>> {
+  class AvtaltAvgrensningslinje <<Maritime_grenser>> {
+  }
+  class "GrensepunktSjø" as GrensepunktSj_ <<Maritime_grenser>> {
+  }
+  class Riksgrense <<Riksgrense>> {
+  }
+  class Territorialgrense <<Maritime_grenser>> {
+  }
+}
+
+AdministrativEnhet <|-- Kommune
+Kommune --> Riksgrense : riksgrense [0..*]
+Kommune --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+Kommune --> Fylkesgrense : fylkesgrense [0..*]
+Kommune --> Territorialgrense : territorialgrense [0..*]
+Kommune --> Kommunegrense : kommunegrense [0..*]
+Kommune --> Fylke : fylke [0..1]
+Supertype_SOSI_Objekt_adm_punkter <|-- GrensemerkeLand
+AdministrativGrense <|-- Kommunegrense
+Kommunegrense --> GrensemerkeLand : grensemerkeLand [0..*]
+Kommunegrense --> GrensepunktSj_ : grensepunktSjø [0..*]
+Supertype_SOSI_Objekt_adm_grenser <|-- AdministrativGrense
+Supertype_SOSI_Objekt_adm_enheter <|-- AdministrativEnhet
+AdministrativGrense <|-- Fylkesgrense
+Fylkesgrense --> GrensemerkeLand : grensemerkeLand [0..*]
+Fylkesgrense --> GrensepunktSj_ : grensepunktSjø [0..*]
+AdministrativEnhet <|-- Nasjon
+Nasjon --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [1..*]
+Nasjon --> Territorialgrense : territorialgrense [1..*]
+Nasjon --> Riksgrense : riksgrense [1..*]
+AdministrativEnhet <|-- Fylke
+Fylke --> Fylkesgrense : fylkesgrense [1..*]
+Fylke --> Nasjon : nasjon [0..1]
+Fylke --> Riksgrense : riksgrense [0..*]
+Fylke --> Territorialgrense : territorialgrense [0..*]
+Fylke --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+
+@enduml

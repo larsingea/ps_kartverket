@@ -1,0 +1,174 @@
+@startuml
+' For wide diagrams, render with: plantuml -DPLANTUML_LIMIT_SIZE=16384 ...
+' The 'scale max' directive below caps the rendered output to prevent the
+' default PlantUML 4096px size limit from cropping the diagram.
+scale max 4000*4000
+
+title Administrative enheter kommuner - Datamodell fra UML - Kommunale_kretser
+
+skinparam backgroundColor #F5F5F5
+skinparam shadowing false
+skinparam RoundCorner 6
+skinparam ArrowColor #6C8198
+skinparam wrapWidth 200
+skinparam class {
+  BackgroundColor #FBF2E8
+  BorderColor #9C8578
+  FontColor #2D201A
+  HeaderBackgroundColor #EFE1D6
+  HeaderFontColor #2D201A
+  AttributeIconSize 0
+}
+skinparam note {
+  BackgroundColor #FFFFFF
+  BorderColor #6C8198
+  FontColor #2D201A
+}
+skinparam stereotypeCBackgroundColor #EAD9CE
+skinparam stereotypeCBorderColor #9C8578
+skinparam stereotypeCFontColor #2D201A
+
+package "Kommunale_kretser" {
+
+  abstract class Supertype_SOSI_Objekt_kretsgrenser <<featureType>> {
+    + identifikasjon [1] : Identifikasjon
+    + datafangstdato [0..1] : Date
+    + oppdateringsdato [0..1] : Date
+    + sluttdato [0..1] : Date
+    + gyldigFra [0..1] : Date
+    + gyldigTil [0..1] : Date
+    + datauttaksdato [0..1] : Date
+    + endringsflagg [0..1] : Endringsflagg
+    + kvalitet [0..1] : Posisjonskvalitet
+    + opphav [0..1] : CharacterString
+    + registreringsversjon [0..1] : Registreringsversjon
+    + kopidata [0..1] : Kopidata
+  }
+
+  class Stemmekrets <<featureType>> {
+    + område [1..*] : Flate
+    + posisjon [0..1] : Punkt
+    + stemmekretsId [1] : StemmekretsId
+    + kommunenummer [1] : Kommunenummer
+  }
+
+  class Stemmekretsgrense <<featureType>> {
+    + grense [1] : Kurve
+    + følgerGrunnkretsgrense [0..1] : Identifikasjon
+    + følgerTerrengdetalj [0..1] : TerrengdetaljKode
+    + nøyaktighetsklasse [0..1] : NøyaktighetsklasseKode
+  }
+
+  class Skolekretsgrense <<featureType>> {
+    + grense [1] : Kurve
+    + følgerGrunnkretsgrense [0..1] : Identifikasjon
+    + følgerTerrengdetalj [0..1] : TerrengdetaljKode
+    + nøyaktighetsklasse [0..1] : NøyaktighetsklasseKode
+  }
+
+  class Skolekrets <<featureType>> {
+    + område [1..*] : Flate
+    + posisjon [0..1] : Punkt
+    + skolekretsId [1] : SkolekretsId
+    + kommunenummer [1] : Kommunenummer
+    + barnetrinn [0..1] : Boolean
+    + ungdomstrinn [0..1] : Boolean
+  }
+
+  class Valgdistriktsgrense <<featureType>> {
+    + grense [1] : Kurve
+    + følgerGrunnkretsgrense [0..1] : Identifikasjon
+    + følgerTerrengdetalj [0..1] : TerrengdetaljKode
+    + nøyaktighetsklasse [0..1] : NøyaktighetsklasseKode
+  }
+
+  abstract class Supertype_SOSI_Objekt_kretser <<featureType>> {
+    + identifikasjon [1] : Identifikasjon
+    + datafangstdato [0..1] : Date
+    + oppdateringsdato [0..1] : Date
+    + sluttdato [0..1] : Date
+    + gyldigFra [0..1] : Date
+    + gyldigTil [0..1] : Date
+    + datauttaksdato [0..1] : Date
+    + endringsflagg [0..1] : Endringsflagg
+    + opphav [0..1] : CharacterString
+    + registreringsversjon [0..1] : Registreringsversjon
+    + kopidata [0..1] : Kopidata
+    + informasjon [0..1] : CharacterString
+  }
+
+  class Identifikasjon <<dataType>> {
+    + lokalId [1] : CharacterString
+    + navnerom [1] : CharacterString
+    + versjonId [0..1] : CharacterString
+  }
+
+  class Endringsflagg <<dataType>> {
+    + typeEndring [1] : TypeEndring
+    + tidspunktEndring [1] : Date
+  }
+
+  class Posisjonskvalitet <<dataType>> {
+    + målemetode [1] : Målemetode
+    + nøyaktighet [0..1] : Integer
+  }
+
+  class Registreringsversjon <<dataType>> {
+    + produkt [1] : CharacterString
+    + versjon [1] : CharacterString
+  }
+
+  class Kopidata <<dataType>> {
+    + områdeId [1] : Integer
+    + originalDatavert [1] : CharacterString
+    + kopidato [1] : Date
+  }
+
+  class StemmekretsId <<dataType>> {
+    + stemmekretsnummer [1] : CharacterString
+    + stemmekretsnavn [1] : CharacterString
+    + tellekretsnummer [0..1] : CharacterString
+    + tellekretsnavn [0..1] : CharacterString
+    + valgdistriktsnummer [0..1] : CharacterString
+    + fylkesnummer [0..1] : Fylkesnummer
+  }
+
+  class SkolekretsId <<dataType>> {
+    + skolekretsnummer [1] : CharacterString
+    + skolekretsnavn [0..1] : CharacterString
+  }
+}
+
+package "Eksterne referanser" <<Frame>> {
+  class AvtaltAvgrensningslinje <<Maritime_grenser>> {
+  }
+  class Fylkesgrense <<Nasjonal_hovedinndeling>> {
+  }
+  class Kommunegrense <<Nasjonal_hovedinndeling>> {
+  }
+  class Riksgrense <<Riksgrense>> {
+  }
+  class Territorialgrense <<Maritime_grenser>> {
+  }
+}
+
+Supertype_SOSI_Objekt_kretser <|-- Stemmekrets
+Stemmekrets --> Kommunegrense : kommunegrense [0..*]
+Stemmekrets --> Fylkesgrense : fylkesgrense [0..*]
+Stemmekrets --> Riksgrense : riksgrense [0..*]
+Stemmekrets --> Stemmekretsgrense : stemmekretsgrense [0..*]
+Stemmekrets --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+Stemmekrets --> Valgdistriktsgrense : valgdistriktsgrense [0..*]
+Stemmekrets --> Territorialgrense : territorialgrense [0..*]
+Supertype_SOSI_Objekt_kretsgrenser <|-- Stemmekretsgrense
+Supertype_SOSI_Objekt_kretsgrenser <|-- Skolekretsgrense
+Supertype_SOSI_Objekt_kretser <|-- Skolekrets
+Skolekrets --> Kommunegrense : kommunegrense [0..*]
+Skolekrets --> Fylkesgrense : fylkesgrense [0..*]
+Skolekrets --> Riksgrense : riksgrense [0..*]
+Skolekrets --> Skolekretsgrense : skolekretsgrense [0..*]
+Skolekrets --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+Skolekrets --> Territorialgrense : territorialgrense [0..*]
+Supertype_SOSI_Objekt_kretsgrenser <|-- Valgdistriktsgrense
+
+@enduml

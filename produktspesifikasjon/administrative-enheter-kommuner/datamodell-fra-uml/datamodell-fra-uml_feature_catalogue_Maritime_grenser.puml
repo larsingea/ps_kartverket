@@ -1,0 +1,372 @@
+@startuml
+' For wide diagrams, render with: plantuml -DPLANTUML_LIMIT_SIZE=16384 ...
+' The 'scale max' directive below caps the rendered output to prevent the
+' default PlantUML 4096px size limit from cropping the diagram.
+scale max 4000*4000
+
+title Administrative enheter kommuner - Datamodell fra UML - Maritime_grenser
+
+skinparam backgroundColor #F5F5F5
+skinparam shadowing false
+skinparam RoundCorner 6
+skinparam ArrowColor #6C8198
+skinparam wrapWidth 200
+skinparam class {
+  BackgroundColor #FBF2E8
+  BorderColor #9C8578
+  FontColor #2D201A
+  HeaderBackgroundColor #EFE1D6
+  HeaderFontColor #2D201A
+  AttributeIconSize 0
+}
+skinparam note {
+  BackgroundColor #FFFFFF
+  BorderColor #6C8198
+  FontColor #2D201A
+}
+skinparam stereotypeCBackgroundColor #EAD9CE
+skinparam stereotypeCBorderColor #9C8578
+skinparam stereotypeCFontColor #2D201A
+
+package "Maritime_grenser" {
+
+  class "GrensepunktSjø" as GrensepunktSj_ <<featureType>> {
+    ' Ingen attributter
+  }
+
+  class "Territorialområde" as Territorialomr_de <<featureType>> {
+    + område [1..*] : Flate
+    + posisjon [0..*] : Punkt
+    + landkode [1] : Landkode
+  }
+
+  class Grense200NautiskeMil <<featureType>> {
+    ' Ingen attributter
+  }
+
+  class "Gråsonegrense" as Gr_sonegrense <<featureType>> {
+    ' Ingen attributter
+  }
+
+  abstract class MaritimeGrenser <<featureType>> {
+    + grense [1] : Kurve
+    + gjelderOmråde [0..1] : CharacterString
+    + grensestatus [0..1] : Grensestatus
+    + ansvarligMyndighet [0..*] : CharacterString
+    + virkeområdenavn [0..1] : CharacterString
+    + transformasjonsdato [0..1] : Date
+  }
+
+  class "TidligereOmstridtOmråde" as TidligereOmstridtOmr_de <<featureType>> {
+    + posisjon [0..1] : Punkt
+    + område [1] : Flate
+  }
+
+  class AvtaltAvgrensningslinje <<featureType>> {
+    ' Ingen attributter
+  }
+
+  class Fiskevernsone <<featureType>> {
+    ' Ingen attributter
+  }
+
+  abstract class "MaritimeOmråder" as MaritimeOmr_der <<featureType>> {
+    + område [1..*] : Flate
+    + posisjon [0..*] : Punkt
+    + dokumentasjonsreferanse [1..*] : Dokumentasjonsreferanse
+    + land [1..*] : Landkode
+    + ansvarligMyndighet [0..*] : CharacterString
+    + gjelderOmråde [0..1] : CharacterString
+    + virkeområdenavn [0..1] : CharacterString
+    + sonetype [0..*] : Sonetype
+    + miljøområde [0..*] : Miljøområde
+    + spesialisertSonetype [0..1] : SpesialisertSonetype
+  }
+
+  abstract class MaritimtPunkt <<featureType>> {
+    + posisjon [1] : Punkt
+    + punktreferanse [0..*] : Punktreferanse
+  }
+
+  class Fiskerisone <<featureType>> {
+    ' Ingen attributter
+  }
+
+  class "YttergrenseTilstøtendeSone" as YttergrenseTilst_tendeSone <<featureType>> {
+    ' Ingen attributter
+  }
+
+  class Territorialgrense <<featureType>> {
+    ' Ingen attributter
+  }
+
+  class IndreFarvann <<featureType>> {
+    ' Ingen attributter
+  }
+
+  abstract class NorskeGrenser <<featureType>> {
+    + dokumentasjonsreferanse [0..*] : Dokumentasjonsreferanse
+    + land [0..1] : Landkode
+    + fastsettingstype [1] : Fastsettingstype
+  }
+
+  class "Gråsonen" as Gr_sonen <<featureType>> {
+    ' Ingen attributter
+  }
+
+  class YttergrenseSokkel <<featureType>> {
+    ' Ingen attributter
+  }
+
+  abstract class Supertype_SOSI_Objekt_maritime_grenser_punkter <<featureType>> {
+    + identifikasjon [1] : Identifikasjon
+    + datafangstdato [0..1] : Date
+    + oppdateringsdato [0..1] : Date
+    + sluttdato [0..1] : Date
+    + gyldigFra [0..1] : Date
+    + gyldigTil [0..1] : Date
+    + datauttaksdato [0..1] : Date
+    + endringsflagg [0..1] : Endringsflagg
+    + opphav [0..1] : CharacterString
+    + kopidata [0..1] : Kopidata
+    + informasjon [0..*] : CharacterString
+    + registreringsversjon [0..1] : Registreringsversjon
+    + kvalitet [1] : Posisjonskvalitet
+  }
+
+  class Grunnlinje <<featureType>> {
+    + kommunenummer [0..1] : Kommunenummer
+  }
+
+  class Kontinentalsokkel <<featureType>> {
+    ' Ingen attributter
+  }
+
+  abstract class "Supertype_SOSI_Objekt_maritime_områder" as Supertype_SOSI_Objekt_maritime_omr_der <<featureType>> {
+    + identifikasjon [1] : Identifikasjon
+    + datafangstdato [0..1] : Date
+    + oppdateringsdato [0..1] : Date
+    + sluttdato [0..1] : Date
+    + gyldigFra [0..1] : Date
+    + gyldigTil [0..1] : Date
+    + datauttaksdato [0..1] : Date
+    + endringsflagg [0..1] : Endringsflagg
+    + opphav [0..1] : CharacterString
+    + kopidata [0..1] : Kopidata
+    + informasjon [0..*] : CharacterString
+    + registreringsversjon [0..1] : Registreringsversjon
+  }
+
+  class "Grensebøye" as Grenseb_ye <<featureType>> {
+    ' Ingen attributter
+  }
+
+  class Territorialfarvann <<featureType>> {
+    ' Ingen attributter
+  }
+
+  class LandIndreFarvann <<featureType>> {
+    + område [1..*] : Flate
+    + posisjon [0..*] : Punkt
+    + landkode [1] : Landkode
+  }
+
+  class BeregnetMidtlinje <<featureType>> {
+    ' Ingen attributter
+  }
+
+  class InternasjonaltFarvann <<featureType>> {
+    + område [1..*] : Flate
+    + posisjon [0..1] : Punkt
+    + navn [0..1] : CharacterString
+  }
+
+  abstract class AvtalteGrenser <<featureType>> {
+    + dokumentasjonsreferanse [1..*] : Dokumentasjonsreferanse
+    + fastsettingstype [1] : Fastsettingstype
+  }
+
+  abstract class BeregnetGrense <<featureType>> {
+    + beregningsdato [0..1] : Date
+  }
+
+  class Sektorlinje <<featureType>> {
+    ' Ingen attributter
+  }
+
+  class "DetSærskilteOmrådet" as DetS_rskilteOmr_det <<featureType>> {
+    ' Ingen attributter
+  }
+
+  class "Sjøterritorium" as Sj_territorium <<featureType>> {
+    ' Ingen attributter
+  }
+
+  class "TilstøtendeSone" as Tilst_tendeSone <<featureType>> {
+    ' Ingen attributter
+  }
+
+  class "NorgesØkonomiskeSone" as Norges_konomiskeSone <<featureType>> {
+    ' Ingen attributter
+  }
+
+  abstract class MerketGrensepunkt <<featureType>> {
+    + beskrivelse [0..1] : CharacterString
+    + etableringsdato [0..1] : Date
+    + egenhøyde [0..1] : Real
+    + vedlikehold [0..1] : Vedlikehold
+  }
+
+  class "Sjørøys" as Sj_r_ys <<featureType>> {
+    ' Ingen attributter
+  }
+
+  abstract class GrenseMellomNasjoner <<featureType>> {
+    + land [1..*] : Landkode
+  }
+
+  class Kystkontur <<featureType>> {
+    + grense [1] : Kurve
+    + høyde [0..1] : Real
+    + kystreferanse [0..1] : Kystreferanse
+    + kysttype [0..1] : Kysttype
+  }
+
+  class Dokumentasjonsreferanse <<dataType>> {
+    + rettskildeTittel [1] : CharacterString
+    + rettskildeId [0..1] : CharacterString
+    + hjemmel [0..1] : CharacterString
+    + fastsettingsmyndighet [0..1] : CharacterString
+    + fastsettingsdato [1] : Date
+    + dokumentlink [0..*] : CharacterString
+    + internReferanseKartverket [0..*] : CharacterString
+  }
+
+  class Punktreferanse <<dataType>> {
+    + grenselinjeidentifikasjon [0..*] : Identifikasjon
+    + punktnummer [0..1] : CharacterString
+    + punktnavn [0..1] : CharacterString
+  }
+
+  class Identifikasjon <<dataType>> {
+    + lokalId [1] : CharacterString
+    + navnerom [1] : CharacterString
+    + versjonId [0..1] : CharacterString
+  }
+
+  class Endringsflagg <<dataType>> {
+    + typeEndring [1] : TypeEndring
+    + tidspunktEndring [1] : Date
+  }
+
+  class Kopidata <<dataType>> {
+    + områdeId [1] : Integer
+    + originalDatavert [1] : CharacterString
+    + kopidato [1] : Date
+  }
+
+  class Registreringsversjon <<dataType>> {
+    + produkt [1] : CharacterString
+    + versjon [1] : CharacterString
+  }
+
+  class Posisjonskvalitet <<dataType>> {
+    + målemetode [1] : Målemetode
+    + nøyaktighet [0..1] : Integer
+  }
+
+  class Vedlikehold <<dataType>> {
+    + arbeidUtførtDato [1] : Date
+    + arbeidUtførtBeskrivelse [0..1] : CharacterString
+  }
+}
+
+package "Eksterne referanser" <<Frame>> {
+  class Riksgrense <<Riksgrense>> {
+  }
+}
+
+MaritimtPunkt <|-- GrensepunktSj_
+Supertype_SOSI_Objekt_maritime_omr_der <|-- Territorialomr_de
+Territorialomr_de --> Riksgrense : riksgrense [0..*]
+Territorialomr_de --> Territorialgrense : territorialgrense [0..*]
+Territorialomr_de --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+BeregnetGrense <|-- Grense200NautiskeMil
+AvtalteGrenser <|-- Gr_sonegrense
+Gr_sonegrense --> GrensepunktSj_ : grensepunktSjø [0..*]
+Supertype_SOSI_Objekt_maritime_grenser_punkter <|-- MaritimeGrenser
+Supertype_SOSI_Objekt_maritime_omr_der <|-- TidligereOmstridtOmr_de
+TidligereOmstridtOmr_de --> BeregnetMidtlinje : beregnetMidtlinje [0..*]
+TidligereOmstridtOmr_de --> Sektorlinje : sektorlinje [0..*]
+AvtalteGrenser <|-- AvtaltAvgrensningslinje
+AvtaltAvgrensningslinje --> GrensepunktSj_ : grensepunktSjø [0..*]
+AvtaltAvgrensningslinje --> Sj_r_ys : sjørøys [0..*]
+AvtaltAvgrensningslinje --> Grenseb_ye : grensebøye [0..*]
+MaritimeOmr_der <|-- Fiskevernsone
+Fiskevernsone --> Grense200NautiskeMil : grense200NautiskeMil [0..*]
+Fiskevernsone --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+Fiskevernsone --> Territorialgrense : territorialgrense [0..*]
+Supertype_SOSI_Objekt_maritime_omr_der <|-- MaritimeOmr_der
+Supertype_SOSI_Objekt_maritime_grenser_punkter <|-- MaritimtPunkt
+MaritimeOmr_der <|-- Fiskerisone
+Fiskerisone --> Grense200NautiskeMil : grense200NautiskeMil [0..*]
+Fiskerisone --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+Fiskerisone --> Territorialgrense : territorialgrense [0..*]
+BeregnetGrense <|-- YttergrenseTilst_tendeSone
+BeregnetGrense <|-- Territorialgrense
+MaritimeOmr_der <|-- IndreFarvann
+IndreFarvann --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+IndreFarvann --> Grunnlinje : grunnlinje [0..*]
+IndreFarvann --> Kystkontur : kystkontur [0..*]
+MaritimeGrenser <|-- NorskeGrenser
+MaritimeOmr_der <|-- Gr_sonen
+Gr_sonen --> Gr_sonegrense : gråsonegrense [0..*]
+BeregnetGrense <|-- YttergrenseSokkel
+NorskeGrenser <|-- Grunnlinje
+Grunnlinje --> GrensepunktSj_ : grensepunktSjø [0..*]
+Grunnlinje --> Grenseb_ye : grensebøye [0..*]
+MaritimeOmr_der <|-- Kontinentalsokkel
+Kontinentalsokkel --> Grense200NautiskeMil : grense200NautiskeMil [0..*]
+Kontinentalsokkel --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+Kontinentalsokkel --> Territorialgrense : territorialgrense [0..*]
+Kontinentalsokkel --> YttergrenseSokkel : yttergrenseSokkel [0..*]
+MerketGrensepunkt <|-- Grenseb_ye
+MaritimeOmr_der <|-- Territorialfarvann
+Territorialfarvann --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+Territorialfarvann --> Territorialgrense : territorialgrense [0..*]
+Territorialfarvann --> Kystkontur : kystkontur [0..*]
+Supertype_SOSI_Objekt_maritime_omr_der <|-- LandIndreFarvann
+LandIndreFarvann --> Riksgrense : riksgrense [0..*]
+LandIndreFarvann --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+LandIndreFarvann --> Grunnlinje : grunnlinje [0..*]
+GrenseMellomNasjoner <|-- BeregnetMidtlinje
+BeregnetMidtlinje --> GrensepunktSj_ : grensepunktSjø [0..*]
+Supertype_SOSI_Objekt_maritime_omr_der <|-- InternasjonaltFarvann
+InternasjonaltFarvann --> Grense200NautiskeMil : grense200NautiskeMil [0..*]
+InternasjonaltFarvann --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+GrenseMellomNasjoner <|-- AvtalteGrenser
+NorskeGrenser <|-- BeregnetGrense
+GrenseMellomNasjoner <|-- Sektorlinje
+Sektorlinje --> GrensepunktSj_ : grensepunktSjø [0..*]
+MaritimeOmr_der <|-- DetS_rskilteOmr_det
+DetS_rskilteOmr_det --> Grense200NautiskeMil : grense200NautiskeMil [0..*]
+DetS_rskilteOmr_det --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+MaritimeOmr_der <|-- Sj_territorium
+Sj_territorium --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+Sj_territorium --> Territorialgrense : territorialgrense [0..*]
+Sj_territorium --> Grunnlinje : grunnlinje [0..*]
+Sj_territorium --> Kystkontur : kystkontur [0..*]
+MaritimeOmr_der <|-- Tilst_tendeSone
+Tilst_tendeSone --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+Tilst_tendeSone --> YttergrenseTilst_tendeSone : yttergrenseTilstøtendeSone [0..*]
+Tilst_tendeSone --> Territorialgrense : territorialgrense [0..*]
+MaritimeOmr_der <|-- Norges_konomiskeSone
+Norges_konomiskeSone --> Grense200NautiskeMil : grense200NautiskeMil [0..*]
+Norges_konomiskeSone --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+Norges_konomiskeSone --> Territorialgrense : territorialgrense [0..*]
+MaritimtPunkt <|-- MerketGrensepunkt
+MerketGrensepunkt <|-- Sj_r_ys
+MaritimeGrenser <|-- GrenseMellomNasjoner
+Supertype_SOSI_Objekt_maritime_grenser_punkter <|-- Kystkontur
+
+@enduml

@@ -1,0 +1,168 @@
+@startuml
+' For wide diagrams, render with: plantuml -DPLANTUML_LIMIT_SIZE=16384 ...
+' The 'scale max' directive below caps the rendered output to prevent the
+' default PlantUML 4096px size limit from cropping the diagram.
+scale max 4000*4000
+
+title Administrative enheter kommuner - Datamodell fra UML - Postadministrativ_inndeling
+
+skinparam backgroundColor #F5F5F5
+skinparam shadowing false
+skinparam RoundCorner 6
+skinparam ArrowColor #6C8198
+skinparam wrapWidth 200
+skinparam class {
+  BackgroundColor #FBF2E8
+  BorderColor #9C8578
+  FontColor #2D201A
+  HeaderBackgroundColor #EFE1D6
+  HeaderFontColor #2D201A
+  AttributeIconSize 0
+}
+skinparam note {
+  BackgroundColor #FFFFFF
+  BorderColor #6C8198
+  FontColor #2D201A
+}
+skinparam stereotypeCBackgroundColor #EAD9CE
+skinparam stereotypeCBorderColor #9C8578
+skinparam stereotypeCFontColor #2D201A
+
+package "Postadministrativ_inndeling" {
+
+  class Postregiongrense <<featureType>> {
+    ' Ingen attributter
+  }
+
+  abstract class Supertype_SOSI_Objekt_postgrenser <<featureType>> {
+    + identifikasjon [1] : Identifikasjon
+    + datafangstdato [0..1] : Date
+    + oppdateringsdato [0..1] : Date
+    + sluttdato [0..1] : Date
+    + gyldigFra [0..1] : Date
+    + gyldigTil [0..1] : Date
+    + datauttaksdato [0..1] : Date
+    + endringsflagg [0..1] : Endringsflagg
+    + kvalitet [0..1] : Posisjonskvalitet
+    + opphav [0..1] : CharacterString
+    + informasjon [0..*] : CharacterString
+    + registreringsversjon [0..1] : Registreringsversjon
+    + kopidata [0..1] : Kopidata
+  }
+
+  abstract class Supertype_SOSI_Objekt_post <<featureType>> {
+    + identifikasjon [1] : Identifikasjon
+    + datafangstdato [0..1] : Date
+    + oppdateringsdato [0..1] : Date
+    + sluttdato [0..1] : Date
+    + gyldigFra [0..1] : Date
+    + gyldigTil [0..1] : Date
+    + datauttaksdato [0..1] : Date
+    + endringsflagg [0..1] : Endringsflagg
+    + opphav [0..1] : CharacterString
+    + kommunenummer [0..*] : Kommunenummer
+    + informasjon [0..*] : CharacterString
+    + registreringsversjon [0..1] : Registreringsversjon
+    + kopidata [0..1] : Kopidata
+  }
+
+  abstract class Postgrenser <<featureType>> {
+    + grense [1] : Kurve
+    + følgerGrunnkretsgrense [0..1] : Identifikasjon
+    + følgerAdministrativGrense [0..1] : AdministrativGrenseKode
+    + nøyaktighetsklasse [0..1] : NøyaktighetsklasseKode
+  }
+
+  class "Postnummerområde" as Postnummeromr_de <<featureType>> {
+    + område [1..*] : Flate
+    + posisjon [0..*] : Punkt
+    + postnummerOmrådeId [1] : PostnummerområdeId
+  }
+
+  class Postsone <<featureType>> {
+    + område [1..*] : Flate
+    + posisjon [0..*] : Punkt
+    + postsonenummer [1] : CharacterString
+  }
+
+  class "Postområdegrense" as Postomr_degrense <<featureType>> {
+    ' Ingen attributter
+  }
+
+  class "Postområde" as Postomr_de <<featureType>> {
+    + område [1..*] : Flate
+    + posisjon [0..*] : Punkt
+    + postområdenummer [1] : CharacterString
+  }
+
+  class "Postnummerområdegrense" as Postnummeromr_degrense <<featureType>> {
+    ' Ingen attributter
+  }
+
+  class Postsonegrense <<featureType>> {
+    ' Ingen attributter
+  }
+
+  class Postregion <<featureType>> {
+    + område [1..*] : Flate
+    + posisjon [0..*] : Punkt
+    + postregionnummer [1] : CharacterString
+  }
+
+  class Identifikasjon <<dataType>> {
+    + lokalId [1] : CharacterString
+    + navnerom [1] : CharacterString
+    + versjonId [0..1] : CharacterString
+  }
+
+  class Endringsflagg <<dataType>> {
+    + typeEndring [1] : TypeEndring
+    + tidspunktEndring [1] : Date
+  }
+
+  class Posisjonskvalitet <<dataType>> {
+    + målemetode [1] : Målemetode
+    + nøyaktighet [0..1] : Integer
+  }
+
+  class Registreringsversjon <<dataType>> {
+    + produkt [1] : CharacterString
+    + versjon [1] : CharacterString
+  }
+
+  class Kopidata <<dataType>> {
+    + områdeId [1] : Integer
+    + originalDatavert [1] : CharacterString
+    + kopidato [1] : Date
+  }
+
+  class "PostnummerområdeId" as Postnummeromr_deId <<dataType>> {
+    + postnummer [1] : CharacterString
+    + poststed [0..1] : CharacterString
+  }
+}
+
+Postgrenser <|-- Postregiongrense
+Supertype_SOSI_Objekt_postgrenser <|-- Postgrenser
+Supertype_SOSI_Objekt_post <|-- Postnummeromr_de
+Postnummeromr_de --> Postregiongrense : postregiongrense [0..*]
+Postnummeromr_de --> Postomr_degrense : postområdegrense [0..*]
+Postnummeromr_de --> Postnummeromr_degrense : postnummerområdegrense [0..*]
+Postnummeromr_de --> Postsonegrense : postsonegrense [0..*]
+Supertype_SOSI_Objekt_post <|-- Postsone
+Postsone --> Postregion : postregion [0..*]
+Postsone --> Postsonegrense : postsonegrense [0..*]
+Postgrenser <|-- Postomr_degrense
+Supertype_SOSI_Objekt_post <|-- Postomr_de
+Postomr_de --> Postregiongrense : postregiongrense [0..*]
+Postomr_de --> Postnummeromr_de : postnummerområde [0..*]
+Postomr_de --> Postomr_degrense : postområdegrense [0..*]
+Postomr_de --> Postsonegrense : postsonegrense [0..*]
+Postgrenser <|-- Postnummeromr_degrense
+Postgrenser <|-- Postsonegrense
+Supertype_SOSI_Objekt_post <|-- Postregion
+Postregion --> Postregiongrense : postregiongrense [0..*]
+Postregion --> Postomr_de : postområde [0..*]
+Postregion --> Postsonegrense : postsonegrense [0..*]
+
+@enduml

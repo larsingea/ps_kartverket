@@ -1,0 +1,4898 @@
+{
+  "$comment": "JSON Schema document created by ShapeChange - https://shapechange.net/",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://skjema.geonorge.no/SOSI/produktspesifikasjon/administrative-enheter-kommuner/datamodell-fra-uml/datamodellfrauml/datamodell-fra-uml.json",
+  "definitions": {
+    "AdministrativEnhet": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_adm_enheter"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "område": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "https://geojson.org/schema/Polygon.json"
+              },
+              "uniqueItems": true
+            },
+            "posisjon": {
+              "type": "array",
+              "items": {
+                "$ref": "https://geojson.org/schema/Point.json"
+              },
+              "uniqueItems": true
+            },
+            "land": {
+              "$ref": "#/definitions/Landkode"
+            },
+            "administrativtNivå": {
+              "$ref": "#/definitions/AdministrativtNivå"
+            },
+            "administrativKode": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "område"
+          ]
+        }
+      ]
+    },
+    "AdministrativEnhetNavn": {
+      "type": "object",
+      "properties": {
+        "navn": {
+          "type": "string"
+        },
+        "språk": {
+          "$ref": "#/definitions/Språkkode"
+        },
+        "rekkefølge": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "navn",
+        "språk"
+      ]
+    },
+    "AdministrativGrense": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_adm_grenser"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "omtvistet": {
+              "type": "boolean"
+            },
+            "dokumentasjonsreferanse": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Dokumentasjonsreferanse"
+              },
+              "uniqueItems": true
+            },
+            "grensestatus": {
+              "$ref": "#/definitions/Grensestatus"
+            },
+            "fastsettingstype": {
+              "$ref": "#/definitions/Fastsettingstype"
+            },
+            "følgerTerrengdetalj": {
+              "$ref": "#/definitions/TerrengdetaljKode"
+            },
+            "nøyaktighetsklasse": {
+              "$ref": "#/definitions/NøyaktighetsklasseKode"
+            }
+          }
+        }
+      ]
+    },
+    "AdministrativGrenseKode": {
+      "type": "string",
+      "format": "uri"
+    },
+    "AdministrativtNivå": {
+      "type": "object",
+      "properties": {
+        "nivånummer": {
+          "$ref": "#/definitions/Nivånummer"
+        },
+        "nivånavn": {
+          "$ref": "#/definitions/AdministrativEnhetNavn"
+        }
+      },
+      "required": [
+        "nivånummer"
+      ]
+    },
+    "AnsvarligOrganisasjon": {
+      "type": "string",
+      "format": "uri"
+    },
+    "AvtaltAvgrensningslinje": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/AvtalteGrenser"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "grensepunktSjø": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "sjørøys": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "grensebøye": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          }
+        }
+      ]
+    },
+    "AvtalteGrenser": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/GrenseMellomNasjoner"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "dokumentasjonsreferanse": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/definitions/Dokumentasjonsreferanse"
+              },
+              "uniqueItems": true
+            },
+            "fastsettingstype": {
+              "$ref": "#/definitions/Fastsettingstype"
+            }
+          },
+          "required": [
+            "dokumentasjonsreferanse",
+            "fastsettingstype"
+          ]
+        }
+      ]
+    },
+    "BeregnetGrense": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/NorskeGrenser"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "beregningsdato": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        }
+      ]
+    },
+    "BeregnetMidtlinje": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/GrenseMellomNasjoner"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "grensepunktSjø": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          }
+        }
+      ]
+    },
+    "Bispedømme": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_geistlige_enheter"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "område": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "https://geojson.org/schema/Polygon.json"
+              },
+              "uniqueItems": true
+            },
+            "posisjon": {
+              "$ref": "https://geojson.org/schema/Point.json"
+            },
+            "bispedømmeId": {
+              "$ref": "#/definitions/BispedømmeId"
+            },
+            "avgrensning": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "prosti": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "bispedømmeId",
+            "område"
+          ]
+        }
+      ]
+    },
+    "BispedømmeId": {
+      "type": "object",
+      "properties": {
+        "organisasjonsnummer": {
+          "type": "integer"
+        },
+        "bispedømmenummer": {
+          "$ref": "#/definitions/Bispedømmenummer"
+        },
+        "bispedømmenavn": {
+          "type": "string"
+        }
+      }
+    },
+    "Bispedømmegrense": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/GeistligeGrenser"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    },
+    "Bispedømmenummer": {
+      "type": "string",
+      "format": "uri"
+    },
+    "Brytningspunkt": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Riksgrensepunkt"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "grensemerkenummer": {
+              "type": "string"
+            },
+            "nærmesteGrensemerke": {
+              "type": "array",
+              "maxItems": 2,
+              "items": {
+                "$ref": "#/definitions/NærmesteGrensemerke"
+              },
+              "uniqueItems": true
+            },
+            "navn": {
+              "type": "array",
+              "maxItems": 3,
+              "items": {
+                "type": "string"
+              },
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "grensemerkenummer"
+          ]
+        }
+      ]
+    },
+    "Delområde": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_statistiske_enheter"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "område": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "https://geojson.org/schema/Polygon.json"
+              },
+              "uniqueItems": true
+            },
+            "posisjon": {
+              "$ref": "https://geojson.org/schema/Point.json"
+            },
+            "delområdeId": {
+              "$ref": "#/definitions/DelområdeId"
+            },
+            "kommunenummer": {
+              "$ref": "#/definitions/Kommunenummer"
+            },
+            "kommunegrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "fylkesgrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "riksgrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "territorialgrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "grunnkretsinndeling": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "avtaltAvgrensningslinje": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "delområdegrens": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "delområdeId",
+            "kommunenummer",
+            "område"
+          ]
+        }
+      ]
+    },
+    "DelområdeId": {
+      "type": "object",
+      "properties": {
+        "delområdenummer": {
+          "type": "string"
+        },
+        "delområdenavn": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "delområdenummer"
+      ]
+    },
+    "Delområdegrense": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_statistiske_grenser"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "følgerTerrengdetalj": {
+              "$ref": "#/definitions/TerrengdetaljKode"
+            },
+            "følgerTeiggrense": {
+              "type": "boolean"
+            },
+            "nøyaktighetsklasse": {
+              "$ref": "#/definitions/NøyaktighetsklasseKode"
+            }
+          }
+        }
+      ]
+    },
+    "DetSærskilteOmrådet": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/MaritimeOmråder"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "grense200NautiskeMil": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "avtaltAvgrensningslinje": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          }
+        }
+      ]
+    },
+    "Djupålspunkt": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Riksgrensepunkt"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "navnVassdrag": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "navnVassdrag"
+          ]
+        }
+      ]
+    },
+    "Dokumentasjonsreferanse": {
+      "type": "object",
+      "properties": {
+        "rettskildeTittel": {
+          "type": "string"
+        },
+        "rettskildeId": {
+          "type": "string"
+        },
+        "hjemmel": {
+          "type": "string"
+        },
+        "fastsettingsmyndighet": {
+          "type": "string"
+        },
+        "fastsettingsdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "dokumentlink": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "internReferanseKartverket": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "fastsettingsdato",
+        "rettskildeTittel"
+      ]
+    },
+    "Endringsflagg": {
+      "type": "object",
+      "properties": {
+        "typeEndring": {
+          "$ref": "#/definitions/TypeEndring"
+        },
+        "tidspunktEndring": {
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "required": [
+        "tidspunktEndring",
+        "typeEndring"
+      ]
+    },
+    "Fastsettingstype": {
+      "type": "string",
+      "format": "uri"
+    },
+    "Fiskerisone": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/MaritimeOmråder"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "grense200NautiskeMil": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "avtaltAvgrensningslinje": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "territorialgrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          }
+        }
+      ]
+    },
+    "Fiskevernsone": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/MaritimeOmråder"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "grense200NautiskeMil": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "avtaltAvgrensningslinje": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "territorialgrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          }
+        }
+      ]
+    },
+    "Fylke": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/AdministrativEnhet"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "fylkesnummer": {
+              "$ref": "#/definitions/Fylkesnummer"
+            },
+            "fylkesnavn": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/definitions/AdministrativEnhetNavn"
+              },
+              "uniqueItems": true
+            },
+            "samiskForvaltningsområde": {
+              "type": "boolean"
+            },
+            "fylkesgrense": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "nasjon": {
+              "type": "string",
+              "format": "uri"
+            },
+            "riksgrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "territorialgrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "avtaltAvgrensningslinje": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "fylkesgrense",
+            "fylkesnavn",
+            "fylkesnummer"
+          ]
+        }
+      ]
+    },
+    "Fylkesgrense": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/AdministrativGrense"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "grensemerkeLand": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "grensepunktSjø": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          }
+        }
+      ]
+    },
+    "Fylkesnummer": {
+      "type": "string",
+      "format": "uri"
+    },
+    "GeistligeGrenser": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_geistlige_grenser"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "følgerGrunnkretsgrense": {
+              "$ref": "#/definitions/Identifikasjon"
+            },
+            "følgerAdministrativGrense": {
+              "$ref": "#/definitions/AdministrativGrenseKode"
+            },
+            "nøyaktighetsklasse": {
+              "$ref": "#/definitions/NøyaktighetsklasseKode"
+            }
+          }
+        }
+      ]
+    },
+    "Grense200NautiskeMil": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/BeregnetGrense"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    },
+    "GrenseMellomNasjoner": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/MaritimeGrenser"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "land": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/definitions/Landkode"
+              },
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "land"
+          ]
+        }
+      ]
+    },
+    "Grensebøye": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/MerketGrensepunkt"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    },
+    "Grensemerke": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_riksgrenseinformasjon"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "posisjon": {
+              "type": "string"
+            },
+            "beskrivelse": {
+              "type": "string"
+            },
+            "etableringsdato": {
+              "type": "string",
+              "format": "date"
+            },
+            "vegbeskrivelse": {
+              "type": "string"
+            },
+            "andreMarkeringer": {
+              "type": "string"
+            },
+            "egenhøyde": {
+              "type": "number"
+            },
+            "registrertHøyde": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/RegistrertHøyde"
+              },
+              "uniqueItems": true
+            },
+            "vedlikehold": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Vedlikehold"
+              },
+              "uniqueItems": true
+            },
+            "registrerteKoordinater": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/RegistrerteKoordinater"
+              },
+              "uniqueItems": true
+            },
+            "underlag": {
+              "$ref": "#/definitions/Underlag"
+            },
+            "beregningsdato": {
+              "type": "string",
+              "format": "date"
+            },
+            "fotodokumentasjon": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "uniqueItems": true
+            },
+            "skjema": {
+              "type": "string"
+            },
+            "skjøtsel": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UtførtSkjøtselsarbeid"
+              },
+              "uniqueItems": true
+            },
+            "utførtArbeid": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UtførtArbeid"
+              },
+              "uniqueItems": true
+            },
+            "publikumshenvendelse": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Publikumshenvendelse"
+              },
+              "uniqueItems": true
+            },
+            "siktTilAnnetGrensemerke": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "posisjon"
+          ]
+        }
+      ]
+    },
+    "GrensemerkeLand": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_adm_punkter"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "grensemerketype": {
+              "$ref": "#/definitions/GrensepunkttypeKode"
+            },
+            "punktreferanse": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Punktreferanse"
+              },
+              "uniqueItems": true
+            },
+            "beskrivelse": {
+              "type": "string"
+            },
+            "etableringsdato": {
+              "type": "string",
+              "format": "date"
+            },
+            "egenhøyde": {
+              "type": "number"
+            },
+            "land": {
+              "$ref": "#/definitions/Landkode"
+            }
+          },
+          "required": [
+            "grensemerketype"
+          ]
+        }
+      ]
+    },
+    "GrensepunktSjø": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/MaritimtPunkt"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    },
+    "GrensepunkttypeKode": {
+      "type": "string",
+      "format": "uri"
+    },
+    "Grenseskilt": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Grenseviser"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "skilttype": {
+              "$ref": "#/definitions/Skilttype"
+            },
+            "nummer": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "nummer",
+            "skilttype"
+          ]
+        }
+      ]
+    },
+    "Grensestatus": {
+      "type": "string",
+      "format": "uri"
+    },
+    "Grensestolpe": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Grenseviser"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "grensemerkenummer": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "grensemerkenummer"
+          ]
+        }
+      ]
+    },
+    "Grenseviser": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Grensemerke"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    },
+    "Grunnkrets": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_statistiske_enheter"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "område": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "https://geojson.org/schema/Polygon.json"
+              },
+              "uniqueItems": true
+            },
+            "posisjon": {
+              "$ref": "https://geojson.org/schema/Point.json"
+            },
+            "grunnkretsId": {
+              "$ref": "#/definitions/GrunnkretsId"
+            },
+            "kommunenummer": {
+              "$ref": "#/definitions/Kommunenummer"
+            },
+            "kommunegrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "fylkesgrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "riksgrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "grunnkretsgrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "delområdegrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "territorialgrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "avtaltAvgrensningslinje": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "grunnkretsId",
+            "kommunenummer",
+            "område"
+          ]
+        }
+      ]
+    },
+    "GrunnkretsId": {
+      "type": "object",
+      "properties": {
+        "grunnkretsnummer": {
+          "type": "string"
+        },
+        "grunnkretsnavn": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "grunnkretsnummer"
+      ]
+    },
+    "Grunnkretsgrense": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_statistiske_grenser"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "følgerTerrengdetalj": {
+              "$ref": "#/definitions/TerrengdetaljKode"
+            },
+            "følgerTeiggrense": {
+              "type": "boolean"
+            },
+            "nøyaktighetsklasse": {
+              "$ref": "#/definitions/NøyaktighetsklasseKode"
+            }
+          }
+        }
+      ]
+    },
+    "Grunnlinje": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/NorskeGrenser"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kommunenummer": {
+              "$ref": "#/definitions/Kommunenummer"
+            },
+            "grensepunktSjø": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "grensebøye": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          }
+        }
+      ]
+    },
+    "Gråsonegrense": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/AvtalteGrenser"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "grensepunktSjø": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          }
+        }
+      ]
+    },
+    "Gråsonen": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/MaritimeOmråder"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "gråsonegrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          }
+        }
+      ]
+    },
+    "Hjertesteininformasjon": {
+      "type": "object",
+      "properties": {
+        "egenhøydeHjertestein": {
+          "type": "number"
+        },
+        "inskripsjonHjertestein": {
+          "type": "string"
+        },
+        "bildeHjertestein": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "etableringsdatoHjertestein": {
+          "type": "string",
+          "format": "date"
+        }
+      }
+    },
+    "Høydereferanse": {
+      "type": "string",
+      "format": "uri"
+    },
+    "Høydereferansesystem": {
+      "type": "string",
+      "format": "uri"
+    },
+    "Identifikasjon": {
+      "type": "object",
+      "properties": {
+        "lokalId": {
+          "type": "string"
+        },
+        "navnerom": {
+          "type": "string"
+        },
+        "versjonId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "lokalId",
+        "navnerom"
+      ]
+    },
+    "IndreFarvann": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/MaritimeOmråder"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "avtaltAvgrensningslinje": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "grunnlinje": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "kystkontur": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          }
+        }
+      ]
+    },
+    "InternasjonaltFarvann": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_maritime_områder"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "område": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "https://geojson.org/schema/Polygon.json"
+              },
+              "uniqueItems": true
+            },
+            "posisjon": {
+              "$ref": "https://geojson.org/schema/Point.json"
+            },
+            "navn": {
+              "type": "string"
+            },
+            "grense200NautiskeMil": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "avtaltAvgrensningslinje": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "område"
+          ]
+        }
+      ]
+    },
+    "Kommune": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/AdministrativEnhet"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kommunenummer": {
+              "$ref": "#/definitions/Kommunenummer"
+            },
+            "kommunenavn": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/definitions/AdministrativEnhetNavn"
+              },
+              "uniqueItems": true
+            },
+            "samiskForvaltningsområde": {
+              "type": "boolean"
+            },
+            "riksgrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "avtaltAvgrensningslinje": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "fylkesgrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "territorialgrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "kommunegrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "fylke": {
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          "required": [
+            "kommunenavn",
+            "kommunenummer",
+            "samiskForvaltningsområde"
+          ]
+        }
+      ]
+    },
+    "Kommunegrense": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/AdministrativGrense"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "grensemerkeLand": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "grensepunktSjø": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          }
+        }
+      ]
+    },
+    "Kommunenummer": {
+      "type": "string",
+      "format": "uri"
+    },
+    "Kontinentalsokkel": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/MaritimeOmråder"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "grense200NautiskeMil": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "avtaltAvgrensningslinje": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "territorialgrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "yttergrenseSokkel": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          }
+        }
+      ]
+    },
+    "KoordinatReferanse": {
+      "type": "string",
+      "format": "uri"
+    },
+    "KoordinatbestemtPunkt": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "navn": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "@type",
+        "navn"
+      ]
+    },
+    "Kopidata": {
+      "type": "object",
+      "properties": {
+        "områdeId": {
+          "type": "integer"
+        },
+        "originalDatavert": {
+          "type": "string"
+        },
+        "kopidato": {
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "required": [
+        "kopidato",
+        "områdeId",
+        "originalDatavert"
+      ]
+    },
+    "Kystkontur": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_maritime_grenser_punkter"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "høyde": {
+              "type": "number"
+            },
+            "kystreferanse": {
+              "$ref": "#/definitions/Kystreferanse"
+            },
+            "kysttype": {
+              "$ref": "#/definitions/Kysttype"
+            }
+          }
+        }
+      ]
+    },
+    "Kystreferanse": {
+      "type": "string",
+      "format": "uri"
+    },
+    "Kysttype": {
+      "type": "string",
+      "format": "uri"
+    },
+    "LandIndreFarvann": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_maritime_områder"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "område": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "https://geojson.org/schema/Polygon.json"
+              },
+              "uniqueItems": true
+            },
+            "posisjon": {
+              "type": "array",
+              "items": {
+                "$ref": "https://geojson.org/schema/Point.json"
+              },
+              "uniqueItems": true
+            },
+            "landkode": {
+              "$ref": "#/definitions/Landkode"
+            },
+            "riksgrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "avtaltAvgrensningslinje": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "grunnlinje": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "landkode",
+            "område"
+          ]
+        }
+      ]
+    },
+    "Landkode": {
+      "type": "string",
+      "format": "uri"
+    },
+    "LitenUtligger": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Utligger"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    },
+    "LovVirkeområde": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Virkeområde"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "område": {
+              "type": "array",
+              "items": {
+                "$ref": "https://geojson.org/schema/Polygon.json"
+              },
+              "uniqueItems": true
+            },
+            "posisjon": {
+              "type": "array",
+              "items": {
+                "$ref": "https://geojson.org/schema/Point.json"
+              },
+              "uniqueItems": true
+            },
+            "sonetype": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Sonetype"
+              },
+              "uniqueItems": true
+            },
+            "miljøområde": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Miljøområde"
+              },
+              "uniqueItems": true
+            },
+            "spesialisertSonetype": {
+              "$ref": "#/definitions/SpesialisertSonetype"
+            },
+            "virkeområdegrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          }
+        }
+      ]
+    },
+    "LovVirkeområdeGrense": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Virkeområde"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "grensestatus": {
+              "$ref": "#/definitions/Grensestatus"
+            },
+            "fastsettingstype": {
+              "$ref": "#/definitions/Fastsettingstype"
+            },
+            "soneNautisk": {
+              "type": "integer"
+            },
+            "følgerAdministrativGrense": {
+              "$ref": "#/definitions/AdministrativGrenseKode"
+            },
+            "lovVirkeområdeGrensePunkt": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          }
+        }
+      ]
+    },
+    "LovVirkeområdeGrensePunkt": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_Lov_virkeområde"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "punktreferanse": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Punktreferanse"
+              },
+              "uniqueItems": true
+            }
+          }
+        }
+      ]
+    },
+    "MaritimeGrenser": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_maritime_grenser_punkter"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "gjelderOmråde": {
+              "type": "string"
+            },
+            "grensestatus": {
+              "$ref": "#/definitions/Grensestatus"
+            },
+            "ansvarligMyndighet": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "uniqueItems": true
+            },
+            "virkeområdenavn": {
+              "type": "string"
+            },
+            "transformasjonsdato": {
+              "type": "string",
+              "format": "date"
+            }
+          }
+        }
+      ]
+    },
+    "MaritimeOmråder": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_maritime_områder"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "område": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "https://geojson.org/schema/Polygon.json"
+              },
+              "uniqueItems": true
+            },
+            "posisjon": {
+              "type": "array",
+              "items": {
+                "$ref": "https://geojson.org/schema/Point.json"
+              },
+              "uniqueItems": true
+            },
+            "dokumentasjonsreferanse": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/definitions/Dokumentasjonsreferanse"
+              },
+              "uniqueItems": true
+            },
+            "land": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/definitions/Landkode"
+              },
+              "uniqueItems": true
+            },
+            "ansvarligMyndighet": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "uniqueItems": true
+            },
+            "gjelderOmråde": {
+              "type": "string"
+            },
+            "virkeområdenavn": {
+              "type": "string"
+            },
+            "sonetype": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Sonetype"
+              },
+              "uniqueItems": true
+            },
+            "miljøområde": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Miljøområde"
+              },
+              "uniqueItems": true
+            },
+            "spesialisertSonetype": {
+              "$ref": "#/definitions/SpesialisertSonetype"
+            }
+          },
+          "required": [
+            "dokumentasjonsreferanse",
+            "land",
+            "område"
+          ]
+        }
+      ]
+    },
+    "MaritimtPunkt": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_maritime_grenser_punkter"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "punktreferanse": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Punktreferanse"
+              },
+              "uniqueItems": true
+            }
+          }
+        }
+      ]
+    },
+    "Markering": {
+      "type": "string",
+      "format": "uri"
+    },
+    "MaterialeBolt": {
+      "type": "string",
+      "format": "uri"
+    },
+    "MerketGrensepunkt": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/MaritimtPunkt"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "beskrivelse": {
+              "type": "string"
+            },
+            "etableringsdato": {
+              "type": "string",
+              "format": "date"
+            },
+            "egenhøyde": {
+              "type": "number"
+            },
+            "vedlikehold": {
+              "$ref": "#/definitions/Vedlikehold"
+            }
+          }
+        }
+      ]
+    },
+    "Miljøområde": {
+      "type": "string",
+      "format": "uri"
+    },
+    "Målemetode": {
+      "type": "string",
+      "format": "uri"
+    },
+    "Nasjon": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/AdministrativEnhet"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "nasjonsnavn": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/definitions/AdministrativEnhetNavn"
+              },
+              "uniqueItems": true
+            },
+            "avtaltAvgrensningslinje": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "territorialgrense": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "riksgrense": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "avtaltAvgrensningslinje",
+            "nasjonsnavn",
+            "riksgrense",
+            "territorialgrense"
+          ]
+        }
+      ]
+    },
+    "Nivånummer": {
+      "type": "string",
+      "format": "uri"
+    },
+    "NorgesØkonomiskeSone": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/MaritimeOmråder"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "grense200NautiskeMil": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "avtaltAvgrensningslinje": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "territorialgrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          }
+        }
+      ]
+    },
+    "NorskeGrenser": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/MaritimeGrenser"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "dokumentasjonsreferanse": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Dokumentasjonsreferanse"
+              },
+              "uniqueItems": true
+            },
+            "land": {
+              "$ref": "#/definitions/Landkode"
+            },
+            "fastsettingstype": {
+              "$ref": "#/definitions/Fastsettingstype"
+            }
+          },
+          "required": [
+            "fastsettingstype"
+          ]
+        }
+      ]
+    },
+    "NærmesteGrensemerke": {
+      "type": "object",
+      "properties": {
+        "grensemerkenummer": {
+          "type": "string"
+        },
+        "grensemerkeAvstand": {
+          "type": "number"
+        },
+        "grensemerkeRetning": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "grensemerkenummer"
+      ]
+    },
+    "NøyaktighetsklasseKode": {
+      "type": "string",
+      "format": "uri"
+    },
+    "Posisjonskvalitet": {
+      "type": "object",
+      "properties": {
+        "målemetode": {
+          "$ref": "#/definitions/Målemetode"
+        },
+        "nøyaktighet": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "målemetode"
+      ]
+    },
+    "Postgrenser": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_postgrenser"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "følgerGrunnkretsgrense": {
+              "$ref": "#/definitions/Identifikasjon"
+            },
+            "følgerAdministrativGrense": {
+              "$ref": "#/definitions/AdministrativGrenseKode"
+            },
+            "nøyaktighetsklasse": {
+              "$ref": "#/definitions/NøyaktighetsklasseKode"
+            }
+          }
+        }
+      ]
+    },
+    "Postnummerområde": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_post"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "område": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "https://geojson.org/schema/Polygon.json"
+              },
+              "uniqueItems": true
+            },
+            "posisjon": {
+              "type": "array",
+              "items": {
+                "$ref": "https://geojson.org/schema/Point.json"
+              },
+              "uniqueItems": true
+            },
+            "postnummerOmrådeId": {
+              "$ref": "#/definitions/PostnummerområdeId"
+            },
+            "postregiongrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "postområdegrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "postnummerområdegrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "postsonegrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "område",
+            "postnummerOmrådeId"
+          ]
+        }
+      ]
+    },
+    "PostnummerområdeId": {
+      "type": "object",
+      "properties": {
+        "postnummer": {
+          "type": "string"
+        },
+        "poststed": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "postnummer"
+      ]
+    },
+    "Postnummerområdegrense": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Postgrenser"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    },
+    "Postområde": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_post"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "område": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "https://geojson.org/schema/Polygon.json"
+              },
+              "uniqueItems": true
+            },
+            "posisjon": {
+              "type": "array",
+              "items": {
+                "$ref": "https://geojson.org/schema/Point.json"
+              },
+              "uniqueItems": true
+            },
+            "postområdenummer": {
+              "type": "string"
+            },
+            "postregiongrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "postnummerområde": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "postområdegrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "postsonegrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "område",
+            "postområdenummer"
+          ]
+        }
+      ]
+    },
+    "Postområdegrense": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Postgrenser"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    },
+    "Postregion": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_post"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "område": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "https://geojson.org/schema/Polygon.json"
+              },
+              "uniqueItems": true
+            },
+            "posisjon": {
+              "type": "array",
+              "items": {
+                "$ref": "https://geojson.org/schema/Point.json"
+              },
+              "uniqueItems": true
+            },
+            "postregionnummer": {
+              "type": "string"
+            },
+            "postregiongrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "postområde": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "postsonegrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "område",
+            "postregionnummer"
+          ]
+        }
+      ]
+    },
+    "Postregiongrense": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Postgrenser"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    },
+    "Postsone": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_post"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "område": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "https://geojson.org/schema/Polygon.json"
+              },
+              "uniqueItems": true
+            },
+            "posisjon": {
+              "type": "array",
+              "items": {
+                "$ref": "https://geojson.org/schema/Point.json"
+              },
+              "uniqueItems": true
+            },
+            "postsonenummer": {
+              "type": "string"
+            },
+            "postregion": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "postsonegrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "område",
+            "postsonenummer"
+          ]
+        }
+      ]
+    },
+    "Postsonegrense": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Postgrenser"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    },
+    "Profilpunkt": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Riksgrensepunkt"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "grensemerkenummer": {
+              "type": "string"
+            },
+            "avstandNorskStolpe": {
+              "type": "number"
+            },
+            "avstandRussiskStolpe": {
+              "type": "number"
+            },
+            "markertPunkt": {
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "grensemerkenummer"
+          ]
+        }
+      ]
+    },
+    "Prosti": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_geistlige_enheter"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "område": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "https://geojson.org/schema/Polygon.json"
+              },
+              "uniqueItems": true
+            },
+            "posisjon": {
+              "$ref": "https://geojson.org/schema/Point.json"
+            },
+            "prostiId": {
+              "$ref": "#/definitions/ProstiId"
+            },
+            "avgrensning": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "sokn": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "område",
+            "prostiId"
+          ]
+        }
+      ]
+    },
+    "ProstiId": {
+      "type": "object",
+      "properties": {
+        "organisasjonsnummer": {
+          "type": "integer"
+        },
+        "prostinummer": {
+          "$ref": "#/definitions/Prostinummer"
+        },
+        "prostinavn": {
+          "type": "string"
+        }
+      }
+    },
+    "Prostigrense": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/GeistligeGrenser"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    },
+    "Prostinummer": {
+      "type": "string",
+      "format": "uri"
+    },
+    "Publikumshenvendelse": {
+      "type": "object",
+      "properties": {
+        "Informasjon": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "InterneNotater": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "statusBehandling": {
+          "$ref": "#/definitions/StatusBehandling"
+        },
+        "innmeldtDato": {
+          "type": "string",
+          "format": "date"
+        },
+        "ferdigDato": {
+          "type": "string",
+          "format": "date"
+        },
+        "internReferanseKartverket": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        }
+      },
+      "required": [
+        "Informasjon",
+        "innmeldtDato"
+      ]
+    },
+    "Punktreferanse": {
+      "type": "object",
+      "properties": {
+        "grenselinjeidentifikasjon": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Identifikasjon"
+          },
+          "uniqueItems": true
+        },
+        "punktnummer": {
+          "type": "string"
+        },
+        "punktnavn": {
+          "type": "string"
+        }
+      }
+    },
+    "ReferansesystemKode": {
+      "type": "string",
+      "format": "uri"
+    },
+    "Registreringsversjon": {
+      "type": "object",
+      "properties": {
+        "produkt": {
+          "type": "string"
+        },
+        "versjon": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "produkt",
+        "versjon"
+      ]
+    },
+    "RegistrertHøyde": {
+      "type": "object",
+      "properties": {
+        "høyde": {
+          "type": "number"
+        },
+        "høydereferansesystem": {
+          "$ref": "#/definitions/Høydereferansesystem"
+        },
+        "høydereferanse": {
+          "$ref": "#/definitions/Høydereferanse"
+        },
+        "kilde": {
+          "type": "string"
+        },
+        "maksHøyde": {
+          "type": "number"
+        },
+        "ninHøyde": {
+          "type": "number"
+        }
+      },
+      "required": [
+        "høyde",
+        "høydereferanse",
+        "høydereferansesystem"
+      ]
+    },
+    "RegistrerteKoordinater": {
+      "type": "object",
+      "properties": {
+        "nordkoordinat": {
+          "type": "number"
+        },
+        "østkoordinat": {
+          "type": "number"
+        },
+        "koordinatsystem": {
+          "$ref": "#/definitions/ReferansesystemKode"
+        },
+        "kilde": {
+          "type": "string"
+        },
+        "koordinatReferanse": {
+          "$ref": "#/definitions/KoordinatReferanse"
+        }
+      },
+      "required": [
+        "koordinatReferanse",
+        "koordinatsystem",
+        "nordkoordinat",
+        "østkoordinat"
+      ]
+    },
+    "Retningsrøys": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Grenseviser"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "riksrøys": {
+              "type": "string",
+              "format": "uri"
+            }
+          },
+          "required": [
+            "riksrøys"
+          ]
+        }
+      ]
+    },
+    "Riksgrense": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_riksgrenseinformasjon"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "følgerTerrengdetalj": {
+              "$ref": "#/definitions/TerrengdetaljKode"
+            },
+            "grensegateBredde": {
+              "type": "number"
+            },
+            "dokumentasjonsreferanse": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Dokumentasjonsreferanse"
+              },
+              "uniqueItems": true
+            },
+            "ansvarligMyndighet": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "uniqueItems": true
+            },
+            "grensestatus": {
+              "$ref": "#/definitions/Grensestatus"
+            },
+            "fastsettingstype": {
+              "$ref": "#/definitions/Fastsettingstype"
+            },
+            "publikumshenvendelse": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Publikumshenvendelse"
+              },
+              "uniqueItems": true
+            },
+            "tilvekst": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/definitions/Tilvekst"
+              },
+              "uniqueItems": true
+            },
+            "skjøtsel": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Skjøtsel"
+              },
+              "uniqueItems": true
+            },
+            "status": {
+              "$ref": "#/definitions/StatusBehandling"
+            },
+            "grensemerke": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "grensebøye": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "status",
+            "tilvekst"
+          ]
+        }
+      ]
+    },
+    "Riksgrensepunkt": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Grensemerke"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    },
+    "Riksrøys": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Riksgrensepunkt"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "grensemerkenummer": {
+              "type": "string"
+            },
+            "riksrøysnavn": {
+              "type": "array",
+              "maxItems": 3,
+              "items": {
+                "type": "string"
+              },
+              "uniqueItems": true
+            },
+            "nærmesteGrensemerke": {
+              "type": "array",
+              "maxItems": 2,
+              "items": {
+                "$ref": "#/definitions/NærmesteGrensemerke"
+              },
+              "uniqueItems": true
+            },
+            "hjertesteininformasjon": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Hjertesteininformasjon"
+              },
+              "uniqueItems": true
+            },
+            "diameterFot": {
+              "type": "number"
+            },
+            "diameterTopp": {
+              "type": "number"
+            },
+            "visersteiner": {
+              "type": "boolean"
+            },
+            "vitnesteiner": {
+              "type": "boolean"
+            },
+            "sokkelBredde": {
+              "type": "number"
+            },
+            "sokkelLengde": {
+              "type": "number"
+            },
+            "markering": {
+              "$ref": "#/definitions/Markering"
+            },
+            "toppmarkering": {
+              "$ref": "#/definitions/Markering"
+            }
+          },
+          "required": [
+            "grensemerkenummer",
+            "markering",
+            "toppmarkering",
+            "visersteiner",
+            "vitnesteiner"
+          ]
+        }
+      ]
+    },
+    "SektorId": {
+      "type": "object",
+      "properties": {
+        "sektornavn": {
+          "type": "string"
+        },
+        "sektornummer": {
+          "type": "string"
+        },
+        "alternativtSektornummer": {
+          "type": "string"
+        }
+      }
+    },
+    "Sektorgrense": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_Etats_og_sektorinndeling_grenser"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "følgerAdministrativGrense": {
+              "$ref": "#/definitions/AdministrativGrenseKode"
+            }
+          }
+        }
+      ]
+    },
+    "Sektorlinje": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/GrenseMellomNasjoner"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "grensepunktSjø": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          }
+        }
+      ]
+    },
+    "Sektorlokalitet": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_Etats_og_sektorinndeling_grenser"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "navn": {
+              "type": "string"
+            },
+            "funksjon": {
+              "type": "string"
+            }
+          }
+        }
+      ]
+    },
+    "Sektornivå": {
+      "type": "object",
+      "properties": {
+        "nivånummer": {
+          "$ref": "#/definitions/Nivånummer"
+        },
+        "nivånavn": {
+          "type": "string"
+        }
+      }
+    },
+    "Sektorområde": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_Etats_og_Sektorinndeling"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "område": {
+              "type": "array",
+              "items": {
+                "$ref": "https://geojson.org/schema/Polygon.json"
+              },
+              "uniqueItems": true
+            },
+            "posisjon": {
+              "type": "array",
+              "items": {
+                "$ref": "https://geojson.org/schema/Point.json"
+              },
+              "uniqueItems": true
+            },
+            "sektornivå": {
+              "$ref": "#/definitions/Sektornivå"
+            },
+            "sektoreier": {
+              "type": "string"
+            },
+            "sektorId": {
+              "$ref": "#/definitions/SektorId"
+            },
+            "sektorlokalitet": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "sektorgrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "sektorId"
+          ]
+        }
+      ]
+    },
+    "Sikringspunkt": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "nummer": {
+          "type": "string"
+        },
+        "sikringspunktType": {
+          "$ref": "#/definitions/SikringspunktType"
+        },
+        "egenhøyde": {
+          "type": "number"
+        },
+        "materialeBolt": {
+          "$ref": "#/definitions/MaterialeBolt"
+        },
+        "diameter": {
+          "type": "number"
+        },
+        "merknad": {
+          "type": "string"
+        },
+        "underlag": {
+          "$ref": "#/definitions/Underlag"
+        },
+        "utligger": {
+          "type": "string",
+          "format": "uri"
+        },
+        "riksrøys": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "required": [
+        "@type",
+        "nummer",
+        "sikringspunktType"
+      ]
+    },
+    "SikringspunktType": {
+      "type": "string",
+      "format": "uri"
+    },
+    "Sjørøys": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/MerketGrensepunkt"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    },
+    "Sjøterritorium": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/MaritimeOmråder"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "avtaltAvgrensningslinje": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "territorialgrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "grunnlinje": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "kystkontur": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          }
+        }
+      ]
+    },
+    "Skilttype": {
+      "type": "string",
+      "format": "uri"
+    },
+    "Skjøtsel": {
+      "type": "object",
+      "properties": {
+        "utførtDato": {
+          "type": "string",
+          "format": "date"
+        },
+        "utførtSkjøtsesarbeid": {
+          "$ref": "#/definitions/UtførtSkjøtselsarbeid"
+        },
+        "informasjon": {
+          "type": "string"
+        },
+        "ansvarligOrganisasjon": {
+          "type": "string"
+        },
+        "skjøtselsrapport": {
+          "type": "string",
+          "format": "uri"
+        }
+      },
+      "required": [
+        "ansvarligOrganisasjon",
+        "skjøtselsrapport",
+        "utførtDato",
+        "utførtSkjøtsesarbeid"
+      ]
+    },
+    "Skolekrets": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_kretser"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "område": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "https://geojson.org/schema/Polygon.json"
+              },
+              "uniqueItems": true
+            },
+            "posisjon": {
+              "$ref": "https://geojson.org/schema/Point.json"
+            },
+            "skolekretsId": {
+              "$ref": "#/definitions/SkolekretsId"
+            },
+            "kommunenummer": {
+              "$ref": "#/definitions/Kommunenummer"
+            },
+            "barnetrinn": {
+              "type": "boolean"
+            },
+            "ungdomstrinn": {
+              "type": "boolean"
+            },
+            "kommunegrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "fylkesgrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "riksgrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "skolekretsgrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "avtaltAvgrensningslinje": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "territorialgrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "kommunenummer",
+            "område",
+            "skolekretsId"
+          ]
+        }
+      ]
+    },
+    "SkolekretsId": {
+      "type": "object",
+      "properties": {
+        "skolekretsnummer": {
+          "type": "string"
+        },
+        "skolekretsnavn": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "skolekretsnummer"
+      ]
+    },
+    "Skolekretsgrense": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_kretsgrenser"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "følgerGrunnkretsgrense": {
+              "$ref": "#/definitions/Identifikasjon"
+            },
+            "følgerTerrengdetalj": {
+              "$ref": "#/definitions/TerrengdetaljKode"
+            },
+            "nøyaktighetsklasse": {
+              "$ref": "#/definitions/NøyaktighetsklasseKode"
+            }
+          }
+        }
+      ]
+    },
+    "Sokn": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_geistlige_enheter"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "område": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "https://geojson.org/schema/Polygon.json"
+              },
+              "uniqueItems": true
+            },
+            "posisjon": {
+              "$ref": "https://geojson.org/schema/Point.json"
+            },
+            "fellesråd": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "uniqueItems": true
+            },
+            "sokneId": {
+              "$ref": "#/definitions/SokneId"
+            },
+            "avgrensning": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "område",
+            "sokneId"
+          ]
+        }
+      ]
+    },
+    "SokneId": {
+      "type": "object",
+      "properties": {
+        "organisasjonsnummer": {
+          "type": "integer"
+        },
+        "soknenummer": {
+          "$ref": "#/definitions/Soknenummer"
+        },
+        "soknenavn": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "organisasjonsnummer"
+      ]
+    },
+    "Soknegrense": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/GeistligeGrenser"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    },
+    "Soknenummer": {
+      "type": "string",
+      "format": "uri"
+    },
+    "Sonetype": {
+      "type": "string",
+      "format": "uri"
+    },
+    "SpesialisertSonetype": {
+      "type": "string",
+      "format": "uri"
+    },
+    "Språkkode": {
+      "type": "string",
+      "format": "uri"
+    },
+    "StatusBehandling": {
+      "type": "string",
+      "format": "uri"
+    },
+    "Stemmekrets": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_kretser"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "område": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "https://geojson.org/schema/Polygon.json"
+              },
+              "uniqueItems": true
+            },
+            "posisjon": {
+              "$ref": "https://geojson.org/schema/Point.json"
+            },
+            "stemmekretsId": {
+              "$ref": "#/definitions/StemmekretsId"
+            },
+            "kommunenummer": {
+              "$ref": "#/definitions/Kommunenummer"
+            },
+            "kommunegrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "fylkesgrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "riksgrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "stemmekretsgrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "avtaltAvgrensningslinje": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "valgdistriktsgrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "territorialgrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "kommunenummer",
+            "område",
+            "stemmekretsId"
+          ]
+        }
+      ]
+    },
+    "StemmekretsId": {
+      "type": "object",
+      "properties": {
+        "stemmekretsnummer": {
+          "type": "string"
+        },
+        "stemmekretsnavn": {
+          "type": "string"
+        },
+        "tellekretsnummer": {
+          "type": "string"
+        },
+        "tellekretsnavn": {
+          "type": "string"
+        },
+        "valgdistriktsnummer": {
+          "type": "string"
+        },
+        "fylkesnummer": {
+          "$ref": "#/definitions/Fylkesnummer"
+        }
+      },
+      "required": [
+        "stemmekretsnavn",
+        "stemmekretsnummer"
+      ]
+    },
+    "Stemmekretsgrense": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_kretsgrenser"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "følgerGrunnkretsgrense": {
+              "$ref": "#/definitions/Identifikasjon"
+            },
+            "følgerTerrengdetalj": {
+              "$ref": "#/definitions/TerrengdetaljKode"
+            },
+            "nøyaktighetsklasse": {
+              "$ref": "#/definitions/NøyaktighetsklasseKode"
+            }
+          }
+        }
+      ]
+    },
+    "StorUtligger": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Utligger"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    },
+    "Supertype_SOSI_Objekt_Etats_og_Sektorinndeling": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "identifikasjon": {
+          "$ref": "#/definitions/Identifikasjon"
+        },
+        "datafangstdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "oppdateringsdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "sluttdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "gyldigFra": {
+          "type": "string",
+          "format": "date"
+        },
+        "gyldigTil": {
+          "type": "string",
+          "format": "date"
+        },
+        "datauttaksdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "endringsflagg": {
+          "$ref": "#/definitions/Endringsflagg"
+        },
+        "opphav": {
+          "type": "string"
+        },
+        "kommunenummer": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Kommunenummer"
+          },
+          "uniqueItems": true
+        },
+        "informasjon": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "registreringsversjon": {
+          "$ref": "#/definitions/Registreringsversjon"
+        },
+        "kopidata": {
+          "$ref": "#/definitions/Kopidata"
+        }
+      },
+      "required": [
+        "@type",
+        "identifikasjon"
+      ]
+    },
+    "Supertype_SOSI_Objekt_Etats_og_sektorinndeling_grenser": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "identifikasjon": {
+          "$ref": "#/definitions/Identifikasjon"
+        },
+        "datafangstdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "oppdateringsdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "sluttdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "gyldigFra": {
+          "type": "string",
+          "format": "date"
+        },
+        "gyldigTil": {
+          "type": "string",
+          "format": "date"
+        },
+        "datauttaksdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "endringsflagg": {
+          "$ref": "#/definitions/Endringsflagg"
+        },
+        "kvalitet": {
+          "$ref": "#/definitions/Posisjonskvalitet"
+        },
+        "opphav": {
+          "type": "string"
+        },
+        "informasjon": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "registreringsversjon": {
+          "$ref": "#/definitions/Registreringsversjon"
+        },
+        "kopidata": {
+          "$ref": "#/definitions/Kopidata"
+        }
+      },
+      "required": [
+        "@type",
+        "identifikasjon",
+        "kvalitet"
+      ]
+    },
+    "Supertype_SOSI_Objekt_Lov_virkeområde": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "identifikasjon": {
+          "$ref": "#/definitions/Identifikasjon"
+        },
+        "datafangstdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "oppdateringsdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "sluttdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "gyldigFra": {
+          "type": "string",
+          "format": "date"
+        },
+        "gyldigTil": {
+          "type": "string",
+          "format": "date"
+        },
+        "datauttaksdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "endringsflagg": {
+          "$ref": "#/definitions/Endringsflagg"
+        },
+        "kvalitet": {
+          "$ref": "#/definitions/Posisjonskvalitet"
+        },
+        "opphav": {
+          "type": "string"
+        },
+        "kommunenummer": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Kommunenummer"
+          },
+          "uniqueItems": true
+        },
+        "informasjon": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "registreringsversjon": {
+          "$ref": "#/definitions/Registreringsversjon"
+        },
+        "kopidata": {
+          "$ref": "#/definitions/Kopidata"
+        }
+      },
+      "required": [
+        "@type",
+        "identifikasjon",
+        "kvalitet"
+      ]
+    },
+    "Supertype_SOSI_Objekt_adm_enheter": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "identifikasjon": {
+          "$ref": "#/definitions/Identifikasjon"
+        },
+        "oppdateringsdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "sluttdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "datauttaksdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "opphav": {
+          "type": "string"
+        },
+        "informasjon": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "registreringsversjon": {
+          "$ref": "#/definitions/Registreringsversjon"
+        },
+        "gyldigFra": {
+          "type": "string",
+          "format": "date"
+        },
+        "gyldigTil": {
+          "type": "string",
+          "format": "date"
+        },
+        "kopidata": {
+          "$ref": "#/definitions/Kopidata"
+        },
+        "datafangstdato": {
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "required": [
+        "@type",
+        "identifikasjon"
+      ]
+    },
+    "Supertype_SOSI_Objekt_adm_grenser": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "identifikasjon": {
+          "$ref": "#/definitions/Identifikasjon"
+        },
+        "oppdateringsdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "sluttdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "datauttaksdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "endringsflagg": {
+          "$ref": "#/definitions/Endringsflagg"
+        },
+        "kvalitet": {
+          "$ref": "#/definitions/Posisjonskvalitet"
+        },
+        "opphav": {
+          "type": "string"
+        },
+        "informasjon": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "registreringsversjon": {
+          "$ref": "#/definitions/Registreringsversjon"
+        },
+        "gyldigFra": {
+          "type": "string",
+          "format": "date"
+        },
+        "gyldigTil": {
+          "type": "string",
+          "format": "date"
+        },
+        "kopidata": {
+          "$ref": "#/definitions/Kopidata"
+        },
+        "datafangstdato": {
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "required": [
+        "@type",
+        "identifikasjon",
+        "oppdateringsdato"
+      ]
+    },
+    "Supertype_SOSI_Objekt_adm_punkter": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "identifikasjon": {
+          "$ref": "#/definitions/Identifikasjon"
+        },
+        "oppdateringsdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "sluttdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "datauttaksdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "endringsflagg": {
+          "$ref": "#/definitions/Endringsflagg"
+        },
+        "kvalitet": {
+          "$ref": "#/definitions/Posisjonskvalitet"
+        },
+        "opphav": {
+          "type": "string"
+        },
+        "informasjon": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "registreringsversjon": {
+          "$ref": "#/definitions/Registreringsversjon"
+        },
+        "gyldigFra": {
+          "type": "string",
+          "format": "date"
+        },
+        "gyldigTil": {
+          "type": "string",
+          "format": "date"
+        },
+        "kopidata": {
+          "$ref": "#/definitions/Kopidata"
+        },
+        "datafangstdato": {
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "required": [
+        "@type",
+        "identifikasjon"
+      ]
+    },
+    "Supertype_SOSI_Objekt_geistlige_enheter": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "identifikasjon": {
+          "$ref": "#/definitions/Identifikasjon"
+        },
+        "datafangstdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "oppdateringsdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "sluttdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "gyldigFra": {
+          "type": "string",
+          "format": "date"
+        },
+        "gyldigTil": {
+          "type": "string",
+          "format": "date"
+        },
+        "datauttaksdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "endringsflagg": {
+          "$ref": "#/definitions/Endringsflagg"
+        },
+        "opphav": {
+          "type": "string"
+        },
+        "kommunenummer": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Kommunenummer"
+          },
+          "uniqueItems": true
+        },
+        "informasjon": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "registreringsversjon": {
+          "$ref": "#/definitions/Registreringsversjon"
+        },
+        "kopidata": {
+          "$ref": "#/definitions/Kopidata"
+        }
+      },
+      "required": [
+        "@type",
+        "identifikasjon"
+      ]
+    },
+    "Supertype_SOSI_Objekt_geistlige_grenser": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "identifikasjon": {
+          "$ref": "#/definitions/Identifikasjon"
+        },
+        "datafangstdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "oppdateringsdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "sluttdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "gyldigFra": {
+          "type": "string",
+          "format": "date"
+        },
+        "gyldigTil": {
+          "type": "string",
+          "format": "date"
+        },
+        "datauttaksdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "endringsflagg": {
+          "$ref": "#/definitions/Endringsflagg"
+        },
+        "kvalitet": {
+          "$ref": "#/definitions/Posisjonskvalitet"
+        },
+        "opphav": {
+          "type": "string"
+        },
+        "informasjon": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "registreringsversjon": {
+          "$ref": "#/definitions/Registreringsversjon"
+        },
+        "kopidata": {
+          "$ref": "#/definitions/Kopidata"
+        }
+      },
+      "required": [
+        "@type",
+        "identifikasjon"
+      ]
+    },
+    "Supertype_SOSI_Objekt_kretser": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "identifikasjon": {
+          "$ref": "#/definitions/Identifikasjon"
+        },
+        "datafangstdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "oppdateringsdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "sluttdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "gyldigFra": {
+          "type": "string",
+          "format": "date"
+        },
+        "gyldigTil": {
+          "type": "string",
+          "format": "date"
+        },
+        "datauttaksdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "endringsflagg": {
+          "$ref": "#/definitions/Endringsflagg"
+        },
+        "opphav": {
+          "type": "string"
+        },
+        "registreringsversjon": {
+          "$ref": "#/definitions/Registreringsversjon"
+        },
+        "kopidata": {
+          "$ref": "#/definitions/Kopidata"
+        },
+        "informasjon": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "@type",
+        "identifikasjon"
+      ]
+    },
+    "Supertype_SOSI_Objekt_kretsgrenser": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "identifikasjon": {
+          "$ref": "#/definitions/Identifikasjon"
+        },
+        "datafangstdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "oppdateringsdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "sluttdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "gyldigFra": {
+          "type": "string",
+          "format": "date"
+        },
+        "gyldigTil": {
+          "type": "string",
+          "format": "date"
+        },
+        "datauttaksdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "endringsflagg": {
+          "$ref": "#/definitions/Endringsflagg"
+        },
+        "kvalitet": {
+          "$ref": "#/definitions/Posisjonskvalitet"
+        },
+        "opphav": {
+          "type": "string"
+        },
+        "registreringsversjon": {
+          "$ref": "#/definitions/Registreringsversjon"
+        },
+        "kopidata": {
+          "$ref": "#/definitions/Kopidata"
+        }
+      },
+      "required": [
+        "@type",
+        "identifikasjon"
+      ]
+    },
+    "Supertype_SOSI_Objekt_maritime_grenser_punkter": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "identifikasjon": {
+          "$ref": "#/definitions/Identifikasjon"
+        },
+        "datafangstdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "oppdateringsdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "sluttdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "gyldigFra": {
+          "type": "string",
+          "format": "date"
+        },
+        "gyldigTil": {
+          "type": "string",
+          "format": "date"
+        },
+        "datauttaksdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "endringsflagg": {
+          "$ref": "#/definitions/Endringsflagg"
+        },
+        "opphav": {
+          "type": "string"
+        },
+        "kopidata": {
+          "$ref": "#/definitions/Kopidata"
+        },
+        "informasjon": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "registreringsversjon": {
+          "$ref": "#/definitions/Registreringsversjon"
+        },
+        "kvalitet": {
+          "$ref": "#/definitions/Posisjonskvalitet"
+        }
+      },
+      "required": [
+        "@type",
+        "identifikasjon",
+        "kvalitet"
+      ]
+    },
+    "Supertype_SOSI_Objekt_maritime_områder": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "identifikasjon": {
+          "$ref": "#/definitions/Identifikasjon"
+        },
+        "datafangstdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "oppdateringsdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "sluttdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "gyldigFra": {
+          "type": "string",
+          "format": "date"
+        },
+        "gyldigTil": {
+          "type": "string",
+          "format": "date"
+        },
+        "datauttaksdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "endringsflagg": {
+          "$ref": "#/definitions/Endringsflagg"
+        },
+        "opphav": {
+          "type": "string"
+        },
+        "kopidata": {
+          "$ref": "#/definitions/Kopidata"
+        },
+        "informasjon": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "registreringsversjon": {
+          "$ref": "#/definitions/Registreringsversjon"
+        }
+      },
+      "required": [
+        "@type",
+        "identifikasjon"
+      ]
+    },
+    "Supertype_SOSI_Objekt_post": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "identifikasjon": {
+          "$ref": "#/definitions/Identifikasjon"
+        },
+        "datafangstdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "oppdateringsdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "sluttdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "gyldigFra": {
+          "type": "string",
+          "format": "date"
+        },
+        "gyldigTil": {
+          "type": "string",
+          "format": "date"
+        },
+        "datauttaksdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "endringsflagg": {
+          "$ref": "#/definitions/Endringsflagg"
+        },
+        "opphav": {
+          "type": "string"
+        },
+        "kommunenummer": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/Kommunenummer"
+          },
+          "uniqueItems": true
+        },
+        "informasjon": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "registreringsversjon": {
+          "$ref": "#/definitions/Registreringsversjon"
+        },
+        "kopidata": {
+          "$ref": "#/definitions/Kopidata"
+        }
+      },
+      "required": [
+        "@type",
+        "identifikasjon"
+      ]
+    },
+    "Supertype_SOSI_Objekt_postgrenser": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "identifikasjon": {
+          "$ref": "#/definitions/Identifikasjon"
+        },
+        "datafangstdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "oppdateringsdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "sluttdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "gyldigFra": {
+          "type": "string",
+          "format": "date"
+        },
+        "gyldigTil": {
+          "type": "string",
+          "format": "date"
+        },
+        "datauttaksdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "endringsflagg": {
+          "$ref": "#/definitions/Endringsflagg"
+        },
+        "kvalitet": {
+          "$ref": "#/definitions/Posisjonskvalitet"
+        },
+        "opphav": {
+          "type": "string"
+        },
+        "informasjon": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "registreringsversjon": {
+          "$ref": "#/definitions/Registreringsversjon"
+        },
+        "kopidata": {
+          "$ref": "#/definitions/Kopidata"
+        }
+      },
+      "required": [
+        "@type",
+        "identifikasjon"
+      ]
+    },
+    "Supertype_SOSI_Objekt_riksgrenseinformasjon": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "identifikasjon": {
+          "$ref": "#/definitions/Identifikasjon"
+        },
+        "datafangstdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "oppdateringsdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "sluttdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "gyldigFra": {
+          "type": "string",
+          "format": "date"
+        },
+        "gyldigTil": {
+          "type": "string",
+          "format": "date"
+        },
+        "datauttaksdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "endringsflagg": {
+          "$ref": "#/definitions/Endringsflagg"
+        },
+        "kvalitet": {
+          "$ref": "#/definitions/Posisjonskvalitet"
+        },
+        "opphav": {
+          "type": "string"
+        },
+        "stedfestingVerifisert": {
+          "type": "boolean"
+        },
+        "informasjon": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "registreringsversjon": {
+          "$ref": "#/definitions/Registreringsversjon"
+        }
+      },
+      "required": [
+        "@type",
+        "identifikasjon",
+        "kvalitet"
+      ]
+    },
+    "Supertype_SOSI_Objekt_statistiske_enheter": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "identifikasjon": {
+          "$ref": "#/definitions/Identifikasjon"
+        },
+        "datafangstdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "oppdateringsdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "sluttdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "gyldigFra": {
+          "type": "string",
+          "format": "date"
+        },
+        "gyldigTil": {
+          "type": "string",
+          "format": "date"
+        },
+        "datauttaksdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "endringsflagg": {
+          "$ref": "#/definitions/Endringsflagg"
+        },
+        "opphav": {
+          "type": "string"
+        },
+        "informasjon": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "registreringsversjon": {
+          "$ref": "#/definitions/Registreringsversjon"
+        },
+        "kopidata": {
+          "$ref": "#/definitions/Kopidata"
+        }
+      },
+      "required": [
+        "@type",
+        "identifikasjon"
+      ]
+    },
+    "Supertype_SOSI_Objekt_statistiske_grenser": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "identifikasjon": {
+          "$ref": "#/definitions/Identifikasjon"
+        },
+        "datafangstdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "oppdateringsdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "sluttdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "gyldigFra": {
+          "type": "string",
+          "format": "date"
+        },
+        "gyldigTil": {
+          "type": "string",
+          "format": "date"
+        },
+        "datauttaksdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "endringsflagg": {
+          "$ref": "#/definitions/Endringsflagg"
+        },
+        "kvalitet": {
+          "$ref": "#/definitions/Posisjonskvalitet"
+        },
+        "opphav": {
+          "type": "string"
+        },
+        "informasjon": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "registreringsversjon": {
+          "$ref": "#/definitions/Registreringsversjon"
+        },
+        "kopidata": {
+          "$ref": "#/definitions/Kopidata"
+        }
+      },
+      "required": [
+        "@type",
+        "identifikasjon"
+      ]
+    },
+    "SøknadspliktigTiltak": {
+      "type": "object",
+      "properties": {
+        "omsøktTiltak": {
+          "type": "boolean"
+        },
+        "InternReferanseKartverket": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "uri"
+          },
+          "uniqueItems": true
+        },
+        "behandling": {
+          "$ref": "#/definitions/StatusBehandling"
+        },
+        "ansvarligOrganisasjon": {
+          "$ref": "#/definitions/AnsvarligOrganisasjon"
+        },
+        "EgneTiltak": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "EgneTiltak",
+        "ansvarligOrganisasjon",
+        "behandling",
+        "omsøktTiltak"
+      ]
+    },
+    "TerrengdetaljKode": {
+      "type": "string",
+      "format": "uri"
+    },
+    "Territorialfarvann": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/MaritimeOmråder"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "avtaltAvgrensningslinje": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "territorialgrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "kystkontur": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          }
+        }
+      ]
+    },
+    "Territorialgrense": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/BeregnetGrense"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    },
+    "Territorialområde": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_maritime_områder"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "område": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "https://geojson.org/schema/Polygon.json"
+              },
+              "uniqueItems": true
+            },
+            "posisjon": {
+              "type": "array",
+              "items": {
+                "$ref": "https://geojson.org/schema/Point.json"
+              },
+              "uniqueItems": true
+            },
+            "landkode": {
+              "$ref": "#/definitions/Landkode"
+            },
+            "riksgrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "territorialgrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "avtaltAvgrensningslinje": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "landkode",
+            "område"
+          ]
+        }
+      ]
+    },
+    "TidligereOmstridtOmråde": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_maritime_områder"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "posisjon": {
+              "$ref": "https://geojson.org/schema/Point.json"
+            },
+            "område": {
+              "$ref": "https://geojson.org/schema/Polygon.json"
+            },
+            "beregnetMidtlinje": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "sektorlinje": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "område"
+          ]
+        }
+      ]
+    },
+    "TilstøtendeSone": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/MaritimeOmråder"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "avtaltAvgrensningslinje": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "yttergrenseTilstøtendeSone": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "territorialgrense": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          }
+        }
+      ]
+    },
+    "Tilvekst": {
+      "type": "string",
+      "format": "uri"
+    },
+    "TypeEndring": {
+      "type": "string",
+      "format": "uri"
+    },
+    "TypeObjekt": {
+      "type": "string",
+      "format": "uri"
+    },
+    "Underlag": {
+      "type": "string",
+      "format": "uri"
+    },
+    "UoffisieltObjekt": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "søknadspliktigTiltak": {
+          "$ref": "#/definitions/SøknadspliktigTiltak"
+        },
+        "typeObjekt": {
+          "$ref": "#/definitions/TypeObjekt"
+        }
+      },
+      "required": [
+        "@type",
+        "typeObjekt"
+      ]
+    },
+    "UtførtArbeid": {
+      "type": "string",
+      "format": "uri"
+    },
+    "UtførtSkjøtselsarbeid": {
+      "type": "string",
+      "format": "uri"
+    },
+    "Utligger": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Grenseviser"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "nummer": {
+              "type": "string"
+            },
+            "navn": {
+              "type": "array",
+              "maxItems": 3,
+              "items": {
+                "type": "string"
+              },
+              "uniqueItems": true
+            },
+            "hjertesteininformasjon": {
+              "$ref": "#/definitions/Hjertesteininformasjon"
+            }
+          },
+          "required": [
+            "hjertesteininformasjon",
+            "nummer"
+          ]
+        }
+      ]
+    },
+    "Valgdistriktsgrense": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_kretsgrenser"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "følgerGrunnkretsgrense": {
+              "$ref": "#/definitions/Identifikasjon"
+            },
+            "følgerTerrengdetalj": {
+              "$ref": "#/definitions/TerrengdetaljKode"
+            },
+            "nøyaktighetsklasse": {
+              "$ref": "#/definitions/NøyaktighetsklasseKode"
+            }
+          }
+        }
+      ]
+    },
+    "Vedlikehold": {
+      "type": "object",
+      "properties": {
+        "arbeidUtførtDato": {
+          "type": "string",
+          "format": "date"
+        },
+        "arbeidUtførtBeskrivelse": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "arbeidUtførtDato"
+      ]
+    },
+    "Virkeområde": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_SOSI_Objekt_Lov_virkeområde"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "dokumentasjonsreferanse": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/definitions/Dokumentasjonsreferanse"
+              },
+              "uniqueItems": true
+            },
+            "ansvarligMyndighet": {
+              "type": "array",
+              "items": {
+                "type": "string"
+              },
+              "uniqueItems": true
+            },
+            "gjelderOmråde": {
+              "type": "string"
+            },
+            "virkeområdenavn": {
+              "type": "string"
+            }
+          },
+          "required": [
+            "dokumentasjonsreferanse"
+          ]
+        }
+      ]
+    },
+    "YttergrenseSokkel": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/BeregnetGrense"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    },
+    "YttergrenseTilstøtendeSone": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/BeregnetGrense"
+        },
+        {
+          "type": "object"
+        }
+      ]
+    },
+    "ØvrigHjelpemerke": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Grenseviser"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "type": {
+              "type": "string"
+            },
+            "strinrøys": {
+              "type": "boolean"
+            },
+            "materialeBolt": {
+              "$ref": "#/definitions/MaterialeBolt"
+            }
+          },
+          "required": [
+            "materialeBolt",
+            "strinrøys",
+            "type"
+          ]
+        }
+      ]
+    }
+  }
+}
