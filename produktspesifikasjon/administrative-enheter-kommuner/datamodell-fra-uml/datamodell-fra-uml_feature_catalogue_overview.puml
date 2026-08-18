@@ -1,0 +1,508 @@
+@startuml
+' For wide diagrams, render with: plantuml -DPLANTUML_LIMIT_SIZE=16384 ...
+' The 'scale max' directive below caps the rendered output to prevent the
+' default PlantUML 4096px size limit from cropping the diagram.
+scale max 4000*4000
+
+title Administrative enheter kommuner - Datamodell fra UML - Oversikt
+
+skinparam backgroundColor #F5F5F5
+skinparam shadowing false
+skinparam RoundCorner 6
+skinparam ArrowColor #6C8198
+skinparam wrapWidth 200
+skinparam class {
+  BackgroundColor #FBF2E8
+  BorderColor #9C8578
+  FontColor #2D201A
+  HeaderBackgroundColor #EFE1D6
+  HeaderFontColor #2D201A
+  AttributeIconSize 0
+}
+skinparam note {
+  BackgroundColor #FFFFFF
+  BorderColor #6C8198
+  FontColor #2D201A
+}
+skinparam stereotypeCBackgroundColor #EAD9CE
+skinparam stereotypeCBorderColor #9C8578
+skinparam stereotypeCFontColor #2D201A
+
+package "Etats-_og_sektorinndeling" {
+  class Sektorlokalitet <<featureType>> {
+  }
+  class Sektorgrense <<featureType>> {
+  }
+  class "Sektorområde" as Sektoromr_de <<featureType>> {
+  }
+  abstract class Supertype_SOSI_Objekt_Etats_og_sektorinndeling_grenser <<featureType>> {
+  }
+  abstract class Supertype_SOSI_Objekt_Etats_og_Sektorinndeling <<featureType>> {
+  }
+}
+
+package "Forvaltningsområder_og_lovers_virkeområde" {
+  class "LovVirkeområdeGrense" as LovVirkeomr_deGrense <<featureType>> {
+  }
+  class "LovVirkeområdeGrensePunkt" as LovVirkeomr_deGrensePunkt <<featureType>> {
+  }
+  class "LovVirkeområde" as LovVirkeomr_de <<featureType>> {
+  }
+  abstract class "Virkeområde" as Virkeomr_de <<featureType>> {
+  }
+  abstract class "Supertype_SOSI_Objekt_Lov_virkeområde" as Supertype_SOSI_Objekt_Lov_virkeomr_de <<featureType>> {
+  }
+}
+
+package "Geistlig_inndeling" {
+  class Soknegrense <<featureType>> {
+  }
+  abstract class Supertype_SOSI_Objekt_geistlige_enheter <<featureType>> {
+  }
+  class "Bispedømme" as Bisped_mme <<featureType>> {
+  }
+  abstract class GeistligeGrenser <<featureType>> {
+  }
+  class Sokn <<featureType>> {
+  }
+  class Prosti <<featureType>> {
+  }
+  class Prostigrense <<featureType>> {
+  }
+  class "Bispedømmegrense" as Bisped_mmegrense <<featureType>> {
+  }
+  abstract class Supertype_SOSI_Objekt_geistlige_grenser <<featureType>> {
+  }
+}
+
+package "Kommunale_kretser" {
+  abstract class Supertype_SOSI_Objekt_kretsgrenser <<featureType>> {
+  }
+  class Stemmekrets <<featureType>> {
+  }
+  class Stemmekretsgrense <<featureType>> {
+  }
+  class Skolekretsgrense <<featureType>> {
+  }
+  class Skolekrets <<featureType>> {
+  }
+  class Valgdistriktsgrense <<featureType>> {
+  }
+  abstract class Supertype_SOSI_Objekt_kretser <<featureType>> {
+  }
+}
+
+package "Maritime_grenser" {
+  class "GrensepunktSjø" as GrensepunktSj_ <<featureType>> {
+  }
+  class "Territorialområde" as Territorialomr_de <<featureType>> {
+  }
+  class Grense200NautiskeMil <<featureType>> {
+  }
+  class "Gråsonegrense" as Gr_sonegrense <<featureType>> {
+  }
+  abstract class MaritimeGrenser <<featureType>> {
+  }
+  class "TidligereOmstridtOmråde" as TidligereOmstridtOmr_de <<featureType>> {
+  }
+  class AvtaltAvgrensningslinje <<featureType>> {
+  }
+  class Fiskevernsone <<featureType>> {
+  }
+  abstract class "MaritimeOmråder" as MaritimeOmr_der <<featureType>> {
+  }
+  abstract class MaritimtPunkt <<featureType>> {
+  }
+  class Fiskerisone <<featureType>> {
+  }
+  class "YttergrenseTilstøtendeSone" as YttergrenseTilst_tendeSone <<featureType>> {
+  }
+  class Territorialgrense <<featureType>> {
+  }
+  class IndreFarvann <<featureType>> {
+  }
+  abstract class NorskeGrenser <<featureType>> {
+  }
+  class "Gråsonen" as Gr_sonen <<featureType>> {
+  }
+  class YttergrenseSokkel <<featureType>> {
+  }
+  abstract class Supertype_SOSI_Objekt_maritime_grenser_punkter <<featureType>> {
+  }
+  class Grunnlinje <<featureType>> {
+  }
+  class Kontinentalsokkel <<featureType>> {
+  }
+  abstract class "Supertype_SOSI_Objekt_maritime_områder" as Supertype_SOSI_Objekt_maritime_omr_der <<featureType>> {
+  }
+  class "Grensebøye" as Grenseb_ye <<featureType>> {
+  }
+  class Territorialfarvann <<featureType>> {
+  }
+  class LandIndreFarvann <<featureType>> {
+  }
+  class BeregnetMidtlinje <<featureType>> {
+  }
+  class InternasjonaltFarvann <<featureType>> {
+  }
+  abstract class AvtalteGrenser <<featureType>> {
+  }
+  abstract class BeregnetGrense <<featureType>> {
+  }
+  class Sektorlinje <<featureType>> {
+  }
+  class "DetSærskilteOmrådet" as DetS_rskilteOmr_det <<featureType>> {
+  }
+  class "Sjøterritorium" as Sj_territorium <<featureType>> {
+  }
+  class "TilstøtendeSone" as Tilst_tendeSone <<featureType>> {
+  }
+  class "NorgesØkonomiskeSone" as Norges_konomiskeSone <<featureType>> {
+  }
+  abstract class MerketGrensepunkt <<featureType>> {
+  }
+  class "Sjørøys" as Sj_r_ys <<featureType>> {
+  }
+  abstract class GrenseMellomNasjoner <<featureType>> {
+  }
+  class Kystkontur <<featureType>> {
+  }
+}
+
+package "Nasjonal_hovedinndeling" {
+  class Kommune <<featureType>> {
+  }
+  class GrensemerkeLand <<featureType>> {
+  }
+  class Kommunegrense <<featureType>> {
+  }
+  abstract class AdministrativGrense <<featureType>> {
+  }
+  abstract class Supertype_SOSI_Objekt_adm_punkter <<featureType>> {
+  }
+  abstract class AdministrativEnhet <<featureType>> {
+  }
+  abstract class Supertype_SOSI_Objekt_adm_grenser <<featureType>> {
+  }
+  class Fylkesgrense <<featureType>> {
+  }
+  class Nasjon <<featureType>> {
+  }
+  class Fylke <<featureType>> {
+  }
+  abstract class Supertype_SOSI_Objekt_adm_enheter <<featureType>> {
+  }
+}
+
+package "Postadministrativ_inndeling" {
+  class Postregiongrense <<featureType>> {
+  }
+  abstract class Supertype_SOSI_Objekt_postgrenser <<featureType>> {
+  }
+  abstract class Supertype_SOSI_Objekt_post <<featureType>> {
+  }
+  abstract class Postgrenser <<featureType>> {
+  }
+  class "Postnummerområde" as Postnummeromr_de <<featureType>> {
+  }
+  class Postsone <<featureType>> {
+  }
+  class "Postområdegrense" as Postomr_degrense <<featureType>> {
+  }
+  class "Postområde" as Postomr_de <<featureType>> {
+  }
+  class "Postnummerområdegrense" as Postnummeromr_degrense <<featureType>> {
+  }
+  class Postsonegrense <<featureType>> {
+  }
+  class Postregion <<featureType>> {
+  }
+}
+
+package "Riksgrense" {
+  abstract class Grensemerke <<featureType>> {
+  }
+  class LitenUtligger <<featureType>> {
+  }
+  abstract class Grenseviser <<featureType>> {
+  }
+  class Utligger <<featureType>> {
+  }
+  class KoordinatbestemtPunkt <<featureType>> {
+  }
+  abstract class Supertype_SOSI_Objekt_riksgrenseinformasjon <<featureType>> {
+  }
+  class Riksgrense <<featureType>> {
+  }
+  class "ØvrigHjelpemerke" as _vrigHjelpemerke <<featureType>> {
+  }
+  class Grensestolpe <<featureType>> {
+  }
+  class Sikringspunkt <<featureType>> {
+  }
+  class "Retningsrøys" as Retningsr_ys <<featureType>> {
+  }
+  class Grenseskilt <<featureType>> {
+  }
+  class StorUtligger <<featureType>> {
+  }
+  class Brytningspunkt <<featureType>> {
+  }
+  class Profilpunkt <<featureType>> {
+  }
+  class "Riksrøys" as Riksr_ys <<featureType>> {
+  }
+  abstract class Riksgrensepunkt <<featureType>> {
+  }
+  class "Djupålspunkt" as Djup_lspunkt <<featureType>> {
+  }
+  class UoffisieltObjekt <<featureType>> {
+  }
+}
+
+package "Statistisk_inndeling" {
+  class "Delområde" as Delomr_de <<featureType>> {
+  }
+  abstract class Supertype_SOSI_Objekt_statistiske_grenser <<featureType>> {
+  }
+  class Grunnkrets <<featureType>> {
+  }
+  class "Delområdegrense" as Delomr_degrense <<featureType>> {
+  }
+  abstract class Supertype_SOSI_Objekt_statistiske_enheter <<featureType>> {
+  }
+  class Grunnkretsgrense <<featureType>> {
+  }
+}
+
+
+AdministrativEnhet <|-- Kommune
+Kommune --> Riksgrense : riksgrense [0..*]
+Kommune --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+Kommune --> Fylkesgrense : fylkesgrense [0..*]
+Kommune --> Territorialgrense : territorialgrense [0..*]
+Kommune --> Kommunegrense : kommunegrense [0..*]
+Kommune --> Fylke : fylke [0..1]
+Supertype_SOSI_Objekt_adm_punkter <|-- GrensemerkeLand
+AdministrativGrense <|-- Kommunegrense
+Kommunegrense --> GrensemerkeLand : grensemerkeLand [0..*]
+Kommunegrense --> GrensepunktSj_ : grensepunktSjø [0..*]
+Supertype_SOSI_Objekt_adm_grenser <|-- AdministrativGrense
+Supertype_SOSI_Objekt_adm_enheter <|-- AdministrativEnhet
+AdministrativGrense <|-- Fylkesgrense
+Fylkesgrense --> GrensemerkeLand : grensemerkeLand [0..*]
+Fylkesgrense --> GrensepunktSj_ : grensepunktSjø [0..*]
+AdministrativEnhet <|-- Nasjon
+Nasjon --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [1..*]
+Nasjon --> Territorialgrense : territorialgrense [1..*]
+Nasjon --> Riksgrense : riksgrense [1..*]
+AdministrativEnhet <|-- Fylke
+Fylke --> Fylkesgrense : fylkesgrense [1..*]
+Fylke --> Nasjon : nasjon [0..1]
+Fylke --> Riksgrense : riksgrense [0..*]
+Fylke --> Territorialgrense : territorialgrense [0..*]
+Fylke --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+Supertype_SOSI_Objekt_riksgrenseinformasjon <|-- Grensemerke
+Grensemerke --> Grensemerke : siktTilAnnetGrensemerke [0..*]
+Utligger <|-- LitenUtligger
+Grensemerke <|-- Grenseviser
+Grenseviser <|-- Utligger
+Supertype_SOSI_Objekt_riksgrenseinformasjon <|-- Riksgrense
+Riksgrense --> Grensemerke : grensemerke [0..*]
+Riksgrense --> Grenseb_ye : grensebøye [0..*]
+Grenseviser <|-- _vrigHjelpemerke
+Grenseviser <|-- Grensestolpe
+Sikringspunkt --> Utligger : utligger [0..1]
+Sikringspunkt --> Riksr_ys : riksrøys [0..1]
+Grenseviser <|-- Retningsr_ys
+Retningsr_ys --> Riksr_ys : riksrøys
+Grenseviser <|-- Grenseskilt
+Utligger <|-- StorUtligger
+Riksgrensepunkt <|-- Brytningspunkt
+Riksgrensepunkt <|-- Profilpunkt
+Riksgrensepunkt <|-- Riksr_ys
+Grensemerke <|-- Riksgrensepunkt
+Riksgrensepunkt <|-- Djup_lspunkt
+Supertype_SOSI_Objekt_statistiske_enheter <|-- Delomr_de
+Delomr_de --> Kommunegrense : kommunegrense [0..*]
+Delomr_de --> Fylkesgrense : fylkesgrense [0..*]
+Delomr_de --> Riksgrense : riksgrense [0..*]
+Delomr_de --> Territorialgrense : territorialgrense [0..*]
+Delomr_de --> Grunnkrets : grunnkretsinndeling [0..*]
+Delomr_de --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+Delomr_de --> Delomr_degrense : delområdegrens [0..*]
+Supertype_SOSI_Objekt_statistiske_enheter <|-- Grunnkrets
+Grunnkrets --> Kommunegrense : kommunegrense [0..*]
+Grunnkrets --> Fylkesgrense : fylkesgrense [0..*]
+Grunnkrets --> Riksgrense : riksgrense [0..*]
+Grunnkrets --> Grunnkretsgrense : grunnkretsgrense [0..*]
+Grunnkrets --> Delomr_degrense : delområdegrense [0..*]
+Grunnkrets --> Territorialgrense : territorialgrense [0..*]
+Grunnkrets --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+Supertype_SOSI_Objekt_statistiske_grenser <|-- Delomr_degrense
+Supertype_SOSI_Objekt_statistiske_grenser <|-- Grunnkretsgrense
+Supertype_SOSI_Objekt_kretser <|-- Stemmekrets
+Stemmekrets --> Kommunegrense : kommunegrense [0..*]
+Stemmekrets --> Fylkesgrense : fylkesgrense [0..*]
+Stemmekrets --> Riksgrense : riksgrense [0..*]
+Stemmekrets --> Stemmekretsgrense : stemmekretsgrense [0..*]
+Stemmekrets --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+Stemmekrets --> Valgdistriktsgrense : valgdistriktsgrense [0..*]
+Stemmekrets --> Territorialgrense : territorialgrense [0..*]
+Supertype_SOSI_Objekt_kretsgrenser <|-- Stemmekretsgrense
+Supertype_SOSI_Objekt_kretsgrenser <|-- Skolekretsgrense
+Supertype_SOSI_Objekt_kretser <|-- Skolekrets
+Skolekrets --> Kommunegrense : kommunegrense [0..*]
+Skolekrets --> Fylkesgrense : fylkesgrense [0..*]
+Skolekrets --> Riksgrense : riksgrense [0..*]
+Skolekrets --> Skolekretsgrense : skolekretsgrense [0..*]
+Skolekrets --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+Skolekrets --> Territorialgrense : territorialgrense [0..*]
+Supertype_SOSI_Objekt_kretsgrenser <|-- Valgdistriktsgrense
+Supertype_SOSI_Objekt_Etats_og_sektorinndeling_grenser <|-- Sektorlokalitet
+Supertype_SOSI_Objekt_Etats_og_sektorinndeling_grenser <|-- Sektorgrense
+Supertype_SOSI_Objekt_Etats_og_Sektorinndeling <|-- Sektoromr_de
+Sektoromr_de --> Sektorlokalitet : sektorlokalitet [0..*]
+Sektoromr_de --> Sektorgrense : sektorgrense [0..*]
+GeistligeGrenser <|-- Soknegrense
+Supertype_SOSI_Objekt_geistlige_enheter <|-- Bisped_mme
+Bisped_mme --> Kommunegrense : avgrensning [0..*]
+Bisped_mme --> Fylkesgrense : avgrensning [0..*]
+Bisped_mme --> Riksgrense : avgrensning [0..*]
+Bisped_mme --> Bisped_mmegrense : avgrensning [0..*]
+Bisped_mme --> Territorialgrense : avgrensning [0..*]
+Bisped_mme --> Prosti : prosti [0..*]
+Bisped_mme --> AvtaltAvgrensningslinje : avgrensning [0..*]
+Supertype_SOSI_Objekt_geistlige_grenser <|-- GeistligeGrenser
+Supertype_SOSI_Objekt_geistlige_enheter <|-- Sokn
+Sokn --> Kommunegrense : avgrensning [0..*]
+Sokn --> Fylkesgrense : avgrensning [0..*]
+Sokn --> Riksgrense : avgrensning [0..*]
+Sokn --> Soknegrense : avgrensning [0..*]
+Sokn --> Prostigrense : avgrensning [0..*]
+Sokn --> Territorialgrense : avgrensning [0..*]
+Sokn --> Bisped_mmegrense : avgrensning [0..*]
+Sokn --> AvtaltAvgrensningslinje : avgrensning [0..*]
+Supertype_SOSI_Objekt_geistlige_enheter <|-- Prosti
+Prosti --> Kommunegrense : avgrensning [0..*]
+Prosti --> Fylkesgrense : avgrensning [0..*]
+Prosti --> Riksgrense : avgrensning [0..*]
+Prosti --> Sokn : sokn [0..*]
+Prosti --> Prostigrense : avgrensning [0..*]
+Prosti --> AvtaltAvgrensningslinje : avgrensning [0..*]
+Prosti --> Bisped_mmegrense : avgrensning [0..*]
+Prosti --> Territorialgrense : avgrensning [0..*]
+GeistligeGrenser <|-- Prostigrense
+GeistligeGrenser <|-- Bisped_mmegrense
+Postgrenser <|-- Postregiongrense
+Supertype_SOSI_Objekt_postgrenser <|-- Postgrenser
+Supertype_SOSI_Objekt_post <|-- Postnummeromr_de
+Postnummeromr_de --> Postregiongrense : postregiongrense [0..*]
+Postnummeromr_de --> Postomr_degrense : postområdegrense [0..*]
+Postnummeromr_de --> Postnummeromr_degrense : postnummerområdegrense [0..*]
+Postnummeromr_de --> Postsonegrense : postsonegrense [0..*]
+Supertype_SOSI_Objekt_post <|-- Postsone
+Postsone --> Postregion : postregion [0..*]
+Postsone --> Postsonegrense : postsonegrense [0..*]
+Postgrenser <|-- Postomr_degrense
+Supertype_SOSI_Objekt_post <|-- Postomr_de
+Postomr_de --> Postregiongrense : postregiongrense [0..*]
+Postomr_de --> Postnummeromr_de : postnummerområde [0..*]
+Postomr_de --> Postomr_degrense : postområdegrense [0..*]
+Postomr_de --> Postsonegrense : postsonegrense [0..*]
+Postgrenser <|-- Postnummeromr_degrense
+Postgrenser <|-- Postsonegrense
+Supertype_SOSI_Objekt_post <|-- Postregion
+Postregion --> Postregiongrense : postregiongrense [0..*]
+Postregion --> Postomr_de : postområde [0..*]
+Postregion --> Postsonegrense : postsonegrense [0..*]
+Virkeomr_de <|-- LovVirkeomr_deGrense
+LovVirkeomr_deGrense --> LovVirkeomr_deGrensePunkt : lovVirkeområdeGrensePunkt [0..*]
+Supertype_SOSI_Objekt_Lov_virkeomr_de <|-- LovVirkeomr_deGrensePunkt
+Virkeomr_de <|-- LovVirkeomr_de
+LovVirkeomr_de --> LovVirkeomr_deGrense : virkeområdegrense [0..*]
+Supertype_SOSI_Objekt_Lov_virkeomr_de <|-- Virkeomr_de
+MaritimtPunkt <|-- GrensepunktSj_
+Supertype_SOSI_Objekt_maritime_omr_der <|-- Territorialomr_de
+Territorialomr_de --> Riksgrense : riksgrense [0..*]
+Territorialomr_de --> Territorialgrense : territorialgrense [0..*]
+Territorialomr_de --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+BeregnetGrense <|-- Grense200NautiskeMil
+AvtalteGrenser <|-- Gr_sonegrense
+Gr_sonegrense --> GrensepunktSj_ : grensepunktSjø [0..*]
+Supertype_SOSI_Objekt_maritime_grenser_punkter <|-- MaritimeGrenser
+Supertype_SOSI_Objekt_maritime_omr_der <|-- TidligereOmstridtOmr_de
+TidligereOmstridtOmr_de --> BeregnetMidtlinje : beregnetMidtlinje [0..*]
+TidligereOmstridtOmr_de --> Sektorlinje : sektorlinje [0..*]
+AvtalteGrenser <|-- AvtaltAvgrensningslinje
+AvtaltAvgrensningslinje --> GrensepunktSj_ : grensepunktSjø [0..*]
+AvtaltAvgrensningslinje --> Sj_r_ys : sjørøys [0..*]
+AvtaltAvgrensningslinje --> Grenseb_ye : grensebøye [0..*]
+MaritimeOmr_der <|-- Fiskevernsone
+Fiskevernsone --> Grense200NautiskeMil : grense200NautiskeMil [0..*]
+Fiskevernsone --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+Fiskevernsone --> Territorialgrense : territorialgrense [0..*]
+Supertype_SOSI_Objekt_maritime_omr_der <|-- MaritimeOmr_der
+Supertype_SOSI_Objekt_maritime_grenser_punkter <|-- MaritimtPunkt
+MaritimeOmr_der <|-- Fiskerisone
+Fiskerisone --> Grense200NautiskeMil : grense200NautiskeMil [0..*]
+Fiskerisone --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+Fiskerisone --> Territorialgrense : territorialgrense [0..*]
+BeregnetGrense <|-- YttergrenseTilst_tendeSone
+BeregnetGrense <|-- Territorialgrense
+MaritimeOmr_der <|-- IndreFarvann
+IndreFarvann --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+IndreFarvann --> Grunnlinje : grunnlinje [0..*]
+IndreFarvann --> Kystkontur : kystkontur [0..*]
+MaritimeGrenser <|-- NorskeGrenser
+MaritimeOmr_der <|-- Gr_sonen
+Gr_sonen --> Gr_sonegrense : gråsonegrense [0..*]
+BeregnetGrense <|-- YttergrenseSokkel
+NorskeGrenser <|-- Grunnlinje
+Grunnlinje --> GrensepunktSj_ : grensepunktSjø [0..*]
+Grunnlinje --> Grenseb_ye : grensebøye [0..*]
+MaritimeOmr_der <|-- Kontinentalsokkel
+Kontinentalsokkel --> Grense200NautiskeMil : grense200NautiskeMil [0..*]
+Kontinentalsokkel --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+Kontinentalsokkel --> Territorialgrense : territorialgrense [0..*]
+Kontinentalsokkel --> YttergrenseSokkel : yttergrenseSokkel [0..*]
+MerketGrensepunkt <|-- Grenseb_ye
+MaritimeOmr_der <|-- Territorialfarvann
+Territorialfarvann --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+Territorialfarvann --> Territorialgrense : territorialgrense [0..*]
+Territorialfarvann --> Kystkontur : kystkontur [0..*]
+Supertype_SOSI_Objekt_maritime_omr_der <|-- LandIndreFarvann
+LandIndreFarvann --> Riksgrense : riksgrense [0..*]
+LandIndreFarvann --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+LandIndreFarvann --> Grunnlinje : grunnlinje [0..*]
+GrenseMellomNasjoner <|-- BeregnetMidtlinje
+BeregnetMidtlinje --> GrensepunktSj_ : grensepunktSjø [0..*]
+Supertype_SOSI_Objekt_maritime_omr_der <|-- InternasjonaltFarvann
+InternasjonaltFarvann --> Grense200NautiskeMil : grense200NautiskeMil [0..*]
+InternasjonaltFarvann --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+GrenseMellomNasjoner <|-- AvtalteGrenser
+NorskeGrenser <|-- BeregnetGrense
+GrenseMellomNasjoner <|-- Sektorlinje
+Sektorlinje --> GrensepunktSj_ : grensepunktSjø [0..*]
+MaritimeOmr_der <|-- DetS_rskilteOmr_det
+DetS_rskilteOmr_det --> Grense200NautiskeMil : grense200NautiskeMil [0..*]
+DetS_rskilteOmr_det --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+MaritimeOmr_der <|-- Sj_territorium
+Sj_territorium --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+Sj_territorium --> Territorialgrense : territorialgrense [0..*]
+Sj_territorium --> Grunnlinje : grunnlinje [0..*]
+Sj_territorium --> Kystkontur : kystkontur [0..*]
+MaritimeOmr_der <|-- Tilst_tendeSone
+Tilst_tendeSone --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+Tilst_tendeSone --> YttergrenseTilst_tendeSone : yttergrenseTilstøtendeSone [0..*]
+Tilst_tendeSone --> Territorialgrense : territorialgrense [0..*]
+MaritimeOmr_der <|-- Norges_konomiskeSone
+Norges_konomiskeSone --> Grense200NautiskeMil : grense200NautiskeMil [0..*]
+Norges_konomiskeSone --> AvtaltAvgrensningslinje : avtaltAvgrensningslinje [0..*]
+Norges_konomiskeSone --> Territorialgrense : territorialgrense [0..*]
+MaritimtPunkt <|-- MerketGrensepunkt
+MerketGrensepunkt <|-- Sj_r_ys
+MaritimeGrenser <|-- GrenseMellomNasjoner
+Supertype_SOSI_Objekt_maritime_grenser_punkter <|-- Kystkontur
+
+@enduml

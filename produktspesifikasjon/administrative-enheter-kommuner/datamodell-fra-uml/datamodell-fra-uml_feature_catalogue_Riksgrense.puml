@@ -1,0 +1,295 @@
+@startuml
+' For wide diagrams, render with: plantuml -DPLANTUML_LIMIT_SIZE=16384 ...
+' The 'scale max' directive below caps the rendered output to prevent the
+' default PlantUML 4096px size limit from cropping the diagram.
+scale max 4000*4000
+
+title Administrative enheter kommuner - Datamodell fra UML - Riksgrense
+
+skinparam backgroundColor #F5F5F5
+skinparam shadowing false
+skinparam RoundCorner 6
+skinparam ArrowColor #6C8198
+skinparam wrapWidth 200
+skinparam class {
+  BackgroundColor #FBF2E8
+  BorderColor #9C8578
+  FontColor #2D201A
+  HeaderBackgroundColor #EFE1D6
+  HeaderFontColor #2D201A
+  AttributeIconSize 0
+}
+skinparam note {
+  BackgroundColor #FFFFFF
+  BorderColor #6C8198
+  FontColor #2D201A
+}
+skinparam stereotypeCBackgroundColor #EAD9CE
+skinparam stereotypeCBorderColor #9C8578
+skinparam stereotypeCFontColor #2D201A
+
+package "Riksgrense" {
+
+  abstract class Grensemerke <<featureType>> {
+    + posisjon [1] : CharacterString
+    + beskrivelse [0..1] : CharacterString
+    + etableringsdato [0..1] : Date
+    + vegbeskrivelse [0..1] : CharacterString
+    + andreMarkeringer [0..1] : CharacterString
+    + egenhøyde [0..1] : Real
+    + registrertHøyde [0..*] : RegistrertHøyde
+    + vedlikehold [0..*] : Vedlikehold
+    + registrerteKoordinater [0..*] : RegistrerteKoordinater
+    + underlag [0..1] : Underlag
+    + beregningsdato [0..1] : Date
+    + fotodokumentasjon [0..*] : CharacterString
+    + skjema [0..1] : CharacterString
+    + skjøtsel [0..*] : UtførtSkjøtselsarbeid
+    + utførtArbeid [0..*] : UtførtArbeid
+    + publikumshenvendelse [0..*] : Publikumshenvendelse
+  }
+
+  class LitenUtligger <<featureType>> {
+    ' Ingen attributter
+  }
+
+  abstract class Grenseviser <<featureType>> {
+    ' Ingen attributter
+  }
+
+  class Utligger <<featureType>> {
+    + nummer [1] : CharacterString
+    + navn [0..3] : CharacterString
+    + hjertesteininformasjon [1] : Hjertesteininformasjon
+  }
+
+  class KoordinatbestemtPunkt <<featureType>> {
+    + navn [1] : CharacterString
+  }
+
+  abstract class Supertype_SOSI_Objekt_riksgrenseinformasjon <<featureType>> {
+    + identifikasjon [1] : Identifikasjon
+    + datafangstdato [0..1] : Date
+    + oppdateringsdato [0..1] : Date
+    + sluttdato [0..1] : Date
+    + gyldigFra [0..1] : Date
+    + gyldigTil [0..1] : Date
+    + datauttaksdato [0..1] : Date
+    + endringsflagg [0..1] : Endringsflagg
+    + kvalitet [1] : Posisjonskvalitet
+    + opphav [0..1] : CharacterString
+    + stedfestingVerifisert [0..1] : Boolean
+    + informasjon [0..*] : CharacterString
+    + registreringsversjon [0..1] : Registreringsversjon
+  }
+
+  class Riksgrense <<featureType>> {
+    + grense [1] : Kurve
+    + følgerTerrengdetalj [0..1] : TerrengdetaljKode
+    + grensegateBredde [0..1] : Real
+    + dokumentasjonsreferanse [0..*] : Dokumentasjonsreferanse
+    + ansvarligMyndighet [0..*] : CharacterString
+    + grensestatus [0..1] : Grensestatus
+    + fastsettingstype [0..1] : Fastsettingstype
+    + publikumshenvendelse [0..*] : Publikumshenvendelse
+    + tilvekst [1..*] : Tilvekst
+    + skjøtsel [0..*] : Skjøtsel
+    + status [1] : StatusBehandling
+  }
+
+  class "ØvrigHjelpemerke" as _vrigHjelpemerke <<featureType>> {
+    + type [1] : CharacterString
+    + strinrøys [1] : Boolean
+    + materialeBolt [1] : MaterialeBolt
+  }
+
+  class Grensestolpe <<featureType>> {
+    + grensemerkenummer [1] : CharacterString
+  }
+
+  class Sikringspunkt <<featureType>> {
+    + posisjon [1] : Punkt
+    + nummer [1] : CharacterString
+    + sikringspunktType [1] : SikringspunktType
+    + egenhøyde [0..1] : Real
+    + materialeBolt [0..1] : MaterialeBolt
+    + diameter [0..1] : Real
+    + merknad [0..1] : CharacterString
+    + underlag [0..1] : Underlag
+  }
+
+  class "Retningsrøys" as Retningsr_ys <<featureType>> {
+    ' Ingen attributter
+  }
+
+  class Grenseskilt <<featureType>> {
+    + skilttype [1] : Skilttype
+    + nummer [1] : CharacterString
+  }
+
+  class StorUtligger <<featureType>> {
+    ' Ingen attributter
+  }
+
+  class Brytningspunkt <<featureType>> {
+    + grensemerkenummer [1] : CharacterString
+    + nærmesteGrensemerke [0..2] : NærmesteGrensemerke
+    + navn [0..3] : CharacterString
+  }
+
+  class Profilpunkt <<featureType>> {
+    + grensemerkenummer [1] : CharacterString
+    + avstandNorskStolpe [0..1] : Real
+    + avstandRussiskStolpe [0..1] : Real
+    + markertPunkt [0..1] : Boolean
+  }
+
+  class "Riksrøys" as Riksr_ys <<featureType>> {
+    + grensemerkenummer [1] : CharacterString
+    + riksrøysnavn [0..3] : CharacterString
+    + nærmesteGrensemerke [0..2] : NærmesteGrensemerke
+    + hjertesteininformasjon [0..*] : Hjertesteininformasjon
+    + diameterFot [0..1] : Real
+    + diameterTopp [0..1] : Real
+    + visersteiner [1] : Boolean
+    + vitnesteiner [1] : Boolean
+    + sokkelBredde [0..1] : Real
+    + sokkelLengde [0..1] : Real
+    + markering [1] : Markering
+    + toppmarkering [1] : Markering
+  }
+
+  abstract class Riksgrensepunkt <<featureType>> {
+    ' Ingen attributter
+  }
+
+  class "Djupålspunkt" as Djup_lspunkt <<featureType>> {
+    + navnVassdrag [1] : CharacterString
+  }
+
+  class UoffisieltObjekt <<featureType>> {
+    + posisjon [1] : Punkt
+    + søknadspliktigTiltak [0..1] : SøknadspliktigTiltak
+    + typeObjekt [1] : TypeObjekt
+  }
+
+  class "RegistrertHøyde" as RegistrertH_yde <<dataType>> {
+    + høyde [1] : Real
+    + høydereferansesystem [1] : Høydereferansesystem
+    + høydereferanse [1] : Høydereferanse
+    + kilde [0..1] : CharacterString
+    + maksHøyde [0..1] : Real
+    + ninHøyde [0..1] : Real
+  }
+
+  class Vedlikehold <<dataType>> {
+    + arbeidUtførtDato [1] : Date
+    + arbeidUtførtBeskrivelse [0..1] : CharacterString
+  }
+
+  class RegistrerteKoordinater <<dataType>> {
+    + nordkoordinat [1] : Real
+    + østkoordinat [1] : Real
+    + koordinatsystem [1] : ReferansesystemKode
+    + kilde [0..1] : CharacterString
+    + koordinatReferanse [1] : KoordinatReferanse
+  }
+
+  class Publikumshenvendelse <<dataType>> {
+    + Informasjon [1..*] : CharacterString
+    + InterneNotater [0..*] : CharacterString
+    + statusBehandling [0..1] : StatusBehandling
+    + innmeldtDato [1] : Date
+    + ferdigDato [0..1] : Date
+    + internReferanseKartverket [0..*] : CharacterString
+  }
+
+  class Hjertesteininformasjon <<dataType>> {
+    + egenhøydeHjertestein [0..1] : Real
+    + inskripsjonHjertestein [0..1] : CharacterString
+    + bildeHjertestein [0..*] : CharacterString
+    + etableringsdatoHjertestein [0..1] : Date
+  }
+
+  class Identifikasjon <<dataType>> {
+    + lokalId [1] : CharacterString
+    + navnerom [1] : CharacterString
+    + versjonId [0..1] : CharacterString
+  }
+
+  class Endringsflagg <<dataType>> {
+    + typeEndring [1] : TypeEndring
+    + tidspunktEndring [1] : Date
+  }
+
+  class Posisjonskvalitet <<dataType>> {
+    + målemetode [1] : Målemetode
+    + nøyaktighet [0..1] : Integer
+  }
+
+  class Registreringsversjon <<dataType>> {
+    + produkt [1] : CharacterString
+    + versjon [1] : CharacterString
+  }
+
+  class Dokumentasjonsreferanse <<dataType>> {
+    + rettskildeTittel [1] : CharacterString
+    + rettskildeId [0..1] : CharacterString
+    + hjemmel [0..1] : CharacterString
+    + fastsettingsmyndighet [0..1] : CharacterString
+    + fastsettingsdato [1] : Date
+    + dokumentlink [0..*] : CharacterString
+    + internReferanseKartverket [0..*] : CharacterString
+  }
+
+  class "Skjøtsel" as Skj_tsel <<dataType>> {
+    + utførtDato [1] : Date
+    + utførtSkjøtsesarbeid [1] : UtførtSkjøtselsarbeid
+    + informasjon [0..1] : CharacterString
+    + ansvarligOrganisasjon [1] : CharacterString
+    + skjøtselsrapport [1] : URL
+  }
+
+  class "NærmesteGrensemerke" as N_rmesteGrensemerke <<dataType>> {
+    + grensemerkenummer [1] : CharacterString
+    + grensemerkeAvstand [0..1] : Real
+    + grensemerkeRetning [0..1] : Real
+  }
+
+  class "SøknadspliktigTiltak" as S_knadspliktigTiltak <<dataType>> {
+    + omsøktTiltak [1] : Boolean
+    + InternReferanseKartverket [0..*] : URL
+    + behandling [1] : StatusBehandling
+    + ansvarligOrganisasjon [1] : AnsvarligOrganisasjon
+    + EgneTiltak [1] : CharacterString
+  }
+}
+
+package "Eksterne referanser" <<Frame>> {
+  class "Grensebøye" as Grenseb_ye <<Maritime_grenser>> {
+  }
+}
+
+Supertype_SOSI_Objekt_riksgrenseinformasjon <|-- Grensemerke
+Grensemerke --> Grensemerke : siktTilAnnetGrensemerke [0..*]
+Utligger <|-- LitenUtligger
+Grensemerke <|-- Grenseviser
+Grenseviser <|-- Utligger
+Supertype_SOSI_Objekt_riksgrenseinformasjon <|-- Riksgrense
+Riksgrense --> Grensemerke : grensemerke [0..*]
+Riksgrense --> Grenseb_ye : grensebøye [0..*]
+Grenseviser <|-- _vrigHjelpemerke
+Grenseviser <|-- Grensestolpe
+Sikringspunkt --> Utligger : utligger [0..1]
+Sikringspunkt --> Riksr_ys : riksrøys [0..1]
+Grenseviser <|-- Retningsr_ys
+Retningsr_ys --> Riksr_ys : riksrøys
+Grenseviser <|-- Grenseskilt
+Utligger <|-- StorUtligger
+Riksgrensepunkt <|-- Brytningspunkt
+Riksgrensepunkt <|-- Profilpunkt
+Riksgrensepunkt <|-- Riksr_ys
+Grensemerke <|-- Riksgrensepunkt
+Riksgrensepunkt <|-- Djup_lspunkt
+
+@enduml

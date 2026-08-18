@@ -1,0 +1,193 @@
+@startuml
+' For wide diagrams, render with: plantuml -DPLANTUML_LIMIT_SIZE=16384 ...
+' The 'scale max' directive below caps the rendered output to prevent the
+' default PlantUML 4096px size limit from cropping the diagram.
+scale max 4000*4000
+
+title Administrative enheter kommuner - Datamodell fra UML - Geistlig_inndeling
+
+skinparam backgroundColor #F5F5F5
+skinparam shadowing false
+skinparam RoundCorner 6
+skinparam ArrowColor #6C8198
+skinparam wrapWidth 200
+skinparam class {
+  BackgroundColor #FBF2E8
+  BorderColor #9C8578
+  FontColor #2D201A
+  HeaderBackgroundColor #EFE1D6
+  HeaderFontColor #2D201A
+  AttributeIconSize 0
+}
+skinparam note {
+  BackgroundColor #FFFFFF
+  BorderColor #6C8198
+  FontColor #2D201A
+}
+skinparam stereotypeCBackgroundColor #EAD9CE
+skinparam stereotypeCBorderColor #9C8578
+skinparam stereotypeCFontColor #2D201A
+
+package "Geistlig_inndeling" {
+
+  class Soknegrense <<featureType>> {
+    ' Ingen attributter
+  }
+
+  abstract class Supertype_SOSI_Objekt_geistlige_enheter <<featureType>> {
+    + identifikasjon [1] : Identifikasjon
+    + datafangstdato [0..1] : Date
+    + oppdateringsdato [0..1] : Date
+    + sluttdato [0..1] : Date
+    + gyldigFra [0..1] : Date
+    + gyldigTil [0..1] : Date
+    + datauttaksdato [0..1] : Date
+    + endringsflagg [0..1] : Endringsflagg
+    + opphav [0..1] : CharacterString
+    + kommunenummer [0..*] : Kommunenummer
+    + informasjon [0..*] : CharacterString
+    + registreringsversjon [0..1] : Registreringsversjon
+    + kopidata [0..1] : Kopidata
+  }
+
+  class "Bispedømme" as Bisped_mme <<featureType>> {
+    + område [1..*] : Flate
+    + posisjon [0..1] : Punkt
+    + bispedømmeId [1] : BispedømmeId
+  }
+
+  abstract class GeistligeGrenser <<featureType>> {
+    + grense [1] : Kurve
+    + følgerGrunnkretsgrense [0..1] : Identifikasjon
+    + følgerAdministrativGrense [0..1] : AdministrativGrenseKode
+    + nøyaktighetsklasse [0..1] : NøyaktighetsklasseKode
+  }
+
+  class Sokn <<featureType>> {
+    + område [1..*] : Flate
+    + posisjon [0..1] : Punkt
+    + fellesråd [0..*] : CharacterString
+    + sokneId [1] : SokneId
+  }
+
+  class Prosti <<featureType>> {
+    + område [1..*] : Flate
+    + posisjon [0..1] : Punkt
+    + prostiId [1] : ProstiId
+  }
+
+  class Prostigrense <<featureType>> {
+    ' Ingen attributter
+  }
+
+  class "Bispedømmegrense" as Bisped_mmegrense <<featureType>> {
+    ' Ingen attributter
+  }
+
+  abstract class Supertype_SOSI_Objekt_geistlige_grenser <<featureType>> {
+    + identifikasjon [1] : Identifikasjon
+    + datafangstdato [0..1] : Date
+    + oppdateringsdato [0..1] : Date
+    + sluttdato [0..1] : Date
+    + gyldigFra [0..1] : Date
+    + gyldigTil [0..1] : Date
+    + datauttaksdato [0..1] : Date
+    + endringsflagg [0..1] : Endringsflagg
+    + kvalitet [0..1] : Posisjonskvalitet
+    + opphav [0..1] : CharacterString
+    + informasjon [0..*] : CharacterString
+    + registreringsversjon [0..1] : Registreringsversjon
+    + kopidata [0..1] : Kopidata
+  }
+
+  class Identifikasjon <<dataType>> {
+    + lokalId [1] : CharacterString
+    + navnerom [1] : CharacterString
+    + versjonId [0..1] : CharacterString
+  }
+
+  class Endringsflagg <<dataType>> {
+    + typeEndring [1] : TypeEndring
+    + tidspunktEndring [1] : Date
+  }
+
+  class Registreringsversjon <<dataType>> {
+    + produkt [1] : CharacterString
+    + versjon [1] : CharacterString
+  }
+
+  class Kopidata <<dataType>> {
+    + områdeId [1] : Integer
+    + originalDatavert [1] : CharacterString
+    + kopidato [1] : Date
+  }
+
+  class "BispedømmeId" as Bisped_mmeId <<dataType>> {
+    + organisasjonsnummer [0..1] : Integer
+    + bispedømmenummer [0..1] : Bispedømmenummer
+    + bispedømmenavn [0..1] : CharacterString
+  }
+
+  class SokneId <<dataType>> {
+    + organisasjonsnummer [1] : Integer
+    + soknenummer [0..1] : Soknenummer
+    + soknenavn [0..1] : CharacterString
+  }
+
+  class ProstiId <<dataType>> {
+    + organisasjonsnummer [0..1] : Integer
+    + prostinummer [0..1] : Prostinummer
+    + prostinavn [0..1] : CharacterString
+  }
+
+  class Posisjonskvalitet <<dataType>> {
+    + målemetode [1] : Målemetode
+    + nøyaktighet [0..1] : Integer
+  }
+}
+
+package "Eksterne referanser" <<Frame>> {
+  class AvtaltAvgrensningslinje <<Maritime_grenser>> {
+  }
+  class Fylkesgrense <<Nasjonal_hovedinndeling>> {
+  }
+  class Kommunegrense <<Nasjonal_hovedinndeling>> {
+  }
+  class Riksgrense <<Riksgrense>> {
+  }
+  class Territorialgrense <<Maritime_grenser>> {
+  }
+}
+
+GeistligeGrenser <|-- Soknegrense
+Supertype_SOSI_Objekt_geistlige_enheter <|-- Bisped_mme
+Bisped_mme --> Kommunegrense : avgrensning [0..*]
+Bisped_mme --> Fylkesgrense : avgrensning [0..*]
+Bisped_mme --> Riksgrense : avgrensning [0..*]
+Bisped_mme --> Bisped_mmegrense : avgrensning [0..*]
+Bisped_mme --> Territorialgrense : avgrensning [0..*]
+Bisped_mme --> Prosti : prosti [0..*]
+Bisped_mme --> AvtaltAvgrensningslinje : avgrensning [0..*]
+Supertype_SOSI_Objekt_geistlige_grenser <|-- GeistligeGrenser
+Supertype_SOSI_Objekt_geistlige_enheter <|-- Sokn
+Sokn --> Kommunegrense : avgrensning [0..*]
+Sokn --> Fylkesgrense : avgrensning [0..*]
+Sokn --> Riksgrense : avgrensning [0..*]
+Sokn --> Soknegrense : avgrensning [0..*]
+Sokn --> Prostigrense : avgrensning [0..*]
+Sokn --> Territorialgrense : avgrensning [0..*]
+Sokn --> Bisped_mmegrense : avgrensning [0..*]
+Sokn --> AvtaltAvgrensningslinje : avgrensning [0..*]
+Supertype_SOSI_Objekt_geistlige_enheter <|-- Prosti
+Prosti --> Kommunegrense : avgrensning [0..*]
+Prosti --> Fylkesgrense : avgrensning [0..*]
+Prosti --> Riksgrense : avgrensning [0..*]
+Prosti --> Sokn : sokn [0..*]
+Prosti --> Prostigrense : avgrensning [0..*]
+Prosti --> AvtaltAvgrensningslinje : avgrensning [0..*]
+Prosti --> Bisped_mmegrense : avgrensning [0..*]
+Prosti --> Territorialgrense : avgrensning [0..*]
+GeistligeGrenser <|-- Prostigrense
+GeistligeGrenser <|-- Bisped_mmegrense
+
+@enduml
