@@ -1,0 +1,566 @@
+{
+  "$comment": "JSON Schema document created by ShapeChange - https://shapechange.net/",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://skjema.geonorge.no/SOSI/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/filleveranse/filleveranse/filleveranse.json",
+  "definitions": {
+    "AnsvarligForMerking": {
+      "type": "string",
+      "format": "uri"
+    },
+    "Endringsflagg": {
+      "type": "object",
+      "properties": {
+        "typeEndring": {
+          "$ref": "#/definitions/TypeEndring"
+        },
+        "tidspunktEndring": {
+          "type": "string",
+          "format": "date"
+        }
+      },
+      "required": [
+        "tidspunktEndring",
+        "typeEndring"
+      ]
+    },
+    "Farge": {
+      "type": "string",
+      "format": "uri"
+    },
+    "Høydereferanse": {
+      "type": "string",
+      "format": "uri"
+    },
+    "Høydereferansesystem": {
+      "type": "string",
+      "format": "uri"
+    },
+    "IdentifikasjonLinje": {
+      "type": "object",
+      "properties": {
+        "lokalId": {
+          "type": "string"
+        },
+        "navnerom": {
+          "type": "string"
+        },
+        "versjonId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "lokalId",
+        "navnerom"
+      ]
+    },
+    "IdentifikasjonLinjePkt": {
+      "type": "object",
+      "properties": {
+        "lokalId": {
+          "type": "string"
+        },
+        "navnerom": {
+          "type": "string"
+        },
+        "versjonId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "lokalId",
+        "navnerom"
+      ]
+    },
+    "IdentifikasjonObjekt": {
+      "type": "object",
+      "properties": {
+        "lokalId": {
+          "type": "string"
+        },
+        "navnerom": {
+          "type": "string"
+        },
+        "versjonId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "lokalId",
+        "navnerom"
+      ]
+    },
+    "IdentifikasjonPunkt": {
+      "type": "object",
+      "properties": {
+        "lokalId": {
+          "type": "string"
+        },
+        "navnerom": {
+          "type": "string"
+        },
+        "versjonId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "lokalId",
+        "navnerom"
+      ]
+    },
+    "JaNei": {
+      "type": "string",
+      "format": "uri"
+    },
+    "Lystype": {
+      "type": "string",
+      "format": "uri"
+    },
+    "MerkeInformasjon": {
+      "type": "string",
+      "format": "uri"
+    },
+    "Merkeplikt": {
+      "type": "object",
+      "properties": {
+        "merkepliktig": {
+          "$ref": "#/definitions/JaNei"
+        },
+        "merkepliktigIhenholdTil": {
+          "$ref": "#/definitions/RegelverkMerkeplikt"
+        },
+        "ansvarligForMerking": {
+          "$ref": "#/definitions/AnsvarligForMerking"
+        },
+        "merkeInformasjon": {
+          "$ref": "#/definitions/MerkeInformasjon"
+        },
+        "kommentarMerkeplikt": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "merkepliktig"
+      ]
+    },
+    "Merking": {
+      "type": "object",
+      "properties": {
+        "merkingFarge": {
+          "type": "array",
+          "maxItems": 2,
+          "items": {
+            "$ref": "#/definitions/MerkingFarge"
+          },
+          "uniqueItems": true
+        },
+        "merkingType": {
+          "$ref": "#/definitions/MerkingType"
+        },
+        "kommentarMerkingType": {
+          "type": "string"
+        },
+        "merkingMønster": {
+          "$ref": "#/definitions/MerkingMønster"
+        },
+        "kommentarMerkingMønster": {
+          "type": "string"
+        },
+        "merkingICAO": {
+          "$ref": "#/definitions/JaNei"
+        },
+        "merkingTilstand": {
+          "$ref": "#/definitions/MerkingTilstand"
+        }
+      },
+      "required": [
+        "merkingMønster",
+        "merkingType"
+      ]
+    },
+    "MerkingFarge": {
+      "type": "object",
+      "properties": {
+        "farge": {
+          "$ref": "#/definitions/Farge"
+        },
+        "annet": {
+          "type": "string"
+        },
+        "fluoriserende": {
+          "$ref": "#/definitions/JaNei"
+        },
+        "reflekterende": {
+          "$ref": "#/definitions/JaNei"
+        }
+      },
+      "required": [
+        "farge",
+        "fluoriserende",
+        "reflekterende"
+      ]
+    },
+    "MerkingMønster": {
+      "type": "string",
+      "format": "uri"
+    },
+    "MerkingTilstand": {
+      "type": "string",
+      "format": "uri"
+    },
+    "MerkingType": {
+      "type": "string",
+      "format": "uri"
+    },
+    "Måleenhet": {
+      "type": "string",
+      "format": "uri"
+    },
+    "Målemetode": {
+      "type": "string",
+      "format": "uri"
+    },
+    "MålemetodeHøyde": {
+      "type": "string",
+      "format": "uri"
+    },
+    "Posisjonskvalitet": {
+      "type": "object",
+      "properties": {
+        "målemetode": {
+          "$ref": "#/definitions/Målemetode"
+        },
+        "nøyaktighet": {
+          "type": "integer"
+        },
+        "synbarhet": {
+          "$ref": "#/definitions/Synbarhet"
+        },
+        "målemetodeHøyde": {
+          "$ref": "#/definitions/MålemetodeHøyde"
+        },
+        "nøyaktighetHøyde": {
+          "type": "integer"
+        }
+      },
+      "required": [
+        "målemetode"
+      ]
+    },
+    "ReferanseTilEksterntRegister": {
+      "type": "object",
+      "properties": {
+        "registernavn": {
+          "type": "string"
+        },
+        "eksternId": {
+          "type": "string"
+        }
+      },
+      "required": [
+        "eksternId"
+      ]
+    },
+    "RegelverkMerkeplikt": {
+      "type": "string",
+      "format": "uri"
+    },
+    "Status": {
+      "type": "string",
+      "format": "uri"
+    },
+    "Supertype_VertikalObjekt": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "datafangstdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "endringsflagg": {
+          "$ref": "#/definitions/Endringsflagg"
+        },
+        "gyldigFra": {
+          "type": "string",
+          "format": "date"
+        },
+        "gyldigTil": {
+          "type": "string",
+          "format": "date"
+        },
+        "informasjon": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          },
+          "uniqueItems": true
+        },
+        "link": {
+          "type": "array",
+          "uniqueItems": true
+        },
+        "oppdateringsdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "opphav": {
+          "type": "string"
+        },
+        "status": {
+          "$ref": "#/definitions/Status"
+        }
+      },
+      "required": [
+        "@type",
+        "status"
+      ]
+    },
+    "Supertype_VertikalObjektKomponent": {
+      "type": "object",
+      "properties": {
+        "@type": {
+          "type": "string"
+        },
+        "id": {
+          "type": "string"
+        },
+        "verifiseringsdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "oppdateringsdato": {
+          "type": "string",
+          "format": "date"
+        },
+        "endringsflagg": {
+          "$ref": "#/definitions/Endringsflagg"
+        },
+        "status": {
+          "$ref": "#/definitions/Status"
+        }
+      },
+      "required": [
+        "@type"
+      ]
+    },
+    "Synbarhet": {
+      "type": "string",
+      "format": "uri"
+    },
+    "TypeEndring": {
+      "type": "string",
+      "format": "uri"
+    },
+    "VertikalObjekt": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_VertikalObjekt"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "kommentarVertikalObjektType": {
+              "type": "string"
+            },
+            "vertikalObjektGruppe": {
+              "$ref": "#/definitions/JaNei"
+            },
+            "vertikalObjektNavn": {
+              "type": "string"
+            },
+            "vertikalObjektType": {
+              "$ref": "#/definitions/VertikalObjektType"
+            },
+            "identifikasjonObjekt": {
+              "$ref": "#/definitions/IdentifikasjonObjekt"
+            },
+            "bestårAvVertikalobjKompPunkt": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            },
+            "bestårAvVertikalobjKompLinje": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "identifikasjonObjekt",
+            "vertikalObjektType"
+          ]
+        }
+      ]
+    },
+    "VertikalObjektKomponent": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/Supertype_VertikalObjektKomponent"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "merking": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Merking"
+              },
+              "uniqueItems": true
+            },
+            "vertikalUtstrekning": {
+              "type": "number"
+            },
+            "vertikalUtstrekningMåleenhet": {
+              "$ref": "#/definitions/Måleenhet"
+            },
+            "merkeplikt": {
+              "$ref": "#/definitions/Merkeplikt"
+            },
+            "eksternReferanse": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/ReferanseTilEksterntRegister"
+              },
+              "uniqueItems": true
+            },
+            "komponentsekvensnummer": {
+              "type": "integer"
+            },
+            "BSLE-2-1_hinder": {
+              "$ref": "#/definitions/JaNei"
+            },
+            "lyssetting": {
+              "type": "array",
+              "minItems": 1,
+              "items": {
+                "$ref": "#/definitions/Lystype"
+              },
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "BSLE-2-1_hinder",
+            "lyssetting"
+          ]
+        }
+      ]
+    },
+    "VertikalObjektKomponentLinje": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/VertikalObjektKomponent"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "identifikasjonLinje": {
+              "$ref": "#/definitions/IdentifikasjonLinje"
+            },
+            "linjespenn": {
+              "$ref": "#/definitions/JaNei"
+            },
+            "lengde": {
+              "type": "number"
+            },
+            "lengdeMåleenhet": {
+              "$ref": "#/definitions/Måleenhet"
+            },
+            "avgrensesAvPunkt": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "identifikasjonLinje"
+          ]
+        }
+      ]
+    },
+    "VertikalObjektKomponentLinjePkt": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/VertikalObjektKomponent"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "href": {
+              "$ref": "#/definitions/Høydereferanse"
+            },
+            "hrefSystem": {
+              "$ref": "#/definitions/Høydereferansesystem"
+            },
+            "identifikasjonLinjePkt": {
+              "$ref": "#/definitions/IdentifikasjonLinjePkt"
+            },
+            "kvalitet": {
+              "$ref": "#/definitions/Posisjonskvalitet"
+            },
+            "avgrenserLinje": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "format": "uri"
+              },
+              "uniqueItems": true
+            }
+          },
+          "required": [
+            "href",
+            "hrefSystem",
+            "identifikasjonLinjePkt",
+            "kvalitet"
+          ]
+        }
+      ]
+    },
+    "VertikalObjektKomponentPunkt": {
+      "allOf": [
+        {
+          "$ref": "#/definitions/VertikalObjektKomponent"
+        },
+        {
+          "type": "object",
+          "properties": {
+            "href": {
+              "$ref": "#/definitions/Høydereferanse"
+            },
+            "hrefSystem": {
+              "$ref": "#/definitions/Høydereferansesystem"
+            },
+            "identifikasjonPunkt": {
+              "$ref": "#/definitions/IdentifikasjonPunkt"
+            },
+            "kvalitet": {
+              "$ref": "#/definitions/Posisjonskvalitet"
+            }
+          },
+          "required": [
+            "href",
+            "hrefSystem",
+            "identifikasjonPunkt",
+            "kvalitet"
+          ]
+        }
+      ]
+    },
+    "VertikalObjektType": {
+      "type": "string",
+      "format": "uri"
+    }
+  }
+}

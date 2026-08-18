@@ -1,0 +1,1052 @@
+<?xml version="1.0" encoding="UTF-8"?><schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:filleveranse="https://skjema.geonorge.no/SOSI/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/filleveranse/1.0" xmlns:gml="http://www.opengis.net/gml/3.2" xmlns:sc="http://www.interactive-instruments.de/ShapeChange/AppInfo" elementFormDefault="qualified" targetNamespace="https://skjema.geonorge.no/SOSI/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/filleveranse/1.0" version="1.0">
+  <import namespace="http://www.interactive-instruments.de/ShapeChange/AppInfo" schemaLocation="https://shapechange.net/resources/schema/ShapeChangeAppinfo.xsd"/>
+  <import namespace="http://www.opengis.net/gml/3.2" schemaLocation="http://schemas.opengis.net/gml/3.2.1/gml.xsd"/>
+  <!--XML Schema document created by ShapeChange - http://shapechange.net/-->
+  <simpleType name="AnsvarligForMerkingType">
+    <union memberTypes="filleveranse:AnsvarligForMerkingEnumerationType filleveranse:AnsvarligForMerkingOtherType"/>
+  </simpleType>
+  <simpleType name="AnsvarligForMerkingEnumerationType">
+    <restriction base="string">
+      <enumeration value="Eier av hinder"/>
+      <enumeration value="Godkjenningsansvarlig for landingsplass-flyplass"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="AnsvarligForMerkingOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <element name="Endringsflagg" substitutionGroup="gml:AbstractObject" type="filleveranse:EndringsflaggType"/>
+  <complexType name="EndringsflaggType">
+    <sequence>
+      <element name="typeEndring" type="filleveranse:TypeEndringType"/>
+      <element name="tidspunktEndring" type="date">
+        <annotation>
+          <appinfo>
+            <sc:taggedValue tag="SOSI_navn">ENDRET_TID</sc:taggedValue>
+          </appinfo>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="EndringsflaggPropertyType">
+    <sequence>
+      <element ref="filleveranse:Endringsflagg"/>
+    </sequence>
+  </complexType>
+  <simpleType name="FargeType">
+    <union memberTypes="filleveranse:FargeEnumerationType filleveranse:FargeOtherType"/>
+  </simpleType>
+  <simpleType name="FargeEnumerationType">
+    <restriction base="string">
+      <enumeration value="Svovelgul"/>
+      <enumeration value="Trafikkrød"/>
+      <enumeration value="Lysende rød"/>
+      <enumeration value="Lys grå"/>
+      <enumeration value="Agatgrå"/>
+      <enumeration value="Signalhvit"/>
+      <enumeration value="Ren hvit"/>
+      <enumeration value="Trafikkhvit"/>
+      <enumeration value="Oransje"/>
+      <enumeration value="Rødt"/>
+      <enumeration value="Hvitt"/>
+      <enumeration value="Annet"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="FargeOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="HøydereferanseType">
+    <union memberTypes="filleveranse:HøydereferanseEnumerationType filleveranse:HøydereferanseOtherType"/>
+  </simpleType>
+  <simpleType name="HøydereferanseEnumerationType">
+    <restriction base="string">
+      <enumeration value="Høyden målt til foten av objektet"/>
+      <enumeration value="Høyden målt til toppen av objektet"/>
+      <enumeration value="Ukjent"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="HøydereferanseOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="HøydereferansesystemType">
+    <union memberTypes="filleveranse:HøydereferansesystemEnumerationType filleveranse:HøydereferansesystemOtherType"/>
+  </simpleType>
+  <simpleType name="HøydereferansesystemEnumerationType">
+    <restriction base="string">
+      <enumeration value="Ellipsoide jf. KOORDSYS"/>
+      <enumeration value="Lokal referanseflate"/>
+      <enumeration value="Geoide bestemt av NKG i 1989"/>
+      <enumeration value="Norsk Null av 1954"/>
+      <enumeration value="Nord-Norsk Null av 1957"/>
+      <enumeration value="Norsk Null av 2000"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="HøydereferansesystemOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <element name="IdentifikasjonLinje" substitutionGroup="gml:AbstractObject" type="filleveranse:IdentifikasjonLinjeType"/>
+  <complexType name="IdentifikasjonLinjeType">
+    <sequence>
+      <element name="lokalId" type="string">
+        <annotation>
+          <appinfo>
+            <sc:taggedValue tag="SOSI_navn">LOKALID</sc:taggedValue>
+          </appinfo>
+        </annotation>
+      </element>
+      <element name="navnerom" type="string">
+        <annotation>
+          <appinfo>
+            <sc:taggedValue tag="SOSI_navn">NAVNEROM</sc:taggedValue>
+          </appinfo>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="versjonId" type="string">
+        <annotation>
+          <appinfo>
+            <sc:taggedValue tag="SOSI_navn">VERSJONID</sc:taggedValue>
+          </appinfo>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="IdentifikasjonLinjePropertyType">
+    <sequence>
+      <element ref="filleveranse:IdentifikasjonLinje"/>
+    </sequence>
+  </complexType>
+  <element name="IdentifikasjonLinjePkt" substitutionGroup="gml:AbstractObject" type="filleveranse:IdentifikasjonLinjePktType"/>
+  <complexType name="IdentifikasjonLinjePktType">
+    <sequence>
+      <element name="lokalId" type="string">
+        <annotation>
+          <appinfo>
+            <sc:taggedValue tag="SOSI_navn">LOKALID</sc:taggedValue>
+          </appinfo>
+        </annotation>
+      </element>
+      <element name="navnerom" type="string">
+        <annotation>
+          <appinfo>
+            <sc:taggedValue tag="SOSI_navn">NAVNEROM</sc:taggedValue>
+          </appinfo>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="versjonId" type="string">
+        <annotation>
+          <appinfo>
+            <sc:taggedValue tag="SOSI_navn">VERSJONID</sc:taggedValue>
+          </appinfo>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="IdentifikasjonLinjePktPropertyType">
+    <sequence>
+      <element ref="filleveranse:IdentifikasjonLinjePkt"/>
+    </sequence>
+  </complexType>
+  <element name="IdentifikasjonObjekt" substitutionGroup="gml:AbstractObject" type="filleveranse:IdentifikasjonObjektType"/>
+  <complexType name="IdentifikasjonObjektType">
+    <sequence>
+      <element name="lokalId" type="string">
+        <annotation>
+          <appinfo>
+            <sc:taggedValue tag="SOSI_navn">LOKALID</sc:taggedValue>
+          </appinfo>
+        </annotation>
+      </element>
+      <element name="navnerom" type="string">
+        <annotation>
+          <appinfo>
+            <sc:taggedValue tag="SOSI_navn">NAVNEROM</sc:taggedValue>
+          </appinfo>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="versjonId" type="string">
+        <annotation>
+          <appinfo>
+            <sc:taggedValue tag="SOSI_navn">VERSJONID</sc:taggedValue>
+          </appinfo>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="IdentifikasjonObjektPropertyType">
+    <sequence>
+      <element ref="filleveranse:IdentifikasjonObjekt"/>
+    </sequence>
+  </complexType>
+  <element name="IdentifikasjonPunkt" substitutionGroup="gml:AbstractObject" type="filleveranse:IdentifikasjonPunktType"/>
+  <complexType name="IdentifikasjonPunktType">
+    <sequence>
+      <element name="lokalId" type="string">
+        <annotation>
+          <appinfo>
+            <sc:taggedValue tag="SOSI_navn">LOKALID</sc:taggedValue>
+          </appinfo>
+        </annotation>
+      </element>
+      <element name="navnerom" type="string">
+        <annotation>
+          <appinfo>
+            <sc:taggedValue tag="SOSI_navn">NAVNEROM</sc:taggedValue>
+          </appinfo>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="versjonId" type="string">
+        <annotation>
+          <appinfo>
+            <sc:taggedValue tag="SOSI_navn">VERSJONID</sc:taggedValue>
+          </appinfo>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="IdentifikasjonPunktPropertyType">
+    <sequence>
+      <element ref="filleveranse:IdentifikasjonPunkt"/>
+    </sequence>
+  </complexType>
+  <simpleType name="JaNeiType">
+    <union memberTypes="filleveranse:JaNeiEnumerationType filleveranse:JaNeiOtherType"/>
+  </simpleType>
+  <simpleType name="JaNeiEnumerationType">
+    <restriction base="string">
+      <enumeration value="Ja"/>
+      <enumeration value="Nei"/>
+      <enumeration value="Ukjent"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="JaNeiOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="LystypeType">
+    <union memberTypes="filleveranse:LystypeEnumerationType filleveranse:LystypeOtherType"/>
+  </simpleType>
+  <simpleType name="LystypeEnumerationType">
+    <restriction base="string">
+      <enumeration value="Lavintensitet type A"/>
+      <enumeration value="Lavintensitet type B"/>
+      <enumeration value="Lavintensitet type C"/>
+      <enumeration value="Lavintensitet type D"/>
+      <enumeration value="Mellomintensitet type A"/>
+      <enumeration value="Mellomintensitet type B"/>
+      <enumeration value="Mellomintensitet type C"/>
+      <enumeration value="Høyintensitet type A"/>
+      <enumeration value="Høyintensitet type B"/>
+      <enumeration value="Belyst med flomlys"/>
+      <enumeration value="Fast rødt"/>
+      <enumeration value="Fast hvitt"/>
+      <enumeration value="Blinkende hvitt"/>
+      <enumeration value="Blinkende rødt"/>
+      <enumeration value="Lyssatt"/>
+      <enumeration value="Ikke lyssatt"/>
+      <enumeration value="Ukjent"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="LystypeOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="MerkeInformasjonType">
+    <union memberTypes="filleveranse:MerkeInformasjonEnumerationType filleveranse:MerkeInformasjonOtherType"/>
+  </simpleType>
+  <simpleType name="MerkeInformasjonEnumerationType">
+    <restriction base="string">
+      <enumeration value="merket i henhold til forskrift"/>
+      <enumeration value="merket i henhold til dispensasjon"/>
+      <enumeration value="merket utover aktuell forskrift"/>
+      <enumeration value="mangler merking"/>
+      <enumeration value="ukjent"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="MerkeInformasjonOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <element name="Merkeplikt" substitutionGroup="gml:AbstractObject" type="filleveranse:MerkepliktType"/>
+  <complexType name="MerkepliktType">
+    <sequence>
+      <element name="merkepliktig" type="filleveranse:JaNeiType">
+        <annotation>
+          <appinfo>
+            <sc:taggedValue tag="SOSI_navn">MERKEPLIKTIG</sc:taggedValue>
+          </appinfo>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="merkepliktigIhenholdTil" type="filleveranse:RegelverkMerkepliktType"/>
+      <element minOccurs="0" name="ansvarligForMerking" type="filleveranse:AnsvarligForMerkingType"/>
+      <element minOccurs="0" name="merkeInformasjon" type="filleveranse:MerkeInformasjonType"/>
+      <element minOccurs="0" name="kommentarMerkeplikt" type="string">
+        <annotation>
+          <appinfo>
+            <sc:taggedValue tag="SOSI_navn">KOMMENTARMERKEPLIKT</sc:taggedValue>
+          </appinfo>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="MerkepliktPropertyType">
+    <sequence>
+      <element ref="filleveranse:Merkeplikt"/>
+    </sequence>
+  </complexType>
+  <element name="Merking" substitutionGroup="gml:AbstractObject" type="filleveranse:MerkingType"/>
+  <complexType name="MerkingType">
+    <sequence>
+      <element maxOccurs="2" minOccurs="0" name="merkingFarge" type="filleveranse:MerkingFargePropertyType">
+        <annotation>
+          <appinfo>
+            <sc:taggedValue tag="SOSI_navn">MERKINGFARGE</sc:taggedValue>
+          </appinfo>
+        </annotation>
+      </element>
+      <element name="merkingType" type="filleveranse:MerkingTypeType"/>
+      <element minOccurs="0" name="kommentarMerkingType" type="string">
+        <annotation>
+          <appinfo>
+            <sc:taggedValue tag="SOSI_navn">KOMMENTARMERKINGTYPE</sc:taggedValue>
+          </appinfo>
+        </annotation>
+      </element>
+      <element name="merkingMønster" type="filleveranse:MerkingMønsterType"/>
+      <element minOccurs="0" name="kommentarMerkingMønster" type="string">
+        <annotation>
+          <appinfo>
+            <sc:taggedValue tag="SOSI_navn">KOMMENTARMERKINGMØNSTER</sc:taggedValue>
+          </appinfo>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="merkingICAO" type="filleveranse:JaNeiType">
+        <annotation>
+          <appinfo>
+            <sc:taggedValue tag="SOSI_navn">MERKINGICAO</sc:taggedValue>
+          </appinfo>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="merkingTilstand" type="filleveranse:MerkingTilstandType"/>
+    </sequence>
+  </complexType>
+  <complexType name="MerkingPropertyType">
+    <sequence>
+      <element ref="filleveranse:Merking"/>
+    </sequence>
+  </complexType>
+  <element name="MerkingFarge" substitutionGroup="gml:AbstractObject" type="filleveranse:MerkingFargeType"/>
+  <complexType name="MerkingFargeType">
+    <sequence>
+      <element name="farge" type="filleveranse:FargeType">
+        <annotation>
+          <appinfo>
+            <sc:taggedValue tag="SOSI_navn">FARGE</sc:taggedValue>
+          </appinfo>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="annet" type="string">
+        <annotation>
+          <appinfo>
+            <sc:taggedValue tag="SOSI_navn">ANNET</sc:taggedValue>
+          </appinfo>
+        </annotation>
+      </element>
+      <element name="fluoriserende" type="filleveranse:JaNeiType">
+        <annotation>
+          <appinfo>
+            <sc:taggedValue tag="SOSI_navn">FLUORISERENDE</sc:taggedValue>
+          </appinfo>
+        </annotation>
+      </element>
+      <element name="reflekterende" type="filleveranse:JaNeiType">
+        <annotation>
+          <appinfo>
+            <sc:taggedValue tag="SOSI_navn">REFLEKTERENDE</sc:taggedValue>
+          </appinfo>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="MerkingFargePropertyType">
+    <sequence>
+      <element ref="filleveranse:MerkingFarge"/>
+    </sequence>
+  </complexType>
+  <simpleType name="MerkingMønsterType">
+    <union memberTypes="filleveranse:MerkingMønsterEnumerationType filleveranse:MerkingMønsterOtherType"/>
+  </simpleType>
+  <simpleType name="MerkingMønsterEnumerationType">
+    <restriction base="string">
+      <enumeration value="Ensfarget"/>
+      <enumeration value="Rutemønstret"/>
+      <enumeration value="Horisontale bånd"/>
+      <enumeration value="Vertikale bånd"/>
+      <enumeration value="Ukjent"/>
+      <enumeration value="Annet"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="MerkingMønsterOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="MerkingTilstandType">
+    <union memberTypes="filleveranse:MerkingTilstandEnumerationType filleveranse:MerkingTilstandOtherType"/>
+  </simpleType>
+  <simpleType name="MerkingTilstandEnumerationType">
+    <restriction base="string">
+      <enumeration value="Dårlig"/>
+      <enumeration value="Brukbar"/>
+      <enumeration value="God"/>
+      <enumeration value="Veldig god"/>
+      <enumeration value="Ukjent"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="MerkingTilstandOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="MerkingTypeType">
+    <union memberTypes="filleveranse:MerkingTypeEnumerationType filleveranse:MerkingTypeOtherType"/>
+  </simpleType>
+  <simpleType name="MerkingTypeEnumerationType">
+    <restriction base="string">
+      <enumeration value="Flagg"/>
+      <enumeration value="Markør"/>
+      <enumeration value="Plater"/>
+      <enumeration value="Ukjent"/>
+      <enumeration value="Annet"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="MerkingTypeOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="MåleenhetType">
+    <union memberTypes="filleveranse:MåleenhetEnumerationType filleveranse:MåleenhetOtherType"/>
+  </simpleType>
+  <simpleType name="MåleenhetEnumerationType">
+    <restriction base="string">
+      <enumeration value="FT"/>
+      <enumeration value="M"/>
+      <enumeration value="CM"/>
+      <enumeration value="KM"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="MåleenhetOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="MålemetodeType">
+    <union memberTypes="filleveranse:MålemetodeEnumerationType filleveranse:MålemetodeOtherType"/>
+  </simpleType>
+  <simpleType name="MålemetodeEnumerationType">
+    <restriction base="string">
+      <enumeration value="Terrengmålt"/>
+      <enumeration value="Tatt fra plan"/>
+      <enumeration value="Annet"/>
+      <enumeration value="Stereoinstrument"/>
+      <enumeration value="Analytisk plotter"/>
+      <enumeration value="Digitalt stereoinstrument"/>
+      <enumeration value="Flybåren laserscanner"/>
+      <enumeration value="Digitalisert fra ortofoto"/>
+      <enumeration value="Digitalisert på skjerm fra satellittbilde"/>
+      <enumeration value="Dig. på skjerm fra scannet samkopi"/>
+      <enumeration value="Genererte data (interpolasjon)"/>
+      <enumeration value="Frihåndstegning"/>
+      <enumeration value="Digitalisert fra krokering på kart"/>
+      <enumeration value="Direkte innlagt på skjerm"/>
+      <enumeration value="Ukjent målemetode"/>
+      <enumeration value="GPS Kodemåling, relative målinger"/>
+      <enumeration value="GPS Kodemåling, enkeltmålinger"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="MålemetodeOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="MålemetodeHøydeType">
+    <union memberTypes="filleveranse:MålemetodeHøydeEnumerationType filleveranse:MålemetodeHøydeOtherType"/>
+  </simpleType>
+  <simpleType name="MålemetodeHøydeEnumerationType">
+    <restriction base="string">
+      <enumeration value="Terrengmålt"/>
+      <enumeration value="Tatt fra plan"/>
+      <enumeration value="Annet"/>
+      <enumeration value="Stereoinstrument"/>
+      <enumeration value="Analytisk plotter"/>
+      <enumeration value="Digitalt stereoinstrument"/>
+      <enumeration value="Flybåren laserscanning"/>
+      <enumeration value="Genererte data (interpolasjon)"/>
+      <enumeration value="Generert i terrengmodell"/>
+      <enumeration value="Målt med stigningsmåler"/>
+      <enumeration value="GPS Kodemåling, relative målinger."/>
+      <enumeration value="GPS Kodemåling, enkeltpunktbestemmelser"/>
+      <enumeration value="Ukjent målemetode"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="MålemetodeHøydeOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <element name="Posisjonskvalitet" substitutionGroup="gml:AbstractObject" type="filleveranse:PosisjonskvalitetType"/>
+  <complexType name="PosisjonskvalitetType">
+    <sequence>
+      <element name="målemetode" type="filleveranse:MålemetodeType"/>
+      <element minOccurs="0" name="nøyaktighet" type="integer">
+        <annotation>
+          <appinfo>
+            <sc:taggedValue tag="SOSI_navn">NØYAKTIGHET</sc:taggedValue>
+          </appinfo>
+        </annotation>
+      </element>
+      <element minOccurs="0" name="synbarhet" type="filleveranse:SynbarhetType"/>
+      <element minOccurs="0" name="målemetodeHøyde" type="filleveranse:MålemetodeHøydeType"/>
+      <element minOccurs="0" name="nøyaktighetHøyde" type="integer">
+        <annotation>
+          <appinfo>
+            <sc:taggedValue tag="SOSI_navn">H-NØYAKTIGHET</sc:taggedValue>
+          </appinfo>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="PosisjonskvalitetPropertyType">
+    <sequence>
+      <element ref="filleveranse:Posisjonskvalitet"/>
+    </sequence>
+  </complexType>
+  <element name="ReferanseTilEksterntRegister" substitutionGroup="gml:AbstractObject" type="filleveranse:ReferanseTilEksterntRegisterType"/>
+  <complexType name="ReferanseTilEksterntRegisterType">
+    <sequence>
+      <element minOccurs="0" name="registernavn" type="string">
+        <annotation>
+          <appinfo>
+            <sc:taggedValue tag="SOSI_navn">REGISTERNAVN</sc:taggedValue>
+          </appinfo>
+        </annotation>
+      </element>
+      <element name="eksternId" type="string">
+        <annotation>
+          <appinfo>
+            <sc:taggedValue tag="SOSI_navn">EKSTERNID</sc:taggedValue>
+          </appinfo>
+        </annotation>
+      </element>
+    </sequence>
+  </complexType>
+  <complexType name="ReferanseTilEksterntRegisterPropertyType">
+    <sequence>
+      <element ref="filleveranse:ReferanseTilEksterntRegister"/>
+    </sequence>
+  </complexType>
+  <simpleType name="RegelverkMerkepliktType">
+    <union memberTypes="filleveranse:RegelverkMerkepliktEnumerationType filleveranse:RegelverkMerkepliktOtherType"/>
+  </simpleType>
+  <simpleType name="RegelverkMerkepliktEnumerationType">
+    <restriction base="string">
+      <enumeration value="BSL E 2"/>
+      <enumeration value="BSL E 3"/>
+      <enumeration value="Pålagt av LT"/>
+      <enumeration value="BSL E 2 aggregerte komponenter"/>
+      <enumeration value="EASA"/>
+      <enumeration value="ICAO"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="RegelverkMerkepliktOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="StatusType">
+    <union memberTypes="filleveranse:StatusEnumerationType filleveranse:StatusOtherType"/>
+  </simpleType>
+  <simpleType name="StatusEnumerationType">
+    <restriction base="string">
+      <enumeration value="Eksisterende (default)"/>
+      <enumeration value="Kondemnert"/>
+      <enumeration value="Ombygd"/>
+      <enumeration value="Planlagt"/>
+      <enumeration value="Under arbeid"/>
+      <enumeration value="Fjernet"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="StatusOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <element abstract="true" name="Supertype_VertikalObjekt" substitutionGroup="gml:AbstractFeature" type="filleveranse:Supertype_VertikalObjektType"/>
+  <complexType abstract="true" name="Supertype_VertikalObjektType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element minOccurs="0" name="datafangstdato" type="date">
+            <annotation>
+              <appinfo>
+                <sc:taggedValue tag="SOSI_navn">DATAFANGSTDATO</sc:taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="endringsflagg" type="filleveranse:EndringsflaggPropertyType">
+            <annotation>
+              <appinfo>
+                <sc:taggedValue tag="SOSI_navn">ENDRINGSFLAGG</sc:taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="gyldigFra" type="date">
+            <annotation>
+              <appinfo>
+                <sc:taggedValue tag="SOSI_navn">GYLDIGFRA</sc:taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="gyldigTil" type="date">
+            <annotation>
+              <appinfo>
+                <sc:taggedValue tag="SOSI_navn">GYLDIGTIL</sc:taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="informasjon" type="string">
+            <annotation>
+              <appinfo>
+                <sc:taggedValue tag="SOSI_navn">INFORMASJON</sc:taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="link" type="string">
+            <annotation>
+              <appinfo>
+                <sc:taggedValue tag="SOSI_navn">LINK</sc:taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="oppdateringsdato" type="date">
+            <annotation>
+              <appinfo>
+                <sc:taggedValue tag="SOSI_navn">OPPDATERINGSDATO</sc:taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="opphav" type="string">
+            <annotation>
+              <appinfo>
+                <sc:taggedValue tag="SOSI_navn">OPPHAV</sc:taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+          <element name="status" type="filleveranse:StatusType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="Supertype_VertikalObjektPropertyType">
+    <sequence minOccurs="0">
+      <element ref="filleveranse:Supertype_VertikalObjekt"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element abstract="true" name="Supertype_VertikalObjektKomponent" substitutionGroup="gml:AbstractFeature" type="filleveranse:Supertype_VertikalObjektKomponentType">
+    <annotation>
+      <appinfo>
+        <sc:taggedValue tag="SOSI_navn">SUPERTYPE_VERTIKALOBJKOMP</sc:taggedValue>
+      </appinfo>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="Supertype_VertikalObjektKomponentType">
+    <complexContent>
+      <extension base="gml:AbstractFeatureType">
+        <sequence>
+          <element minOccurs="0" name="verifiseringsdato" type="date">
+            <annotation>
+              <appinfo>
+                <sc:taggedValue tag="SOSI_navn">VERIFISERINGSDATO</sc:taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="oppdateringsdato" type="date">
+            <annotation>
+              <appinfo>
+                <sc:taggedValue tag="SOSI_navn">OPPDATERINGSDATO</sc:taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="endringsflagg" type="filleveranse:EndringsflaggPropertyType">
+            <annotation>
+              <appinfo>
+                <sc:taggedValue tag="SOSI_navn">ENDRINGSFLAGG</sc:taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="status" type="filleveranse:StatusType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="Supertype_VertikalObjektKomponentPropertyType">
+    <sequence minOccurs="0">
+      <element ref="filleveranse:Supertype_VertikalObjektKomponent"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <simpleType name="SynbarhetType">
+    <union memberTypes="filleveranse:SynbarhetEnumerationType filleveranse:SynbarhetOtherType"/>
+  </simpleType>
+  <simpleType name="SynbarhetEnumerationType">
+    <restriction base="string">
+      <enumeration value="Fullt ut synlig/gjenfinnbar i terrenget"/>
+      <enumeration value="Dårlig gjenfinnbar i terreng"/>
+      <enumeration value="Middels synlig i flybilde/modell"/>
+      <enumeration value="Dårlig/ikke synlig i flybilde/modell"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="SynbarhetOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="TypeEndringType">
+    <union memberTypes="filleveranse:TypeEndringEnumerationType filleveranse:TypeEndringOtherType"/>
+  </simpleType>
+  <simpleType name="TypeEndringEnumerationType">
+    <restriction base="string">
+      <enumeration value="Endret"/>
+      <enumeration value="Nytt"/>
+      <enumeration value="Slettet"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="TypeEndringOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+  <element name="VertikalObjekt" substitutionGroup="filleveranse:Supertype_VertikalObjekt" type="filleveranse:VertikalObjektType">
+    <annotation>
+      <appinfo>
+        <sc:taggedValue tag="SOSI_navn">VERTIKALOBJEKT</sc:taggedValue>
+      </appinfo>
+    </annotation>
+  </element>
+  <complexType name="VertikalObjektType">
+    <complexContent>
+      <extension base="filleveranse:Supertype_VertikalObjektType">
+        <sequence>
+          <element minOccurs="0" name="kommentarVertikalObjektType" type="string">
+            <annotation>
+              <appinfo>
+                <sc:taggedValue tag="SOSI_navn">KOMMENTARVERTOBJTYPE</sc:taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="vertikalObjektGruppe" type="filleveranse:JaNeiType">
+            <annotation>
+              <appinfo>
+                <sc:taggedValue tag="SOSI_navn">VERTIKALOBJEKTGRUPPE</sc:taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="vertikalObjektNavn" type="string">
+            <annotation>
+              <appinfo>
+                <sc:taggedValue tag="SOSI_navn">VERTIKALOBJEKTNAVN</sc:taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+          <element name="vertikalObjektType" type="filleveranse:VertikalObjektTypeType"/>
+          <element name="identifikasjonObjekt" type="filleveranse:IdentifikasjonObjektPropertyType">
+            <annotation>
+              <appinfo>
+                <sc:taggedValue tag="SOSI_navn">KOMPONENTIDENTOBJEKT</sc:taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="bestårAvVertikalobjKompPunkt" type="filleveranse:VertikalObjektKomponentPunktPropertyType"/>
+          <element maxOccurs="unbounded" minOccurs="0" name="bestårAvVertikalobjKompLinje" type="filleveranse:VertikalObjektKomponentLinjePropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="VertikalObjektPropertyType">
+    <sequence minOccurs="0">
+      <element ref="filleveranse:VertikalObjekt"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element abstract="true" name="VertikalObjektKomponent" substitutionGroup="filleveranse:Supertype_VertikalObjektKomponent" type="filleveranse:VertikalObjektKomponentType">
+    <annotation>
+      <appinfo>
+        <sc:taggedValue tag="SOSI_navn">VERTIKALOBJKOMPONENT</sc:taggedValue>
+      </appinfo>
+    </annotation>
+  </element>
+  <complexType abstract="true" name="VertikalObjektKomponentType">
+    <complexContent>
+      <extension base="filleveranse:Supertype_VertikalObjektKomponentType">
+        <sequence>
+          <element maxOccurs="unbounded" minOccurs="0" name="merking" type="filleveranse:MerkingPropertyType">
+            <annotation>
+              <appinfo>
+                <sc:taggedValue tag="SOSI_navn">MERKING</sc:taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="vertikalUtstrekning" type="double">
+            <annotation>
+              <appinfo>
+                <sc:taggedValue tag="SOSI_navn">VERTIKALUTSTREKNING</sc:taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="vertikalUtstrekningMåleenhet" type="filleveranse:MåleenhetType">
+            <annotation>
+              <appinfo>
+                <sc:taggedValue tag="SOSI_navn">VERTIKALUTSTREKNINGMÅLEENHET</sc:taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="merkeplikt" type="filleveranse:MerkepliktPropertyType">
+            <annotation>
+              <appinfo>
+                <sc:taggedValue tag="SOSI_navn">MERKEPLIKT</sc:taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="eksternReferanse" type="filleveranse:ReferanseTilEksterntRegisterPropertyType">
+            <annotation>
+              <appinfo>
+                <sc:taggedValue tag="SOSI_navn">REFERANSEEKSTREG</sc:taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="komponentsekvensnummer" type="integer">
+            <annotation>
+              <appinfo>
+                <sc:taggedValue tag="SOSI_navn">KOMPONENTSEKVNR</sc:taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+          <element name="BSLE-2-1_hinder" type="filleveranse:JaNeiType">
+            <annotation>
+              <appinfo>
+                <sc:taggedValue tag="SOSI_navn">BSLE21HINDER</sc:taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" name="lyssetting" type="filleveranse:LystypeType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="VertikalObjektKomponentPropertyType">
+    <sequence minOccurs="0">
+      <element ref="filleveranse:VertikalObjektKomponent"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="VertikalObjektKomponentLinje" substitutionGroup="filleveranse:VertikalObjektKomponent" type="filleveranse:VertikalObjektKomponentLinjeType">
+    <annotation>
+      <appinfo>
+        <sc:taggedValue tag="SOSI_navn">VERTIKALOBJKOMPLINJE</sc:taggedValue>
+      </appinfo>
+    </annotation>
+  </element>
+  <complexType name="VertikalObjektKomponentLinjeType">
+    <complexContent>
+      <extension base="filleveranse:VertikalObjektKomponentType">
+        <sequence>
+          <element name="identifikasjonLinje" type="filleveranse:IdentifikasjonLinjePropertyType">
+            <annotation>
+              <appinfo>
+                <sc:taggedValue tag="SOSI_navn">KOMPONENTIDENTLINJE</sc:taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="linjeElement" type="gml:CurvePropertyType"/>
+          <element minOccurs="0" name="linjespenn" type="filleveranse:JaNeiType">
+            <annotation>
+              <appinfo>
+                <sc:taggedValue tag="SOSI_navn">LINJESPENN</sc:taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="lengde" type="double">
+            <annotation>
+              <appinfo>
+                <sc:taggedValue tag="SOSI_navn">LENGDE</sc:taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+          <element minOccurs="0" name="lengdeMåleenhet" type="filleveranse:MåleenhetType">
+            <annotation>
+              <appinfo>
+                <sc:taggedValue tag="SOSI_navn">LENGDEMÅLEENHET</sc:taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="avgrensesAvPunkt" type="filleveranse:VertikalObjektKomponentLinjePktPropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="VertikalObjektKomponentLinjePropertyType">
+    <sequence minOccurs="0">
+      <element ref="filleveranse:VertikalObjektKomponentLinje"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="VertikalObjektKomponentLinjePkt" substitutionGroup="filleveranse:VertikalObjektKomponent" type="filleveranse:VertikalObjektKomponentLinjePktType">
+    <annotation>
+      <appinfo>
+        <sc:taggedValue tag="SOSI_navn">VERTIKALOBJKOMPPUNKT</sc:taggedValue>
+      </appinfo>
+    </annotation>
+  </element>
+  <complexType name="VertikalObjektKomponentLinjePktType">
+    <complexContent>
+      <extension base="filleveranse:VertikalObjektKomponentType">
+        <sequence>
+          <element minOccurs="0" name="posisjon" type="gml:PointPropertyType"/>
+          <element name="href" type="filleveranse:HøydereferanseType"/>
+          <element name="hrefSystem" type="filleveranse:HøydereferansesystemType"/>
+          <element name="identifikasjonLinjePkt" type="filleveranse:IdentifikasjonLinjePktPropertyType">
+            <annotation>
+              <appinfo>
+                <sc:taggedValue tag="SOSI_navn">KOMPONENTIDENTLINJEPKT</sc:taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+          <element name="kvalitet" type="filleveranse:PosisjonskvalitetPropertyType">
+            <annotation>
+              <appinfo>
+                <sc:taggedValue tag="SOSI_navn">KVALITET</sc:taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+          <element maxOccurs="unbounded" minOccurs="0" name="avgrenserLinje" type="filleveranse:VertikalObjektKomponentLinjePropertyType"/>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="VertikalObjektKomponentLinjePktPropertyType">
+    <sequence minOccurs="0">
+      <element ref="filleveranse:VertikalObjektKomponentLinjePkt"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <element name="VertikalObjektKomponentPunkt" substitutionGroup="filleveranse:VertikalObjektKomponent" type="filleveranse:VertikalObjektKomponentPunktType">
+    <annotation>
+      <appinfo>
+        <sc:taggedValue tag="SOSI_navn">VERTIKALOBJKOMPPUNKT</sc:taggedValue>
+      </appinfo>
+    </annotation>
+  </element>
+  <complexType name="VertikalObjektKomponentPunktType">
+    <complexContent>
+      <extension base="filleveranse:VertikalObjektKomponentType">
+        <sequence>
+          <element minOccurs="0" name="posisjon" type="gml:PointPropertyType"/>
+          <element name="href" type="filleveranse:HøydereferanseType"/>
+          <element name="hrefSystem" type="filleveranse:HøydereferansesystemType"/>
+          <element name="identifikasjonPunkt" type="filleveranse:IdentifikasjonPunktPropertyType">
+            <annotation>
+              <appinfo>
+                <sc:taggedValue tag="SOSI_navn">KOMPONENTIDENTPUNKT</sc:taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+          <element name="kvalitet" type="filleveranse:PosisjonskvalitetPropertyType">
+            <annotation>
+              <appinfo>
+                <sc:taggedValue tag="SOSI_navn">KVALITET</sc:taggedValue>
+              </appinfo>
+            </annotation>
+          </element>
+        </sequence>
+      </extension>
+    </complexContent>
+  </complexType>
+  <complexType name="VertikalObjektKomponentPunktPropertyType">
+    <sequence minOccurs="0">
+      <element ref="filleveranse:VertikalObjektKomponentPunkt"/>
+    </sequence>
+    <attributeGroup ref="gml:AssociationAttributeGroup"/>
+    <attributeGroup ref="gml:OwnershipAttributeGroup"/>
+  </complexType>
+  <simpleType name="VertikalObjektTypeType">
+    <union memberTypes="filleveranse:VertikalObjektTypeEnumerationType filleveranse:VertikalObjektTypeOtherType"/>
+  </simpleType>
+  <simpleType name="VertikalObjektTypeEnumerationType">
+    <restriction base="string">
+      <enumeration value="Landbruksutstyr"/>
+      <enumeration value="Telemast"/>
+      <enumeration value="Bru"/>
+      <enumeration value="Bygning"/>
+      <enumeration value="Gondolbane"/>
+      <enumeration value="Kontrolltårn"/>
+      <enumeration value="Kjøletårn"/>
+      <enumeration value="Kran"/>
+      <enumeration value="Demning"/>
+      <enumeration value="Kuppel"/>
+      <enumeration value="EL_Nettstasjon"/>
+      <enumeration value="Gjerde"/>
+      <enumeration value="Fyrtårn"/>
+      <enumeration value="Monument"/>
+      <enumeration value="Terrengpunkt"/>
+      <enumeration value="Navigasjonshjelpemiddel"/>
+      <enumeration value="Stolpe"/>
+      <enumeration value="Kraftverk"/>
+      <enumeration value="Raffineri"/>
+      <enumeration value="Oljerigg"/>
+      <enumeration value="Skilt"/>
+      <enumeration value="Pipe"/>
+      <enumeration value="Tank"/>
+      <enumeration value="Forankret ballong"/>
+      <enumeration value="Tårn"/>
+      <enumeration value="Kraftledning"/>
+      <enumeration value="Tre"/>
+      <enumeration value="Skogsområde"/>
+      <enumeration value="Vanntårn"/>
+      <enumeration value="Vindmølle"/>
+      <enumeration value="Vindmøllepark"/>
+      <enumeration value="Hopptårn"/>
+      <enumeration value="Vindmåler"/>
+      <enumeration value="Lysmast"/>
+      <enumeration value="Flaggstang"/>
+      <enumeration value="Petroleumsinnretning"/>
+      <enumeration value="Silo"/>
+      <enumeration value="Stolheis"/>
+      <enumeration value="Skitrekk"/>
+      <enumeration value="Taubane"/>
+      <enumeration value="Fornøyelsesparkinnretning"/>
+      <enumeration value="Annet"/>
+    </restriction>
+  </simpleType>
+  <simpleType name="VertikalObjektTypeOtherType">
+    <restriction base="string">
+      <pattern value="other: \w{2,}"/>
+    </restriction>
+  </simpleType>
+</schema>

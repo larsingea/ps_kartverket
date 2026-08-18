@@ -1,0 +1,2151 @@
+# Open Data Contract Standard (ODCS) v3.1.0 — generert fra datamodellen.
+apiVersion: v3.1.0
+kind: DataContract
+id: urn:odcs:nasjonalt-register-over-luftfartshindre-filleveranse:1.0.0
+version: 1.0.0
+status: active
+name: Nasjonalt register over luftfartshindre - Filleveranse
+schema:
+- name: VertikalObjektKomponentPunkt
+  physicalName: vertikalobjektkomponentpunkt
+  logicalType: object
+  physicalType: table
+  description: Egenskaper tilhørende en VertikalObjektKomponent som er et punkt.
+  customProperties:
+  - property: sosiObjektType
+    value: VertikalObjektKomponentPunkt
+  - property: inheritsFrom
+    value: VertikalObjektKomponent
+  properties:
+  - name: verifiseringsdato
+    logicalType: timestamp
+    description: 'dato når dataene er fastslått å være i samsvar med virkeligheten
+
+
+      Merknad: Verifiseringsdato er identisk med ..DATO i tidligere versjoner av SOSI'
+  - name: oppdateringsdato
+    logicalType: timestamp
+    description: 'dato for siste endring på objektdataene
+
+
+      Merknad:
+
+      Oppdateringsdato refererer til en endring av dataene i registeret. Dataene kan
+      dermed endres som følge av en forvaltningsmessig beslutning uten at det virkelige
+      objektet i terrenget er endret.'
+  - name: endringsflagg
+    logicalType: object
+    properties:
+    - name: typeEndring
+      logicalType: string
+      logicalTypeOptions:
+        pattern: ^(Endret|Nytt|Slettet)$
+      customProperties:
+      - property: allowedValues
+        value:
+        - value: Endret
+          label: Endret
+        - value: Nytt
+          label: Nytt
+        - value: Slettet
+          label: Slettet
+      description: endringsstatus for objektet
+      required: true
+    - name: tidspunktEndring
+      logicalType: timestamp
+      description: tidspunkt for endring av objektet
+      required: true
+    description: endringsinformasjon om et objekt
+  - name: status
+    logicalType: string
+    logicalTypeOptions:
+      pattern: ^(Eksisterende\ \(default\)|Kondemnert|Ombygd|Planlagt|Under\ arbeid|Fjernet)$
+    customProperties:
+    - property: allowedValues
+      value:
+      - value: Eksisterende (default)
+        label: 'Identisk med tidligere SITSTAT = 3
+
+
+          -- Definition --
+
+          Identical with previous SITSTAT = 3'
+      - value: Kondemnert
+        label: Ikke lenger et hinder.
+      - value: Ombygd
+        label: Hindret er ombygd (blir vanligvis ikke brukt)
+      - value: Planlagt
+        label: Hindret skal bygges
+      - value: Under arbeid
+        label: Hinderet er under bygging/ombygging
+      - value: Fjernet
+        label: Feilregistrert i registeret, skulle aldri vært der.
+    description: objektets tilstand, se gyldige koder i kodeliste Status
+  - name: merking
+    logicalType: array
+    items:
+      logicalType: object
+      properties:
+      - name: merkingFarge
+        logicalType: object
+        properties:
+        - name: farge
+          logicalType: string
+          logicalTypeOptions:
+            pattern: ^(Svovelgul|Trafikkrød|Lysende\ rød|Lys\ grå|Agatgrå|Signalhvit|Ren\
+              hvit|Trafikkhvit|Oransje|Rødt|Hvitt|Annet)$
+          customProperties:
+          - property: allowedValues
+            value:
+            - value: Svovelgul
+              label: RAL 1016 (Sulfur yellow)
+            - value: Trafikkrød
+              label: RAL 3020 (Traffic red)
+            - value: Lysende rød
+              label: RAL 3024 (Luminous red)
+            - value: Lys grå
+              label: RAL 7035 (Light grey)
+            - value: Agatgrå
+              label: RAL 7038 (Agate grey)
+            - value: Signalhvit
+              label: RAL 9003 (Signal white)
+            - value: Ren hvit
+              label: RAL 9010 (Pure white)
+            - value: Trafikkhvit
+              label: RAL 9016 (Traffic white)
+            - value: Oransje
+              label: RAL kode ikke aktuelt, kode er videreført fra gammelt system
+            - value: Rødt
+              label: RAL kode ikke aktuelt, kode er videreført fra gammelt system
+            - value: Hvitt
+              label: RAL kode ikke aktuelt, kode er videreført fra gammelt system
+            - value: Annet
+              label: Annet
+          description: farge angis med koder fra definert kodeliste
+          required: true
+        - name: annet
+          logicalType: string
+          description: hvis "annet" velges på attributt farge, må dette spesifiseres
+            her
+        - name: fluoriserende
+          logicalType: string
+          logicalTypeOptions:
+            pattern: ^(Ja|Nei|Ukjent)$
+          customProperties:
+          - property: allowedValues
+            value:
+            - value: Ja
+              label: Ja
+            - value: Nei
+              label: Nei
+            - value: Ukjent
+              label: Ukjent
+          description: om fargemerkingen er fluoriserende (selvlysende)
+          required: true
+        - name: reflekterende
+          logicalType: string
+          logicalTypeOptions:
+            pattern: ^(Ja|Nei|Ukjent)$
+          customProperties:
+          - property: allowedValues
+            value:
+            - value: Ja
+              label: Ja
+            - value: Nei
+              label: Nei
+            - value: Ukjent
+              label: Ukjent
+          description: om fargemerkingen er reflekterende
+          required: true
+        description: skal brukes hvis merking består av en eller to farger
+      - name: merkingType
+        logicalType: string
+        logicalTypeOptions:
+          pattern: ^(Flagg|Markør|Plater|Ukjent|Annet)$
+        customProperties:
+        - property: allowedValues
+          value:
+          - value: Flagg
+            label: kan være ensfarget eller mønstret.
+          - value: Markør
+            label: gjelder også blåser
+          - value: Plater
+            label: Objektet er merket med fargede plater
+          - value: Ukjent
+            label: Merketypen er ukjent
+          - value: Annet
+            label: hvis valgt, kreves utfylling av feltet kommentarMerkingType
+        description: ulike typer merking spesifiseres her
+        required: true
+      - name: kommentarMerkingType
+        logicalType: string
+        description: hvis "annet" velges på merkingType skal dette spesifiseres her
+      - name: merkingMønster
+        logicalType: string
+        logicalTypeOptions:
+          pattern: ^(Ensfarget|Rutemønstret|Horisontale\ bånd|Vertikale\ bånd|Ukjent|Annet)$
+        customProperties:
+        - property: allowedValues
+          value:
+          - value: Ensfarget
+            label: Ensfarget
+          - value: Rutemønstret
+            label: Rutemønstret
+          - value: Horisontale bånd
+            label: to-fargete alternerende horisontale bånd
+          - value: Vertikale bånd
+            label: to-fargete alternerende vertikale bånd
+          - value: Ukjent
+            label: Ukjent
+          - value: Annet
+            label: Annet
+        description: mønster til merkingen
+        required: true
+      - name: kommentarMerkingMønster
+        logicalType: string
+        description: hvis "Annet" velges på merkingMønster skal dette spesifiseres
+          her
+      - name: merkingICAO
+        logicalType: string
+        logicalTypeOptions:
+          pattern: ^(Ja|Nei|Ukjent)$
+        customProperties:
+        - property: allowedValues
+          value:
+          - value: Ja
+            label: Ja
+          - value: Nei
+            label: Nei
+          - value: Ukjent
+            label: Ukjent
+        description: hvorvidt merking er ihht. ICAO standard
+      - name: merkingTilstand
+        logicalType: string
+        logicalTypeOptions:
+          pattern: ^(Dårlig|Brukbar|God|Veldig\ god|Ukjent)$
+        customProperties:
+        - property: allowedValues
+          value:
+          - value: Dårlig
+            label: Merkingen er vanskelig å se.
+          - value: Brukbar
+            label: Merkingen er mulig å se, men utydelig.
+          - value: God
+            label: Merkingen er godt synlig.
+          - value: Veldig god
+            label: Merkingen er meget godt synlig.
+          - value: Ukjent
+            label: Tilstanden til merking er ukjent.
+        description: informasjon om merkingens tilstand
+    description: samlet informasjon om merking. Gjelder ikke lyssetting. All informasjon
+      om lyssetting ligger under featureType Lyssetting
+  - name: vertikalUtstrekning
+    logicalType: number
+    description: objektkomponentens maksimale høyde over terreng- eller vannoverflate
+  - name: vertikalUtstrekningMåleenhet
+    logicalType: string
+    logicalTypeOptions:
+      pattern: ^(FT|M|CM|KM)$
+    customProperties:
+    - property: allowedValues
+      value:
+      - value: FT
+        label: foot
+      - value: M
+        label: meter
+      - value: CM
+        label: centimeter
+      - value: KM
+        label: kilometer
+    description: her oppgis måleenheten til den vertikale utstrekningen av objektet
+  - name: merkeplikt
+    logicalType: object
+    properties:
+    - name: merkepliktig
+      logicalType: string
+      logicalTypeOptions:
+        pattern: ^(Ja|Nei|Ukjent)$
+      customProperties:
+      - property: allowedValues
+        value:
+        - value: Ja
+          label: Ja
+        - value: Nei
+          label: Nei
+        - value: Ukjent
+          label: Ukjent
+      description: hvorvidt hinder er merkepliktig
+      required: true
+    - name: merkepliktigIhenholdTil
+      logicalType: string
+      logicalTypeOptions:
+        pattern: ^(BSL\ E\ 2|BSL\ E\ 3|Pålagt\ av\ LT|BSL\ E\ 2\ aggregerte\ komponenter|EASA|ICAO)$
+      customProperties:
+      - property: allowedValues
+        value:
+        - value: BSL E 2
+          label: Merket i henhold til forskrift om Bestemmelser for sivil luftfart
+            nr 2.
+        - value: BSL E 3
+          label: Merket i henhold til forskrift om Bestemmelser for sivil luftfart
+            nr 3.
+        - value: Pålagt av LT
+          label: merking pålagt spesifikt av Luftfartstilsynet
+        - value: BSL E 2 aggregerte komponenter
+          label: enkeltelementer er ikke merkepliktige i utgangspunktet, men de er
+            merkepliktige hvis de oppfyller visse krav når de er sett som helhet
+        - value: EASA
+          label: Merket i henhold til bestemmelser fra EASA
+        - value: ICAO
+          label: Merket i henhold til bestemmelser fra ICAO
+      description: regelverk som pålegger merking
+    - name: ansvarligForMerking
+      logicalType: string
+      logicalTypeOptions:
+        pattern: ^(Eier\ av\ hinder|Godkjenningsansvarlig\ for\ landingsplass\-flyplass)$
+      customProperties:
+      - property: allowedValues
+        value:
+        - value: Eier av hinder
+          label: Eier av hinder
+        - value: Godkjenningsansvarlig for landingsplass-flyplass
+          label: Godkjenningsansvarlig for landingsplass-flyplass
+      description: hvem har ansvar for merking
+    - name: merkeInformasjon
+      logicalType: string
+      logicalTypeOptions:
+        pattern: ^(merket\ i\ henhold\ til\ forskrift|merket\ i\ henhold\ til\ dispensasjon|merket\
+          utover\ aktuell\ forskrift|mangler\ merking|ukjent)$
+      customProperties:
+      - property: allowedValues
+        value:
+        - value: merket i henhold til forskrift
+          label: merket i henhold til forskrift
+        - value: merket i henhold til dispensasjon
+          label: merket i henhold til dispensasjon
+        - value: merket utover aktuell forskrift
+          label: merket utover aktuell forskrift
+        - value: mangler merking
+          label: mangler merking
+        - value: ukjent
+          label: ukjent
+      description: utdypende informasjon om merking
+    - name: kommentarMerkeplikt
+      logicalType: string
+      description: utfyllende informasjon om en eller flere av de andre attributtene
+    description: informasjon om merkeplikt. Gjelder lyssetting og annen merking.
+  - name: eksternReferanse
+    logicalType: array
+    items:
+      logicalType: object
+      properties:
+      - name: registernavn
+        logicalType: string
+        description: navn til eksternt register
+      - name: eksternId
+        logicalType: string
+        description: ekstern Id av samme objekt i et annet register
+        required: true
+    description: referanse til et eksternt register
+  - name: komponentsekvensnummer
+    logicalType: integer
+    description: angir rekkefølge på VertikalObjektKomponent som tilhører samme VertikalObjekt
+  - name: BSLE-2-1_hinder
+    logicalType: string
+    logicalTypeOptions:
+      pattern: ^(Ja|Nei|Ukjent)$
+    customProperties:
+    - property: allowedValues
+      value:
+      - value: Ja
+        label: Ja
+      - value: Nei
+        label: Nei
+      - value: Ukjent
+        label: Ukjent
+    description: hvorvidt dette er et hinder ihht. forskrift BSL E 2-1
+    required: true
+  - name: lyssetting
+    logicalType: array
+    items:
+      logicalType: string
+      logicalTypeOptions:
+        pattern: ^(Lavintensitet\ type\ A|Lavintensitet\ type\ B|Lavintensitet\ type\
+          C|Lavintensitet\ type\ D|Mellomintensitet\ type\ A|Mellomintensitet\ type\
+          B|Mellomintensitet\ type\ C|Høyintensitet\ type\ A|Høyintensitet\ type\
+          B|Belyst\ med\ flomlys|Fast\ rødt|Fast\ hvitt|Blinkende\ hvitt|Blinkende\
+          rødt|Lyssatt|Ikke\ lyssatt|Ukjent)$
+      customProperties:
+      - property: allowedValues
+        value:
+        - value: Lavintensitet type A
+          label: rødt, fast, 10 candela
+        - value: Lavintensitet type B
+          label: rødt, fast, 32 candela
+        - value: Lavintensitet type C
+          label: ikke del av oversikten i vedlegg 2 BSL E 2-1, men tatt fra tabell
+            6-3 i ICAO annex 14
+        - value: Lavintensitet type D
+          label: ikke del av oversikten i vedlegg 2 BSL E 2-1, men tatt fra tabell
+            6-3 i ICAO annex 14
+        - value: Mellomintensitet type A
+          label: hvitt, blinkende, 20 000 candela ved bakgrunnsbelysning 50 cd/m ²
+            og over, 2000 candela med bakgrunnsbelysning uneder 50 cd/m ²
+        - value: Mellomintensitet type B
+          label: rødt, blinkende, 2000 candela
+        - value: Mellomintensitet type C
+          label: rødt, fast, 2000 candela
+        - value: Høyintensitet type A
+          label: hvitt, blinkende, 200 000 candela ved bakgrunnsbelysning over 500
+            cd/m², 20 000 candela ved bakgrunnsbelysning 50-500 cd/m² og 2000 candela
+            ved bakgrunnsbelysning under 50 cd/m²
+        - value: Høyintensitet type B
+          label: hvitt, blinkende, 100 000 candela ved bakgrunnsbelysning over 500
+            cd/m², 20 000 candela ved bakgrunnsbelysning 50-500 cd/m² og 2000 candela
+            ved bakgrunnsbelysning under 50 cd/m²
+        - value: Belyst med flomlys
+          label: objektet er opplys av lyskastere for å være synlig for luftfarten
+        - value: Fast rødt
+          label: brukes dersom vi ikke vet lysstyrke, men har observert lysfarge rød
+            fast lys
+        - value: Fast hvitt
+          label: brukes dersom vi ikke vet lysstyrke, men har observert lysfarge hvit
+            fast lys
+        - value: Blinkende hvitt
+          label: brukes dersom vi ikke vet lysstyrke, men har observert lysfarge hvitt
+            blinkende lys
+        - value: Blinkende rødt
+          label: brukes dersom vi ikke vet lysstyrke, men har observert lysfarge rødt
+            blinkende lys
+        - value: Lyssatt
+          label: brukes dersom man vet at hinderet har lys, men ikke vet farge og
+            type
+        - value: Ikke lyssatt
+          label: Ikke lyssatt
+        - value: Ukjent
+          label: benyttes dersom det er ukjent om hinderet har lys eller ikke.
+    description: hinderlys til bruk ved merking av luftfartshinder i henhold til vedlegg
+      til forskrift om rapportering, registrering og merking av luftfartshinder, BSL
+      E 2-1. <font color="#0f0f0f">I tillegg er det mulig å velge koder fra gammel
+      NRL</font>
+    required: true
+  - name: posisjon
+    logicalType: string
+    description: det geografiske punktobjektet
+  - name: href
+    logicalType: string
+    logicalTypeOptions:
+      pattern: ^(Høyden\ målt\ til\ foten\ av\ objektet|Høyden\ målt\ til\ toppen\
+        av\ objektet|Ukjent)$
+    customProperties:
+    - property: allowedValues
+      value:
+      - value: Høyden målt til foten av objektet
+        label: Høyden målt til foten av objektet
+      - value: Høyden målt til toppen av objektet
+        label: Høyden målt til toppen av objektet
+      - value: Ukjent
+        label: benyttes ikke ved nyregistrering
+    description: koordinatregistering utført på topp eller bunn av et objekt
+    required: true
+  - name: hrefSystem
+    logicalType: string
+    logicalTypeOptions:
+      pattern: ^(Ellipsoide\ jf\.\ KOORDSYS|Lokal\ referanseflate|Geoide\ bestemt\
+        av\ NKG\ i\ 1989|Norsk\ Null\ av\ 1954|Nord\-Norsk\ Null\ av\ 1957|Norsk\
+        Null\ av\ 2000)$
+    customProperties:
+    - property: allowedValues
+      value:
+      - value: Ellipsoide jf. KOORDSYS
+        label: Ellipsoide jf. KOORDSYS
+      - value: Lokal referanseflate
+        label: Lokal referanseflate
+      - value: Geoide bestemt av NKG i 1989
+        label: 'NKG: The Nordic Geodetic Commission - founded in 1953 - is an association
+          of geodesists from Denmark, Finland, Iceland, Norway and Sweden. Its purpose
+          is to give the members possibilities of fruitful gatherings and mutual exchange
+          of professional views and experiences. The NKG is recognized and supported
+          by a number of Nordic  organizations, such as the Director Generals of the
+          Nordic Mapping Authorities. (Kilde: http://217.152.180.26/nkg/)'
+      - value: Norsk Null av 1954
+        label: Denne er identisk med NN1954
+      - value: Nord-Norsk Null av 1957
+        label: For nyere data er denne gått ut av bruk. Er erstattet av NN54.
+      - value: Norsk Null av 2000
+        label: Nytt felles nordisk vertikalt datum, basert på Normaal Amsterdals Peil.
+    description: referanseflate som er utgangspunktet for høydekoordinat.
+    required: true
+  - name: identifikasjonPunkt
+    logicalType: object
+    properties:
+    - name: lokalId
+      logicalType: string
+      description: 'lokal identifikator, tildelt av dataleverendør/dataforvalter.
+        Den lokale identifikatoren er unik innenfor navnerommet, ingen andre objekter
+        har samme identifikator.
+
+
+        Merknad: Det er data leverendørens ansvar å sørge for at denne lokale identifikatoren
+        er unik innenfor navnerommet.'
+      required: true
+    - name: navnerom
+      logicalType: string
+      description: 'navnerom som unikt identifiserer datakilden til objektet, starter
+        med to bokstavs kode jfr ISO 3166. Benytter understreking  ("_") dersom data
+        produsenten ikke er assosiert med bare et land.
+
+
+        Merknad : Verdien for nanverom vil eies av den dataprodusent som har ansvar
+        for de unike identifikatorene og vil registreres i "INSPIRE external  Object
+        Identifier Namespaces Register"
+
+
+        Eksempel: NO for Norge.'
+      required: true
+    - name: versjonId
+      logicalType: string
+      description: 'identifikasjon av en spesiell versjon av et geografisk objekt
+        (instans), maksimum lengde på 25 karakterer. Dersom spesifikasjonen av et
+        geografisk objekt med en identifikasjon inkludererer livsløpssyklusinformasjon,
+        benyttes denne versjonId for å skille mellom ulike versjoner av samme objekt.
+        versjonId er en unik  identifikasjon av versjonen.
+
+
+        Merknad: Maksimum lengde er valgt for å tillate tidsregistrering i henhold
+        til  ISO 8601, slik som  "2007-02-12T12:12:12+05:30" som versjonId.'
+    description: unik identifikasjon av et objekt
+    required: true
+  - name: kvalitet
+    logicalType: object
+    properties:
+    - name: målemetode
+      logicalType: string
+      logicalTypeOptions:
+        pattern: ^(Terrengmålt|Tatt\ fra\ plan|Annet|Stereoinstrument|Analytisk\ plotter|Digitalt\
+          stereoinstrument|Flybåren\ laserscanner|Digitalisert\ fra\ ortofoto|Digitalisert\
+          på\ skjerm\ fra\ satellittbilde|Dig\.\ på\ skjerm\ fra\ scannet\ samkopi|Genererte\
+          data\ \(interpolasjon\)|Frihåndstegning|Digitalisert\ fra\ krokering\ på\
+          kart|Direkte\ innlagt\ på\ skjerm|Ukjent\ målemetode|GPS\ Kodemåling,\ relative\
+          målinger|GPS\ Kodemåling,\ enkeltmålinger)$
+      customProperties:
+      - property: allowedValues
+        value:
+        - value: Terrengmålt
+          label: Målt i terrenget
+        - value: Tatt fra plan
+          label: Tatt fra plan eller godkjent tiltak
+        - value: Annet
+          label: Annet
+        - value: Stereoinstrument
+          label: Målt i stereoinstrument, uspesifisert instrument
+        - value: Analytisk plotter
+          label: Målt i stereoinstrument, analytisk plotter
+        - value: Digitalt stereoinstrument
+          label: Målt i stereoinstrument, digitalt instrument
+        - value: Flybåren laserscanner
+          label: Målt med laserskanner fra fly
+        - value: Digitalisert fra ortofoto
+          label: Geometri overført fra ortofoto ved hjelp av manuell registrering
+            på skjerm
+        - value: Digitalisert på skjerm fra satellittbilde
+          label: Geometri overført fra satelittbilde ved hjelp av manuell registrering
+            på skjerm
+        - value: Dig. på skjerm fra scannet samkopi
+          label: Geometri overført fra kart ved hjelp av manuell registrering på skjerm,
+            medium skannet kart (raster), samkopi
+        - value: Genererte data (interpolasjon)
+          label: Genererte data, interpolasjonsmetode. Ikke nærmere spesifisert
+        - value: Frihåndstegning
+          label: Digitalisert ut fra frihåndstegning.  Frihåndstegning er basert på
+            svært grovt grunnlag eller ikke noe grunnlag
+        - value: Digitalisert fra krokering på kart
+          label: Digitalisert fra krokering på kart, dvs grovt skissert på kart
+        - value: Direkte innlagt på skjerm
+          label: Digitalisert ut fra frihåndstegning (direkte på skjerm). Frihåndstegning
+            er basert på svært grovt grunnlag eller ikke noe grunnlag
+        - value: Ukjent målemetode
+          label: Målemetode er ukjent
+        - value: GPS Kodemåling, relative målinger
+          label: 'Innmålt med satellittbaserte systemer for navigasjon og
+
+            posisjonering med global dekning (f.eks GPS, GLONASS, GALILEO): Kodemåling,
+            relative målinger.'
+        - value: GPS Kodemåling, enkeltmålinger
+          label: 'Innmålt med satellittbaserte systemer for navigasjon og
+
+            posisjonering med global dekning (f.eks GPS, GLONASS,
+
+            GALILEO): Kodemåling, enkle målinger.'
+      description: metode for måling i grunnriss (x,y), og høyde (z) når metoden er
+        den samme som ved måling i grunnriss
+      required: true
+    - name: nøyaktighet
+      logicalType: integer
+      description: 'punktstandardavviket i grunnriss for punkter
+
+
+        Merknad:
+
+        Oppgitt i cm'
+    - name: synbarhet
+      logicalType: string
+      logicalTypeOptions:
+        pattern: ^(Fullt\ ut\ synlig/gjenfinnbar\ i\ terrenget|Dårlig\ gjenfinnbar\
+          i\ terreng|Middels\ synlig\ i\ flybilde/modell|Dårlig/ikke\ synlig\ i\ flybilde/modell)$
+      customProperties:
+      - property: allowedValues
+        value:
+        - value: Fullt ut synlig/gjenfinnbar i terrenget
+          label: Default
+        - value: Dårlig gjenfinnbar i terreng
+          label: Forøvrig grei å innmåle. (Benyttes bl.a. for innmåling av ledninger
+            på lukket grøft)
+        - value: Middels synlig i flybilde/modell
+          label: Middels synlig i flybilde/modell
+        - value: Dårlig/ikke synlig i flybilde/modell
+          label: Dårlig/ikke synlig i flybilde/modell
+      description: hvor godt den kartlagte detalj var synbar ved kartleggingen
+    - name: målemetodeHøyde
+      logicalType: string
+      logicalTypeOptions:
+        pattern: ^(Terrengmålt|Tatt\ fra\ plan|Annet|Stereoinstrument|Analytisk\ plotter|Digitalt\
+          stereoinstrument|Flybåren\ laserscanning|Genererte\ data\ \(interpolasjon\)|Generert\
+          i\ terrengmodell|Målt\ med\ stigningsmåler|GPS\ Kodemåling,\ relative\ målinger\.|GPS\
+          Kodemåling,\ enkeltpunktbestemmelser|Ukjent\ målemetode)$
+      customProperties:
+      - property: allowedValues
+        value:
+        - value: Terrengmålt
+          label: Målt i terrenget
+        - value: Tatt fra plan
+          label: Tatt fra plan eller godkjent tiltak
+        - value: Annet
+          label: Annet
+        - value: Stereoinstrument
+          label: Målt i stereoinstrument, uspesifisert instrument
+        - value: Analytisk plotter
+          label: Målt i stereoinstrument, analytisk plotter
+        - value: Digitalt stereoinstrument
+          label: Målt i stereoinstrument, digitalt instrument
+        - value: Flybåren laserscanning
+          label: Målt med laserskanner fra fly
+        - value: Genererte data (interpolasjon)
+          label: Genererte data, interpolasjonsmetode. Ikke nærmere spesifisert
+        - value: Generert i terrengmodell
+          label: Genererte data, interpolasjonsmetode, fra terrengmodell
+        - value: Målt med stigningsmåler
+          label: Målt med stigningsmåler
+        - value: GPS Kodemåling, relative målinger.
+          label: 'Innmålt med satellittbaserte systemer for navigasjon og
+
+            posisjonering med global dekning (f.eks GPS, GLONASS, GALILEO): Kodemåling,
+            relative målinger.'
+        - value: GPS Kodemåling, enkeltpunktbestemmelser
+          label: 'Innmålt med satellittbaserte systemer for navigasjon og
+
+            posisjonering med global dekning (f.eks GPS, GLONASS,
+
+            GALILEO): Kodemåling, enkle målinger.'
+        - value: Ukjent målemetode
+          label: Ukjent målemetode
+      description: metode for å måle høyden
+    - name: nøyaktighetHøyde
+      logicalType: integer
+      description: nøyaktighet for høyden i cm
+    description: beskrivelse av kvaliteten på stedfestingen
+    required: true
+- name: VertikalObjekt
+  physicalName: vertikalobjekt
+  logicalType: object
+  physicalType: table
+  description: VertkalObjekt inneholder felles egenskaper for alle VertikalObjektKomponenter
+    som til sammen utgjør et luftfartshinder. Her listes egenskaper som <i>ikke</i>
+    er arvet fra SOSI objekt.
+  customProperties:
+  - property: sosiObjektType
+    value: VertikalObjekt
+  - property: inheritsFrom
+    value: Supertype_VertikalObjekt
+  - property: associations
+    value:
+    - role: bestårAvVertikalobjKompPunkt
+      target: VertikalObjektKomponentPunkt
+      cardinality: 0..*
+    - role: bestårAvVertikalobjKompLinje
+      target: VertikalObjektKomponentLinje
+      cardinality: 0..*
+  properties:
+  - name: datafangstdato
+    logicalType: timestamp
+    description: dato da objektet siste gang ble innmålt
+  - name: endringsflagg
+    logicalType: object
+    properties:
+    - name: typeEndring
+      logicalType: string
+      logicalTypeOptions:
+        pattern: ^(Endret|Nytt|Slettet)$
+      customProperties:
+      - property: allowedValues
+        value:
+        - value: Endret
+          label: Endret
+        - value: Nytt
+          label: Nytt
+        - value: Slettet
+          label: Slettet
+      description: endringsstatus for objektet
+      required: true
+    - name: tidspunktEndring
+      logicalType: timestamp
+      description: tidspunkt for endring av objektet
+      required: true
+    description: endringsinformasjon om et objekt
+  - name: gyldigFra
+    logicalType: timestamp
+    description: Tidspunktet når objektet oppstod i den virkelige verden
+  - name: gyldigTil
+    logicalType: timestamp
+    description: Tidspunktet når objektet opphørte å eksistere i den virkelige verden
+  - name: informasjon
+    logicalType: array
+    items:
+      logicalType: string
+    description: 'generell opplysning
+
+
+      Merknad:
+
+      mulighet til å legge inn utfyllende informasjon om objektet'
+  - name: link
+    logicalType: array
+    items:
+      logicalType: string
+    description: referanse  til et informasjonselement, enten lokalt eller globalt
+  - name: oppdateringsdato
+    logicalType: timestamp
+    description: 'dato for siste endring på objektdataene
+
+
+      Merknad:
+
+      Oppdateringsdato refererer til en endring av dataene i registeret. Dataene kan
+      dermed endres som følge av en forvaltningsmessig beslutning uten at det virkelige
+      objektet i terrenget er endret.'
+  - name: opphav
+    logicalType: string
+    description: 'referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde
+
+
+      Merknad:
+
+      Kan også beskrive navn på person og årsak til oppdatering'
+  - name: status
+    logicalType: string
+    logicalTypeOptions:
+      pattern: ^(Eksisterende\ \(default\)|Kondemnert|Ombygd|Planlagt|Under\ arbeid|Fjernet)$
+    customProperties:
+    - property: allowedValues
+      value:
+      - value: Eksisterende (default)
+        label: 'Identisk med tidligere SITSTAT = 3
+
+
+          -- Definition --
+
+          Identical with previous SITSTAT = 3'
+      - value: Kondemnert
+        label: Ikke lenger et hinder.
+      - value: Ombygd
+        label: Hindret er ombygd (blir vanligvis ikke brukt)
+      - value: Planlagt
+        label: Hindret skal bygges
+      - value: Under arbeid
+        label: Hinderet er under bygging/ombygging
+      - value: Fjernet
+        label: Feilregistrert i registeret, skulle aldri vært der.
+    description: objektets tilstand, se gyldige koder i kodeliste Status
+    required: true
+  - name: kommentarVertikalObjektType
+    logicalType: string
+    description: hvis "Annet" velges på vertikalObjektType skal dette spesifiseres
+      her
+  - name: vertikalObjektGruppe
+    logicalType: string
+    logicalTypeOptions:
+      pattern: ^(Ja|Nei|Ukjent)$
+    customProperties:
+    - property: allowedValues
+      value:
+      - value: Ja
+        label: Ja
+      - value: Nei
+        label: Nei
+      - value: Ukjent
+        label: Ukjent
+    description: indikerer om VertikalObjekt er en representant for et antall nært
+      lokaliserte objekter av samme type
+  - name: vertikalObjektNavn
+    logicalType: string
+    description: Navn på VertikalObjekt.
+  - name: vertikalObjektType
+    logicalType: string
+    logicalTypeOptions:
+      pattern: ^(Landbruksutstyr|Telemast|Bru|Bygning|Gondolbane|Kontrolltårn|Kjøletårn|Kran|Demning|Kuppel|EL_Nettstasjon|Gjerde|Fyrtårn|Monument|Terrengpunkt|Navigasjonshjelpemiddel|Stolpe|Kraftverk|Raffineri|Oljerigg|Skilt|Pipe|Tank|Forankret\
+        ballong|Tårn|Kraftledning|Tre|Skogsområde|Vanntårn|Vindmølle|Vindmøllepark|Hopptårn|Vindmåler|Lysmast|Flaggstang|Petroleumsinnretning|Silo|Stolheis|Skitrekk|Taubane|Fornøyelsesparkinnretning|Annet)$
+    customProperties:
+    - property: allowedValues
+      value:
+      - value: Landbruksutstyr
+        label: hentet fra AIXM 5.1 klasse CodeVerticalStructureType kode AG_EQUIP
+      - value: Telemast
+        label: 'mast med radio- og telekommunikasjonsutstyr for sending/mottak av
+          telesignaler
+
+
+          tilsvarer klasse MastTele i Ledningsnett 4.0'
+      - value: Bru
+        label: hentet fra AIXM 5.1 klasse CodeVerticalStructureType kode BRIDGE
+      - value: Bygning
+        label: hentet fra AIXM 5.1 klasse CodeVerticalStructureType kode BUILDING
+      - value: Gondolbane
+        label: hentet fra AIXM 5.1 klasse CodeVerticalStructureType kode CABLE_CAR
+      - value: Kontrolltårn
+        label: hentet fra AIXM 5.1 klasse CodeVerticalStructureType kode CONTROL_TOWER
+      - value: Kjøletårn
+        label: hentet fra AIXM 5.1 klasse CodeVerticalStructureType kode COOLING_TOWER
+      - value: Kran
+        label: 'hentet fra AIXM 5.1 klasse CodeVerticalStructureType
+
+
+          gjelder også heisekrantypene skinnekran/havnekran, tårnkran/byggekran, mobilkran,
+          flytekran'
+      - value: Demning
+        label: hentet fra AIXM 5.1 klasse CodeVerticalStructureType kode DAM
+      - value: Kuppel
+        label: hentet fra AIXM 5.1 klasse CodeVerticalStructureType kode DOME
+      - value: EL_Nettstasjon
+        label: 'stasjon som transformerer elektrisitet fra et høyspentnivå til et
+          lavere
+
+
+          tilsvarer EL_Transformatorstasjon og EL_Nettstasjon i SOSI Ledning 4.5
+
+
+          Merk: Gjelder alle typer transformasjoner. I standarden for luftfartshinder
+          skiller vi ikke mellom ulike typer transformasjoner som for eksempel transformasjon
+          til lavere eller høyere enn 230 V slik det gjøres i SOSI Ledning 4.5.'
+      - value: Gjerde
+        label: hentet fra AIXM 5.1 klasse CodeVerticalStructureType kode FENCE
+      - value: Fyrtårn
+        label: hentet fra AIXM 5.1 klasse CodeVerticalStructureType kode LIGHTHOUSE
+      - value: Monument
+        label: hentet fra AIXM 5.1 klasse CodeVerticalStructureType, kode MONUMENT
+      - value: Terrengpunkt
+        label: hentet fra AIXM 5.1 klasse CodeVerticalStructureType, kode NATURAL_HIGHPOINT
+      - value: Navigasjonshjelpemiddel
+        label: 'hentet fra AIXM 5.1 klasse CodeVerticalStructureType, kode NAVAID
+
+
+          Gjelder kun radio instrumenter som brukes ifm navigasjon for luftfartøy
+          og ikke hjelpemidler til andre form for navigasjon, som for eksempel til
+          sjøs.'
+      - value: Stolpe
+        label: hentet fra AIXM 5.1 klasse CodeVerticalStructureType, kode POLE
+      - value: Kraftverk
+        label: hentet fra AIXM 5.1 klasse CodeVerticalStructureType, kode POWER_PLANT
+      - value: Raffineri
+        label: hentet fra AIXM 5.1 klasse CodeVerticalStructureType, kode REFINERY
+      - value: Oljerigg
+        label: hentet fra AIXM 5.1 klasse CodeVerticalStructureType, kode RIG
+      - value: Skilt
+        label: hentet fra AIXM 5.1 klasse CodeVerticalStructureType, kode SIGN
+      - value: Pipe
+        label: hentet fra AIXM 5.1 klasse CodeVerticalStructureType, kode STACK
+      - value: Tank
+        label: hentet fra AIXM 5.1 klasse CodeVerticalStructureType, kode TANK
+      - value: Forankret ballong
+        label: hentet fra AIXM 5.1 klasse CodeVerticalStructureType, kode TETHERED_BALLOON
+      - value: Tårn
+        label: hentet fra AIXM 5.1 klasse CodeVerticalStructureType, kode TOWER
+      - value: Kraftledning
+        label: 'linje som fører elektrisk kraft over store avstander
+
+
+          tilsvarer klasse LuftledningLH i SOSI Ledningsnett 4.0 og kodene "Høgspentnett"
+          og "Lavspentnett" i kodelista Ledningsnettverkstype i SOSI Ledningsnett
+          4.5
+
+
+          tilsvarer også kode TRANSMISSION_LINE
+
+          hentet fra AIXM 5.1 klasse CodeVerticalStructureType'
+      - value: Tre
+        label: hentet fra AIXM 5.1 klasse CodeVerticalStructureType, kode TREE
+      - value: Skogsområde
+        label: 'hentet fra AIXM 5.1 klasse CodeVerticalStructureType, kode VEGETATION
+
+
+          gjelder også klasse lufthavnhinderTregruppe i SOSI Lufthavn 4.1'
+      - value: Vanntårn
+        label: hentet fra AIXM 5.1 klasse CodeVerticalStructureType, kode WATER_TOWER
+      - value: Vindmølle
+        label: hentet fra AIXM 5.1 klasse CodeVerticalStructureType, kode WINDMILL
+      - value: Vindmøllepark
+        label: hentet fra AIXM 5.1 klasse CodeVerticalStructureType, kode WINDMILL_FARMS
+      - value: Hopptårn
+        label: 'tilsvarer klasse Hoppbakke i SOSI Bygnan 4.0
+
+
+          ikke dommertårnet'
+      - value: Vindmåler
+        label: meteorologisk instrument som måler vindhastighet og vindretning
+      - value: Lysmast
+        label: mast brukt for montering av ulike lyskilder
+      - value: Flaggstang
+        label: 'lang rett stang for heising av flagg
+
+
+          tilsvarer klasse Flaggstang i SOSI Bygnan 4.0'
+      - value: Petroleumsinnretning
+        label: 'innretning, installasjon, anlegg og annet utstyr for petroleumsvirksomhet,
+          likevel ikke forsynings- og hjelpefartøy eller skip som transporterer petroleum
+          i bulk
+
+
+          tilsvarer klasse Petroleumsinnretning i SOSI Petroleum 4.0'
+      - value: Silo
+        label: 'lagringsbygg for fôr og korn som ikke er registrert som bygning i
+          GAB
+
+
+          tilsvarer klasse Silo i SOSI Bygnan 4.0
+
+
+          Merknad: I motsetning til definisjonen av klasse Silo i SOSI Bygnan 4.0
+          vil dette også gjelde store silobygg'
+      - value: Stolheis
+        label: 'taubane med stoler til persontransport
+
+
+          tilsvarer klasse Stolheis i SOSI Bygnan 4.0'
+      - value: Skitrekk
+        label: 'taubane til å dra skiløper opp bratte bakker
+
+
+          tilsvarer klasse Skitrekk i SOSI Bygnan 4.0'
+      - value: Taubane
+        label: 'innretning hvor tau eller vaiere bærer og eller trekker last over
+          en strekning
+
+
+          tilsvarer klasse Taubane i SOSI Bygnan 4.0'
+      - value: Fornøyelsesparkinnretning
+        label: pariserhjul, berg og dal bane og andre høye innretninger i en fornøyelsespark
+      - value: Annet
+        label: Annet
+    description: her angis det hvilken type vertikalt objekt dette objektet er, se
+      egen kodeliste
+    required: true
+  - name: identifikasjonObjekt
+    logicalType: object
+    properties:
+    - name: lokalId
+      logicalType: string
+      description: 'lokal identifikator, tildelt av dataleverendør/dataforvalter.
+        Den lokale identifikatoren er unik innenfor navnerommet, ingen andre objekter
+        har samme identifikator.
+
+
+        Merknad: Det er data leverendørens ansvar å sørge for at denne lokale identifikatoren
+        er unik innenfor navnerommet.'
+      required: true
+    - name: navnerom
+      logicalType: string
+      description: 'navnerom som unikt identifiserer datakilden til objektet, starter
+        med to bokstavs kode jfr ISO 3166. Benytter understreking  ("_") dersom data
+        produsenten ikke er assosiert med bare et land.
+
+
+        Merknad : Verdien for nanverom vil eies av den dataprodusent som har ansvar
+        for de unike identifikatorene og vil registreres i "INSPIRE external  Object
+        Identifier Namespaces Register"
+
+
+        Eksempel: NO for Norge.'
+      required: true
+    - name: versjonId
+      logicalType: string
+      description: 'identifikasjon av en spesiell versjon av et geografisk objekt
+        (instans), maksimum lengde på 25 karakterer. Dersom spesifikasjonen av et
+        geografisk objekt med en identifikasjon inkludererer livsløpssyklusinformasjon,
+        benyttes denne versjonId for å skille mellom ulike versjoner av samme objekt.
+        versjonId er en unik  identifikasjon av versjonen.
+
+
+        Merknad: Maksimum lengde er valgt for å tillate tidsregistrering i henhold
+        til  ISO 8601, slik som  "2007-02-12T12:12:12+05:30" som versjonId.'
+    description: unik identifikasjon av et objekt
+    required: true
+- name: VertikalObjektKomponentLinje
+  physicalName: vertikalobjektkomponentlinje
+  logicalType: object
+  physicalType: table
+  description: Egenskaper tilhørende en VertikalObjektKomponent som er en linje.
+  customProperties:
+  - property: sosiObjektType
+    value: VertikalObjektKomponentLinje
+  - property: inheritsFrom
+    value: VertikalObjektKomponent
+  - property: associations
+    value:
+    - role: avgrensesAvPunkt
+      target: VertikalObjektKomponentLinjePkt
+      cardinality: 0..*
+  properties:
+  - name: verifiseringsdato
+    logicalType: timestamp
+    description: 'dato når dataene er fastslått å være i samsvar med virkeligheten
+
+
+      Merknad: Verifiseringsdato er identisk med ..DATO i tidligere versjoner av SOSI'
+  - name: oppdateringsdato
+    logicalType: timestamp
+    description: 'dato for siste endring på objektdataene
+
+
+      Merknad:
+
+      Oppdateringsdato refererer til en endring av dataene i registeret. Dataene kan
+      dermed endres som følge av en forvaltningsmessig beslutning uten at det virkelige
+      objektet i terrenget er endret.'
+  - name: endringsflagg
+    logicalType: object
+    properties:
+    - name: typeEndring
+      logicalType: string
+      logicalTypeOptions:
+        pattern: ^(Endret|Nytt|Slettet)$
+      customProperties:
+      - property: allowedValues
+        value:
+        - value: Endret
+          label: Endret
+        - value: Nytt
+          label: Nytt
+        - value: Slettet
+          label: Slettet
+      description: endringsstatus for objektet
+      required: true
+    - name: tidspunktEndring
+      logicalType: timestamp
+      description: tidspunkt for endring av objektet
+      required: true
+    description: endringsinformasjon om et objekt
+  - name: status
+    logicalType: string
+    logicalTypeOptions:
+      pattern: ^(Eksisterende\ \(default\)|Kondemnert|Ombygd|Planlagt|Under\ arbeid|Fjernet)$
+    customProperties:
+    - property: allowedValues
+      value:
+      - value: Eksisterende (default)
+        label: 'Identisk med tidligere SITSTAT = 3
+
+
+          -- Definition --
+
+          Identical with previous SITSTAT = 3'
+      - value: Kondemnert
+        label: Ikke lenger et hinder.
+      - value: Ombygd
+        label: Hindret er ombygd (blir vanligvis ikke brukt)
+      - value: Planlagt
+        label: Hindret skal bygges
+      - value: Under arbeid
+        label: Hinderet er under bygging/ombygging
+      - value: Fjernet
+        label: Feilregistrert i registeret, skulle aldri vært der.
+    description: objektets tilstand, se gyldige koder i kodeliste Status
+  - name: merking
+    logicalType: array
+    items:
+      logicalType: object
+      properties:
+      - name: merkingFarge
+        logicalType: object
+        properties:
+        - name: farge
+          logicalType: string
+          logicalTypeOptions:
+            pattern: ^(Svovelgul|Trafikkrød|Lysende\ rød|Lys\ grå|Agatgrå|Signalhvit|Ren\
+              hvit|Trafikkhvit|Oransje|Rødt|Hvitt|Annet)$
+          customProperties:
+          - property: allowedValues
+            value:
+            - value: Svovelgul
+              label: RAL 1016 (Sulfur yellow)
+            - value: Trafikkrød
+              label: RAL 3020 (Traffic red)
+            - value: Lysende rød
+              label: RAL 3024 (Luminous red)
+            - value: Lys grå
+              label: RAL 7035 (Light grey)
+            - value: Agatgrå
+              label: RAL 7038 (Agate grey)
+            - value: Signalhvit
+              label: RAL 9003 (Signal white)
+            - value: Ren hvit
+              label: RAL 9010 (Pure white)
+            - value: Trafikkhvit
+              label: RAL 9016 (Traffic white)
+            - value: Oransje
+              label: RAL kode ikke aktuelt, kode er videreført fra gammelt system
+            - value: Rødt
+              label: RAL kode ikke aktuelt, kode er videreført fra gammelt system
+            - value: Hvitt
+              label: RAL kode ikke aktuelt, kode er videreført fra gammelt system
+            - value: Annet
+              label: Annet
+          description: farge angis med koder fra definert kodeliste
+          required: true
+        - name: annet
+          logicalType: string
+          description: hvis "annet" velges på attributt farge, må dette spesifiseres
+            her
+        - name: fluoriserende
+          logicalType: string
+          logicalTypeOptions:
+            pattern: ^(Ja|Nei|Ukjent)$
+          customProperties:
+          - property: allowedValues
+            value:
+            - value: Ja
+              label: Ja
+            - value: Nei
+              label: Nei
+            - value: Ukjent
+              label: Ukjent
+          description: om fargemerkingen er fluoriserende (selvlysende)
+          required: true
+        - name: reflekterende
+          logicalType: string
+          logicalTypeOptions:
+            pattern: ^(Ja|Nei|Ukjent)$
+          customProperties:
+          - property: allowedValues
+            value:
+            - value: Ja
+              label: Ja
+            - value: Nei
+              label: Nei
+            - value: Ukjent
+              label: Ukjent
+          description: om fargemerkingen er reflekterende
+          required: true
+        description: skal brukes hvis merking består av en eller to farger
+      - name: merkingType
+        logicalType: string
+        logicalTypeOptions:
+          pattern: ^(Flagg|Markør|Plater|Ukjent|Annet)$
+        customProperties:
+        - property: allowedValues
+          value:
+          - value: Flagg
+            label: kan være ensfarget eller mønstret.
+          - value: Markør
+            label: gjelder også blåser
+          - value: Plater
+            label: Objektet er merket med fargede plater
+          - value: Ukjent
+            label: Merketypen er ukjent
+          - value: Annet
+            label: hvis valgt, kreves utfylling av feltet kommentarMerkingType
+        description: ulike typer merking spesifiseres her
+        required: true
+      - name: kommentarMerkingType
+        logicalType: string
+        description: hvis "annet" velges på merkingType skal dette spesifiseres her
+      - name: merkingMønster
+        logicalType: string
+        logicalTypeOptions:
+          pattern: ^(Ensfarget|Rutemønstret|Horisontale\ bånd|Vertikale\ bånd|Ukjent|Annet)$
+        customProperties:
+        - property: allowedValues
+          value:
+          - value: Ensfarget
+            label: Ensfarget
+          - value: Rutemønstret
+            label: Rutemønstret
+          - value: Horisontale bånd
+            label: to-fargete alternerende horisontale bånd
+          - value: Vertikale bånd
+            label: to-fargete alternerende vertikale bånd
+          - value: Ukjent
+            label: Ukjent
+          - value: Annet
+            label: Annet
+        description: mønster til merkingen
+        required: true
+      - name: kommentarMerkingMønster
+        logicalType: string
+        description: hvis "Annet" velges på merkingMønster skal dette spesifiseres
+          her
+      - name: merkingICAO
+        logicalType: string
+        logicalTypeOptions:
+          pattern: ^(Ja|Nei|Ukjent)$
+        customProperties:
+        - property: allowedValues
+          value:
+          - value: Ja
+            label: Ja
+          - value: Nei
+            label: Nei
+          - value: Ukjent
+            label: Ukjent
+        description: hvorvidt merking er ihht. ICAO standard
+      - name: merkingTilstand
+        logicalType: string
+        logicalTypeOptions:
+          pattern: ^(Dårlig|Brukbar|God|Veldig\ god|Ukjent)$
+        customProperties:
+        - property: allowedValues
+          value:
+          - value: Dårlig
+            label: Merkingen er vanskelig å se.
+          - value: Brukbar
+            label: Merkingen er mulig å se, men utydelig.
+          - value: God
+            label: Merkingen er godt synlig.
+          - value: Veldig god
+            label: Merkingen er meget godt synlig.
+          - value: Ukjent
+            label: Tilstanden til merking er ukjent.
+        description: informasjon om merkingens tilstand
+    description: samlet informasjon om merking. Gjelder ikke lyssetting. All informasjon
+      om lyssetting ligger under featureType Lyssetting
+  - name: vertikalUtstrekning
+    logicalType: number
+    description: objektkomponentens maksimale høyde over terreng- eller vannoverflate
+  - name: vertikalUtstrekningMåleenhet
+    logicalType: string
+    logicalTypeOptions:
+      pattern: ^(FT|M|CM|KM)$
+    customProperties:
+    - property: allowedValues
+      value:
+      - value: FT
+        label: foot
+      - value: M
+        label: meter
+      - value: CM
+        label: centimeter
+      - value: KM
+        label: kilometer
+    description: her oppgis måleenheten til den vertikale utstrekningen av objektet
+  - name: merkeplikt
+    logicalType: object
+    properties:
+    - name: merkepliktig
+      logicalType: string
+      logicalTypeOptions:
+        pattern: ^(Ja|Nei|Ukjent)$
+      customProperties:
+      - property: allowedValues
+        value:
+        - value: Ja
+          label: Ja
+        - value: Nei
+          label: Nei
+        - value: Ukjent
+          label: Ukjent
+      description: hvorvidt hinder er merkepliktig
+      required: true
+    - name: merkepliktigIhenholdTil
+      logicalType: string
+      logicalTypeOptions:
+        pattern: ^(BSL\ E\ 2|BSL\ E\ 3|Pålagt\ av\ LT|BSL\ E\ 2\ aggregerte\ komponenter|EASA|ICAO)$
+      customProperties:
+      - property: allowedValues
+        value:
+        - value: BSL E 2
+          label: Merket i henhold til forskrift om Bestemmelser for sivil luftfart
+            nr 2.
+        - value: BSL E 3
+          label: Merket i henhold til forskrift om Bestemmelser for sivil luftfart
+            nr 3.
+        - value: Pålagt av LT
+          label: merking pålagt spesifikt av Luftfartstilsynet
+        - value: BSL E 2 aggregerte komponenter
+          label: enkeltelementer er ikke merkepliktige i utgangspunktet, men de er
+            merkepliktige hvis de oppfyller visse krav når de er sett som helhet
+        - value: EASA
+          label: Merket i henhold til bestemmelser fra EASA
+        - value: ICAO
+          label: Merket i henhold til bestemmelser fra ICAO
+      description: regelverk som pålegger merking
+    - name: ansvarligForMerking
+      logicalType: string
+      logicalTypeOptions:
+        pattern: ^(Eier\ av\ hinder|Godkjenningsansvarlig\ for\ landingsplass\-flyplass)$
+      customProperties:
+      - property: allowedValues
+        value:
+        - value: Eier av hinder
+          label: Eier av hinder
+        - value: Godkjenningsansvarlig for landingsplass-flyplass
+          label: Godkjenningsansvarlig for landingsplass-flyplass
+      description: hvem har ansvar for merking
+    - name: merkeInformasjon
+      logicalType: string
+      logicalTypeOptions:
+        pattern: ^(merket\ i\ henhold\ til\ forskrift|merket\ i\ henhold\ til\ dispensasjon|merket\
+          utover\ aktuell\ forskrift|mangler\ merking|ukjent)$
+      customProperties:
+      - property: allowedValues
+        value:
+        - value: merket i henhold til forskrift
+          label: merket i henhold til forskrift
+        - value: merket i henhold til dispensasjon
+          label: merket i henhold til dispensasjon
+        - value: merket utover aktuell forskrift
+          label: merket utover aktuell forskrift
+        - value: mangler merking
+          label: mangler merking
+        - value: ukjent
+          label: ukjent
+      description: utdypende informasjon om merking
+    - name: kommentarMerkeplikt
+      logicalType: string
+      description: utfyllende informasjon om en eller flere av de andre attributtene
+    description: informasjon om merkeplikt. Gjelder lyssetting og annen merking.
+  - name: eksternReferanse
+    logicalType: array
+    items:
+      logicalType: object
+      properties:
+      - name: registernavn
+        logicalType: string
+        description: navn til eksternt register
+      - name: eksternId
+        logicalType: string
+        description: ekstern Id av samme objekt i et annet register
+        required: true
+    description: referanse til et eksternt register
+  - name: komponentsekvensnummer
+    logicalType: integer
+    description: angir rekkefølge på VertikalObjektKomponent som tilhører samme VertikalObjekt
+  - name: BSLE-2-1_hinder
+    logicalType: string
+    logicalTypeOptions:
+      pattern: ^(Ja|Nei|Ukjent)$
+    customProperties:
+    - property: allowedValues
+      value:
+      - value: Ja
+        label: Ja
+      - value: Nei
+        label: Nei
+      - value: Ukjent
+        label: Ukjent
+    description: hvorvidt dette er et hinder ihht. forskrift BSL E 2-1
+    required: true
+  - name: lyssetting
+    logicalType: array
+    items:
+      logicalType: string
+      logicalTypeOptions:
+        pattern: ^(Lavintensitet\ type\ A|Lavintensitet\ type\ B|Lavintensitet\ type\
+          C|Lavintensitet\ type\ D|Mellomintensitet\ type\ A|Mellomintensitet\ type\
+          B|Mellomintensitet\ type\ C|Høyintensitet\ type\ A|Høyintensitet\ type\
+          B|Belyst\ med\ flomlys|Fast\ rødt|Fast\ hvitt|Blinkende\ hvitt|Blinkende\
+          rødt|Lyssatt|Ikke\ lyssatt|Ukjent)$
+      customProperties:
+      - property: allowedValues
+        value:
+        - value: Lavintensitet type A
+          label: rødt, fast, 10 candela
+        - value: Lavintensitet type B
+          label: rødt, fast, 32 candela
+        - value: Lavintensitet type C
+          label: ikke del av oversikten i vedlegg 2 BSL E 2-1, men tatt fra tabell
+            6-3 i ICAO annex 14
+        - value: Lavintensitet type D
+          label: ikke del av oversikten i vedlegg 2 BSL E 2-1, men tatt fra tabell
+            6-3 i ICAO annex 14
+        - value: Mellomintensitet type A
+          label: hvitt, blinkende, 20 000 candela ved bakgrunnsbelysning 50 cd/m ²
+            og over, 2000 candela med bakgrunnsbelysning uneder 50 cd/m ²
+        - value: Mellomintensitet type B
+          label: rødt, blinkende, 2000 candela
+        - value: Mellomintensitet type C
+          label: rødt, fast, 2000 candela
+        - value: Høyintensitet type A
+          label: hvitt, blinkende, 200 000 candela ved bakgrunnsbelysning over 500
+            cd/m², 20 000 candela ved bakgrunnsbelysning 50-500 cd/m² og 2000 candela
+            ved bakgrunnsbelysning under 50 cd/m²
+        - value: Høyintensitet type B
+          label: hvitt, blinkende, 100 000 candela ved bakgrunnsbelysning over 500
+            cd/m², 20 000 candela ved bakgrunnsbelysning 50-500 cd/m² og 2000 candela
+            ved bakgrunnsbelysning under 50 cd/m²
+        - value: Belyst med flomlys
+          label: objektet er opplys av lyskastere for å være synlig for luftfarten
+        - value: Fast rødt
+          label: brukes dersom vi ikke vet lysstyrke, men har observert lysfarge rød
+            fast lys
+        - value: Fast hvitt
+          label: brukes dersom vi ikke vet lysstyrke, men har observert lysfarge hvit
+            fast lys
+        - value: Blinkende hvitt
+          label: brukes dersom vi ikke vet lysstyrke, men har observert lysfarge hvitt
+            blinkende lys
+        - value: Blinkende rødt
+          label: brukes dersom vi ikke vet lysstyrke, men har observert lysfarge rødt
+            blinkende lys
+        - value: Lyssatt
+          label: brukes dersom man vet at hinderet har lys, men ikke vet farge og
+            type
+        - value: Ikke lyssatt
+          label: Ikke lyssatt
+        - value: Ukjent
+          label: benyttes dersom det er ukjent om hinderet har lys eller ikke.
+    description: hinderlys til bruk ved merking av luftfartshinder i henhold til vedlegg
+      til forskrift om rapportering, registrering og merking av luftfartshinder, BSL
+      E 2-1. <font color="#0f0f0f">I tillegg er det mulig å velge koder fra gammel
+      NRL</font>
+    required: true
+  - name: identifikasjonLinje
+    logicalType: object
+    properties:
+    - name: lokalId
+      logicalType: string
+      description: 'lokal identifikator, tildelt av dataleverendør/dataforvalter.
+        Den lokale identifikatoren er unik innenfor navnerommet, ingen andre objekter
+        har samme identifikator.
+
+
+        Merknad: Det er data leverendørens ansvar å sørge for at denne lokale identifikatoren
+        er unik innenfor navnerommet.'
+      required: true
+    - name: navnerom
+      logicalType: string
+      description: 'navnerom som unikt identifiserer datakilden til objektet, starter
+        med to bokstavs kode jfr ISO 3166. Benytter understreking  ("_") dersom data
+        produsenten ikke er assosiert med bare et land.
+
+
+        Merknad : Verdien for nanverom vil eies av den dataprodusent som har ansvar
+        for de unike identifikatorene og vil registreres i "INSPIRE external  Object
+        Identifier Namespaces Register"
+
+
+        Eksempel: NO for Norge.'
+      required: true
+    - name: versjonId
+      logicalType: string
+      description: 'identifikasjon av en spesiell versjon av et geografisk objekt
+        (instans), maksimum lengde på 25 karakterer. Dersom spesifikasjonen av et
+        geografisk objekt med en identifikasjon inkludererer livsløpssyklusinformasjon,
+        benyttes denne versjonId for å skille mellom ulike versjoner av samme objekt.
+        versjonId er en unik  identifikasjon av versjonen.
+
+
+        Merknad: Maksimum lengde er valgt for å tillate tidsregistrering i henhold
+        til  ISO 8601, slik som  "2007-02-12T12:12:12+05:30" som versjonId.'
+    description: unik identifikasjon av et objekt
+    required: true
+  - name: linjeElement
+    logicalType: string
+    description: det geografiske linjeobjektet
+  - name: linjespenn
+    logicalType: string
+    logicalTypeOptions:
+      pattern: ^(Ja|Nei|Ukjent)$
+    customProperties:
+    - property: allowedValues
+      value:
+      - value: Ja
+        label: Ja
+      - value: Nei
+        label: Nei
+      - value: Ukjent
+        label: Ukjent
+    description: informasjon om en VertikalObjektKomponentLinje er et spenn eller
+      ei. Et linjespenn har vertikal utstrekning på 60 m eller høyere eller er av
+      andre årsaker omfattet av merkepålegg fra Luftfartstilsynet.
+  - name: lengde
+    logicalType: number
+    description: horisontal avstand mellom start- og sluttpunkt på linjesegment
+  - name: lengdeMåleenhet
+    logicalType: string
+    logicalTypeOptions:
+      pattern: ^(FT|M|CM|KM)$
+    customProperties:
+    - property: allowedValues
+      value:
+      - value: FT
+        label: foot
+      - value: M
+        label: meter
+      - value: CM
+        label: centimeter
+      - value: KM
+        label: kilometer
+    description: her oppgis måleenheten til lengden av linjesegmentet
+- name: VertikalObjektKomponentLinjePkt
+  physicalName: vertikalobjektkomponentlinjepkt
+  logicalType: object
+  physicalType: table
+  description: Egenskaper tilhørende en VertikalObjektKomponent som er et punkt.
+  customProperties:
+  - property: sosiObjektType
+    value: VertikalObjektKomponentLinjePkt
+  - property: inheritsFrom
+    value: VertikalObjektKomponent
+  - property: associations
+    value:
+    - role: avgrenserLinje
+      target: VertikalObjektKomponentLinje
+      cardinality: 0..*
+  properties:
+  - name: verifiseringsdato
+    logicalType: timestamp
+    description: 'dato når dataene er fastslått å være i samsvar med virkeligheten
+
+
+      Merknad: Verifiseringsdato er identisk med ..DATO i tidligere versjoner av SOSI'
+  - name: oppdateringsdato
+    logicalType: timestamp
+    description: 'dato for siste endring på objektdataene
+
+
+      Merknad:
+
+      Oppdateringsdato refererer til en endring av dataene i registeret. Dataene kan
+      dermed endres som følge av en forvaltningsmessig beslutning uten at det virkelige
+      objektet i terrenget er endret.'
+  - name: endringsflagg
+    logicalType: object
+    properties:
+    - name: typeEndring
+      logicalType: string
+      logicalTypeOptions:
+        pattern: ^(Endret|Nytt|Slettet)$
+      customProperties:
+      - property: allowedValues
+        value:
+        - value: Endret
+          label: Endret
+        - value: Nytt
+          label: Nytt
+        - value: Slettet
+          label: Slettet
+      description: endringsstatus for objektet
+      required: true
+    - name: tidspunktEndring
+      logicalType: timestamp
+      description: tidspunkt for endring av objektet
+      required: true
+    description: endringsinformasjon om et objekt
+  - name: status
+    logicalType: string
+    logicalTypeOptions:
+      pattern: ^(Eksisterende\ \(default\)|Kondemnert|Ombygd|Planlagt|Under\ arbeid|Fjernet)$
+    customProperties:
+    - property: allowedValues
+      value:
+      - value: Eksisterende (default)
+        label: 'Identisk med tidligere SITSTAT = 3
+
+
+          -- Definition --
+
+          Identical with previous SITSTAT = 3'
+      - value: Kondemnert
+        label: Ikke lenger et hinder.
+      - value: Ombygd
+        label: Hindret er ombygd (blir vanligvis ikke brukt)
+      - value: Planlagt
+        label: Hindret skal bygges
+      - value: Under arbeid
+        label: Hinderet er under bygging/ombygging
+      - value: Fjernet
+        label: Feilregistrert i registeret, skulle aldri vært der.
+    description: objektets tilstand, se gyldige koder i kodeliste Status
+  - name: merking
+    logicalType: array
+    items:
+      logicalType: object
+      properties:
+      - name: merkingFarge
+        logicalType: object
+        properties:
+        - name: farge
+          logicalType: string
+          logicalTypeOptions:
+            pattern: ^(Svovelgul|Trafikkrød|Lysende\ rød|Lys\ grå|Agatgrå|Signalhvit|Ren\
+              hvit|Trafikkhvit|Oransje|Rødt|Hvitt|Annet)$
+          customProperties:
+          - property: allowedValues
+            value:
+            - value: Svovelgul
+              label: RAL 1016 (Sulfur yellow)
+            - value: Trafikkrød
+              label: RAL 3020 (Traffic red)
+            - value: Lysende rød
+              label: RAL 3024 (Luminous red)
+            - value: Lys grå
+              label: RAL 7035 (Light grey)
+            - value: Agatgrå
+              label: RAL 7038 (Agate grey)
+            - value: Signalhvit
+              label: RAL 9003 (Signal white)
+            - value: Ren hvit
+              label: RAL 9010 (Pure white)
+            - value: Trafikkhvit
+              label: RAL 9016 (Traffic white)
+            - value: Oransje
+              label: RAL kode ikke aktuelt, kode er videreført fra gammelt system
+            - value: Rødt
+              label: RAL kode ikke aktuelt, kode er videreført fra gammelt system
+            - value: Hvitt
+              label: RAL kode ikke aktuelt, kode er videreført fra gammelt system
+            - value: Annet
+              label: Annet
+          description: farge angis med koder fra definert kodeliste
+          required: true
+        - name: annet
+          logicalType: string
+          description: hvis "annet" velges på attributt farge, må dette spesifiseres
+            her
+        - name: fluoriserende
+          logicalType: string
+          logicalTypeOptions:
+            pattern: ^(Ja|Nei|Ukjent)$
+          customProperties:
+          - property: allowedValues
+            value:
+            - value: Ja
+              label: Ja
+            - value: Nei
+              label: Nei
+            - value: Ukjent
+              label: Ukjent
+          description: om fargemerkingen er fluoriserende (selvlysende)
+          required: true
+        - name: reflekterende
+          logicalType: string
+          logicalTypeOptions:
+            pattern: ^(Ja|Nei|Ukjent)$
+          customProperties:
+          - property: allowedValues
+            value:
+            - value: Ja
+              label: Ja
+            - value: Nei
+              label: Nei
+            - value: Ukjent
+              label: Ukjent
+          description: om fargemerkingen er reflekterende
+          required: true
+        description: skal brukes hvis merking består av en eller to farger
+      - name: merkingType
+        logicalType: string
+        logicalTypeOptions:
+          pattern: ^(Flagg|Markør|Plater|Ukjent|Annet)$
+        customProperties:
+        - property: allowedValues
+          value:
+          - value: Flagg
+            label: kan være ensfarget eller mønstret.
+          - value: Markør
+            label: gjelder også blåser
+          - value: Plater
+            label: Objektet er merket med fargede plater
+          - value: Ukjent
+            label: Merketypen er ukjent
+          - value: Annet
+            label: hvis valgt, kreves utfylling av feltet kommentarMerkingType
+        description: ulike typer merking spesifiseres her
+        required: true
+      - name: kommentarMerkingType
+        logicalType: string
+        description: hvis "annet" velges på merkingType skal dette spesifiseres her
+      - name: merkingMønster
+        logicalType: string
+        logicalTypeOptions:
+          pattern: ^(Ensfarget|Rutemønstret|Horisontale\ bånd|Vertikale\ bånd|Ukjent|Annet)$
+        customProperties:
+        - property: allowedValues
+          value:
+          - value: Ensfarget
+            label: Ensfarget
+          - value: Rutemønstret
+            label: Rutemønstret
+          - value: Horisontale bånd
+            label: to-fargete alternerende horisontale bånd
+          - value: Vertikale bånd
+            label: to-fargete alternerende vertikale bånd
+          - value: Ukjent
+            label: Ukjent
+          - value: Annet
+            label: Annet
+        description: mønster til merkingen
+        required: true
+      - name: kommentarMerkingMønster
+        logicalType: string
+        description: hvis "Annet" velges på merkingMønster skal dette spesifiseres
+          her
+      - name: merkingICAO
+        logicalType: string
+        logicalTypeOptions:
+          pattern: ^(Ja|Nei|Ukjent)$
+        customProperties:
+        - property: allowedValues
+          value:
+          - value: Ja
+            label: Ja
+          - value: Nei
+            label: Nei
+          - value: Ukjent
+            label: Ukjent
+        description: hvorvidt merking er ihht. ICAO standard
+      - name: merkingTilstand
+        logicalType: string
+        logicalTypeOptions:
+          pattern: ^(Dårlig|Brukbar|God|Veldig\ god|Ukjent)$
+        customProperties:
+        - property: allowedValues
+          value:
+          - value: Dårlig
+            label: Merkingen er vanskelig å se.
+          - value: Brukbar
+            label: Merkingen er mulig å se, men utydelig.
+          - value: God
+            label: Merkingen er godt synlig.
+          - value: Veldig god
+            label: Merkingen er meget godt synlig.
+          - value: Ukjent
+            label: Tilstanden til merking er ukjent.
+        description: informasjon om merkingens tilstand
+    description: samlet informasjon om merking. Gjelder ikke lyssetting. All informasjon
+      om lyssetting ligger under featureType Lyssetting
+  - name: vertikalUtstrekning
+    logicalType: number
+    description: objektkomponentens maksimale høyde over terreng- eller vannoverflate
+  - name: vertikalUtstrekningMåleenhet
+    logicalType: string
+    logicalTypeOptions:
+      pattern: ^(FT|M|CM|KM)$
+    customProperties:
+    - property: allowedValues
+      value:
+      - value: FT
+        label: foot
+      - value: M
+        label: meter
+      - value: CM
+        label: centimeter
+      - value: KM
+        label: kilometer
+    description: her oppgis måleenheten til den vertikale utstrekningen av objektet
+  - name: merkeplikt
+    logicalType: object
+    properties:
+    - name: merkepliktig
+      logicalType: string
+      logicalTypeOptions:
+        pattern: ^(Ja|Nei|Ukjent)$
+      customProperties:
+      - property: allowedValues
+        value:
+        - value: Ja
+          label: Ja
+        - value: Nei
+          label: Nei
+        - value: Ukjent
+          label: Ukjent
+      description: hvorvidt hinder er merkepliktig
+      required: true
+    - name: merkepliktigIhenholdTil
+      logicalType: string
+      logicalTypeOptions:
+        pattern: ^(BSL\ E\ 2|BSL\ E\ 3|Pålagt\ av\ LT|BSL\ E\ 2\ aggregerte\ komponenter|EASA|ICAO)$
+      customProperties:
+      - property: allowedValues
+        value:
+        - value: BSL E 2
+          label: Merket i henhold til forskrift om Bestemmelser for sivil luftfart
+            nr 2.
+        - value: BSL E 3
+          label: Merket i henhold til forskrift om Bestemmelser for sivil luftfart
+            nr 3.
+        - value: Pålagt av LT
+          label: merking pålagt spesifikt av Luftfartstilsynet
+        - value: BSL E 2 aggregerte komponenter
+          label: enkeltelementer er ikke merkepliktige i utgangspunktet, men de er
+            merkepliktige hvis de oppfyller visse krav når de er sett som helhet
+        - value: EASA
+          label: Merket i henhold til bestemmelser fra EASA
+        - value: ICAO
+          label: Merket i henhold til bestemmelser fra ICAO
+      description: regelverk som pålegger merking
+    - name: ansvarligForMerking
+      logicalType: string
+      logicalTypeOptions:
+        pattern: ^(Eier\ av\ hinder|Godkjenningsansvarlig\ for\ landingsplass\-flyplass)$
+      customProperties:
+      - property: allowedValues
+        value:
+        - value: Eier av hinder
+          label: Eier av hinder
+        - value: Godkjenningsansvarlig for landingsplass-flyplass
+          label: Godkjenningsansvarlig for landingsplass-flyplass
+      description: hvem har ansvar for merking
+    - name: merkeInformasjon
+      logicalType: string
+      logicalTypeOptions:
+        pattern: ^(merket\ i\ henhold\ til\ forskrift|merket\ i\ henhold\ til\ dispensasjon|merket\
+          utover\ aktuell\ forskrift|mangler\ merking|ukjent)$
+      customProperties:
+      - property: allowedValues
+        value:
+        - value: merket i henhold til forskrift
+          label: merket i henhold til forskrift
+        - value: merket i henhold til dispensasjon
+          label: merket i henhold til dispensasjon
+        - value: merket utover aktuell forskrift
+          label: merket utover aktuell forskrift
+        - value: mangler merking
+          label: mangler merking
+        - value: ukjent
+          label: ukjent
+      description: utdypende informasjon om merking
+    - name: kommentarMerkeplikt
+      logicalType: string
+      description: utfyllende informasjon om en eller flere av de andre attributtene
+    description: informasjon om merkeplikt. Gjelder lyssetting og annen merking.
+  - name: eksternReferanse
+    logicalType: array
+    items:
+      logicalType: object
+      properties:
+      - name: registernavn
+        logicalType: string
+        description: navn til eksternt register
+      - name: eksternId
+        logicalType: string
+        description: ekstern Id av samme objekt i et annet register
+        required: true
+    description: referanse til et eksternt register
+  - name: komponentsekvensnummer
+    logicalType: integer
+    description: angir rekkefølge på VertikalObjektKomponent som tilhører samme VertikalObjekt
+  - name: BSLE-2-1_hinder
+    logicalType: string
+    logicalTypeOptions:
+      pattern: ^(Ja|Nei|Ukjent)$
+    customProperties:
+    - property: allowedValues
+      value:
+      - value: Ja
+        label: Ja
+      - value: Nei
+        label: Nei
+      - value: Ukjent
+        label: Ukjent
+    description: hvorvidt dette er et hinder ihht. forskrift BSL E 2-1
+    required: true
+  - name: lyssetting
+    logicalType: array
+    items:
+      logicalType: string
+      logicalTypeOptions:
+        pattern: ^(Lavintensitet\ type\ A|Lavintensitet\ type\ B|Lavintensitet\ type\
+          C|Lavintensitet\ type\ D|Mellomintensitet\ type\ A|Mellomintensitet\ type\
+          B|Mellomintensitet\ type\ C|Høyintensitet\ type\ A|Høyintensitet\ type\
+          B|Belyst\ med\ flomlys|Fast\ rødt|Fast\ hvitt|Blinkende\ hvitt|Blinkende\
+          rødt|Lyssatt|Ikke\ lyssatt|Ukjent)$
+      customProperties:
+      - property: allowedValues
+        value:
+        - value: Lavintensitet type A
+          label: rødt, fast, 10 candela
+        - value: Lavintensitet type B
+          label: rødt, fast, 32 candela
+        - value: Lavintensitet type C
+          label: ikke del av oversikten i vedlegg 2 BSL E 2-1, men tatt fra tabell
+            6-3 i ICAO annex 14
+        - value: Lavintensitet type D
+          label: ikke del av oversikten i vedlegg 2 BSL E 2-1, men tatt fra tabell
+            6-3 i ICAO annex 14
+        - value: Mellomintensitet type A
+          label: hvitt, blinkende, 20 000 candela ved bakgrunnsbelysning 50 cd/m ²
+            og over, 2000 candela med bakgrunnsbelysning uneder 50 cd/m ²
+        - value: Mellomintensitet type B
+          label: rødt, blinkende, 2000 candela
+        - value: Mellomintensitet type C
+          label: rødt, fast, 2000 candela
+        - value: Høyintensitet type A
+          label: hvitt, blinkende, 200 000 candela ved bakgrunnsbelysning over 500
+            cd/m², 20 000 candela ved bakgrunnsbelysning 50-500 cd/m² og 2000 candela
+            ved bakgrunnsbelysning under 50 cd/m²
+        - value: Høyintensitet type B
+          label: hvitt, blinkende, 100 000 candela ved bakgrunnsbelysning over 500
+            cd/m², 20 000 candela ved bakgrunnsbelysning 50-500 cd/m² og 2000 candela
+            ved bakgrunnsbelysning under 50 cd/m²
+        - value: Belyst med flomlys
+          label: objektet er opplys av lyskastere for å være synlig for luftfarten
+        - value: Fast rødt
+          label: brukes dersom vi ikke vet lysstyrke, men har observert lysfarge rød
+            fast lys
+        - value: Fast hvitt
+          label: brukes dersom vi ikke vet lysstyrke, men har observert lysfarge hvit
+            fast lys
+        - value: Blinkende hvitt
+          label: brukes dersom vi ikke vet lysstyrke, men har observert lysfarge hvitt
+            blinkende lys
+        - value: Blinkende rødt
+          label: brukes dersom vi ikke vet lysstyrke, men har observert lysfarge rødt
+            blinkende lys
+        - value: Lyssatt
+          label: brukes dersom man vet at hinderet har lys, men ikke vet farge og
+            type
+        - value: Ikke lyssatt
+          label: Ikke lyssatt
+        - value: Ukjent
+          label: benyttes dersom det er ukjent om hinderet har lys eller ikke.
+    description: hinderlys til bruk ved merking av luftfartshinder i henhold til vedlegg
+      til forskrift om rapportering, registrering og merking av luftfartshinder, BSL
+      E 2-1. <font color="#0f0f0f">I tillegg er det mulig å velge koder fra gammel
+      NRL</font>
+    required: true
+  - name: posisjon
+    logicalType: string
+    description: det geografiske punktobjektet
+  - name: href
+    logicalType: string
+    logicalTypeOptions:
+      pattern: ^(Høyden\ målt\ til\ foten\ av\ objektet|Høyden\ målt\ til\ toppen\
+        av\ objektet|Ukjent)$
+    customProperties:
+    - property: allowedValues
+      value:
+      - value: Høyden målt til foten av objektet
+        label: Høyden målt til foten av objektet
+      - value: Høyden målt til toppen av objektet
+        label: Høyden målt til toppen av objektet
+      - value: Ukjent
+        label: benyttes ikke ved nyregistrering
+    description: hvorvidt koordinatregistering er utført på topp eller bunn av et
+      objekt
+    required: true
+  - name: hrefSystem
+    logicalType: string
+    logicalTypeOptions:
+      pattern: ^(Ellipsoide\ jf\.\ KOORDSYS|Lokal\ referanseflate|Geoide\ bestemt\
+        av\ NKG\ i\ 1989|Norsk\ Null\ av\ 1954|Nord\-Norsk\ Null\ av\ 1957|Norsk\
+        Null\ av\ 2000)$
+    customProperties:
+    - property: allowedValues
+      value:
+      - value: Ellipsoide jf. KOORDSYS
+        label: Ellipsoide jf. KOORDSYS
+      - value: Lokal referanseflate
+        label: Lokal referanseflate
+      - value: Geoide bestemt av NKG i 1989
+        label: 'NKG: The Nordic Geodetic Commission - founded in 1953 - is an association
+          of geodesists from Denmark, Finland, Iceland, Norway and Sweden. Its purpose
+          is to give the members possibilities of fruitful gatherings and mutual exchange
+          of professional views and experiences. The NKG is recognized and supported
+          by a number of Nordic  organizations, such as the Director Generals of the
+          Nordic Mapping Authorities. (Kilde: http://217.152.180.26/nkg/)'
+      - value: Norsk Null av 1954
+        label: Denne er identisk med NN1954
+      - value: Nord-Norsk Null av 1957
+        label: For nyere data er denne gått ut av bruk. Er erstattet av NN54.
+      - value: Norsk Null av 2000
+        label: Nytt felles nordisk vertikalt datum, basert på Normaal Amsterdals Peil.
+    description: referanseflate som er utgangspunktet for høydekoordinat.
+    required: true
+  - name: identifikasjonLinjePkt
+    logicalType: object
+    properties:
+    - name: lokalId
+      logicalType: string
+      description: 'lokal identifikator, tildelt av dataleverendør/dataforvalter.
+        Den lokale identifikatoren er unik innenfor navnerommet, ingen andre objekter
+        har samme identifikator.
+
+
+        Merknad: Det er data leverendørens ansvar å sørge for at denne lokale identifikatoren
+        er unik innenfor navnerommet.'
+      required: true
+    - name: navnerom
+      logicalType: string
+      description: 'navnerom som unikt identifiserer datakilden til objektet, starter
+        med to bokstavs kode jfr ISO 3166. Benytter understreking  ("_") dersom data
+        produsenten ikke er assosiert med bare et land.
+
+
+        Merknad : Verdien for nanverom vil eies av den dataprodusent som har ansvar
+        for de unike identifikatorene og vil registreres i "INSPIRE external  Object
+        Identifier Namespaces Register"
+
+
+        Eksempel: NO for Norge.'
+      required: true
+    - name: versjonId
+      logicalType: string
+      description: 'identifikasjon av en spesiell versjon av et geografisk objekt
+        (instans), maksimum lengde på 25 karakterer. Dersom spesifikasjonen av et
+        geografisk objekt med en identifikasjon inkludererer livsløpssyklusinformasjon,
+        benyttes denne versjonId for å skille mellom ulike versjoner av samme objekt.
+        versjonId er en unik  identifikasjon av versjonen.
+
+
+        Merknad: Maksimum lengde er valgt for å tillate tidsregistrering i henhold
+        til  ISO 8601, slik som  "2007-02-12T12:12:12+05:30" som versjonId.'
+    description: unik identifikasjon av et objekt
+    required: true
+  - name: kvalitet
+    logicalType: object
+    properties:
+    - name: målemetode
+      logicalType: string
+      logicalTypeOptions:
+        pattern: ^(Terrengmålt|Tatt\ fra\ plan|Annet|Stereoinstrument|Analytisk\ plotter|Digitalt\
+          stereoinstrument|Flybåren\ laserscanner|Digitalisert\ fra\ ortofoto|Digitalisert\
+          på\ skjerm\ fra\ satellittbilde|Dig\.\ på\ skjerm\ fra\ scannet\ samkopi|Genererte\
+          data\ \(interpolasjon\)|Frihåndstegning|Digitalisert\ fra\ krokering\ på\
+          kart|Direkte\ innlagt\ på\ skjerm|Ukjent\ målemetode|GPS\ Kodemåling,\ relative\
+          målinger|GPS\ Kodemåling,\ enkeltmålinger)$
+      customProperties:
+      - property: allowedValues
+        value:
+        - value: Terrengmålt
+          label: Målt i terrenget
+        - value: Tatt fra plan
+          label: Tatt fra plan eller godkjent tiltak
+        - value: Annet
+          label: Annet
+        - value: Stereoinstrument
+          label: Målt i stereoinstrument, uspesifisert instrument
+        - value: Analytisk plotter
+          label: Målt i stereoinstrument, analytisk plotter
+        - value: Digitalt stereoinstrument
+          label: Målt i stereoinstrument, digitalt instrument
+        - value: Flybåren laserscanner
+          label: Målt med laserskanner fra fly
+        - value: Digitalisert fra ortofoto
+          label: Geometri overført fra ortofoto ved hjelp av manuell registrering
+            på skjerm
+        - value: Digitalisert på skjerm fra satellittbilde
+          label: Geometri overført fra satelittbilde ved hjelp av manuell registrering
+            på skjerm
+        - value: Dig. på skjerm fra scannet samkopi
+          label: Geometri overført fra kart ved hjelp av manuell registrering på skjerm,
+            medium skannet kart (raster), samkopi
+        - value: Genererte data (interpolasjon)
+          label: Genererte data, interpolasjonsmetode. Ikke nærmere spesifisert
+        - value: Frihåndstegning
+          label: Digitalisert ut fra frihåndstegning.  Frihåndstegning er basert på
+            svært grovt grunnlag eller ikke noe grunnlag
+        - value: Digitalisert fra krokering på kart
+          label: Digitalisert fra krokering på kart, dvs grovt skissert på kart
+        - value: Direkte innlagt på skjerm
+          label: Digitalisert ut fra frihåndstegning (direkte på skjerm). Frihåndstegning
+            er basert på svært grovt grunnlag eller ikke noe grunnlag
+        - value: Ukjent målemetode
+          label: Målemetode er ukjent
+        - value: GPS Kodemåling, relative målinger
+          label: 'Innmålt med satellittbaserte systemer for navigasjon og
+
+            posisjonering med global dekning (f.eks GPS, GLONASS, GALILEO): Kodemåling,
+            relative målinger.'
+        - value: GPS Kodemåling, enkeltmålinger
+          label: 'Innmålt med satellittbaserte systemer for navigasjon og
+
+            posisjonering med global dekning (f.eks GPS, GLONASS,
+
+            GALILEO): Kodemåling, enkle målinger.'
+      description: metode for måling i grunnriss (x,y), og høyde (z) når metoden er
+        den samme som ved måling i grunnriss
+      required: true
+    - name: nøyaktighet
+      logicalType: integer
+      description: 'punktstandardavviket i grunnriss for punkter
+
+
+        Merknad:
+
+        Oppgitt i cm'
+    - name: synbarhet
+      logicalType: string
+      logicalTypeOptions:
+        pattern: ^(Fullt\ ut\ synlig/gjenfinnbar\ i\ terrenget|Dårlig\ gjenfinnbar\
+          i\ terreng|Middels\ synlig\ i\ flybilde/modell|Dårlig/ikke\ synlig\ i\ flybilde/modell)$
+      customProperties:
+      - property: allowedValues
+        value:
+        - value: Fullt ut synlig/gjenfinnbar i terrenget
+          label: Default
+        - value: Dårlig gjenfinnbar i terreng
+          label: Forøvrig grei å innmåle. (Benyttes bl.a. for innmåling av ledninger
+            på lukket grøft)
+        - value: Middels synlig i flybilde/modell
+          label: Middels synlig i flybilde/modell
+        - value: Dårlig/ikke synlig i flybilde/modell
+          label: Dårlig/ikke synlig i flybilde/modell
+      description: hvor godt den kartlagte detalj var synbar ved kartleggingen
+    - name: målemetodeHøyde
+      logicalType: string
+      logicalTypeOptions:
+        pattern: ^(Terrengmålt|Tatt\ fra\ plan|Annet|Stereoinstrument|Analytisk\ plotter|Digitalt\
+          stereoinstrument|Flybåren\ laserscanning|Genererte\ data\ \(interpolasjon\)|Generert\
+          i\ terrengmodell|Målt\ med\ stigningsmåler|GPS\ Kodemåling,\ relative\ målinger\.|GPS\
+          Kodemåling,\ enkeltpunktbestemmelser|Ukjent\ målemetode)$
+      customProperties:
+      - property: allowedValues
+        value:
+        - value: Terrengmålt
+          label: Målt i terrenget
+        - value: Tatt fra plan
+          label: Tatt fra plan eller godkjent tiltak
+        - value: Annet
+          label: Annet
+        - value: Stereoinstrument
+          label: Målt i stereoinstrument, uspesifisert instrument
+        - value: Analytisk plotter
+          label: Målt i stereoinstrument, analytisk plotter
+        - value: Digitalt stereoinstrument
+          label: Målt i stereoinstrument, digitalt instrument
+        - value: Flybåren laserscanning
+          label: Målt med laserskanner fra fly
+        - value: Genererte data (interpolasjon)
+          label: Genererte data, interpolasjonsmetode. Ikke nærmere spesifisert
+        - value: Generert i terrengmodell
+          label: Genererte data, interpolasjonsmetode, fra terrengmodell
+        - value: Målt med stigningsmåler
+          label: Målt med stigningsmåler
+        - value: GPS Kodemåling, relative målinger.
+          label: 'Innmålt med satellittbaserte systemer for navigasjon og
+
+            posisjonering med global dekning (f.eks GPS, GLONASS, GALILEO): Kodemåling,
+            relative målinger.'
+        - value: GPS Kodemåling, enkeltpunktbestemmelser
+          label: 'Innmålt med satellittbaserte systemer for navigasjon og
+
+            posisjonering med global dekning (f.eks GPS, GLONASS,
+
+            GALILEO): Kodemåling, enkle målinger.'
+        - value: Ukjent målemetode
+          label: Ukjent målemetode
+      description: metode for å måle høyden
+    - name: nøyaktighetHøyde
+      logicalType: integer
+      description: nøyaktighet for høyden i cm
+    description: beskrivelse av kvaliteten på stedfestingen
+    required: true
