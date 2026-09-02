@@ -4,7 +4,7 @@
   "format": "text/html",
   "date": {
     "creation": "2014-04-01",
-    "revision": "2026-08-16"
+    "revision": "2026-09-01"
   },
   "language": "nor",
   "contact": {
@@ -119,14 +119,14 @@
       "temporalElement": {
         "timePeriod": {
           "beginPosition": "2014-04-01",
-          "endPosition": "2026-08-16"
+          "endPosition": "2026-09-01"
         }
       }
     },
     "date": {
       "creation": "2014-04-01",
       "publication": "2014-04-01",
-      "revision": "2026-08-16"
+      "revision": "2026-09-01"
     },
     "language": "nor"
   },
@@ -244,6 +244,26 @@
           "unitsOfDelivery": "fylkesvis, landsfiler",
           "deliveryMediumName": "Atom Feed",
           "deliveryService": {
+            "serviceEndpoint": "http://nedlasting.geonorge.no/geonorge/ATOM-feeds/Luftfartshindre_AtomFeedFGDB.xml",
+            "serviceProperty": {
+              "type": "Atom Feed",
+              "value": "W3C:AtomFeed"
+            }
+          }
+        },
+        "deliveryFormat": [
+          {
+            "formatName": "FGDB"
+          }
+        ]
+      }
+    },
+    {
+      "delivery": {
+        "deliveryMedium": {
+          "unitsOfDelivery": "fylkesvis, landsfiler",
+          "deliveryMediumName": "Atom Feed",
+          "deliveryService": {
             "serviceEndpoint": "http://nedlasting.geonorge.no/geonorge/ATOM-feeds/Luftfartshindre_AtomFeedGML.xml",
             "serviceProperty": {
               "type": "Atom Feed",
@@ -281,28 +301,122 @@
     {
       "delivery": {
         "deliveryMedium": {
-          "deliveryMediumName": "UTGÅTT - Nasjonalt register over luftfartshindre WMS",
+          "deliveryMediumName": "GeoPackage: filleveranse",
           "deliveryService": {
+            "serviceEndpoint": "https://raw.githubusercontent.com/larsingea/ps_kartverket/main/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/filleveranse/filleveranse.gpkg",
             "serviceProperty": {
-              "type": "UTGÅTT - Nasjonalt register over luftfartshindre WMS",
-              "value": "WMS-tjeneste"
+              "type": "Fil",
+              "value": "Nedlasting"
             }
           }
         },
         "deliveryFormat": [
           {
-            "formatName": "png",
-            "version": "1.0"
+            "formatName": "GPKG"
           }
-        ],
-        "deliveryScope": "Tjeneste"
+        ]
+      }
+    },
+    {
+      "delivery": {
+        "deliveryMedium": {
+          "deliveryMediumName": "GeoPackage: ny-datakilde",
+          "deliveryService": {
+            "serviceEndpoint": "https://raw.githubusercontent.com/larsingea/ps_kartverket/main/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/ny-datakilde/ny-datakilde.gpkg",
+            "serviceProperty": {
+              "type": "Fil",
+              "value": "Nedlasting"
+            }
+          }
+        },
+        "deliveryFormat": [
+          {
+            "formatName": "GPKG"
+          }
+        ]
+      }
+    },
+    {
+      "delivery": {
+        "deliveryMedium": {
+          "deliveryMediumName": "GML/XSD-skjema: filleveranse",
+          "deliveryService": {
+            "serviceEndpoint": "https://raw.githubusercontent.com/larsingea/ps_kartverket/main/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/filleveranse/schema/xsd/INPUT/filleveranse.xsd",
+            "serviceProperty": {
+              "type": "Fil",
+              "value": "Nedlasting"
+            }
+          }
+        },
+        "deliveryFormat": [
+          {
+            "formatName": "XSD"
+          }
+        ]
+      }
+    },
+    {
+      "delivery": {
+        "deliveryMedium": {
+          "deliveryMediumName": "GML/XSD-skjema: ny-datakilde",
+          "deliveryService": {
+            "serviceEndpoint": "https://raw.githubusercontent.com/larsingea/ps_kartverket/main/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/ny-datakilde/schema/xsd/INPUT/ny-datakilde.xsd",
+            "serviceProperty": {
+              "type": "Fil",
+              "value": "Nedlasting"
+            }
+          }
+        },
+        "deliveryFormat": [
+          {
+            "formatName": "XSD"
+          }
+        ]
+      }
+    },
+    {
+      "delivery": {
+        "deliveryMedium": {
+          "deliveryMediumName": "JSON Schema: filleveranse",
+          "deliveryService": {
+            "serviceEndpoint": "https://raw.githubusercontent.com/larsingea/ps_kartverket/main/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/filleveranse/schema/jsonschema/INPUT/filleveranse/filleveranse.json",
+            "serviceProperty": {
+              "type": "Fil",
+              "value": "Nedlasting"
+            }
+          }
+        },
+        "deliveryFormat": [
+          {
+            "formatName": "JSON Schema"
+          }
+        ]
+      }
+    },
+    {
+      "delivery": {
+        "deliveryMedium": {
+          "deliveryMediumName": "JSON Schema: ny-datakilde",
+          "deliveryService": {
+            "serviceEndpoint": "https://raw.githubusercontent.com/larsingea/ps_kartverket/main/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/ny-datakilde/schema/jsonschema/INPUT/nydatakilde/ny-datakilde.json",
+            "serviceProperty": {
+              "type": "Fil",
+              "value": "Nedlasting"
+            }
+          }
+        },
+        "deliveryFormat": [
+          {
+            "formatName": "JSON Schema"
+          }
+        ]
       }
     }
   ],
   "metadataSection": {
     "metadataStandard": "ISO19115",
     "metadataStandardVersion": "2003",
-    "metadataDate": "2026-08-17",
+    "metadataDate": "2026-09-02",
     "language": "nor",
     "contact": {
       "organizationName": "Kartverket",
@@ -317,5 +431,15 @@
       "codeSpace": "https://kartkatalog.geonorge.no/metadata/",
       "metadataLinkage": "https://kartkatalog.geonorge.no/metadata/28c896d0-8a0d-4209-bf31-4931033b1082"
     }
-  }
+  },
+  "additionalReferences": [
+    {
+      "title": "Produktark",
+      "href": "https://register.geonorge.no/register/versjoner/produktark/kartverket/nasjonalt-register-over-luftfartshindre-nrl"
+    },
+    {
+      "title": "Produktside",
+      "href": "https://kartverket.no/api-og-data/samferdselsdata"
+    }
+  ]
 }
