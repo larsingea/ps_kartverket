@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><ShapeChangeResult xmlns="http://www.interactive-instruments.de/ShapeChange/Result" xmlns:r="http://www.interactive-instruments.de/ShapeChange/Result" config="/home/runner/work/produktspesifikasjon_kartverket/produktspesifikasjon_kartverket/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/filleveranse/schema/shapechange-config.xml" end="Tue Aug 18 06:52:43 UTC 2026" resultCode="0" start="Tue Aug 18 06:52:37 UTC 2026" version="4.0.0">
+<?xml version="1.0" encoding="UTF-8"?><ShapeChangeResult xmlns="http://www.interactive-instruments.de/ShapeChange/Result" xmlns:r="http://www.interactive-instruments.de/ShapeChange/Result" config="/home/runner/work/ps_kartverket/ps_kartverket/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/filleveranse/schema/shapechange-config.xml" end="Wed Sep 02 09:23:18 UTC 2026" resultCode="0" start="Wed Sep 02 09:23:09 UTC 2026" version="4.0.0">
   <Messages>
     <ProcessFlowInfo message="---------- Semantic validation of ShapeChange configuration: START ----------"/>
     <Info message="Validating input parameters."/>
@@ -14,19 +14,10 @@
     <ProcessFlowInfo message="Application schema found, package name: 'filleveranse', target namespace: 'https://skjema.geonorge.no/SOSI/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/filleveranse/1.0'"/>
     <ProcessFlowInfo message="Now processing target 'JSON Schema' for input 'INPUT'."/>
     <Warning message="JSON Schema definition for type 'Link' could not be identified. No map entry is defined for the type, and the type was not found in the model. No type restriction is created for properties with this type as value type."/>
-    <Warning message="Value type 'Kurve' of primary geometry property 'linjeElement' is not one of the GeoJSON compatible geometry types defined via target parameter geoJsonCompatibleGeometryTypes. No restriction will be encoded for the &quot;geometry&quot; member.">
-      <Detail message="Context: property 'filleveranse::NasjonaltRegisterOverLuftfartshindre_20180322::VertikalObjektKomponentLinje::linjeElement'"/>
-    </Warning>
-    <Warning message="Value type 'Punkt' of primary geometry property 'posisjon' is not one of the GeoJSON compatible geometry types defined via target parameter geoJsonCompatibleGeometryTypes. No restriction will be encoded for the &quot;geometry&quot; member.">
-      <Detail message="Context: property 'filleveranse::NasjonaltRegisterOverLuftfartshindre_20180322::VertikalObjektKomponentLinjePkt::posisjon'"/>
-    </Warning>
-    <Warning message="Value type 'Punkt' of primary geometry property 'posisjon' is not one of the GeoJSON compatible geometry types defined via target parameter geoJsonCompatibleGeometryTypes. No restriction will be encoded for the &quot;geometry&quot; member.">
-      <Detail message="Context: property 'filleveranse::NasjonaltRegisterOverLuftfartshindre_20180322::VertikalObjektKomponentPunkt::posisjon'"/>
-    </Warning>
     <ProcessFlowInfo message="Executed target class 'de.interactive_instruments.shapechange.core.target.json.JsonSchemaTarget' for input ID: 'INPUT'.&#10;-------------------------------------------------"/>
   </Messages>
   <Results>
-    <Result href="file:/home/runner/work/produktspesifikasjon_kartverket/produktspesifikasjon_kartverket/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/filleveranse/schema/xsd/INPUT/filleveranse.xsd" scope="https://skjema.geonorge.no/SOSI/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/filleveranse/1.0" target="XML Schema">filleveranse.xsd</Result>
-    <Result href="file:/home/runner/work/produktspesifikasjon_kartverket/produktspesifikasjon_kartverket/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/filleveranse/schema/jsonschema/INPUT/filleveranse/filleveranse.json" target="JSON Schema">filleveranse.json</Result>
+    <Result href="file:/home/runner/work/ps_kartverket/ps_kartverket/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/filleveranse/schema/xsd/INPUT/filleveranse.xsd" scope="https://skjema.geonorge.no/SOSI/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/filleveranse/1.0" target="XML Schema">filleveranse.xsd</Result>
+    <Result href="file:/home/runner/work/ps_kartverket/ps_kartverket/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/filleveranse/schema/jsonschema/INPUT/filleveranse/filleveranse.json" target="JSON Schema">filleveranse.json</Result>
   </Results>
 </ShapeChangeResult>

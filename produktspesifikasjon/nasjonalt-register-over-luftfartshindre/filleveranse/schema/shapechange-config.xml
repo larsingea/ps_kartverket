@@ -2,7 +2,7 @@
 <ShapeChangeConfiguration xmlns="http://www.interactive-instruments.de/ShapeChange/Configuration/1.1" xmlns:xi="http://www.w3.org/2001/XInclude" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.interactive-instruments.de/ShapeChange/Configuration/1.1 https://shapechange.net/resources/schema/ShapeChangeConfiguration.xsd">
  <input id="INPUT">
   <parameter name="inputModelType" value="SCXML" />
-  <parameter name="inputFile" value="/home/runner/work/produktspesifikasjon_kartverket/produktspesifikasjon_kartverket/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/filleveranse/schema/model.scxml" />
+  <parameter name="inputFile" value="/home/runner/work/ps_kartverket/ps_kartverket/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/filleveranse/schema/model.scxml" />
   <parameter name="appSchemaNameRegex" value="^filleveranse$" />
   <parameter name="publicOnly" value="true" />
   <parameter name="checkingConstraints" value="disabled" />
@@ -13,13 +13,15 @@
  </input>
  <log>
   <parameter name="reportLevel" value="INFO" />
-  <parameter name="logFile" value="/home/runner/work/produktspesifikasjon_kartverket/produktspesifikasjon_kartverket/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/filleveranse/schema/log.xml" />
+  <parameter name="logFile" value="/home/runner/work/ps_kartverket/ps_kartverket/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/filleveranse/schema/log.xml" />
  </log>
  <targets>
   <TargetXmlSchema class="de.interactive_instruments.shapechange.core.target.xmlschema.XmlSchema" mode="enabled" inputs="INPUT">
-   <targetParameter name="outputDirectory" value="/home/runner/work/produktspesifikasjon_kartverket/produktspesifikasjon_kartverket/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/filleveranse/schema/xsd" />
+   <targetParameter name="outputDirectory" value="/home/runner/work/ps_kartverket/ps_kartverket/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/filleveranse/schema/xsd" />
    <targetParameter name="sortedOutput" value="true" />
    <targetParameter name="defaultEncodingRule" value="sosi" />
+   <targetParameter name="documentationTemplate" value="[[documentation]]" />
+   <targetParameter name="documentationNoValue" value="" />
    <rules>
     <EncodingRule name="sosi" extends="iso19136_2007">
      <rule name="rule-xsd-prop-length-size-pattern" />
@@ -33,15 +35,17 @@
    <xi:include href="https://shapechange.net/resources/config/StandardRules.xml" />
    <xi:include href="https://shapechange.net/resources/config/StandardNamespaces.xml" />
    <xi:include href="https://shapechange.net/resources/config/StandardMapEntries.xml" />
-   <xi:include href="file:///home/runner/work/produktspesifikasjon_kartverket/produktspesifikasjon_kartverket/.psactions/shapechange/data/StandardMapEntries_sosi.xml" />
+   <xi:include href="file:///home/runner/work/ps_kartverket/ps_kartverket/.psactions/shapechange/data/StandardMapEntries_sosi.xml" />
   </TargetXmlSchema>
   <Target class="de.interactive_instruments.shapechange.core.target.json.JsonSchemaTarget" mode="enabled" inputs="INPUT">
-   <targetParameter name="outputDirectory" value="/home/runner/work/produktspesifikasjon_kartverket/produktspesifikasjon_kartverket/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/filleveranse/schema/jsonschema" />
+   <targetParameter name="outputDirectory" value="/home/runner/work/ps_kartverket/ps_kartverket/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/filleveranse/schema/jsonschema" />
    <targetParameter name="sortedOutput" value="true" />
    <targetParameter name="jsonSchemaVersion" value="draft-07" />
    <targetParameter name="jsonBaseUri" value="https://skjema.geonorge.no/SOSI/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/filleveranse" />
    <targetParameter name="entityTypeName" value="@type" />
    <targetParameter name="defaultEncodingRule" value="sosiJson" />
+   <targetParameter name="documentationTemplate" value="[[documentation]]" />
+   <targetParameter name="documentationNoValue" value="" />
    <rules>
     <EncodingRule name="sosiJson">
      <rule name="rule-json-cls-basictype" />

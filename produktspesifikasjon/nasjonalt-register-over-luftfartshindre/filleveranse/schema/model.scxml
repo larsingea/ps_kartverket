@@ -3066,7 +3066,7 @@ tilsvarer klasse Taubane i SOSI Bygnan 4.0</sc:DescriptorValue>
          </sc:descriptors>
          <sc:cardinality>0..1</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Punkt</sc:typeName>
+         <sc:typeName>GM_Point</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>href</sc:name>
@@ -3690,7 +3690,7 @@ Oppdateringsdato refererer til en endring av dataene i registeret. Dataene kan d
          </sc:descriptors>
          <sc:cardinality>0..1</sc:cardinality>
          <sc:sequenceNumber>2</sc:sequenceNumber>
-         <sc:typeName>Kurve</sc:typeName>
+         <sc:typeName>GM_Curve</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>linjespenn</sc:name>
@@ -4012,7 +4012,7 @@ Oppdateringsdato refererer til en endring av dataene i registeret. Dataene kan d
          </sc:descriptors>
          <sc:cardinality>0..1</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Punkt</sc:typeName>
+         <sc:typeName>GM_Point</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>href</sc:name>

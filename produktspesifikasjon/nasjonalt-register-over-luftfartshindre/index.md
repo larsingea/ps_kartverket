@@ -19,7 +19,7 @@ NB! Luftfartshinder under 15 meter med registreringsdato etter 3.7.2025 inngår 
 
 - **Tidsperiode**:
   - **Fra**: 2014-04-01
-  - **Til**: 2026-08-16
+  - **Til**: 2026-09-01
 
 ## Om spesifikasjonen
 Denne produktspesifikasjonen beskriver datasettet og hvordan det skal forstås av brukere som skal lese, produsere eller utveksle data.
@@ -35,7 +35,7 @@ Første versjon.
 
 > **Denne versjonen av produktspesifikasjonen:** <br>
 > **Opprettet dato:** 2014-04-01<br>
-> **Endret dato:** 2026-08-16<br>
+> **Endret dato:** 2026-09-01<br>
 > **Språk:** nor<br>
 > **Kontaktinformasjon:** Kartverket, [kundesenter@kartverket.no](mailto:kundesenter@kartverket.no)
 
@@ -154,9 +154,15 @@ Egnet til bruk i elektroniske kart- og varslingssystemer i fly og helikoptre. Si
 | Tjeneste | Endepunkt | Type | Format | Leveranseenheter |
 | --- | --- | --- | --- | --- |
 | Geonorge nedlastning | [Lenke](https://nedlasting.geonorge.no/api/capabilities/) | GEONORGE:DOWNLOAD | FGDB, GML, PostGIS | fylkesvis, landsfiler |
+| Atom Feed | [Lenke](http://nedlasting.geonorge.no/geonorge/ATOM-feeds/Luftfartshindre_AtomFeedFGDB.xml) | W3C:AtomFeed | FGDB | fylkesvis, landsfiler |
 | Atom Feed | [Lenke](http://nedlasting.geonorge.no/geonorge/ATOM-feeds/Luftfartshindre_AtomFeedGML.xml) | W3C:AtomFeed | GML | fylkesvis, landsfiler |
 | Atom Feed | [Lenke](http://nedlasting.geonorge.no/geonorge/ATOM-feeds/Luftfartshindre_AtomFeedPostGIS.xml) | W3C:AtomFeed | PostGIS | fylkesvis, landsfiler |
-| UTGÅTT - Nasjonalt register over luftfartshindre WMS |  | WMS-tjeneste | png |  |
+| GeoPackage: filleveranse | [Lenke](https://raw.githubusercontent.com/larsingea/ps_kartverket/main/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/filleveranse/filleveranse.gpkg) | Nedlasting | GPKG |  |
+| GeoPackage: ny-datakilde | [Lenke](https://raw.githubusercontent.com/larsingea/ps_kartverket/main/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/ny-datakilde/ny-datakilde.gpkg) | Nedlasting | GPKG |  |
+| GML/XSD-skjema: filleveranse | [Lenke](https://raw.githubusercontent.com/larsingea/ps_kartverket/main/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/filleveranse/schema/xsd/INPUT/filleveranse.xsd) | Nedlasting | XSD |  |
+| GML/XSD-skjema: ny-datakilde | [Lenke](https://raw.githubusercontent.com/larsingea/ps_kartverket/main/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/ny-datakilde/schema/xsd/INPUT/ny-datakilde.xsd) | Nedlasting | XSD |  |
+| JSON Schema: filleveranse | [Lenke](https://raw.githubusercontent.com/larsingea/ps_kartverket/main/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/filleveranse/schema/jsonschema/INPUT/filleveranse/filleveranse.json) | Nedlasting | JSON Schema |  |
+| JSON Schema: ny-datakilde | [Lenke](https://raw.githubusercontent.com/larsingea/ps_kartverket/main/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/ny-datakilde/schema/jsonschema/INPUT/nydatakilde/ny-datakilde.json) | Nedlasting | JSON Schema |  |
 
 ## Metadata
 
@@ -164,7 +170,7 @@ Egnet til bruk i elektroniske kart- og varslingssystemer i fly og helikoptre. Si
 
 **Metadatastandardversjon**: 2003
 
-**Metadatadato**: 2026-08-17
+**Metadatadato**: 2026-09-02
 
 **språk**: nor
 
@@ -186,3 +192,6 @@ Egnet til bruk i elektroniske kart- og varslingssystemer i fly og helikoptre. Si
 ## Tilleggsinformasjon
 
 Trenger du hjelp til å laste ned og ta i bruk Kartverkets data og tjenester? På kartverket.no finner du tips og veiledning.
+
+- **Produktark:** [https://register.geonorge.no/register/versjoner/produktark/kartverket/nasjonalt-register-over-luftfartshindre-nrl](https://register.geonorge.no/register/versjoner/produktark/kartverket/nasjonalt-register-over-luftfartshindre-nrl)
+- **Produktside:** [https://kartverket.no/api-og-data/samferdselsdata](https://kartverket.no/api-og-data/samferdselsdata)

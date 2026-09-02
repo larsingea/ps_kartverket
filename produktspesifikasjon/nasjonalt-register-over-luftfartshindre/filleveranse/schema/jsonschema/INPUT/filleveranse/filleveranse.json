@@ -463,6 +463,16 @@
         {
           "type": "object",
           "properties": {
+            "geometry": {
+              "oneOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "$ref": "https://geojson.org/schema/LineString.json"
+                }
+              ]
+            },
             "identifikasjonLinje": {
               "$ref": "#/definitions/IdentifikasjonLinje"
             },
@@ -498,6 +508,16 @@
         {
           "type": "object",
           "properties": {
+            "geometry": {
+              "oneOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "$ref": "https://geojson.org/schema/Point.json"
+                }
+              ]
+            },
             "href": {
               "$ref": "#/definitions/Høydereferanse"
             },
@@ -536,6 +556,16 @@
         {
           "type": "object",
           "properties": {
+            "geometry": {
+              "oneOf": [
+                {
+                  "type": "null"
+                },
+                {
+                  "$ref": "https://geojson.org/schema/Point.json"
+                }
+              ]
+            },
             "href": {
               "$ref": "#/definitions/Høydereferanse"
             },
