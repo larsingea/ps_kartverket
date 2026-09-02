@@ -1,0 +1,1653 @@
+[
+  {
+    "name": "SOSI_Objekt_Linjer_Samferdsel",
+    "description": "abstrakt objekt som bærer en rekke egenskaper som er til felles for flere objekttyper i underpakke Samferdsel i dette applikasjonsskjemaet",
+    "attributes": [
+      {
+        "name": "medium",
+        "type": "Medium",
+        "description": "objektets beliggenhet i forhold til jordoverflaten\n\nEksempel:\nPå bro, i tunnel, inne i et bygningsmessig anlegg, etc.",
+        "cardinality": "0..1",
+        "taggedValues": {
+          "SOSI_navn": "MEDIUM"
+        }
+      },
+      {
+        "name": "datafangstdato",
+        "type": "DateTime",
+        "description": "dato når objektet siste gang ble registrert/observert/målt i terrenget\n\nMerknad: I mange tilfeller er denne forskjellig fra Oppdateringsdato, da registrerte endringer kan bufres i en kortere eller lengre periode før disse legges inn i databasen.\nVed førstegangsregistrering settes Datafangstdato lik førsteDatafangstdato.",
+        "cardinality": "1",
+        "taggedValues": {
+          "SOSI_navn": "DATAFANGSTDATO"
+        }
+      },
+      {
+        "name": "oppdateringsdato",
+        "type": "DateTime",
+        "description": "dato for siste endring på objektetdataene\n\nMerknad:\nOppdateringsdato kan være forskjellig fra Datafangsdato ved at data som er registrert kan bufres en kortere eller lengre periode før disse legges inn i datasystemet (databasen).\n\n-Definition-\nDate and time at which this version of the spatial object was inserted or changed in the spatial data set.",
+        "cardinality": "1",
+        "taggedValues": {
+          "SOSI_navn": "OPPDATERINGSDATO"
+        }
+      },
+      {
+        "name": "kvalitet",
+        "type": "Posisjonskvalitet",
+        "description": "beskrivelse av kvaliteten på stedfestingen\n\nMerknad: Denne er identisk med ..KVALITET i tidligere versjoner av SOSI.",
+        "cardinality": "1",
+        "taggedValues": {
+          "SOSI_navn": "KVALITET"
+        },
+        "attributes": [
+          {
+            "name": "målemetode",
+            "type": "Målemetode",
+            "description": "metode for måling i grunnriss (x,y), og høyde (z) når metoden er den samme som ved måling i grunnriss",
+            "cardinality": "1",
+            "valueDomain": {
+              "kind": "codelist",
+              "listedValues": [
+                {
+                  "value": "Terrengmålt: Uspesifisert måleinstrument",
+                  "label": "Målt i terrenget , uspesifisert metode/måleinstrument"
+                },
+                {
+                  "value": "Terrengmålt: Totalstasjon",
+                  "label": "Målt i terrenget med totalstasjon"
+                },
+                {
+                  "value": "Terrengmålt: Teodolitt og el avstandsmåler",
+                  "label": "Målt i terrenget med teodolitt og elektronisk avstandsmåler"
+                },
+                {
+                  "value": "Terrengmålt: Teodolitt og målebånd",
+                  "label": "Målt i terrenget med teodolitt og målebånd"
+                },
+                {
+                  "value": "Terrengmålt: Ortogonalmetoden",
+                  "label": "Målt i terrenget, ortogonalmetoden"
+                },
+                {
+                  "value": "Utmål",
+                  "label": "Punkt beregnet på bakgrunn av måling mot andre punkter, slik som to avstander eller avstand og retning\n\n-- Definition --\nPoint calculated on the basis of other items, such as two distances or distance + direction."
+                },
+                {
+                  "value": "Tatt fra plan",
+                  "label": "Tatt fra plan eller godkjent tiltak"
+                },
+                {
+                  "value": "Annet  (denne har ingen mening, bør fjernes?)",
+                  "label": "Annet"
+                },
+                {
+                  "value": "Stereoinstrument",
+                  "label": "Målt i stereoinstrument, uspesifisert instrument"
+                },
+                {
+                  "value": "Aerotriangulert",
+                  "label": "Punkt beregnet ved aerotriangulering\n\n-- Definition --\nPoint calculated by aerotriangulation"
+                },
+                {
+                  "value": "Stereoinstrument: Analytisk plotter",
+                  "label": "Målt i stereoinstrument, analytisk plotter"
+                },
+                {
+                  "value": "Stereoinstrument: Autograf",
+                  "label": "Målt i stereoinstrument, autograf, analogt instrument"
+                },
+                {
+                  "value": "Stereoinstrument: Digitalt",
+                  "label": "Målt i stereoinstrument, digitalt instrument"
+                },
+                {
+                  "value": "Scannet fra kart",
+                  "label": "Geometri overført fra kart maskinelt ved hjelp av skanner, uspesifisert kartmedium"
+                },
+                {
+                  "value": "Skannet fra kart: Blyantoriginal",
+                  "label": "Geometri overført fra kart maskinelt ved hjelp av skanner. Kartmedium er blyantoriginal"
+                },
+                {
+                  "value": "Skannet fra kart: Rissefolie",
+                  "label": "Geometri overført fra kart maskinelt ved hjelp av skanner. Kartmedium er rissefolie"
+                },
+                {
+                  "value": "Skannet fra kart: Transparent folie, god kvalitet",
+                  "label": "Geometri overført fra kart maskinelt ved hjelp av skanner. Kartmedium er transparent folie av  god kvalitet."
+                },
+                {
+                  "value": "Skannet fra kart: Transparent foile, mindre god kvalitet",
+                  "label": "Geometri overført fra kart maskinelt ved hjelp av skanner. Kartmedium er tranparent foile av mindre god kvalitet"
+                },
+                {
+                  "value": "Skannet fra kart: Papirkopi",
+                  "label": "Geometri overført fra kart maskinelt ved hjelp av skanner. Kartmedium er papirkopi."
+                },
+                {
+                  "value": "Flybåren laserscanner",
+                  "label": "Målt med laserskanner fra fly"
+                },
+                {
+                  "value": "Bilbåren laser",
+                  "label": "Målt med laserskanner plassert i kjøretøy"
+                },
+                {
+                  "value": "Lineær referanse",
+                  "label": "brukes for objekter som er stedfestet med lineær referanse, enten disse leveres med stedfesting kun som lineære referanser, eller med koordinatgeometri avledet fra lineære referanser"
+                },
+                {
+                  "value": "Digitaliseringbord: Ortofoto eller flybilde",
+                  "label": "Geometri overført fra ortofoto eller flybilde ved hjelp av manuell registrering på et digitaliseringsbord, uspesifisert bildemedium"
+                },
+                {
+                  "value": "Digitaliseringbord: Ortofoto, film",
+                  "label": "Geometri overført fra ortofoto ved hjelp av manuell registrering på et digitaliseringsbord. Bildemedium er film"
+                },
+                {
+                  "value": "Digitaliseringbord: Ortofoto, fotokopi",
+                  "label": "Geometri overført fra ortofoto ved hjelp av manuell registrering på et digitaliseringsbord. Bildemedium er fotokopi"
+                },
+                {
+                  "value": "Digitaliseringbord: Flybilde, film",
+                  "label": "Geometri overført fra flybilde ved hjelp av manuell registrering på et digitaliseringsbord. Bildemedium er film"
+                },
+                {
+                  "value": "Digitaliseringbord: Flybilde, fotokopi",
+                  "label": "Geometri overført fra flybilde ved hjelp av manuell registrering på et digitaliseringsbord. Bildemedium er fotokopi"
+                },
+                {
+                  "value": "Digitalisert på skjerm fra ortofoto",
+                  "label": "Geometri overført fra ortofoto ved hjelp av manuell registrering på skjerm"
+                },
+                {
+                  "value": "Digitalisert på skjerm fra satelittbilde",
+                  "label": "Geometri overført fra satelittbilde ved hjelp av manuell registrering på skjerm"
+                },
+                {
+                  "value": "Digitalisert på skjerm fra andre digitale rasterdata",
+                  "label": "Digitalisert på skjerm fra andre digitale rasterdata"
+                },
+                {
+                  "value": "Digitalisert på skjerm fra tolkning av seismikk",
+                  "label": "Digitalisert på skjerm fra tolkning av seismikk"
+                },
+                {
+                  "value": "Vektorisering av laserdata",
+                  "label": "Vektorisering fra laserdata, brukes også der vektoriseringen støttes av ortofoto"
+                },
+                {
+                  "value": "Digitaliseringsbord: Kart",
+                  "label": "Geometri overført fra kart ved hjelp av manuell registrering på et digitaliseringsbord, medium uspesifisert"
+                },
+                {
+                  "value": "Digitaliseringsbord: Kart, blyantoriginal",
+                  "label": "Geometri overført fra kart ved hjelp av manuell registrering på et digitaliseringsbord. Kartmedium er blyantoriginal"
+                },
+                {
+                  "value": "Digitaliseringsbord: Kart, rissefoile",
+                  "label": "Geometri overført fra kart ved hjelp av manuell registrering på et digitaliseringsbord. Kartmedium er rissefolie"
+                },
+                {
+                  "value": "Digitaliseringsbord: Kart, transparent foile, god kvalitet",
+                  "label": "Geometri overført fra kart ved hjelp av manuell registrering på et digitaliseringsbord. Kartmedium er transparent folie av god kvalitet, samkopi"
+                },
+                {
+                  "value": "Digitaliseringsbord: Kart, transparent foile, mindre god kvalitet",
+                  "label": "Geometri overført fra kart ved hjelp av manuell registrering på et digitaliseringsbord. Kartmedium er transparent folie av mindre god kvalitet, samkopi"
+                },
+                {
+                  "value": "Digitaliseringsbord: Kart, papirkopi",
+                  "label": "Geometri overført fra kart ved hjelp av manuell registrering på et digitaliseringsbord. Kartmedium er papirkopi"
+                },
+                {
+                  "value": "Digitalisert på skjerm fra skannet kart",
+                  "label": "Geometri overført fra kart ved hjelp av manuell registrering på skjerm, medium skannet kart (raster), samkopi"
+                },
+                {
+                  "value": "Genererte data (interpolasjon)",
+                  "label": "Genererte data, interpolasjonsmetode. Ikke nærmere spesifisert"
+                },
+                {
+                  "value": "Genererte data (interpolasjon): Terrengmodell",
+                  "label": "Genererte data, interpolasjonsmetode, fra terrengmodell"
+                },
+                {
+                  "value": "Genererte data (interpolasjon): Vektet middel",
+                  "label": "Genererte data, interpolasjonsmetode, vektet middel"
+                },
+                {
+                  "value": "Genererte data: Fra annen geometri",
+                  "label": "Genererte data: Sirkelgeometri, korridor eller annen geometri generert ut fra f.eks et punkt eller en linje (f.eks midtlinje veg)"
+                },
+                {
+                  "value": "Genererte data: Generalisering",
+                  "label": "Genererte data: Generalisering"
+                },
+                {
+                  "value": "Genererte data: Sentralpunkt",
+                  "label": "Genererte data: Sentralpunkt"
+                },
+                {
+                  "value": "Genererte data: Sammenknytningspunkt, randpunkt",
+                  "label": "Genererte data: Sammenknytningspunkt (f.eks mellom ulike kartlegginger), randpunkt (f.eks mellom ulike kilder til kart)"
+                },
+                {
+                  "value": "Koordinater hentet fra GAB",
+                  "label": "Koordinater hentet fra GAB, forløperen til registerdelen av matrikkelen"
+                },
+                {
+                  "value": "Koordinater hentet fra JREG",
+                  "label": "Koordinater hentet fra JREG, jordregisteret"
+                },
+                {
+                  "value": "Beregnet",
+                  "label": "Beregnet, uspesifisert hvordan"
+                },
+                {
+                  "value": "Spesielle metoder",
+                  "label": "Spesielle metoder, uspesifisert"
+                },
+                {
+                  "value": "Spesielle metoder: Målt med stikkstang",
+                  "label": "Spesielle metoder: Målt med stikkstang"
+                },
+                {
+                  "value": "Spesielle metoder: Målt med waterstang",
+                  "label": "Spesielle metoder: Målt med waterstang"
+                },
+                {
+                  "value": "Spesielle metoder: Målt med målehjul",
+                  "label": "Spesielle metoder: Målt med målehjul"
+                },
+                {
+                  "value": "Spesielle metoder: Målt med stigningsmåler",
+                  "label": "Spesielle metoder: Målt med stigningsmåler"
+                },
+                {
+                  "value": "Fastsatt punkt",
+                  "label": "Punkt fastsatt ut fra et grunnlag (kart, bilde), f.eks ved partenes enighet ved en oppmålingsforretning"
+                },
+                {
+                  "value": "Fastsatt ved dom eller kongelig resolusjon",
+                  "label": "Geometri fastsatt ved dom, lov, traktat eller kongelig resolusjon"
+                },
+                {
+                  "value": "Annet (spesifiseres i filhode) ( bør vel fjernes, blir borte ved overføring mellom systemer)",
+                  "label": "Annet (spesifiseres i filhode)"
+                },
+                {
+                  "value": "Frihåndstegning",
+                  "label": "Digitalisert ut fra frihåndstegning.  Frihåndstegning er basert på svært grovt grunnlag eller ikke noe grunnlag"
+                },
+                {
+                  "value": "Frihåndstegning på kart",
+                  "label": "Digitalisert fra krokering på kart, dvs grovt skissert på kart"
+                },
+                {
+                  "value": "Frihåndstegning på skjerm",
+                  "label": "Digitalisert ut fra frihåndstegning (direkte på skjerm). Frihåndstegning er basert på svært grovt grunnlag eller ikke noe grunnlag"
+                },
+                {
+                  "value": "Treghetsstedfesting",
+                  "label": "Treghetsstedfesting"
+                },
+                {
+                  "value": "GNSS: Kodemåling, relative målinger",
+                  "label": "Innmålt med satellittbaserte systemer for navigasjon og posisjonering med global dekning (f.eks GPS, GLONASS, GALILEO): Kodemåling, relative målinger."
+                },
+                {
+                  "value": "GNSS: Kodemåling, enkle målinger",
+                  "label": "Innmålt med satellittbaserte systemer for navigasjon og posisjonering med global dekning (f.eks GPS, GLONASS, GALILEO): Kodemåling, enkle målinger."
+                },
+                {
+                  "value": "GNSS: Fasemåling, statisk måling",
+                  "label": "Innmålt med satellittbaserte systemer for navigasjon og posisjonering med global dekning (f.eks GPS, GLONASS, GALILEO): Fasemåling statisk måling."
+                },
+                {
+                  "value": "GNSS: Fasemåling, andre metoder",
+                  "label": "Innmålt med satellittbaserte systemer for navigasjon og posisjonering med global dekning (f.eks GPS, GLONASS, GALILEO): Fasemåling andre metoder."
+                },
+                {
+                  "value": "Kombinasjon av GNSS/Treghet",
+                  "label": "Kombinasjon av GPS/Treghet"
+                },
+                {
+                  "value": "GNSS: Fasemåling RTK",
+                  "label": "Innmålt med satellittbaserte systemer for navigasjon og posisjonering med global dekning (f.eks GPS, GLONASS, GALILEO).: Fasemåling RTK (realtids kinematisk måling)"
+                },
+                {
+                  "value": "GNSS: Fasemåling , float-løsning",
+                  "label": "Innmålt med satellittbaserte systemer for navigasjon og posisjonering med global dekning (f.eks GPS, GLONASS, GALILEO). Fasemåling float-løsning"
+                },
+                {
+                  "value": "Ukjent målemetode",
+                  "label": "Målemetode er ukjent"
+                }
+              ],
+              "definition": "metode som ligger til grunn for registrering av posisjon\n\n\n-- Definition - -\nmethod on which registration of position is based"
+            }
+          },
+          {
+            "name": "nøyaktighet",
+            "type": "Nøyaktighet",
+            "description": "punktstandardavviket i grunnriss for punkter samt tverravvik for linjer\n\nMerknad:\nOppgitt i cm",
+            "cardinality": "1",
+            "valueDomain": {
+              "kind": "codelist",
+              "listedValues": [
+                {
+                  "value": "100",
+                  "label": "100"
+                },
+                {
+                  "value": "200",
+                  "label": "200"
+                },
+                {
+                  "value": "500",
+                  "label": "500"
+                },
+                {
+                  "value": "1000",
+                  "label": "1000"
+                },
+                {
+                  "value": "1500",
+                  "label": "1500"
+                },
+                {
+                  "value": "2000",
+                  "label": "2000"
+                },
+                {
+                  "value": "2500",
+                  "label": "2500"
+                },
+                {
+                  "value": "3000",
+                  "label": "3000"
+                },
+                {
+                  "value": "4000",
+                  "label": "4000"
+                },
+                {
+                  "value": "5000",
+                  "label": "5000"
+                }
+              ],
+              "definition": "punktstandardavviket i grunnriss for punkter samt tverravvik for linjer\n\nMerknad:\nOppgitt i cm",
+              "asDictionary": "true",
+              "codeList": "http://skjema.geonorge.no/legg_inn_riktig_url"
+            },
+            "taggedValues": {
+              "SOSI_navn": "NØYAKTIGHET"
+            }
+          }
+        ]
+      }
+    ],
+    "abstract": true,
+    "relationships": {
+      "inheritance": [],
+      "associations": []
+    },
+    "package": "N50_Kartdata_20150901"
+  },
+  {
+    "name": "SOSI_Objekt_Kombinasjon_Ulike_Geometrityper",
+    "description": "abstrakt objekt som bærer en rekke egenskaper som er til felles for alle objekttyper med en kombinasjon av punkt- og flategeometri eller linje- og flategeometri i dette applikasjonsskjemaet",
+    "attributes": [
+      {
+        "name": "datafangstdato",
+        "type": "DateTime",
+        "description": "dato når objektet siste gang ble registrert/observert/målt i terrenget\n\nMerknad: I mange tilfeller er denne forskjellig fra Oppdateringsdato, da registrerte endringer kan bufres i en kortere eller lengre periode før disse legges inn i databasen.\nVed førstegangsregistrering settes Datafangstdato lik førsteDatafangstdato.",
+        "cardinality": "0..1",
+        "taggedValues": {
+          "SOSI_navn": "DATAFANGSTDATO"
+        }
+      },
+      {
+        "name": "oppdateringsdato",
+        "type": "DateTime",
+        "description": "dato for siste endring på objektetdataene\n\nMerknad:\nOppdateringsdato kan være forskjellig fra Datafangsdato ved at data som er registrert kan bufres en kortere eller lengre periode før disse legges inn i datasystemet (databasen).\n\n-Definition-\nDate and time at which this version of the spatial object was inserted or changed in the spatial data set.",
+        "cardinality": "1",
+        "taggedValues": {
+          "SOSI_navn": "OPPDATERINGSDATO"
+        }
+      },
+      {
+        "name": "kvalitet",
+        "type": "Posisjonskvalitet",
+        "description": "beskrivelse av kvaliteten på stedfestingen\n\nMerknad: Denne er identisk med ..KVALITET i tidligere versjoner av SOSI.",
+        "cardinality": "0..1",
+        "attributes": [
+          {
+            "name": "målemetode",
+            "type": "Målemetode",
+            "description": "metode for måling i grunnriss (x,y), og høyde (z) når metoden er den samme som ved måling i grunnriss",
+            "cardinality": "1",
+            "valueDomain": {
+              "kind": "codelist",
+              "listedValues": [
+                {
+                  "value": "Terrengmålt: Uspesifisert måleinstrument",
+                  "label": "Målt i terrenget , uspesifisert metode/måleinstrument"
+                },
+                {
+                  "value": "Terrengmålt: Totalstasjon",
+                  "label": "Målt i terrenget med totalstasjon"
+                },
+                {
+                  "value": "Terrengmålt: Teodolitt og el avstandsmåler",
+                  "label": "Målt i terrenget med teodolitt og elektronisk avstandsmåler"
+                },
+                {
+                  "value": "Terrengmålt: Teodolitt og målebånd",
+                  "label": "Målt i terrenget med teodolitt og målebånd"
+                },
+                {
+                  "value": "Terrengmålt: Ortogonalmetoden",
+                  "label": "Målt i terrenget, ortogonalmetoden"
+                },
+                {
+                  "value": "Utmål",
+                  "label": "Punkt beregnet på bakgrunn av måling mot andre punkter, slik som to avstander eller avstand og retning\n\n-- Definition --\nPoint calculated on the basis of other items, such as two distances or distance + direction."
+                },
+                {
+                  "value": "Tatt fra plan",
+                  "label": "Tatt fra plan eller godkjent tiltak"
+                },
+                {
+                  "value": "Annet  (denne har ingen mening, bør fjernes?)",
+                  "label": "Annet"
+                },
+                {
+                  "value": "Stereoinstrument",
+                  "label": "Målt i stereoinstrument, uspesifisert instrument"
+                },
+                {
+                  "value": "Aerotriangulert",
+                  "label": "Punkt beregnet ved aerotriangulering\n\n-- Definition --\nPoint calculated by aerotriangulation"
+                },
+                {
+                  "value": "Stereoinstrument: Analytisk plotter",
+                  "label": "Målt i stereoinstrument, analytisk plotter"
+                },
+                {
+                  "value": "Stereoinstrument: Autograf",
+                  "label": "Målt i stereoinstrument, autograf, analogt instrument"
+                },
+                {
+                  "value": "Stereoinstrument: Digitalt",
+                  "label": "Målt i stereoinstrument, digitalt instrument"
+                },
+                {
+                  "value": "Scannet fra kart",
+                  "label": "Geometri overført fra kart maskinelt ved hjelp av skanner, uspesifisert kartmedium"
+                },
+                {
+                  "value": "Skannet fra kart: Blyantoriginal",
+                  "label": "Geometri overført fra kart maskinelt ved hjelp av skanner. Kartmedium er blyantoriginal"
+                },
+                {
+                  "value": "Skannet fra kart: Rissefolie",
+                  "label": "Geometri overført fra kart maskinelt ved hjelp av skanner. Kartmedium er rissefolie"
+                },
+                {
+                  "value": "Skannet fra kart: Transparent folie, god kvalitet",
+                  "label": "Geometri overført fra kart maskinelt ved hjelp av skanner. Kartmedium er transparent folie av  god kvalitet."
+                },
+                {
+                  "value": "Skannet fra kart: Transparent foile, mindre god kvalitet",
+                  "label": "Geometri overført fra kart maskinelt ved hjelp av skanner. Kartmedium er tranparent foile av mindre god kvalitet"
+                },
+                {
+                  "value": "Skannet fra kart: Papirkopi",
+                  "label": "Geometri overført fra kart maskinelt ved hjelp av skanner. Kartmedium er papirkopi."
+                },
+                {
+                  "value": "Flybåren laserscanner",
+                  "label": "Målt med laserskanner fra fly"
+                },
+                {
+                  "value": "Bilbåren laser",
+                  "label": "Målt med laserskanner plassert i kjøretøy"
+                },
+                {
+                  "value": "Lineær referanse",
+                  "label": "brukes for objekter som er stedfestet med lineær referanse, enten disse leveres med stedfesting kun som lineære referanser, eller med koordinatgeometri avledet fra lineære referanser"
+                },
+                {
+                  "value": "Digitaliseringbord: Ortofoto eller flybilde",
+                  "label": "Geometri overført fra ortofoto eller flybilde ved hjelp av manuell registrering på et digitaliseringsbord, uspesifisert bildemedium"
+                },
+                {
+                  "value": "Digitaliseringbord: Ortofoto, film",
+                  "label": "Geometri overført fra ortofoto ved hjelp av manuell registrering på et digitaliseringsbord. Bildemedium er film"
+                },
+                {
+                  "value": "Digitaliseringbord: Ortofoto, fotokopi",
+                  "label": "Geometri overført fra ortofoto ved hjelp av manuell registrering på et digitaliseringsbord. Bildemedium er fotokopi"
+                },
+                {
+                  "value": "Digitaliseringbord: Flybilde, film",
+                  "label": "Geometri overført fra flybilde ved hjelp av manuell registrering på et digitaliseringsbord. Bildemedium er film"
+                },
+                {
+                  "value": "Digitaliseringbord: Flybilde, fotokopi",
+                  "label": "Geometri overført fra flybilde ved hjelp av manuell registrering på et digitaliseringsbord. Bildemedium er fotokopi"
+                },
+                {
+                  "value": "Digitalisert på skjerm fra ortofoto",
+                  "label": "Geometri overført fra ortofoto ved hjelp av manuell registrering på skjerm"
+                },
+                {
+                  "value": "Digitalisert på skjerm fra satelittbilde",
+                  "label": "Geometri overført fra satelittbilde ved hjelp av manuell registrering på skjerm"
+                },
+                {
+                  "value": "Digitalisert på skjerm fra andre digitale rasterdata",
+                  "label": "Digitalisert på skjerm fra andre digitale rasterdata"
+                },
+                {
+                  "value": "Digitalisert på skjerm fra tolkning av seismikk",
+                  "label": "Digitalisert på skjerm fra tolkning av seismikk"
+                },
+                {
+                  "value": "Vektorisering av laserdata",
+                  "label": "Vektorisering fra laserdata, brukes også der vektoriseringen støttes av ortofoto"
+                },
+                {
+                  "value": "Digitaliseringsbord: Kart",
+                  "label": "Geometri overført fra kart ved hjelp av manuell registrering på et digitaliseringsbord, medium uspesifisert"
+                },
+                {
+                  "value": "Digitaliseringsbord: Kart, blyantoriginal",
+                  "label": "Geometri overført fra kart ved hjelp av manuell registrering på et digitaliseringsbord. Kartmedium er blyantoriginal"
+                },
+                {
+                  "value": "Digitaliseringsbord: Kart, rissefoile",
+                  "label": "Geometri overført fra kart ved hjelp av manuell registrering på et digitaliseringsbord. Kartmedium er rissefolie"
+                },
+                {
+                  "value": "Digitaliseringsbord: Kart, transparent foile, god kvalitet",
+                  "label": "Geometri overført fra kart ved hjelp av manuell registrering på et digitaliseringsbord. Kartmedium er transparent folie av god kvalitet, samkopi"
+                },
+                {
+                  "value": "Digitaliseringsbord: Kart, transparent foile, mindre god kvalitet",
+                  "label": "Geometri overført fra kart ved hjelp av manuell registrering på et digitaliseringsbord. Kartmedium er transparent folie av mindre god kvalitet, samkopi"
+                },
+                {
+                  "value": "Digitaliseringsbord: Kart, papirkopi",
+                  "label": "Geometri overført fra kart ved hjelp av manuell registrering på et digitaliseringsbord. Kartmedium er papirkopi"
+                },
+                {
+                  "value": "Digitalisert på skjerm fra skannet kart",
+                  "label": "Geometri overført fra kart ved hjelp av manuell registrering på skjerm, medium skannet kart (raster), samkopi"
+                },
+                {
+                  "value": "Genererte data (interpolasjon)",
+                  "label": "Genererte data, interpolasjonsmetode. Ikke nærmere spesifisert"
+                },
+                {
+                  "value": "Genererte data (interpolasjon): Terrengmodell",
+                  "label": "Genererte data, interpolasjonsmetode, fra terrengmodell"
+                },
+                {
+                  "value": "Genererte data (interpolasjon): Vektet middel",
+                  "label": "Genererte data, interpolasjonsmetode, vektet middel"
+                },
+                {
+                  "value": "Genererte data: Fra annen geometri",
+                  "label": "Genererte data: Sirkelgeometri, korridor eller annen geometri generert ut fra f.eks et punkt eller en linje (f.eks midtlinje veg)"
+                },
+                {
+                  "value": "Genererte data: Generalisering",
+                  "label": "Genererte data: Generalisering"
+                },
+                {
+                  "value": "Genererte data: Sentralpunkt",
+                  "label": "Genererte data: Sentralpunkt"
+                },
+                {
+                  "value": "Genererte data: Sammenknytningspunkt, randpunkt",
+                  "label": "Genererte data: Sammenknytningspunkt (f.eks mellom ulike kartlegginger), randpunkt (f.eks mellom ulike kilder til kart)"
+                },
+                {
+                  "value": "Koordinater hentet fra GAB",
+                  "label": "Koordinater hentet fra GAB, forløperen til registerdelen av matrikkelen"
+                },
+                {
+                  "value": "Koordinater hentet fra JREG",
+                  "label": "Koordinater hentet fra JREG, jordregisteret"
+                },
+                {
+                  "value": "Beregnet",
+                  "label": "Beregnet, uspesifisert hvordan"
+                },
+                {
+                  "value": "Spesielle metoder",
+                  "label": "Spesielle metoder, uspesifisert"
+                },
+                {
+                  "value": "Spesielle metoder: Målt med stikkstang",
+                  "label": "Spesielle metoder: Målt med stikkstang"
+                },
+                {
+                  "value": "Spesielle metoder: Målt med waterstang",
+                  "label": "Spesielle metoder: Målt med waterstang"
+                },
+                {
+                  "value": "Spesielle metoder: Målt med målehjul",
+                  "label": "Spesielle metoder: Målt med målehjul"
+                },
+                {
+                  "value": "Spesielle metoder: Målt med stigningsmåler",
+                  "label": "Spesielle metoder: Målt med stigningsmåler"
+                },
+                {
+                  "value": "Fastsatt punkt",
+                  "label": "Punkt fastsatt ut fra et grunnlag (kart, bilde), f.eks ved partenes enighet ved en oppmålingsforretning"
+                },
+                {
+                  "value": "Fastsatt ved dom eller kongelig resolusjon",
+                  "label": "Geometri fastsatt ved dom, lov, traktat eller kongelig resolusjon"
+                },
+                {
+                  "value": "Annet (spesifiseres i filhode) ( bør vel fjernes, blir borte ved overføring mellom systemer)",
+                  "label": "Annet (spesifiseres i filhode)"
+                },
+                {
+                  "value": "Frihåndstegning",
+                  "label": "Digitalisert ut fra frihåndstegning.  Frihåndstegning er basert på svært grovt grunnlag eller ikke noe grunnlag"
+                },
+                {
+                  "value": "Frihåndstegning på kart",
+                  "label": "Digitalisert fra krokering på kart, dvs grovt skissert på kart"
+                },
+                {
+                  "value": "Frihåndstegning på skjerm",
+                  "label": "Digitalisert ut fra frihåndstegning (direkte på skjerm). Frihåndstegning er basert på svært grovt grunnlag eller ikke noe grunnlag"
+                },
+                {
+                  "value": "Treghetsstedfesting",
+                  "label": "Treghetsstedfesting"
+                },
+                {
+                  "value": "GNSS: Kodemåling, relative målinger",
+                  "label": "Innmålt med satellittbaserte systemer for navigasjon og posisjonering med global dekning (f.eks GPS, GLONASS, GALILEO): Kodemåling, relative målinger."
+                },
+                {
+                  "value": "GNSS: Kodemåling, enkle målinger",
+                  "label": "Innmålt med satellittbaserte systemer for navigasjon og posisjonering med global dekning (f.eks GPS, GLONASS, GALILEO): Kodemåling, enkle målinger."
+                },
+                {
+                  "value": "GNSS: Fasemåling, statisk måling",
+                  "label": "Innmålt med satellittbaserte systemer for navigasjon og posisjonering med global dekning (f.eks GPS, GLONASS, GALILEO): Fasemåling statisk måling."
+                },
+                {
+                  "value": "GNSS: Fasemåling, andre metoder",
+                  "label": "Innmålt med satellittbaserte systemer for navigasjon og posisjonering med global dekning (f.eks GPS, GLONASS, GALILEO): Fasemåling andre metoder."
+                },
+                {
+                  "value": "Kombinasjon av GNSS/Treghet",
+                  "label": "Kombinasjon av GPS/Treghet"
+                },
+                {
+                  "value": "GNSS: Fasemåling RTK",
+                  "label": "Innmålt med satellittbaserte systemer for navigasjon og posisjonering med global dekning (f.eks GPS, GLONASS, GALILEO).: Fasemåling RTK (realtids kinematisk måling)"
+                },
+                {
+                  "value": "GNSS: Fasemåling , float-løsning",
+                  "label": "Innmålt med satellittbaserte systemer for navigasjon og posisjonering med global dekning (f.eks GPS, GLONASS, GALILEO). Fasemåling float-løsning"
+                },
+                {
+                  "value": "Ukjent målemetode",
+                  "label": "Målemetode er ukjent"
+                }
+              ],
+              "definition": "metode som ligger til grunn for registrering av posisjon\n\n\n-- Definition - -\nmethod on which registration of position is based"
+            }
+          },
+          {
+            "name": "nøyaktighet",
+            "type": "Nøyaktighet",
+            "description": "punktstandardavviket i grunnriss for punkter samt tverravvik for linjer\n\nMerknad:\nOppgitt i cm",
+            "cardinality": "1",
+            "valueDomain": {
+              "kind": "codelist",
+              "listedValues": [
+                {
+                  "value": "100",
+                  "label": "100"
+                },
+                {
+                  "value": "200",
+                  "label": "200"
+                },
+                {
+                  "value": "500",
+                  "label": "500"
+                },
+                {
+                  "value": "1000",
+                  "label": "1000"
+                },
+                {
+                  "value": "1500",
+                  "label": "1500"
+                },
+                {
+                  "value": "2000",
+                  "label": "2000"
+                },
+                {
+                  "value": "2500",
+                  "label": "2500"
+                },
+                {
+                  "value": "3000",
+                  "label": "3000"
+                },
+                {
+                  "value": "4000",
+                  "label": "4000"
+                },
+                {
+                  "value": "5000",
+                  "label": "5000"
+                }
+              ],
+              "definition": "punktstandardavviket i grunnriss for punkter samt tverravvik for linjer\n\nMerknad:\nOppgitt i cm",
+              "asDictionary": "true",
+              "codeList": "http://skjema.geonorge.no/legg_inn_riktig_url"
+            },
+            "taggedValues": {
+              "SOSI_navn": "NØYAKTIGHET"
+            }
+          }
+        ]
+      }
+    ],
+    "abstract": true,
+    "relationships": {
+      "inheritance": [],
+      "associations": [
+        {
+          "target": "KantUtsnitt",
+          "role": "kantUtsnitt",
+          "cardinality": "0..*"
+        }
+      ]
+    },
+    "package": "N50_Kartdata_20150901"
+  },
+  {
+    "name": "KantUtsnitt",
+    "description": "avgrensning av et utsnitt",
+    "attributes": [
+      {
+        "name": "grense",
+        "type": "Kurve",
+        "description": "forløp som følger overgang mellom ulike fenomener",
+        "cardinality": "1"
+      }
+    ],
+    "abstract": false,
+    "relationships": {
+      "inheritance": [
+        "SOSI_Objekt_Hjelpelinjer"
+      ],
+      "associations": []
+    },
+    "package": "N50_Kartdata_20150901"
+  },
+  {
+    "name": "SOSI_Objekt_PunkterOgLinjer_Høyde",
+    "description": "abstrakt objekt som bærer en rekke egenskaper som er til felles for flere objekttyper i underpakke Høyde i dette applikasjonsskjemaet",
+    "attributes": [
+      {
+        "name": "medium",
+        "type": "Medium",
+        "description": "objektets beliggenhet i forhold til jordoverflaten\n\nEksempel:\nPå bro, i tunnel, inne i et bygningsmessig anlegg, etc.",
+        "cardinality": "1",
+        "taggedValues": {
+          "SOSI_navn": "MEDIUM"
+        }
+      },
+      {
+        "name": "datafangstdato",
+        "type": "DateTime",
+        "description": "dato når objektet siste gang ble registrert/observert/målt i terrenget\n\nMerknad: I mange tilfeller er denne forskjellig fra Oppdateringsdato, da registrerte endringer kan bufres i en kortere eller lengre periode før disse legges inn i databasen.\nVed førstegangsregistrering settes Datafangstdato lik førsteDatafangstdato.",
+        "cardinality": "1",
+        "taggedValues": {
+          "SOSI_navn": "DATAFANGSTDATO"
+        }
+      },
+      {
+        "name": "oppdateringsdato",
+        "type": "DateTime",
+        "description": "dato for siste endring på objektetdataene\n\nMerknad:\nOppdateringsdato kan være forskjellig fra Datafangsdato ved at data som er registrert kan bufres en kortere eller lengre periode før disse legges inn i datasystemet (databasen).\n\n-Definition-\nDate and time at which this version of the spatial object was inserted or changed in the spatial data set.",
+        "cardinality": "1",
+        "taggedValues": {
+          "SOSI_navn": "OPPDATERINGSDATO"
+        }
+      },
+      {
+        "name": "kvalitet",
+        "type": "Posisjonskvalitet",
+        "description": "beskrivelse av kvaliteten på stedfestingen\n\nMerknad: Denne er identisk med ..KVALITET i tidligere versjoner av SOSI.",
+        "cardinality": "1",
+        "taggedValues": {
+          "SOSI_navn": "KVALITET"
+        },
+        "attributes": [
+          {
+            "name": "målemetode",
+            "type": "Målemetode",
+            "description": "metode for måling i grunnriss (x,y), og høyde (z) når metoden er den samme som ved måling i grunnriss",
+            "cardinality": "1",
+            "valueDomain": {
+              "kind": "codelist",
+              "listedValues": [
+                {
+                  "value": "Terrengmålt: Uspesifisert måleinstrument",
+                  "label": "Målt i terrenget , uspesifisert metode/måleinstrument"
+                },
+                {
+                  "value": "Terrengmålt: Totalstasjon",
+                  "label": "Målt i terrenget med totalstasjon"
+                },
+                {
+                  "value": "Terrengmålt: Teodolitt og el avstandsmåler",
+                  "label": "Målt i terrenget med teodolitt og elektronisk avstandsmåler"
+                },
+                {
+                  "value": "Terrengmålt: Teodolitt og målebånd",
+                  "label": "Målt i terrenget med teodolitt og målebånd"
+                },
+                {
+                  "value": "Terrengmålt: Ortogonalmetoden",
+                  "label": "Målt i terrenget, ortogonalmetoden"
+                },
+                {
+                  "value": "Utmål",
+                  "label": "Punkt beregnet på bakgrunn av måling mot andre punkter, slik som to avstander eller avstand og retning\n\n-- Definition --\nPoint calculated on the basis of other items, such as two distances or distance + direction."
+                },
+                {
+                  "value": "Tatt fra plan",
+                  "label": "Tatt fra plan eller godkjent tiltak"
+                },
+                {
+                  "value": "Annet  (denne har ingen mening, bør fjernes?)",
+                  "label": "Annet"
+                },
+                {
+                  "value": "Stereoinstrument",
+                  "label": "Målt i stereoinstrument, uspesifisert instrument"
+                },
+                {
+                  "value": "Aerotriangulert",
+                  "label": "Punkt beregnet ved aerotriangulering\n\n-- Definition --\nPoint calculated by aerotriangulation"
+                },
+                {
+                  "value": "Stereoinstrument: Analytisk plotter",
+                  "label": "Målt i stereoinstrument, analytisk plotter"
+                },
+                {
+                  "value": "Stereoinstrument: Autograf",
+                  "label": "Målt i stereoinstrument, autograf, analogt instrument"
+                },
+                {
+                  "value": "Stereoinstrument: Digitalt",
+                  "label": "Målt i stereoinstrument, digitalt instrument"
+                },
+                {
+                  "value": "Scannet fra kart",
+                  "label": "Geometri overført fra kart maskinelt ved hjelp av skanner, uspesifisert kartmedium"
+                },
+                {
+                  "value": "Skannet fra kart: Blyantoriginal",
+                  "label": "Geometri overført fra kart maskinelt ved hjelp av skanner. Kartmedium er blyantoriginal"
+                },
+                {
+                  "value": "Skannet fra kart: Rissefolie",
+                  "label": "Geometri overført fra kart maskinelt ved hjelp av skanner. Kartmedium er rissefolie"
+                },
+                {
+                  "value": "Skannet fra kart: Transparent folie, god kvalitet",
+                  "label": "Geometri overført fra kart maskinelt ved hjelp av skanner. Kartmedium er transparent folie av  god kvalitet."
+                },
+                {
+                  "value": "Skannet fra kart: Transparent foile, mindre god kvalitet",
+                  "label": "Geometri overført fra kart maskinelt ved hjelp av skanner. Kartmedium er tranparent foile av mindre god kvalitet"
+                },
+                {
+                  "value": "Skannet fra kart: Papirkopi",
+                  "label": "Geometri overført fra kart maskinelt ved hjelp av skanner. Kartmedium er papirkopi."
+                },
+                {
+                  "value": "Flybåren laserscanner",
+                  "label": "Målt med laserskanner fra fly"
+                },
+                {
+                  "value": "Bilbåren laser",
+                  "label": "Målt med laserskanner plassert i kjøretøy"
+                },
+                {
+                  "value": "Lineær referanse",
+                  "label": "brukes for objekter som er stedfestet med lineær referanse, enten disse leveres med stedfesting kun som lineære referanser, eller med koordinatgeometri avledet fra lineære referanser"
+                },
+                {
+                  "value": "Digitaliseringbord: Ortofoto eller flybilde",
+                  "label": "Geometri overført fra ortofoto eller flybilde ved hjelp av manuell registrering på et digitaliseringsbord, uspesifisert bildemedium"
+                },
+                {
+                  "value": "Digitaliseringbord: Ortofoto, film",
+                  "label": "Geometri overført fra ortofoto ved hjelp av manuell registrering på et digitaliseringsbord. Bildemedium er film"
+                },
+                {
+                  "value": "Digitaliseringbord: Ortofoto, fotokopi",
+                  "label": "Geometri overført fra ortofoto ved hjelp av manuell registrering på et digitaliseringsbord. Bildemedium er fotokopi"
+                },
+                {
+                  "value": "Digitaliseringbord: Flybilde, film",
+                  "label": "Geometri overført fra flybilde ved hjelp av manuell registrering på et digitaliseringsbord. Bildemedium er film"
+                },
+                {
+                  "value": "Digitaliseringbord: Flybilde, fotokopi",
+                  "label": "Geometri overført fra flybilde ved hjelp av manuell registrering på et digitaliseringsbord. Bildemedium er fotokopi"
+                },
+                {
+                  "value": "Digitalisert på skjerm fra ortofoto",
+                  "label": "Geometri overført fra ortofoto ved hjelp av manuell registrering på skjerm"
+                },
+                {
+                  "value": "Digitalisert på skjerm fra satelittbilde",
+                  "label": "Geometri overført fra satelittbilde ved hjelp av manuell registrering på skjerm"
+                },
+                {
+                  "value": "Digitalisert på skjerm fra andre digitale rasterdata",
+                  "label": "Digitalisert på skjerm fra andre digitale rasterdata"
+                },
+                {
+                  "value": "Digitalisert på skjerm fra tolkning av seismikk",
+                  "label": "Digitalisert på skjerm fra tolkning av seismikk"
+                },
+                {
+                  "value": "Vektorisering av laserdata",
+                  "label": "Vektorisering fra laserdata, brukes også der vektoriseringen støttes av ortofoto"
+                },
+                {
+                  "value": "Digitaliseringsbord: Kart",
+                  "label": "Geometri overført fra kart ved hjelp av manuell registrering på et digitaliseringsbord, medium uspesifisert"
+                },
+                {
+                  "value": "Digitaliseringsbord: Kart, blyantoriginal",
+                  "label": "Geometri overført fra kart ved hjelp av manuell registrering på et digitaliseringsbord. Kartmedium er blyantoriginal"
+                },
+                {
+                  "value": "Digitaliseringsbord: Kart, rissefoile",
+                  "label": "Geometri overført fra kart ved hjelp av manuell registrering på et digitaliseringsbord. Kartmedium er rissefolie"
+                },
+                {
+                  "value": "Digitaliseringsbord: Kart, transparent foile, god kvalitet",
+                  "label": "Geometri overført fra kart ved hjelp av manuell registrering på et digitaliseringsbord. Kartmedium er transparent folie av god kvalitet, samkopi"
+                },
+                {
+                  "value": "Digitaliseringsbord: Kart, transparent foile, mindre god kvalitet",
+                  "label": "Geometri overført fra kart ved hjelp av manuell registrering på et digitaliseringsbord. Kartmedium er transparent folie av mindre god kvalitet, samkopi"
+                },
+                {
+                  "value": "Digitaliseringsbord: Kart, papirkopi",
+                  "label": "Geometri overført fra kart ved hjelp av manuell registrering på et digitaliseringsbord. Kartmedium er papirkopi"
+                },
+                {
+                  "value": "Digitalisert på skjerm fra skannet kart",
+                  "label": "Geometri overført fra kart ved hjelp av manuell registrering på skjerm, medium skannet kart (raster), samkopi"
+                },
+                {
+                  "value": "Genererte data (interpolasjon)",
+                  "label": "Genererte data, interpolasjonsmetode. Ikke nærmere spesifisert"
+                },
+                {
+                  "value": "Genererte data (interpolasjon): Terrengmodell",
+                  "label": "Genererte data, interpolasjonsmetode, fra terrengmodell"
+                },
+                {
+                  "value": "Genererte data (interpolasjon): Vektet middel",
+                  "label": "Genererte data, interpolasjonsmetode, vektet middel"
+                },
+                {
+                  "value": "Genererte data: Fra annen geometri",
+                  "label": "Genererte data: Sirkelgeometri, korridor eller annen geometri generert ut fra f.eks et punkt eller en linje (f.eks midtlinje veg)"
+                },
+                {
+                  "value": "Genererte data: Generalisering",
+                  "label": "Genererte data: Generalisering"
+                },
+                {
+                  "value": "Genererte data: Sentralpunkt",
+                  "label": "Genererte data: Sentralpunkt"
+                },
+                {
+                  "value": "Genererte data: Sammenknytningspunkt, randpunkt",
+                  "label": "Genererte data: Sammenknytningspunkt (f.eks mellom ulike kartlegginger), randpunkt (f.eks mellom ulike kilder til kart)"
+                },
+                {
+                  "value": "Koordinater hentet fra GAB",
+                  "label": "Koordinater hentet fra GAB, forløperen til registerdelen av matrikkelen"
+                },
+                {
+                  "value": "Koordinater hentet fra JREG",
+                  "label": "Koordinater hentet fra JREG, jordregisteret"
+                },
+                {
+                  "value": "Beregnet",
+                  "label": "Beregnet, uspesifisert hvordan"
+                },
+                {
+                  "value": "Spesielle metoder",
+                  "label": "Spesielle metoder, uspesifisert"
+                },
+                {
+                  "value": "Spesielle metoder: Målt med stikkstang",
+                  "label": "Spesielle metoder: Målt med stikkstang"
+                },
+                {
+                  "value": "Spesielle metoder: Målt med waterstang",
+                  "label": "Spesielle metoder: Målt med waterstang"
+                },
+                {
+                  "value": "Spesielle metoder: Målt med målehjul",
+                  "label": "Spesielle metoder: Målt med målehjul"
+                },
+                {
+                  "value": "Spesielle metoder: Målt med stigningsmåler",
+                  "label": "Spesielle metoder: Målt med stigningsmåler"
+                },
+                {
+                  "value": "Fastsatt punkt",
+                  "label": "Punkt fastsatt ut fra et grunnlag (kart, bilde), f.eks ved partenes enighet ved en oppmålingsforretning"
+                },
+                {
+                  "value": "Fastsatt ved dom eller kongelig resolusjon",
+                  "label": "Geometri fastsatt ved dom, lov, traktat eller kongelig resolusjon"
+                },
+                {
+                  "value": "Annet (spesifiseres i filhode) ( bør vel fjernes, blir borte ved overføring mellom systemer)",
+                  "label": "Annet (spesifiseres i filhode)"
+                },
+                {
+                  "value": "Frihåndstegning",
+                  "label": "Digitalisert ut fra frihåndstegning.  Frihåndstegning er basert på svært grovt grunnlag eller ikke noe grunnlag"
+                },
+                {
+                  "value": "Frihåndstegning på kart",
+                  "label": "Digitalisert fra krokering på kart, dvs grovt skissert på kart"
+                },
+                {
+                  "value": "Frihåndstegning på skjerm",
+                  "label": "Digitalisert ut fra frihåndstegning (direkte på skjerm). Frihåndstegning er basert på svært grovt grunnlag eller ikke noe grunnlag"
+                },
+                {
+                  "value": "Treghetsstedfesting",
+                  "label": "Treghetsstedfesting"
+                },
+                {
+                  "value": "GNSS: Kodemåling, relative målinger",
+                  "label": "Innmålt med satellittbaserte systemer for navigasjon og posisjonering med global dekning (f.eks GPS, GLONASS, GALILEO): Kodemåling, relative målinger."
+                },
+                {
+                  "value": "GNSS: Kodemåling, enkle målinger",
+                  "label": "Innmålt med satellittbaserte systemer for navigasjon og posisjonering med global dekning (f.eks GPS, GLONASS, GALILEO): Kodemåling, enkle målinger."
+                },
+                {
+                  "value": "GNSS: Fasemåling, statisk måling",
+                  "label": "Innmålt med satellittbaserte systemer for navigasjon og posisjonering med global dekning (f.eks GPS, GLONASS, GALILEO): Fasemåling statisk måling."
+                },
+                {
+                  "value": "GNSS: Fasemåling, andre metoder",
+                  "label": "Innmålt med satellittbaserte systemer for navigasjon og posisjonering med global dekning (f.eks GPS, GLONASS, GALILEO): Fasemåling andre metoder."
+                },
+                {
+                  "value": "Kombinasjon av GNSS/Treghet",
+                  "label": "Kombinasjon av GPS/Treghet"
+                },
+                {
+                  "value": "GNSS: Fasemåling RTK",
+                  "label": "Innmålt med satellittbaserte systemer for navigasjon og posisjonering med global dekning (f.eks GPS, GLONASS, GALILEO).: Fasemåling RTK (realtids kinematisk måling)"
+                },
+                {
+                  "value": "GNSS: Fasemåling , float-løsning",
+                  "label": "Innmålt med satellittbaserte systemer for navigasjon og posisjonering med global dekning (f.eks GPS, GLONASS, GALILEO). Fasemåling float-løsning"
+                },
+                {
+                  "value": "Ukjent målemetode",
+                  "label": "Målemetode er ukjent"
+                }
+              ],
+              "definition": "metode som ligger til grunn for registrering av posisjon\n\n\n-- Definition - -\nmethod on which registration of position is based"
+            }
+          },
+          {
+            "name": "nøyaktighet",
+            "type": "Nøyaktighet",
+            "description": "punktstandardavviket i grunnriss for punkter samt tverravvik for linjer\n\nMerknad:\nOppgitt i cm",
+            "cardinality": "1",
+            "valueDomain": {
+              "kind": "codelist",
+              "listedValues": [
+                {
+                  "value": "100",
+                  "label": "100"
+                },
+                {
+                  "value": "200",
+                  "label": "200"
+                },
+                {
+                  "value": "500",
+                  "label": "500"
+                },
+                {
+                  "value": "1000",
+                  "label": "1000"
+                },
+                {
+                  "value": "1500",
+                  "label": "1500"
+                },
+                {
+                  "value": "2000",
+                  "label": "2000"
+                },
+                {
+                  "value": "2500",
+                  "label": "2500"
+                },
+                {
+                  "value": "3000",
+                  "label": "3000"
+                },
+                {
+                  "value": "4000",
+                  "label": "4000"
+                },
+                {
+                  "value": "5000",
+                  "label": "5000"
+                }
+              ],
+              "definition": "punktstandardavviket i grunnriss for punkter samt tverravvik for linjer\n\nMerknad:\nOppgitt i cm",
+              "asDictionary": "true",
+              "codeList": "http://skjema.geonorge.no/legg_inn_riktig_url"
+            },
+            "taggedValues": {
+              "SOSI_navn": "NØYAKTIGHET"
+            }
+          }
+        ]
+      }
+    ],
+    "abstract": true,
+    "relationships": {
+      "inheritance": [],
+      "associations": []
+    },
+    "package": "N50_Kartdata_20150901"
+  },
+  {
+    "name": "SOSI_Objekt_PunkterOgLinjer",
+    "description": "abstrakt objekt som bærer en rekke egenskaper som er til felles for flere objekttyper med punkt- eller linjegeometri i underpakkene Administrative områder, Arealdekke, Bygninger og anlegg, Restriksjonsområder og Samferdsel i dette applikasjonsskjemaet",
+    "attributes": [
+      {
+        "name": "datafangstdato",
+        "type": "DateTime",
+        "description": "dato når objektet siste gang ble registrert/observert/målt i terrenget\n\nMerknad: I mange tilfeller er denne forskjellig fra Oppdateringsdato, da registrerte endringer kan bufres i en kortere eller lengre periode før disse legges inn i databasen.\nVed førstegangsregistrering settes Datafangstdato lik førsteDatafangstdato.",
+        "cardinality": "1",
+        "taggedValues": {
+          "SOSI_navn": "DATAFANGSTDATO"
+        }
+      },
+      {
+        "name": "oppdateringsdato",
+        "type": "DateTime",
+        "description": "dato for siste endring på objektetdataene\n\nMerknad:\nOppdateringsdato kan være forskjellig fra Datafangsdato ved at data som er registrert kan bufres en kortere eller lengre periode før disse legges inn i datasystemet (databasen).\n\n-Definition-\nDate and time at which this version of the spatial object was inserted or changed in the spatial data set.",
+        "cardinality": "1",
+        "taggedValues": {
+          "SOSI_navn": "OPPDATERINGSDATO"
+        }
+      },
+      {
+        "name": "kvalitet",
+        "type": "Posisjonskvalitet",
+        "description": "beskrivelse av kvaliteten på stedfestingen\n\nMerknad: Denne er identisk med ..KVALITET i tidligere versjoner av SOSI.",
+        "cardinality": "1",
+        "attributes": [
+          {
+            "name": "målemetode",
+            "type": "Målemetode",
+            "description": "metode for måling i grunnriss (x,y), og høyde (z) når metoden er den samme som ved måling i grunnriss",
+            "cardinality": "1",
+            "valueDomain": {
+              "kind": "codelist",
+              "listedValues": [
+                {
+                  "value": "Terrengmålt: Uspesifisert måleinstrument",
+                  "label": "Målt i terrenget , uspesifisert metode/måleinstrument"
+                },
+                {
+                  "value": "Terrengmålt: Totalstasjon",
+                  "label": "Målt i terrenget med totalstasjon"
+                },
+                {
+                  "value": "Terrengmålt: Teodolitt og el avstandsmåler",
+                  "label": "Målt i terrenget med teodolitt og elektronisk avstandsmåler"
+                },
+                {
+                  "value": "Terrengmålt: Teodolitt og målebånd",
+                  "label": "Målt i terrenget med teodolitt og målebånd"
+                },
+                {
+                  "value": "Terrengmålt: Ortogonalmetoden",
+                  "label": "Målt i terrenget, ortogonalmetoden"
+                },
+                {
+                  "value": "Utmål",
+                  "label": "Punkt beregnet på bakgrunn av måling mot andre punkter, slik som to avstander eller avstand og retning\n\n-- Definition --\nPoint calculated on the basis of other items, such as two distances or distance + direction."
+                },
+                {
+                  "value": "Tatt fra plan",
+                  "label": "Tatt fra plan eller godkjent tiltak"
+                },
+                {
+                  "value": "Annet  (denne har ingen mening, bør fjernes?)",
+                  "label": "Annet"
+                },
+                {
+                  "value": "Stereoinstrument",
+                  "label": "Målt i stereoinstrument, uspesifisert instrument"
+                },
+                {
+                  "value": "Aerotriangulert",
+                  "label": "Punkt beregnet ved aerotriangulering\n\n-- Definition --\nPoint calculated by aerotriangulation"
+                },
+                {
+                  "value": "Stereoinstrument: Analytisk plotter",
+                  "label": "Målt i stereoinstrument, analytisk plotter"
+                },
+                {
+                  "value": "Stereoinstrument: Autograf",
+                  "label": "Målt i stereoinstrument, autograf, analogt instrument"
+                },
+                {
+                  "value": "Stereoinstrument: Digitalt",
+                  "label": "Målt i stereoinstrument, digitalt instrument"
+                },
+                {
+                  "value": "Scannet fra kart",
+                  "label": "Geometri overført fra kart maskinelt ved hjelp av skanner, uspesifisert kartmedium"
+                },
+                {
+                  "value": "Skannet fra kart: Blyantoriginal",
+                  "label": "Geometri overført fra kart maskinelt ved hjelp av skanner. Kartmedium er blyantoriginal"
+                },
+                {
+                  "value": "Skannet fra kart: Rissefolie",
+                  "label": "Geometri overført fra kart maskinelt ved hjelp av skanner. Kartmedium er rissefolie"
+                },
+                {
+                  "value": "Skannet fra kart: Transparent folie, god kvalitet",
+                  "label": "Geometri overført fra kart maskinelt ved hjelp av skanner. Kartmedium er transparent folie av  god kvalitet."
+                },
+                {
+                  "value": "Skannet fra kart: Transparent foile, mindre god kvalitet",
+                  "label": "Geometri overført fra kart maskinelt ved hjelp av skanner. Kartmedium er tranparent foile av mindre god kvalitet"
+                },
+                {
+                  "value": "Skannet fra kart: Papirkopi",
+                  "label": "Geometri overført fra kart maskinelt ved hjelp av skanner. Kartmedium er papirkopi."
+                },
+                {
+                  "value": "Flybåren laserscanner",
+                  "label": "Målt med laserskanner fra fly"
+                },
+                {
+                  "value": "Bilbåren laser",
+                  "label": "Målt med laserskanner plassert i kjøretøy"
+                },
+                {
+                  "value": "Lineær referanse",
+                  "label": "brukes for objekter som er stedfestet med lineær referanse, enten disse leveres med stedfesting kun som lineære referanser, eller med koordinatgeometri avledet fra lineære referanser"
+                },
+                {
+                  "value": "Digitaliseringbord: Ortofoto eller flybilde",
+                  "label": "Geometri overført fra ortofoto eller flybilde ved hjelp av manuell registrering på et digitaliseringsbord, uspesifisert bildemedium"
+                },
+                {
+                  "value": "Digitaliseringbord: Ortofoto, film",
+                  "label": "Geometri overført fra ortofoto ved hjelp av manuell registrering på et digitaliseringsbord. Bildemedium er film"
+                },
+                {
+                  "value": "Digitaliseringbord: Ortofoto, fotokopi",
+                  "label": "Geometri overført fra ortofoto ved hjelp av manuell registrering på et digitaliseringsbord. Bildemedium er fotokopi"
+                },
+                {
+                  "value": "Digitaliseringbord: Flybilde, film",
+                  "label": "Geometri overført fra flybilde ved hjelp av manuell registrering på et digitaliseringsbord. Bildemedium er film"
+                },
+                {
+                  "value": "Digitaliseringbord: Flybilde, fotokopi",
+                  "label": "Geometri overført fra flybilde ved hjelp av manuell registrering på et digitaliseringsbord. Bildemedium er fotokopi"
+                },
+                {
+                  "value": "Digitalisert på skjerm fra ortofoto",
+                  "label": "Geometri overført fra ortofoto ved hjelp av manuell registrering på skjerm"
+                },
+                {
+                  "value": "Digitalisert på skjerm fra satelittbilde",
+                  "label": "Geometri overført fra satelittbilde ved hjelp av manuell registrering på skjerm"
+                },
+                {
+                  "value": "Digitalisert på skjerm fra andre digitale rasterdata",
+                  "label": "Digitalisert på skjerm fra andre digitale rasterdata"
+                },
+                {
+                  "value": "Digitalisert på skjerm fra tolkning av seismikk",
+                  "label": "Digitalisert på skjerm fra tolkning av seismikk"
+                },
+                {
+                  "value": "Vektorisering av laserdata",
+                  "label": "Vektorisering fra laserdata, brukes også der vektoriseringen støttes av ortofoto"
+                },
+                {
+                  "value": "Digitaliseringsbord: Kart",
+                  "label": "Geometri overført fra kart ved hjelp av manuell registrering på et digitaliseringsbord, medium uspesifisert"
+                },
+                {
+                  "value": "Digitaliseringsbord: Kart, blyantoriginal",
+                  "label": "Geometri overført fra kart ved hjelp av manuell registrering på et digitaliseringsbord. Kartmedium er blyantoriginal"
+                },
+                {
+                  "value": "Digitaliseringsbord: Kart, rissefoile",
+                  "label": "Geometri overført fra kart ved hjelp av manuell registrering på et digitaliseringsbord. Kartmedium er rissefolie"
+                },
+                {
+                  "value": "Digitaliseringsbord: Kart, transparent foile, god kvalitet",
+                  "label": "Geometri overført fra kart ved hjelp av manuell registrering på et digitaliseringsbord. Kartmedium er transparent folie av god kvalitet, samkopi"
+                },
+                {
+                  "value": "Digitaliseringsbord: Kart, transparent foile, mindre god kvalitet",
+                  "label": "Geometri overført fra kart ved hjelp av manuell registrering på et digitaliseringsbord. Kartmedium er transparent folie av mindre god kvalitet, samkopi"
+                },
+                {
+                  "value": "Digitaliseringsbord: Kart, papirkopi",
+                  "label": "Geometri overført fra kart ved hjelp av manuell registrering på et digitaliseringsbord. Kartmedium er papirkopi"
+                },
+                {
+                  "value": "Digitalisert på skjerm fra skannet kart",
+                  "label": "Geometri overført fra kart ved hjelp av manuell registrering på skjerm, medium skannet kart (raster), samkopi"
+                },
+                {
+                  "value": "Genererte data (interpolasjon)",
+                  "label": "Genererte data, interpolasjonsmetode. Ikke nærmere spesifisert"
+                },
+                {
+                  "value": "Genererte data (interpolasjon): Terrengmodell",
+                  "label": "Genererte data, interpolasjonsmetode, fra terrengmodell"
+                },
+                {
+                  "value": "Genererte data (interpolasjon): Vektet middel",
+                  "label": "Genererte data, interpolasjonsmetode, vektet middel"
+                },
+                {
+                  "value": "Genererte data: Fra annen geometri",
+                  "label": "Genererte data: Sirkelgeometri, korridor eller annen geometri generert ut fra f.eks et punkt eller en linje (f.eks midtlinje veg)"
+                },
+                {
+                  "value": "Genererte data: Generalisering",
+                  "label": "Genererte data: Generalisering"
+                },
+                {
+                  "value": "Genererte data: Sentralpunkt",
+                  "label": "Genererte data: Sentralpunkt"
+                },
+                {
+                  "value": "Genererte data: Sammenknytningspunkt, randpunkt",
+                  "label": "Genererte data: Sammenknytningspunkt (f.eks mellom ulike kartlegginger), randpunkt (f.eks mellom ulike kilder til kart)"
+                },
+                {
+                  "value": "Koordinater hentet fra GAB",
+                  "label": "Koordinater hentet fra GAB, forløperen til registerdelen av matrikkelen"
+                },
+                {
+                  "value": "Koordinater hentet fra JREG",
+                  "label": "Koordinater hentet fra JREG, jordregisteret"
+                },
+                {
+                  "value": "Beregnet",
+                  "label": "Beregnet, uspesifisert hvordan"
+                },
+                {
+                  "value": "Spesielle metoder",
+                  "label": "Spesielle metoder, uspesifisert"
+                },
+                {
+                  "value": "Spesielle metoder: Målt med stikkstang",
+                  "label": "Spesielle metoder: Målt med stikkstang"
+                },
+                {
+                  "value": "Spesielle metoder: Målt med waterstang",
+                  "label": "Spesielle metoder: Målt med waterstang"
+                },
+                {
+                  "value": "Spesielle metoder: Målt med målehjul",
+                  "label": "Spesielle metoder: Målt med målehjul"
+                },
+                {
+                  "value": "Spesielle metoder: Målt med stigningsmåler",
+                  "label": "Spesielle metoder: Målt med stigningsmåler"
+                },
+                {
+                  "value": "Fastsatt punkt",
+                  "label": "Punkt fastsatt ut fra et grunnlag (kart, bilde), f.eks ved partenes enighet ved en oppmålingsforretning"
+                },
+                {
+                  "value": "Fastsatt ved dom eller kongelig resolusjon",
+                  "label": "Geometri fastsatt ved dom, lov, traktat eller kongelig resolusjon"
+                },
+                {
+                  "value": "Annet (spesifiseres i filhode) ( bør vel fjernes, blir borte ved overføring mellom systemer)",
+                  "label": "Annet (spesifiseres i filhode)"
+                },
+                {
+                  "value": "Frihåndstegning",
+                  "label": "Digitalisert ut fra frihåndstegning.  Frihåndstegning er basert på svært grovt grunnlag eller ikke noe grunnlag"
+                },
+                {
+                  "value": "Frihåndstegning på kart",
+                  "label": "Digitalisert fra krokering på kart, dvs grovt skissert på kart"
+                },
+                {
+                  "value": "Frihåndstegning på skjerm",
+                  "label": "Digitalisert ut fra frihåndstegning (direkte på skjerm). Frihåndstegning er basert på svært grovt grunnlag eller ikke noe grunnlag"
+                },
+                {
+                  "value": "Treghetsstedfesting",
+                  "label": "Treghetsstedfesting"
+                },
+                {
+                  "value": "GNSS: Kodemåling, relative målinger",
+                  "label": "Innmålt med satellittbaserte systemer for navigasjon og posisjonering med global dekning (f.eks GPS, GLONASS, GALILEO): Kodemåling, relative målinger."
+                },
+                {
+                  "value": "GNSS: Kodemåling, enkle målinger",
+                  "label": "Innmålt med satellittbaserte systemer for navigasjon og posisjonering med global dekning (f.eks GPS, GLONASS, GALILEO): Kodemåling, enkle målinger."
+                },
+                {
+                  "value": "GNSS: Fasemåling, statisk måling",
+                  "label": "Innmålt med satellittbaserte systemer for navigasjon og posisjonering med global dekning (f.eks GPS, GLONASS, GALILEO): Fasemåling statisk måling."
+                },
+                {
+                  "value": "GNSS: Fasemåling, andre metoder",
+                  "label": "Innmålt med satellittbaserte systemer for navigasjon og posisjonering med global dekning (f.eks GPS, GLONASS, GALILEO): Fasemåling andre metoder."
+                },
+                {
+                  "value": "Kombinasjon av GNSS/Treghet",
+                  "label": "Kombinasjon av GPS/Treghet"
+                },
+                {
+                  "value": "GNSS: Fasemåling RTK",
+                  "label": "Innmålt med satellittbaserte systemer for navigasjon og posisjonering med global dekning (f.eks GPS, GLONASS, GALILEO).: Fasemåling RTK (realtids kinematisk måling)"
+                },
+                {
+                  "value": "GNSS: Fasemåling , float-løsning",
+                  "label": "Innmålt med satellittbaserte systemer for navigasjon og posisjonering med global dekning (f.eks GPS, GLONASS, GALILEO). Fasemåling float-løsning"
+                },
+                {
+                  "value": "Ukjent målemetode",
+                  "label": "Målemetode er ukjent"
+                }
+              ],
+              "definition": "metode som ligger til grunn for registrering av posisjon\n\n\n-- Definition - -\nmethod on which registration of position is based"
+            }
+          },
+          {
+            "name": "nøyaktighet",
+            "type": "Nøyaktighet",
+            "description": "punktstandardavviket i grunnriss for punkter samt tverravvik for linjer\n\nMerknad:\nOppgitt i cm",
+            "cardinality": "1",
+            "valueDomain": {
+              "kind": "codelist",
+              "listedValues": [
+                {
+                  "value": "100",
+                  "label": "100"
+                },
+                {
+                  "value": "200",
+                  "label": "200"
+                },
+                {
+                  "value": "500",
+                  "label": "500"
+                },
+                {
+                  "value": "1000",
+                  "label": "1000"
+                },
+                {
+                  "value": "1500",
+                  "label": "1500"
+                },
+                {
+                  "value": "2000",
+                  "label": "2000"
+                },
+                {
+                  "value": "2500",
+                  "label": "2500"
+                },
+                {
+                  "value": "3000",
+                  "label": "3000"
+                },
+                {
+                  "value": "4000",
+                  "label": "4000"
+                },
+                {
+                  "value": "5000",
+                  "label": "5000"
+                }
+              ],
+              "definition": "punktstandardavviket i grunnriss for punkter samt tverravvik for linjer\n\nMerknad:\nOppgitt i cm",
+              "asDictionary": "true",
+              "codeList": "http://skjema.geonorge.no/legg_inn_riktig_url"
+            },
+            "taggedValues": {
+              "SOSI_navn": "NØYAKTIGHET"
+            }
+          }
+        ]
+      }
+    ],
+    "abstract": true,
+    "relationships": {
+      "inheritance": [],
+      "associations": []
+    },
+    "package": "N50_Kartdata_20150901"
+  },
+  {
+    "name": "SOSI_Objekt_Hjelpelinjer",
+    "description": "abstrakt objekt som bærer en rekke egenskaper som er til felles for KantUtsnitt, Dataavgrensning og FiktivDelelinje i dette applikasjonsskjemaet",
+    "attributes": [
+      {
+        "name": "oppdateringsdato",
+        "type": "DateTime",
+        "description": "dato for siste endring på objektetdataene\n\nMerknad:\nOppdateringsdato kan være forskjellig fra Datafangsdato ved at data som er registrert kan bufres en kortere eller lengre periode før disse legges inn i datasystemet (databasen).\n\n-Definition-\nDate and time at which this version of the spatial object was inserted or changed in the spatial data set.",
+        "cardinality": "0..1",
+        "taggedValues": {
+          "SOSI_navn": "OPPDATERINGSDATO"
+        }
+      }
+    ],
+    "abstract": true,
+    "relationships": {
+      "inheritance": [],
+      "associations": []
+    },
+    "package": "N50_Kartdata_20150901"
+  },
+  {
+    "name": "SOSI_Objekt_Sperrelinjer",
+    "description": "abstrakt objekt som bærer en rekke egenskaper som er felles for alle sperrelinjer i dette applikasjonsskjemaet",
+    "attributes": [
+      {
+        "name": "oppdateringsdato",
+        "type": "DateTime",
+        "description": "dato for siste endring på objektdataene",
+        "cardinality": "1",
+        "taggedValues": {
+          "SOSI_navn": "OPPDATERINGDATO"
+        }
+      }
+    ],
+    "abstract": true,
+    "relationships": {
+      "inheritance": [],
+      "associations": []
+    },
+    "package": "N50_Kartdata_20150901"
+  },
+  {
+    "name": "SOSI_Objekt_Flater",
+    "description": "abstrakt supertype som samler fellesegenskaper og assosiasjoner som gjelder objekttyper som bare har flategeometri",
+    "attributes": [
+      {
+        "name": "oppdateringsdato",
+        "type": "DateTime",
+        "description": "dato for siste endring på objektetdataene\n\nMerknad:\nOppdateringsdato kan være forskjellig fra Datafangsdato ved at data som er registrert kan bufres en kortere eller lengre periode før disse legges inn i datasystemet (databasen).\n\n-Definition-\nDate and time at which this version of the spatial object was inserted or changed in the spatial data set.",
+        "cardinality": "1",
+        "taggedValues": {
+          "SOSI_navn": "OPPDATERINGSDATO"
+        }
+      }
+    ],
+    "abstract": true,
+    "relationships": {
+      "inheritance": [],
+      "associations": [
+        {
+          "target": "KantUtsnitt",
+          "role": "kantUtsnitt",
+          "cardinality": "0..*"
+        }
+      ]
+    },
+    "package": "N50_Kartdata_20150901"
+  }
+]
