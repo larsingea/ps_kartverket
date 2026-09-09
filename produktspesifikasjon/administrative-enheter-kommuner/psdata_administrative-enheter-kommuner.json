@@ -159,22 +159,18 @@
     "report": [
       {
         "nameOfMeasure": "COMMISSION REGULATION (EU) No 1089/2010 of 23 November 2010 implementing Directive 2007/2/EC of the European Parliament and of the Council as regards interoperability of spatial data sets and services",
-        "measureDescription": "Dataene er i henhold til produktspesifikasjonen",
         "descriptiveResult": "Dataene er i henhold til produktspesifikasjonen"
       },
       {
         "nameOfMeasure": "SOSI produktspesifikasjon: Administrative enheter Norge",
-        "measureDescription": "Dataene er i henhold til produktspesifikasjonen",
         "descriptiveResult": "Dataene er i henhold til produktspesifikasjonen"
       },
       {
         "nameOfMeasure": "Sosi applikasjonsskjema",
-        "measureDescription": "SOSI-filer er i henhold til applikasjonsskjema",
         "descriptiveResult": "SOSI-filer er i henhold til applikasjonsskjema"
       },
       {
         "nameOfMeasure": "Sosi applikasjonsskjema",
-        "measureDescription": "GML-filer er i henhold til applikasjonsskjema",
         "descriptiveResult": "GML-filer er i henhold til applikasjonsskjema"
       },
       {
@@ -186,14 +182,6 @@
         "nameOfMeasure": "Prosentvis oppfyllelse av FAIR-prinsipper",
         "measureDescription": "Angir fullstendighet i forhold til krav fra FAIR-prinsippene (The FAIR Guiding Principles for scientific data management and stewardship)",
         "result": "97"
-      },
-      {
-        "nameOfMeasure": "FAIR",
-        "result": "Prosentvis oppfyllelse av FAIR-prinsipper: 97%"
-      },
-      {
-        "nameOfMeasure": "Coverage",
-        "result": "Prosentvis dekning i forhold til datasettets utstrekning: 100%"
       }
     ]
   },
@@ -357,12 +345,69 @@
         ],
         "deliveryScope": "Tjeneste"
       }
+    },
+    {
+      "delivery": {
+        "deliveryMedium": {
+          "deliveryMediumName": "GeoPackage: datamodell-fra-uml",
+          "deliveryService": {
+            "serviceEndpoint": "https://raw.githubusercontent.com/larsingea/ps_kartverket/main/produktspesifikasjon/administrative-enheter-kommuner/datamodell-fra-uml/datamodell-fra-uml.gpkg",
+            "serviceProperty": {
+              "type": "Fil",
+              "value": "Nedlasting"
+            }
+          }
+        },
+        "deliveryFormat": [
+          {
+            "formatName": "GPKG"
+          }
+        ]
+      }
+    },
+    {
+      "delivery": {
+        "deliveryMedium": {
+          "deliveryMediumName": "GML/XSD-skjema: datamodell-fra-uml",
+          "deliveryService": {
+            "serviceEndpoint": "https://raw.githubusercontent.com/larsingea/ps_kartverket/main/produktspesifikasjon/administrative-enheter-kommuner/datamodell-fra-uml/schema/xsd/INPUT/datamodell-fra-uml.xsd",
+            "serviceProperty": {
+              "type": "Fil",
+              "value": "Nedlasting"
+            }
+          }
+        },
+        "deliveryFormat": [
+          {
+            "formatName": "XSD"
+          }
+        ]
+      }
+    },
+    {
+      "delivery": {
+        "deliveryMedium": {
+          "deliveryMediumName": "JSON Schema: datamodell-fra-uml",
+          "deliveryService": {
+            "serviceEndpoint": "https://raw.githubusercontent.com/larsingea/ps_kartverket/main/produktspesifikasjon/administrative-enheter-kommuner/datamodell-fra-uml/schema/jsonschema/INPUT/datamodellfrauml/datamodell-fra-uml.json",
+            "serviceProperty": {
+              "type": "Fil",
+              "value": "Nedlasting"
+            }
+          }
+        },
+        "deliveryFormat": [
+          {
+            "formatName": "JSON Schema"
+          }
+        ]
+      }
     }
   ],
   "metadataSection": {
     "metadataStandard": "ISO19115",
     "metadataStandardVersion": "2003",
-    "metadataDate": "2026-08-18",
+    "metadataDate": "2026-09-09",
     "language": "nor",
     "contact": {
       "organizationName": "Kartverket",
@@ -377,5 +422,11 @@
       "codeSpace": "https://kartkatalog.geonorge.no/metadata/",
       "metadataLinkage": "https://kartkatalog.geonorge.no/metadata/041f1e6e-bdbc-4091-b48f-8a5990f3cc5b"
     }
-  }
+  },
+  "additionalReferences": [
+    {
+      "title": "Produktark",
+      "href": "https://register.geonorge.no/produktark/administrative-enheter-norge"
+    }
+  ]
 }

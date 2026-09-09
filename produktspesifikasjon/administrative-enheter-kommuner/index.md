@@ -121,35 +121,31 @@ Forvaltningsmessig saksbehandling. Analyse og presentasjon i et GIS-system. Pres
 
 **Nivå**: dataset
 
-- **Kvalitetsmål**: COMMISSION REGULATION (EU) No 1089/2010 of 23 November 2010 implementing Directive 2007/2/EC of the European Parliament and of the Council as regards interoperability of spatial data sets and services
-  **Målebeskrivelse**: Dataene er i henhold til produktspesifikasjonen
-  **Beskrivende resultat**: Dataene er i henhold til produktspesifikasjonen
+**Kvalitetsmål**: COMMISSION REGULATION (EU) No 1089/2010 of 23 November 2010 implementing Directive 2007/2/EC of the European Parliament and of the Council as regards interoperability of spatial data sets and services
 
-- **Kvalitetsmål**: SOSI produktspesifikasjon: Administrative enheter Norge
-  **Målebeskrivelse**: Dataene er i henhold til produktspesifikasjonen
-  **Beskrivende resultat**: Dataene er i henhold til produktspesifikasjonen
+- **Beskrivende resultat**: Dataene er i henhold til produktspesifikasjonen
 
-- **Kvalitetsmål**: Sosi applikasjonsskjema
-  **Målebeskrivelse**: SOSI-filer er i henhold til applikasjonsskjema
-  **Beskrivende resultat**: SOSI-filer er i henhold til applikasjonsskjema
+**Kvalitetsmål**: SOSI produktspesifikasjon: Administrative enheter Norge
 
-- **Kvalitetsmål**: Sosi applikasjonsskjema
-  **Målebeskrivelse**: GML-filer er i henhold til applikasjonsskjema
-  **Beskrivende resultat**: GML-filer er i henhold til applikasjonsskjema
+- **Beskrivende resultat**: Dataene er i henhold til produktspesifikasjonen
 
-- **Kvalitetsmål**: Prosentvis dekning i forhold til datasettets utstrekning
-  **Målebeskrivelse**: Datasettets faktiske kartlagte areal i forhold til datasettets spesifiserte utstrekning
-  **Resultat**: 100
+**Kvalitetsmål**: Sosi applikasjonsskjema
 
-- **Kvalitetsmål**: Prosentvis oppfyllelse av FAIR-prinsipper
-  **Målebeskrivelse**: Angir fullstendighet i forhold til krav fra FAIR-prinsippene (The FAIR Guiding Principles for scientific data management and stewardship)
-  **Resultat**: 97
+- **Beskrivende resultat**: SOSI-filer er i henhold til applikasjonsskjema
 
-- **Kvalitetsmål**: FAIR
-  **Resultat**: Prosentvis oppfyllelse av FAIR-prinsipper: 97%
+**Kvalitetsmål**: Sosi applikasjonsskjema
 
-- **Kvalitetsmål**: Coverage
-  **Resultat**: Prosentvis dekning i forhold til datasettets utstrekning: 100%
+- **Beskrivende resultat**: GML-filer er i henhold til applikasjonsskjema
+
+**Kvalitetsmål**: Prosentvis dekning i forhold til datasettets utstrekning
+
+- **Målebeskrivelse**: Datasettets faktiske kartlagte areal i forhold til datasettets spesifiserte utstrekning
+- **Resultat**: 100
+
+**Kvalitetsmål**: Prosentvis oppfyllelse av FAIR-prinsipper
+
+- **Målebeskrivelse**: Angir fullstendighet i forhold til krav fra FAIR-prinsippene (The FAIR Guiding Principles for scientific data management and stewardship)
+- **Resultat**: 97
 
 ## Vedlikehold
 
@@ -175,6 +171,9 @@ Forvaltningsmessig saksbehandling. Analyse og presentasjon i et GIS-system. Pres
 | Atom Feed | [Lenke](http://nedlasting.geonorge.no/geonorge/ATOM-feeds/AdministrativeEnheterKommuner_AtomFeedPostGIS.xml) | W3C:AtomFeed | PostGIS | fylkesvis, kommunevis, landsfiler |
 | Atom Feed | [Lenke](http://nedlasting.geonorge.no/geonorge/ATOM-feeds/AdministrativeEnheterKommuner_AtomFeedSOSI.xml) | W3C:AtomFeed | SOSI | fylkesvis, kommunevis, landsfiler |
 | Administrative enheter WMS | [Lenke](https://wms.geonorge.no/skwms1/wms.adm_enheter2?service=wms&request=GetCapabilities) | WMS-tjeneste | png |  |
+| GeoPackage: datamodell-fra-uml | [Lenke](https://raw.githubusercontent.com/larsingea/ps_kartverket/main/produktspesifikasjon/administrative-enheter-kommuner/datamodell-fra-uml/datamodell-fra-uml.gpkg) | Nedlasting | GPKG |  |
+| GML/XSD-skjema: datamodell-fra-uml | [Lenke](https://raw.githubusercontent.com/larsingea/ps_kartverket/main/produktspesifikasjon/administrative-enheter-kommuner/datamodell-fra-uml/schema/xsd/INPUT/datamodell-fra-uml.xsd) | Nedlasting | XSD |  |
+| JSON Schema: datamodell-fra-uml | [Lenke](https://raw.githubusercontent.com/larsingea/ps_kartverket/main/produktspesifikasjon/administrative-enheter-kommuner/datamodell-fra-uml/schema/jsonschema/INPUT/datamodellfrauml/datamodell-fra-uml.json) | Nedlasting | JSON Schema |  |
 
 ## Metadata
 
@@ -182,7 +181,7 @@ Forvaltningsmessig saksbehandling. Analyse og presentasjon i et GIS-system. Pres
 
 **Metadatastandardversjon**: 2003
 
-**Metadatadato**: 2026-08-18
+**Metadatadato**: 2026-09-09
 
 **språk**: nor
 
@@ -204,3 +203,5 @@ Forvaltningsmessig saksbehandling. Analyse og presentasjon i et GIS-system. Pres
 ## Tilleggsinformasjon
 
 Trenger du hjelp til å laste ned og ta i bruk Kartverkets data og tjenester? På kartverket.no finner du tips og veiledning.
+
+- **Produktark:** [https://register.geonorge.no/produktark/administrative-enheter-norge](https://register.geonorge.no/produktark/administrative-enheter-norge)

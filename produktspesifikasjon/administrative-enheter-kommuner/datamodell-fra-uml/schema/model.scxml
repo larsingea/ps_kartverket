@@ -31784,7 +31784,7 @@ the category of the coastline.  Note:  S-57 CATCOA</sc:DescriptorValue>
          </sc:descriptors>
          <sc:cardinality>1</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Punkt</sc:typeName>
+         <sc:typeName>GM_Point</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>navn</sc:name>
@@ -31869,7 +31869,7 @@ the category of the coastline.  Note:  S-57 CATCOA</sc:DescriptorValue>
          </sc:descriptors>
          <sc:cardinality>1</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Kurve</sc:typeName>
+         <sc:typeName>GM_Curve</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>følgerAdministrativGrense</sc:name>
@@ -31933,7 +31933,7 @@ the category of the coastline.  Note:  S-57 CATCOA</sc:DescriptorValue>
          </sc:descriptors>
          <sc:cardinality>0..*</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Flate</sc:typeName>
+         <sc:typeName>GM_Surface</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>posisjon</sc:name>
@@ -31947,7 +31947,7 @@ the category of the coastline.  Note:  S-57 CATCOA</sc:DescriptorValue>
          </sc:descriptors>
          <sc:cardinality>0..*</sc:cardinality>
          <sc:sequenceNumber>2</sc:sequenceNumber>
-         <sc:typeName>Punkt</sc:typeName>
+         <sc:typeName>GM_Point</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>sektornivå</sc:name>
@@ -32786,7 +32786,7 @@ Merknad: Inneholder informasjon om når kopidatasettet ble kopiert fra originald
          </sc:descriptors>
          <sc:cardinality>1</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Kurve</sc:typeName>
+         <sc:typeName>GM_Curve</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>grensestatus</sc:name>
@@ -32931,7 +32931,7 @@ Merknad: 1 nautisk mil = 1852 meter</sc:DescriptorValue>
          </sc:descriptors>
          <sc:cardinality>1</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Punkt</sc:typeName>
+         <sc:typeName>GM_Point</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>punktreferanse</sc:name>
@@ -32995,7 +32995,7 @@ Merknad: 1 nautisk mil = 1852 meter</sc:DescriptorValue>
          </sc:descriptors>
          <sc:cardinality>0..*</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Flate</sc:typeName>
+         <sc:typeName>GM_Surface</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>posisjon</sc:name>
@@ -33009,7 +33009,7 @@ Merknad: 1 nautisk mil = 1852 meter</sc:DescriptorValue>
          </sc:descriptors>
          <sc:cardinality>0..*</sc:cardinality>
          <sc:sequenceNumber>2</sc:sequenceNumber>
-         <sc:typeName>Punkt</sc:typeName>
+         <sc:typeName>GM_Point</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>sonetype</sc:name>
@@ -34004,7 +34004,7 @@ Merknad: Inneholder informasjon om når kopidatasettet ble kopiert fra originald
          </sc:descriptors>
          <sc:cardinality>1..*</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Flate</sc:typeName>
+         <sc:typeName>GM_Surface</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>posisjon</sc:name>
@@ -34018,7 +34018,7 @@ Merknad: Inneholder informasjon om når kopidatasettet ble kopiert fra originald
          </sc:descriptors>
          <sc:cardinality>0..1</sc:cardinality>
          <sc:sequenceNumber>2</sc:sequenceNumber>
-         <sc:typeName>Punkt</sc:typeName>
+         <sc:typeName>GM_Point</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>bispedømmeId</sc:name>
@@ -34152,7 +34152,7 @@ Merknad: Inneholder informasjon om når kopidatasettet ble kopiert fra originald
          </sc:descriptors>
          <sc:cardinality>1</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Kurve</sc:typeName>
+         <sc:typeName>GM_Curve</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>følgerGrunnkretsgrense</sc:name>
@@ -34265,7 +34265,7 @@ Folket som er medlem i Den norske kirke og bosatt innenfor et sokn betegnes som 
          </sc:descriptors>
          <sc:cardinality>1..*</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Flate</sc:typeName>
+         <sc:typeName>GM_Surface</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>posisjon</sc:name>
@@ -34279,7 +34279,7 @@ Folket som er medlem i Den norske kirke og bosatt innenfor et sokn betegnes som 
          </sc:descriptors>
          <sc:cardinality>0..1</sc:cardinality>
          <sc:sequenceNumber>2</sc:sequenceNumber>
-         <sc:typeName>Punkt</sc:typeName>
+         <sc:typeName>GM_Point</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>fellesråd</sc:name>
@@ -34453,7 +34453,7 @@ Folket som er medlem i Den norske kirke og bosatt innenfor et sokn betegnes som 
          </sc:descriptors>
          <sc:cardinality>1..*</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Flate</sc:typeName>
+         <sc:typeName>GM_Surface</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>posisjon</sc:name>
@@ -34467,7 +34467,7 @@ Folket som er medlem i Den norske kirke og bosatt innenfor et sokn betegnes som 
          </sc:descriptors>
          <sc:cardinality>0..1</sc:cardinality>
          <sc:sequenceNumber>2</sc:sequenceNumber>
-         <sc:typeName>Punkt</sc:typeName>
+         <sc:typeName>GM_Point</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>prostiId</sc:name>
@@ -35348,7 +35348,7 @@ Merknad: Inndelingen skal ivareta administrative formål, men har også i en vis
          </sc:descriptors>
          <sc:cardinality>1..*</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Flate</sc:typeName>
+         <sc:typeName>GM_Surface</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>posisjon</sc:name>
@@ -35362,7 +35362,7 @@ Merknad: Inndelingen skal ivareta administrative formål, men har også i en vis
          </sc:descriptors>
          <sc:cardinality>0..1</sc:cardinality>
          <sc:sequenceNumber>2</sc:sequenceNumber>
-         <sc:typeName>Punkt</sc:typeName>
+         <sc:typeName>GM_Point</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>stemmekretsId</sc:name>
@@ -35528,7 +35528,7 @@ Merknad: Det presiseres at kommune alltid skal ha 4 siffer, dvs. eventuelt med l
          </sc:descriptors>
          <sc:cardinality>1</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Kurve</sc:typeName>
+         <sc:typeName>GM_Curve</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>følgerGrunnkretsgrense</sc:name>
@@ -35638,7 +35638,7 @@ Merknad: Det presiseres at kommune alltid skal ha 4 siffer, dvs. eventuelt med l
          </sc:descriptors>
          <sc:cardinality>1</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Kurve</sc:typeName>
+         <sc:typeName>GM_Curve</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>følgerGrunnkretsgrense</sc:name>
@@ -35750,7 +35750,7 @@ Merknad: Består som oftest av hele grunnkretser selv om dette i praksis kan avv
          </sc:descriptors>
          <sc:cardinality>1..*</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Flate</sc:typeName>
+         <sc:typeName>GM_Surface</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>posisjon</sc:name>
@@ -35764,7 +35764,7 @@ Merknad: Består som oftest av hele grunnkretser selv om dette i praksis kan avv
          </sc:descriptors>
          <sc:cardinality>0..1</sc:cardinality>
          <sc:sequenceNumber>2</sc:sequenceNumber>
-         <sc:typeName>Punkt</sc:typeName>
+         <sc:typeName>GM_Point</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>skolekretsId</sc:name>
@@ -35963,7 +35963,7 @@ Merknad: Det presiseres at kommune alltid skal ha 4 siffer, dvs. eventuelt med l
          </sc:descriptors>
          <sc:cardinality>1</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Kurve</sc:typeName>
+         <sc:typeName>GM_Curve</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>følgerGrunnkretsgrense</sc:name>
@@ -36429,7 +36429,7 @@ Merknad: Kan også benyttes for å angi hjelpepunkter</sc:DescriptorValue>
          </sc:descriptors>
          <sc:cardinality>1..*</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Flate</sc:typeName>
+         <sc:typeName>GM_Surface</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>posisjon</sc:name>
@@ -36443,7 +36443,7 @@ Merknad: Kan også benyttes for å angi hjelpepunkter</sc:DescriptorValue>
          </sc:descriptors>
          <sc:cardinality>0..*</sc:cardinality>
          <sc:sequenceNumber>2</sc:sequenceNumber>
-         <sc:typeName>Punkt</sc:typeName>
+         <sc:typeName>GM_Point</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>landkode</sc:name>
@@ -36598,7 +36598,7 @@ Merknad: Alfanumerisk kode (ISO 3166-1 alpha-2) for land som definert i ISO 3166
          </sc:descriptors>
          <sc:cardinality>1</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Kurve</sc:typeName>
+         <sc:typeName>GM_Curve</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>gjelderOmråde</sc:name>
@@ -36754,7 +36754,7 @@ For eksempel: Yttergrense for tilstøtende sone.</sc:DescriptorValue>
          </sc:descriptors>
          <sc:cardinality>0..1</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Punkt</sc:typeName>
+         <sc:typeName>GM_Point</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>område</sc:name>
@@ -36768,7 +36768,7 @@ For eksempel: Yttergrense for tilstøtende sone.</sc:DescriptorValue>
          </sc:descriptors>
          <sc:cardinality>1</sc:cardinality>
          <sc:sequenceNumber>2</sc:sequenceNumber>
-         <sc:typeName>Flate</sc:typeName>
+         <sc:typeName>GM_Surface</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>beregnetMidtlinje</sc:name>
@@ -36950,7 +36950,7 @@ Benyttes også som avgrensning av kontinentalsokkel i internasjonalt farvann, de
          </sc:descriptors>
          <sc:cardinality>1..*</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Flate</sc:typeName>
+         <sc:typeName>GM_Surface</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>posisjon</sc:name>
@@ -36964,7 +36964,7 @@ Benyttes også som avgrensning av kontinentalsokkel i internasjonalt farvann, de
          </sc:descriptors>
          <sc:cardinality>0..*</sc:cardinality>
          <sc:sequenceNumber>2</sc:sequenceNumber>
-         <sc:typeName>Punkt</sc:typeName>
+         <sc:typeName>GM_Point</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>dokumentasjonsreferanse</sc:name>
@@ -37183,7 +37183,7 @@ Eksempel: Svalbard (Fiskevernsonen gjelder for Svalbard, grensa for fiskevernson
          </sc:descriptors>
          <sc:cardinality>1</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Punkt</sc:typeName>
+         <sc:typeName>GM_Point</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>punktreferanse</sc:name>
@@ -38482,7 +38482,7 @@ mulighet til å legge inn utfyllende informasjon om objektet</sc:DescriptorValue
          </sc:descriptors>
          <sc:cardinality>1..*</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Flate</sc:typeName>
+         <sc:typeName>GM_Surface</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>posisjon</sc:name>
@@ -38496,7 +38496,7 @@ mulighet til å legge inn utfyllende informasjon om objektet</sc:DescriptorValue
          </sc:descriptors>
          <sc:cardinality>0..*</sc:cardinality>
          <sc:sequenceNumber>2</sc:sequenceNumber>
-         <sc:typeName>Punkt</sc:typeName>
+         <sc:typeName>GM_Point</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>landkode</sc:name>
@@ -38635,7 +38635,7 @@ Merknad: Avgrensningslinje som ikke er endelig fastsatt ved avtale. Dannet utgan
          </sc:descriptors>
          <sc:cardinality>1..*</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Flate</sc:typeName>
+         <sc:typeName>GM_Surface</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>posisjon</sc:name>
@@ -38649,7 +38649,7 @@ Merknad: Avgrensningslinje som ikke er endelig fastsatt ved avtale. Dannet utgan
          </sc:descriptors>
          <sc:cardinality>0..1</sc:cardinality>
          <sc:sequenceNumber>2</sc:sequenceNumber>
-         <sc:typeName>Punkt</sc:typeName>
+         <sc:typeName>GM_Point</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>navn</sc:name>
@@ -39303,7 +39303,7 @@ Merknad: Tilsvarer objekttype Kystkontur i fagområdestandard Kyst og sjø 4.0.<
          </sc:descriptors>
          <sc:cardinality>1</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Kurve</sc:typeName>
+         <sc:typeName>GM_Curve</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>høyde</sc:name>
@@ -39583,7 +39583,7 @@ Merknad: Det presiseres at kommune alltid skal ha 4 siffer, dvs. eventuelt med l
          </sc:descriptors>
          <sc:cardinality>1</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Punkt</sc:typeName>
+         <sc:typeName>GM_Point</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>grensemerketype</sc:name>
@@ -39805,7 +39805,7 @@ Merknad: Alfanumerisk kode (ISO 3166-1 alpha-2) for land som definert i ISO 3166
          </sc:descriptors>
          <sc:cardinality>1</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Kurve</sc:typeName>
+         <sc:typeName>GM_Curve</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>omtvistet</sc:name>
@@ -40314,7 +40314,7 @@ Ved førstegangsregistrering settes Datafangstdato lik førsteDatafangstdato.</s
          </sc:descriptors>
          <sc:cardinality>1..*</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Flate</sc:typeName>
+         <sc:typeName>GM_Surface</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>posisjon</sc:name>
@@ -40328,7 +40328,7 @@ Ved førstegangsregistrering settes Datafangstdato lik førsteDatafangstdato.</s
          </sc:descriptors>
          <sc:cardinality>0..*</sc:cardinality>
          <sc:sequenceNumber>2</sc:sequenceNumber>
-         <sc:typeName>Punkt</sc:typeName>
+         <sc:typeName>GM_Point</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>land</sc:name>
@@ -42091,7 +42091,7 @@ Merknad: Inneholder informasjon om når kopidatasettet ble kopiert fra originald
          </sc:descriptors>
          <sc:cardinality>1</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Kurve</sc:typeName>
+         <sc:typeName>GM_Curve</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>følgerGrunnkretsgrense</sc:name>
@@ -42201,7 +42201,7 @@ Merknad: Inneholder informasjon om når kopidatasettet ble kopiert fra originald
          </sc:descriptors>
          <sc:cardinality>1..*</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Flate</sc:typeName>
+         <sc:typeName>GM_Surface</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>posisjon</sc:name>
@@ -42215,7 +42215,7 @@ Merknad: Inneholder informasjon om når kopidatasettet ble kopiert fra originald
          </sc:descriptors>
          <sc:cardinality>0..*</sc:cardinality>
          <sc:sequenceNumber>2</sc:sequenceNumber>
-         <sc:typeName>Punkt</sc:typeName>
+         <sc:typeName>GM_Point</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>postnummerOmrådeId</sc:name>
@@ -42323,7 +42323,7 @@ Merknad: Inneholder informasjon om når kopidatasettet ble kopiert fra originald
          </sc:descriptors>
          <sc:cardinality>1..*</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Flate</sc:typeName>
+         <sc:typeName>GM_Surface</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>posisjon</sc:name>
@@ -42337,7 +42337,7 @@ Merknad: Inneholder informasjon om når kopidatasettet ble kopiert fra originald
          </sc:descriptors>
          <sc:cardinality>0..*</sc:cardinality>
          <sc:sequenceNumber>2</sc:sequenceNumber>
-         <sc:typeName>Punkt</sc:typeName>
+         <sc:typeName>GM_Point</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>postsonenummer</sc:name>
@@ -42447,7 +42447,7 @@ Merknad: Inneholder informasjon om når kopidatasettet ble kopiert fra originald
          </sc:descriptors>
          <sc:cardinality>1..*</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Flate</sc:typeName>
+         <sc:typeName>GM_Surface</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>posisjon</sc:name>
@@ -42461,7 +42461,7 @@ Merknad: Inneholder informasjon om når kopidatasettet ble kopiert fra originald
          </sc:descriptors>
          <sc:cardinality>0..*</sc:cardinality>
          <sc:sequenceNumber>2</sc:sequenceNumber>
-         <sc:typeName>Punkt</sc:typeName>
+         <sc:typeName>GM_Point</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>postområdenummer</sc:name>
@@ -42618,7 +42618,7 @@ Merknad: Inneholder informasjon om når kopidatasettet ble kopiert fra originald
          </sc:descriptors>
          <sc:cardinality>1..*</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Flate</sc:typeName>
+         <sc:typeName>GM_Surface</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>posisjon</sc:name>
@@ -42632,7 +42632,7 @@ Merknad: Inneholder informasjon om når kopidatasettet ble kopiert fra originald
          </sc:descriptors>
          <sc:cardinality>0..*</sc:cardinality>
          <sc:sequenceNumber>2</sc:sequenceNumber>
-         <sc:typeName>Punkt</sc:typeName>
+         <sc:typeName>GM_Point</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>postregionnummer</sc:name>
@@ -43577,7 +43577,7 @@ mulighet til å legge inn utfyllende informasjon om objektet</sc:DescriptorValue
          </sc:descriptors>
          <sc:cardinality>1</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Kurve</sc:typeName>
+         <sc:typeName>GM_Curve</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>følgerTerrengdetalj</sc:name>
@@ -43953,7 +43953,7 @@ Grensemerkene er nummerert i stigende nummerrekkefølge uavhengig av type punkt<
          </sc:descriptors>
          <sc:cardinality>1</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Punkt</sc:typeName>
+         <sc:typeName>GM_Point</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>nummer</sc:name>
@@ -44806,7 +44806,7 @@ Merknad: Ikke definert som punkt i grensemerkeprotokollen. Ikke punkt mellom sto
          <sc:id>C30_1</sc:id>
          <sc:cardinality>1</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Punkt</sc:typeName>
+         <sc:typeName>GM_Point</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>søknadspliktigTiltak</sc:name>
@@ -44887,7 +44887,7 @@ Merknad 2: Delområde er identifisert som de to første siffer i grunnkretsnumme
          </sc:descriptors>
          <sc:cardinality>1..*</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Flate</sc:typeName>
+         <sc:typeName>GM_Surface</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>posisjon</sc:name>
@@ -44901,7 +44901,7 @@ Merknad 2: Delområde er identifisert som de to første siffer i grunnkretsnumme
          </sc:descriptors>
          <sc:cardinality>0..1</sc:cardinality>
          <sc:sequenceNumber>2</sc:sequenceNumber>
-         <sc:typeName>Punkt</sc:typeName>
+         <sc:typeName>GM_Point</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>delområdeId</sc:name>
@@ -45408,7 +45408,7 @@ En kommune er delt inn i flere grunnkretser.</sc:DescriptorValue>
          </sc:descriptors>
          <sc:cardinality>1..*</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Flate</sc:typeName>
+         <sc:typeName>GM_Surface</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>posisjon</sc:name>
@@ -45422,7 +45422,7 @@ En kommune er delt inn i flere grunnkretser.</sc:DescriptorValue>
          </sc:descriptors>
          <sc:cardinality>0..1</sc:cardinality>
          <sc:sequenceNumber>2</sc:sequenceNumber>
-         <sc:typeName>Punkt</sc:typeName>
+         <sc:typeName>GM_Point</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>grunnkretsId</sc:name>
@@ -45578,7 +45578,7 @@ En kommune er delt inn i flere grunnkretser.</sc:DescriptorValue>
          </sc:descriptors>
          <sc:cardinality>1</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Kurve</sc:typeName>
+         <sc:typeName>GM_Curve</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>følgerTerrengdetalj</sc:name>
@@ -46002,7 +46002,7 @@ Merknad: Inneholder informasjon om når kopidatasettet ble kopiert fra originald
          </sc:descriptors>
          <sc:cardinality>1</sc:cardinality>
          <sc:sequenceNumber>1</sc:sequenceNumber>
-         <sc:typeName>Kurve</sc:typeName>
+         <sc:typeName>GM_Curve</sc:typeName>
         </sc:Property>
         <sc:Property>
          <sc:name>følgerTerrengdetalj</sc:name>

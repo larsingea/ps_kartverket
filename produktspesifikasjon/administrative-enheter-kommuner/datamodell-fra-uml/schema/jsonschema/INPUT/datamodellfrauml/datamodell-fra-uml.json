@@ -68,6 +68,9 @@
         {
           "type": "object",
           "properties": {
+            "geometry": {
+              "$ref": "https://geojson.org/schema/LineString.json"
+            },
             "omtvistet": {
               "type": "boolean"
             },
@@ -435,6 +438,9 @@
         {
           "type": "object",
           "properties": {
+            "geometry": {
+              "$ref": "https://geojson.org/schema/LineString.json"
+            },
             "følgerTerrengdetalj": {
               "$ref": "#/definitions/TerrengdetaljKode"
             },
@@ -733,6 +739,9 @@
         {
           "type": "object",
           "properties": {
+            "geometry": {
+              "$ref": "https://geojson.org/schema/LineString.json"
+            },
             "følgerGrunnkretsgrense": {
               "$ref": "#/definitions/Identifikasjon"
             },
@@ -898,6 +907,9 @@
         {
           "type": "object",
           "properties": {
+            "geometry": {
+              "$ref": "https://geojson.org/schema/Point.json"
+            },
             "grensemerketype": {
               "$ref": "#/definitions/GrensepunkttypeKode"
             },
@@ -1108,6 +1120,9 @@
         {
           "type": "object",
           "properties": {
+            "geometry": {
+              "$ref": "https://geojson.org/schema/LineString.json"
+            },
             "følgerTerrengdetalj": {
               "$ref": "#/definitions/TerrengdetaljKode"
             },
@@ -1522,6 +1537,9 @@
         {
           "type": "object",
           "properties": {
+            "geometry": {
+              "$ref": "https://geojson.org/schema/LineString.json"
+            },
             "høyde": {
               "type": "number"
             },
@@ -1674,6 +1692,9 @@
         {
           "type": "object",
           "properties": {
+            "geometry": {
+              "$ref": "https://geojson.org/schema/LineString.json"
+            },
             "grensestatus": {
               "$ref": "#/definitions/Grensestatus"
             },
@@ -1706,6 +1727,9 @@
         {
           "type": "object",
           "properties": {
+            "geometry": {
+              "$ref": "https://geojson.org/schema/Point.json"
+            },
             "punktreferanse": {
               "type": "array",
               "items": {
@@ -1725,6 +1749,9 @@
         {
           "type": "object",
           "properties": {
+            "geometry": {
+              "$ref": "https://geojson.org/schema/LineString.json"
+            },
             "gjelderOmråde": {
               "type": "string"
             },
@@ -1835,6 +1862,9 @@
         {
           "type": "object",
           "properties": {
+            "geometry": {
+              "$ref": "https://geojson.org/schema/Point.json"
+            },
             "punktreferanse": {
               "type": "array",
               "items": {
@@ -2051,6 +2081,9 @@
         {
           "type": "object",
           "properties": {
+            "geometry": {
+              "$ref": "https://geojson.org/schema/LineString.json"
+            },
             "følgerGrunnkretsgrense": {
               "$ref": "#/definitions/Identifikasjon"
             },
@@ -2619,6 +2652,9 @@
         {
           "type": "object",
           "properties": {
+            "geometry": {
+              "$ref": "https://geojson.org/schema/LineString.json"
+            },
             "følgerTerrengdetalj": {
               "$ref": "#/definitions/TerrengdetaljKode"
             },
@@ -2795,6 +2831,9 @@
         {
           "type": "object",
           "properties": {
+            "geometry": {
+              "$ref": "https://geojson.org/schema/LineString.json"
+            },
             "følgerAdministrativGrense": {
               "$ref": "#/definitions/AdministrativGrenseKode"
             }
@@ -2830,6 +2869,9 @@
         {
           "type": "object",
           "properties": {
+            "geometry": {
+              "$ref": "https://geojson.org/schema/Point.json"
+            },
             "navn": {
               "type": "string"
             },
@@ -2908,6 +2950,9 @@
     "Sikringspunkt": {
       "type": "object",
       "properties": {
+        "geometry": {
+          "$ref": "https://geojson.org/schema/Point.json"
+        },
         "@type": {
           "type": "string"
         },
@@ -3150,6 +3195,9 @@
         {
           "type": "object",
           "properties": {
+            "geometry": {
+              "$ref": "https://geojson.org/schema/LineString.json"
+            },
             "følgerGrunnkretsgrense": {
               "$ref": "#/definitions/Identifikasjon"
             },
@@ -3380,6 +3428,9 @@
         {
           "type": "object",
           "properties": {
+            "geometry": {
+              "$ref": "https://geojson.org/schema/LineString.json"
+            },
             "følgerGrunnkretsgrense": {
               "$ref": "#/definitions/Identifikasjon"
             },
@@ -4720,6 +4771,9 @@
     "UoffisieltObjekt": {
       "type": "object",
       "properties": {
+        "geometry": {
+          "$ref": "https://geojson.org/schema/Point.json"
+        },
         "@type": {
           "type": "string"
         },
@@ -4784,6 +4838,9 @@
         {
           "type": "object",
           "properties": {
+            "geometry": {
+              "$ref": "https://geojson.org/schema/LineString.json"
+            },
             "følgerGrunnkretsgrense": {
               "$ref": "#/definitions/Identifikasjon"
             },
