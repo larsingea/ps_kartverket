@@ -1,0 +1,51 @@
+---
+id: datamodell_for_tettsted_fra_postgis
+label: FIXME
+description: FIXME
+enabled: true
+serviceType: OGC_API
+collections:
+  analyseområde:
+    id: analyseområde
+    label: analyseområde
+    enabled: true
+  fylkesnummer:
+    id: fylkesnummer
+    label: fylkesnummer
+    enabled: true
+  janei:
+    id: janei
+    label: janei
+    enabled: true
+  kommunenummer:
+    id: kommunenummer
+    label: kommunenummer
+    enabled: true
+  malemetode:
+    id: malemetode
+    label: malemetode
+    enabled: true
+  prosjekttype:
+    id: prosjekttype
+    label: prosjekttype
+    enabled: true
+  påvirkningsområde:
+    id: påvirkningsområde
+    label: påvirkningsområde
+    enabled: true
+  skreddimensjonerende:
+    id: skreddimensjonerende
+    label: skreddimensjonerende
+    enabled: true
+  skredfaresone:
+    id: skredfaresone
+    label: skredfaresone
+    enabled: true
+  skredsannsynlighetbrattterreng:
+    id: skredsannsynlighetbrattterreng
+    label: skredsannsynlighetbrattterreng
+    enabled: true
+  skredtypedetaljert:
+    id: skredtypedetaljert
+    label: skredtypedetaljert
+    enabled: true

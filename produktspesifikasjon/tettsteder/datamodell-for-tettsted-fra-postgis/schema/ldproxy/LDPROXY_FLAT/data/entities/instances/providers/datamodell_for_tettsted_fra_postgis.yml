@@ -1,0 +1,409 @@
+---
+id: datamodell_for_tettsted_fra_postgis
+enabled: true
+providerType: FEATURE
+providerSubType: SQL
+nativeCrs:
+  code: 25833
+  forceAxisOrder: NONE
+nativeTimeZone: Europe/Oslo
+connectionInfo:
+  database: FIXME
+  host: FIXME
+  user: FIXME
+  password: FIXME-base64-encoded
+  schemas:
+  - public
+sourcePathDefaults:
+  primaryKey: objid
+  sortKey: objid
+types:
+  analyseområde:
+    sourcePath: /analyseområde
+    type: OBJECT
+    objectType: Analyseområde
+    properties:
+      oid:
+        sourcePath: objid
+        type: INTEGER
+        role: ID
+      geometri:
+        sourcePath: geometri
+        type: GEOMETRY
+        role: PRIMARY_GEOMETRY
+        geometryType: ANY
+        constraints:
+          required: true
+      objid:
+        sourcePath: objid
+        type: INTEGER
+      kommunenavn:
+        sourcePath: kommunenavn
+        type: STRING
+      kommunenummer:
+        sourcePath: kommunenummer
+        type: STRING
+      fylkesnavn:
+        sourcePath: fylkesnavn
+        type: STRING
+      fylkesnummer:
+        sourcePath: fylkesnummer
+        type: STRING
+      oppdateringsdato:
+        sourcePath: oppdateringsdato
+        type: DATE
+        role: PRIMARY_INSTANT
+      publiseringsdato:
+        sourcePath: publiseringsdato
+        type: DATE
+      rapportdato:
+        sourcePath: rapportdato
+        type: DATE
+      rapportnummer:
+        sourcePath: rapportnummer
+        type: STRING
+      lokalid:
+        sourcePath: lokalid
+        type: STRING
+      navnerom:
+        sourcePath: navnerom
+        type: STRING
+      datauttaksdato:
+        sourcePath: datauttaksdato
+        type: DATE
+      analyseomradenummer:
+        sourcePath: analyseomradenummer
+        type: INTEGER
+      oppdragsgiver:
+        sourcePath: oppdragsgiver
+        type: STRING
+      utforende:
+        sourcePath: utforende
+        type: STRING
+      uavhengigkvalitetssikring:
+        sourcePath: uavhengigkvalitetssikring
+        type: STRING
+      prosjekttype:
+        sourcePath: prosjekttype
+        type: STRING
+      vurdertskredsannsynlighet:
+        sourcePath: vurdertskredsannsynlighet
+        type: STRING
+      rapportnavn:
+        sourcePath: rapportnavn
+        type: STRING
+      rapporturl:
+        sourcePath: rapporturl
+        type: STRING
+  fylkesnummer:
+    sourcePath: /fylkesnummer
+    type: OBJECT
+    objectType: fylkesnummer
+    properties:
+      oid:
+        sourcePath: objid
+        type: INTEGER
+        role: ID
+      identifier:
+        sourcePath: identifier
+        type: STRING
+      description:
+        sourcePath: description
+        type: STRING
+  janei:
+    sourcePath: /janei
+    type: OBJECT
+    objectType: janei
+    properties:
+      oid:
+        sourcePath: objid
+        type: INTEGER
+        role: ID
+      identifier:
+        sourcePath: identifier
+        type: STRING
+      description:
+        sourcePath: description
+        type: STRING
+  kommunenummer:
+    sourcePath: /kommunenummer
+    type: OBJECT
+    objectType: kommunenummer
+    properties:
+      oid:
+        sourcePath: objid
+        type: INTEGER
+        role: ID
+      identifier:
+        sourcePath: identifier
+        type: STRING
+      description:
+        sourcePath: description
+        type: STRING
+  malemetode:
+    sourcePath: /malemetode
+    type: OBJECT
+    objectType: malemetode
+    properties:
+      oid:
+        sourcePath: objid
+        type: INTEGER
+        role: ID
+      identifier:
+        sourcePath: identifier
+        type: STRING
+      description:
+        sourcePath: description
+        type: STRING
+  prosjekttype:
+    sourcePath: /prosjekttype
+    type: OBJECT
+    objectType: prosjekttype
+    properties:
+      oid:
+        sourcePath: objid
+        type: INTEGER
+        role: ID
+      identifier:
+        sourcePath: identifier
+        type: STRING
+      description:
+        sourcePath: description
+        type: STRING
+  påvirkningsområde:
+    sourcePath: /påvirkningsområde
+    type: OBJECT
+    objectType: Påvirkningsområde
+    properties:
+      oid:
+        sourcePath: objid
+        type: INTEGER
+        role: ID
+      geometri:
+        sourcePath: geometri
+        type: GEOMETRY
+        role: PRIMARY_GEOMETRY
+        geometryType: ANY
+        constraints:
+          required: true
+      objid:
+        sourcePath: objid
+        type: INTEGER
+      kommunenavn:
+        sourcePath: kommunenavn
+        type: STRING
+      kommunenummer:
+        sourcePath: kommunenummer
+        type: STRING
+      fylkesnavn:
+        sourcePath: fylkesnavn
+        type: STRING
+      fylkesnummer:
+        sourcePath: fylkesnummer
+        type: STRING
+      oppdateringsdato:
+        sourcePath: oppdateringsdato
+        type: DATE
+        role: PRIMARY_INSTANT
+      publiseringsdato:
+        sourcePath: publiseringsdato
+        type: DATE
+      rapportdato:
+        sourcePath: rapportdato
+        type: DATE
+      rapportnummer:
+        sourcePath: rapportnummer
+        type: STRING
+      analyseomradeid_lokalid:
+        sourcePath: analyseomradeid_lokalid
+        type: STRING
+      analyseomradeid_navnerom:
+        sourcePath: analyseomradeid_navnerom
+        type: STRING
+      datauttaksdato:
+        sourcePath: datauttaksdato
+        type: DATE
+      utforende:
+        sourcePath: utforende
+        type: STRING
+      rapporturl:
+        sourcePath: rapporturl
+        type: STRING
+      pavirkningsomradeid_lokalid:
+        sourcePath: pavirkningsomradeid_lokalid
+        type: STRING
+      pavirkningsomradeid_navnerom:
+        sourcePath: pavirkningsomradeid_navnerom
+        type: STRING
+  skreddimensjonerende:
+    sourcePath: /skreddimensjonerende
+    type: OBJECT
+    objectType: Skreddimensjonerende
+    properties:
+      oid:
+        sourcePath: objid
+        type: INTEGER
+        role: ID
+      geometri:
+        sourcePath: geometri
+        type: GEOMETRY
+        role: PRIMARY_GEOMETRY
+        geometryType: ANY
+        constraints:
+          required: true
+      objid:
+        sourcePath: objid
+        type: INTEGER
+      kommunenavn:
+        sourcePath: kommunenavn
+        type: STRING
+      kommunenummer:
+        sourcePath: kommunenummer
+        type: STRING
+      fylkesnavn:
+        sourcePath: fylkesnavn
+        type: STRING
+      fylkesnummer:
+        sourcePath: fylkesnummer
+        type: STRING
+      oppdateringsdato:
+        sourcePath: oppdateringsdato
+        type: DATE
+        role: PRIMARY_INSTANT
+      publiseringsdato:
+        sourcePath: publiseringsdato
+        type: DATE
+      rapportdato:
+        sourcePath: rapportdato
+        type: DATE
+      rapportnummer:
+        sourcePath: rapportnummer
+        type: STRING
+      analyseomradeid_lokalid:
+        sourcePath: analyseomradeid_lokalid
+        type: STRING
+      analyseomradeid_navnerom:
+        sourcePath: analyseomradeid_navnerom
+        type: STRING
+      datauttaksdato:
+        sourcePath: datauttaksdato
+        type: DATE
+      skreddimensjonerendeid_lokalid:
+        sourcePath: skreddimensjonerendeid_lokalid
+        type: STRING
+      skreddimensjonerendeid_navnerom:
+        sourcePath: skreddimensjonerendeid_navnerom
+        type: STRING
+      skredtype:
+        sourcePath: skredtype
+        type: STRING
+      hensyntilskog:
+        sourcePath: hensyntilskog
+        type: STRING
+  skredfaresone:
+    sourcePath: /skredfaresone
+    type: OBJECT
+    objectType: Skredfaresone
+    properties:
+      oid:
+        sourcePath: objid
+        type: INTEGER
+        role: ID
+      geometri:
+        sourcePath: geometri
+        type: GEOMETRY
+        role: PRIMARY_GEOMETRY
+        geometryType: ANY
+        constraints:
+          required: true
+      objid:
+        sourcePath: objid
+        type: INTEGER
+      kommunenavn:
+        sourcePath: kommunenavn
+        type: STRING
+      kommunenummer:
+        sourcePath: kommunenummer
+        type: STRING
+      fylkesnavn:
+        sourcePath: fylkesnavn
+        type: STRING
+      fylkesnummer:
+        sourcePath: fylkesnummer
+        type: STRING
+      oppdateringsdato:
+        sourcePath: oppdateringsdato
+        type: DATE
+        role: PRIMARY_INSTANT
+      publiseringsdato:
+        sourcePath: publiseringsdato
+        type: DATE
+      rapportdato:
+        sourcePath: rapportdato
+        type: DATE
+      rapportnummer:
+        sourcePath: rapportnummer
+        type: STRING
+      analyseomradeid_lokalid:
+        sourcePath: analyseomradeid_lokalid
+        type: STRING
+      analyseomradeid_navnerom:
+        sourcePath: analyseomradeid_navnerom
+        type: STRING
+      datauttaksdato:
+        sourcePath: datauttaksdato
+        type: DATE
+      skredtype:
+        sourcePath: skredtype
+        type: STRING
+      skredsannsynlighet:
+        sourcePath: skredsannsynlighet
+        type: STRING
+      skredfaresoneid_lokalid:
+        sourcePath: skredfaresoneid_lokalid
+        type: STRING
+      skredfaresoneid_navnerom:
+        sourcePath: skredfaresoneid_navnerom
+        type: STRING
+      analyseomradenummer:
+        sourcePath: analyseomradenummer
+        type: INTEGER
+      hensyntilskog:
+        sourcePath: hensyntilskog
+        type: STRING
+      malemetode:
+        sourcePath: malemetode
+        type: STRING
+      noyaktighet:
+        sourcePath: noyaktighet
+        type: INTEGER
+  skredsannsynlighetbrattterreng:
+    sourcePath: /skredsannsynlighetbrattterreng
+    type: OBJECT
+    objectType: skredsannsynlighetbrattterreng
+    properties:
+      oid:
+        sourcePath: objid
+        type: INTEGER
+        role: ID
+      identifier:
+        sourcePath: identifier
+        type: STRING
+      description:
+        sourcePath: description
+        type: STRING
+  skredtypedetaljert:
+    sourcePath: /skredtypedetaljert
+    type: OBJECT
+    objectType: skredtypedetaljert
+    properties:
+      oid:
+        sourcePath: objid
+        type: INTEGER
+        role: ID
+      identifier:
+        sourcePath: identifier
+        type: STRING
+      description:
+        sourcePath: description
+        type: STRING

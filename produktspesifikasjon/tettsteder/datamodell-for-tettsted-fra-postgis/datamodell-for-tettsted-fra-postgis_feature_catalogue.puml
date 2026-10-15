@@ -1,0 +1,157 @@
+@startuml
+' For wide diagrams, render with: plantuml -DPLANTUML_LIMIT_SIZE=16384 ...
+' The 'scale max' directive below caps the rendered output to prevent the
+' default PlantUML 4096px size limit from cropping the diagram.
+scale max 4000*4000
+
+title Tettsteder - Datamodell for tettsted fra PostGIS - Objekttyper
+
+skinparam backgroundColor #F5F5F5
+skinparam shadowing false
+skinparam RoundCorner 6
+skinparam ArrowColor #6C8198
+skinparam wrapWidth 200
+skinparam class {
+  BackgroundColor #FBF2E8
+  BorderColor #9C8578
+  FontColor #2D201A
+  HeaderBackgroundColor #EFE1D6
+  HeaderFontColor #2D201A
+  AttributeIconSize 0
+}
+skinparam note {
+  BackgroundColor #FFFFFF
+  BorderColor #6C8198
+  FontColor #2D201A
+}
+skinparam stereotypeCBackgroundColor #EAD9CE
+skinparam stereotypeCBorderColor #9C8578
+skinparam stereotypeCFontColor #2D201A
+
+package "Objekttyper" {
+
+  class fylkesnummer <<featureType>> {
+    + identifier [0..1] : CharacterString
+    + description [0..1] : CharacterString
+  }
+
+  class kommunenummer <<featureType>> {
+    + identifier [0..1] : CharacterString
+    + description [0..1] : CharacterString
+  }
+
+  class "Analyseområde" as Analyseomr_de <<featureType>> {
+    + geometri [1] : geometry
+    + objid [0..1] : Integer
+    + kommunenavn [0..1] : CharacterString
+    + kommunenummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + oppdateringsdato [0..1] : Date
+    + publiseringsdato [0..1] : Date
+    + rapportdato [0..1] : Date
+    + rapportnummer [0..1] : CharacterString
+    + lokalid [0..1] : CharacterString
+    + navnerom [0..1] : CharacterString
+    + datauttaksdato [0..1] : Date
+    + analyseomradenummer [0..1] : Integer
+    + oppdragsgiver [0..1] : CharacterString
+    + utforende [0..1] : CharacterString
+    + uavhengigkvalitetssikring [0..1] : CharacterString
+    + prosjekttype [0..1] : CharacterString
+    + vurdertskredsannsynlighet [0..1] : CharacterString
+    + rapportnavn [0..1] : CharacterString
+    + rapporturl [0..1] : CharacterString
+  }
+
+  class "Påvirkningsområde" as P_virkningsomr_de <<featureType>> {
+    + geometri [1] : geometry
+    + objid [0..1] : Integer
+    + kommunenavn [0..1] : CharacterString
+    + kommunenummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + oppdateringsdato [0..1] : Date
+    + publiseringsdato [0..1] : Date
+    + rapportdato [0..1] : Date
+    + rapportnummer [0..1] : CharacterString
+    + analyseomradeid_lokalid [0..1] : CharacterString
+    + analyseomradeid_navnerom [0..1] : CharacterString
+    + datauttaksdato [0..1] : Date
+    + utforende [0..1] : CharacterString
+    + rapporturl [0..1] : CharacterString
+    + pavirkningsomradeid_lokalid [0..1] : CharacterString
+    + pavirkningsomradeid_navnerom [0..1] : CharacterString
+  }
+
+  class Skreddimensjonerende <<featureType>> {
+    + geometri [1] : geometry
+    + objid [0..1] : Integer
+    + kommunenavn [0..1] : CharacterString
+    + kommunenummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + oppdateringsdato [0..1] : Date
+    + publiseringsdato [0..1] : Date
+    + rapportdato [0..1] : Date
+    + rapportnummer [0..1] : CharacterString
+    + analyseomradeid_lokalid [0..1] : CharacterString
+    + analyseomradeid_navnerom [0..1] : CharacterString
+    + datauttaksdato [0..1] : Date
+    + skreddimensjonerendeid_lokalid [0..1] : CharacterString
+    + skreddimensjonerendeid_navnerom [0..1] : CharacterString
+    + skredtype [0..1] : CharacterString
+    + hensyntilskog [0..1] : CharacterString
+  }
+
+  class Skredfaresone <<featureType>> {
+    + geometri [1] : geometry
+    + objid [0..1] : Integer
+    + kommunenavn [0..1] : CharacterString
+    + kommunenummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + oppdateringsdato [0..1] : Date
+    + publiseringsdato [0..1] : Date
+    + rapportdato [0..1] : Date
+    + rapportnummer [0..1] : CharacterString
+    + analyseomradeid_lokalid [0..1] : CharacterString
+    + analyseomradeid_navnerom [0..1] : CharacterString
+    + datauttaksdato [0..1] : Date
+    + skredtype [0..1] : CharacterString
+    + skredsannsynlighet [0..1] : CharacterString
+    + skredfaresoneid_lokalid [0..1] : CharacterString
+    + skredfaresoneid_navnerom [0..1] : CharacterString
+    + analyseomradenummer [0..1] : Integer
+    + hensyntilskog [0..1] : CharacterString
+    + malemetode [0..1] : CharacterString
+    + noyaktighet [0..1] : Integer
+  }
+
+  class janei <<featureType>> {
+    + identifier [0..1] : CharacterString
+    + description [0..1] : CharacterString
+  }
+
+  class malemetode <<featureType>> {
+    + identifier [0..1] : CharacterString
+    + description [0..1] : CharacterString
+  }
+
+  class prosjekttype <<featureType>> {
+    + identifier [0..1] : CharacterString
+    + description [0..1] : CharacterString
+  }
+
+  class skredsannsynlighetbrattterreng <<featureType>> {
+    + identifier [0..1] : CharacterString
+    + description [0..1] : CharacterString
+  }
+
+  class skredtypedetaljert <<featureType>> {
+    + identifier [0..1] : CharacterString
+    + description [0..1] : CharacterString
+  }
+}
+
+@enduml
