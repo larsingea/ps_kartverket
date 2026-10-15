@@ -5,6 +5,6 @@ updated: '2026-10-15'
 outputs: geopackage,pygeoapi,ldproxy
 scopes:
 - name: Datamodell for tettsted fra PostGIS
-  url: ''
+  url: inputs/tettsteder/postgis.schema.sql
   generator: postgis
-  description: ''
+  description: Basert på skjema generert av GISTools og UML-modell
