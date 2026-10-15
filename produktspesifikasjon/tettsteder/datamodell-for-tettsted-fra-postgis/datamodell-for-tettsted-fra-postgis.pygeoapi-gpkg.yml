@@ -1,0 +1,201 @@
+# pygeoapi-konfigurasjon — generert fra datamodellen og metadata i Geonorge.
+# Verdier merket "<REPLACE_ME>" må fylles inn før tjenesten kan startes.
+server:
+  bind:
+    host: 0.0.0.0
+    port: 5000
+  cors: false
+  url: ${PYGEOAPI_SERVER_URL:-http://localhost:5000}
+  mimetype: application/json; charset=UTF-8
+  encoding: utf-8
+  gzip: false
+  languages:
+  - nb-NO
+  pretty_print: true
+  admin: ${PYGEOAPI_SERVER_ADMIN:-false}
+  limits:
+    default_items: 20
+    max_items: 100
+  map:
+    url: https://tile.openstreetmap.org/{z}/{x}/{y}.png
+    attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap
+      contributors</a>'
+logging:
+  level: ERROR
+metadata:
+  identification:
+    title: Tettsteder
+    description: "Datasettet viser Tettsteder pr. 01.01 for årsversjon. Det er DOK-datasett.\
+      \ Tettsteder er geografiske områder som har en dynamisk avgrensing, og antall\
+      \ tettsteder og deres yttergrenser vil endre seg over tid avhengig av byggeaktivitet\
+      \ og befolkningsutvikling. \nEt tettsted er en hussamling med minst 200 bosatte\
+      \ og der avstanden mellom husene normalt ikke skal overstige 50 meter. Les mer\
+      \ om tettsted og fullstendig definisjon her: https://www.ssb.no/befolkning/folketall/statistikk/tettsteders-befolkning-og-areal\n\
+      \nDataene er tilgjengelig for innsyn og nedlasting fra Geonorge\nÅrsdatasett\
+      \ er også nedlastbar fra SSBs kartportal https://kart.ssb.no  > Se eget Tema\
+      \ \"Tettsteder\" eller gå til \"Innholdskatalog\" for oversikt over alle tilgjengelig\
+      \ datasett"
+    keywords:
+    - tettsted
+    - befolkning
+    - tettstedsavgrensninger
+    - statistikk
+    - Arealbruk
+    - Norge digitalt
+    - geodataloven
+    - Inspire
+    - fellesDatakatalog
+    keywords_type: theme
+    terms_of_service: Åpne data
+    url: https://kartkatalog.geonorge.no/metadata/173f4a15-dead-4f82-b92e-f37396b72cea
+  license:
+    name: Norsk lisens for offentlige data (NLOD)
+    url: http://data.norge.no/nlod/no/1.0
+  provider:
+    name: Statistisk sentralbyrå
+    url: "<REPLACE_ME>"
+  contact:
+    name: Statistisk sentralbyrå
+    email: svein.reid@ssb.no
+    url: "<REPLACE_ME>"
+resources:
+  analyseomraade:
+    type: collection
+    title: Analyseområde
+    description: "<REPLACE_ME>"
+    keywords:
+    - Analyseområde
+    extents:
+      spatial:
+        bbox:
+        - 2.0
+        - 57.0
+        - 33.0
+        - 72.0
+        crs: http://www.opengis.net/def/crs/OGC/1.3/CRS84
+    providers:
+    - type: feature
+      name: SQLiteGPKG
+      data: ./datamodell-for-tettsted-fra-postgis.gpkg
+      id_field: objid
+      table: Analyseområde
+      crs:
+      - http://www.opengis.net/def/crs/OGC/1.3/CRS84
+      - http://www.opengis.net/def/crs/EPSG/0/25832
+      - http://www.opengis.net/def/crs/EPSG/0/25833
+      - http://www.opengis.net/def/crs/EPSG/0/25835
+      - http://www.opengis.net/def/crs/EPSG/0/5972
+      - http://www.opengis.net/def/crs/EPSG/0/5973
+      - http://www.opengis.net/def/crs/EPSG/0/5975
+      - http://www.opengis.net/def/crs/EPSG/0/3857
+      - http://www.opengis.net/def/crs/EPSG/0/3575
+      - http://www.opengis.net/def/crs/EPSG/0/4326
+      - http://www.opengis.net/def/crs/EPSG/0/3035
+      - http://www.opengis.net/def/crs/EPSG/0/4258
+      - http://www.opengis.net/def/crs/EPSG/0/5942
+      storage_crs: http://www.opengis.net/def/crs/EPSG/0/4258
+  paavirkningsomraade:
+    type: collection
+    title: Påvirkningsområde
+    description: "<REPLACE_ME>"
+    keywords:
+    - Påvirkningsområde
+    extents:
+      spatial:
+        bbox:
+        - 2.0
+        - 57.0
+        - 33.0
+        - 72.0
+        crs: http://www.opengis.net/def/crs/OGC/1.3/CRS84
+    providers:
+    - type: feature
+      name: SQLiteGPKG
+      data: ./datamodell-for-tettsted-fra-postgis.gpkg
+      id_field: objid
+      table: Påvirkningsområde
+      crs:
+      - http://www.opengis.net/def/crs/OGC/1.3/CRS84
+      - http://www.opengis.net/def/crs/EPSG/0/25832
+      - http://www.opengis.net/def/crs/EPSG/0/25833
+      - http://www.opengis.net/def/crs/EPSG/0/25835
+      - http://www.opengis.net/def/crs/EPSG/0/5972
+      - http://www.opengis.net/def/crs/EPSG/0/5973
+      - http://www.opengis.net/def/crs/EPSG/0/5975
+      - http://www.opengis.net/def/crs/EPSG/0/3857
+      - http://www.opengis.net/def/crs/EPSG/0/3575
+      - http://www.opengis.net/def/crs/EPSG/0/4326
+      - http://www.opengis.net/def/crs/EPSG/0/3035
+      - http://www.opengis.net/def/crs/EPSG/0/4258
+      - http://www.opengis.net/def/crs/EPSG/0/5942
+      storage_crs: http://www.opengis.net/def/crs/EPSG/0/4258
+  skreddimensjonerende:
+    type: collection
+    title: Skreddimensjonerende
+    description: "<REPLACE_ME>"
+    keywords:
+    - Skreddimensjonerende
+    extents:
+      spatial:
+        bbox:
+        - 2.0
+        - 57.0
+        - 33.0
+        - 72.0
+        crs: http://www.opengis.net/def/crs/OGC/1.3/CRS84
+    providers:
+    - type: feature
+      name: SQLiteGPKG
+      data: ./datamodell-for-tettsted-fra-postgis.gpkg
+      id_field: objid
+      table: Skreddimensjonerende
+      crs:
+      - http://www.opengis.net/def/crs/OGC/1.3/CRS84
+      - http://www.opengis.net/def/crs/EPSG/0/25832
+      - http://www.opengis.net/def/crs/EPSG/0/25833
+      - http://www.opengis.net/def/crs/EPSG/0/25835
+      - http://www.opengis.net/def/crs/EPSG/0/5972
+      - http://www.opengis.net/def/crs/EPSG/0/5973
+      - http://www.opengis.net/def/crs/EPSG/0/5975
+      - http://www.opengis.net/def/crs/EPSG/0/3857
+      - http://www.opengis.net/def/crs/EPSG/0/3575
+      - http://www.opengis.net/def/crs/EPSG/0/4326
+      - http://www.opengis.net/def/crs/EPSG/0/3035
+      - http://www.opengis.net/def/crs/EPSG/0/4258
+      - http://www.opengis.net/def/crs/EPSG/0/5942
+      storage_crs: http://www.opengis.net/def/crs/EPSG/0/4258
+  skredfaresone:
+    type: collection
+    title: Skredfaresone
+    description: "<REPLACE_ME>"
+    keywords:
+    - Skredfaresone
+    extents:
+      spatial:
+        bbox:
+        - 2.0
+        - 57.0
+        - 33.0
+        - 72.0
+        crs: http://www.opengis.net/def/crs/OGC/1.3/CRS84
+    providers:
+    - type: feature
+      name: SQLiteGPKG
+      data: ./datamodell-for-tettsted-fra-postgis.gpkg
+      id_field: objid
+      table: Skredfaresone
+      crs:
+      - http://www.opengis.net/def/crs/OGC/1.3/CRS84
+      - http://www.opengis.net/def/crs/EPSG/0/25832
+      - http://www.opengis.net/def/crs/EPSG/0/25833
+      - http://www.opengis.net/def/crs/EPSG/0/25835
+      - http://www.opengis.net/def/crs/EPSG/0/5972
+      - http://www.opengis.net/def/crs/EPSG/0/5973
+      - http://www.opengis.net/def/crs/EPSG/0/5975
+      - http://www.opengis.net/def/crs/EPSG/0/3857
+      - http://www.opengis.net/def/crs/EPSG/0/3575
+      - http://www.opengis.net/def/crs/EPSG/0/4326
+      - http://www.opengis.net/def/crs/EPSG/0/3035
+      - http://www.opengis.net/def/crs/EPSG/0/4258
+      - http://www.opengis.net/def/crs/EPSG/0/5942
+      storage_crs: http://www.opengis.net/def/crs/EPSG/0/4258
