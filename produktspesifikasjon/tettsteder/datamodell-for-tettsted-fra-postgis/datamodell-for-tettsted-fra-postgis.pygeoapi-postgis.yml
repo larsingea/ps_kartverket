@@ -62,7 +62,7 @@ resources:
   fylkesnummer:
     type: collection
     title: fylkesnummer
-    description: "<REPLACE_ME>"
+    description: Dette er en kodeliste og ikke en objekttyype
     keywords:
     - fylkesnummer
     extents:
@@ -89,7 +89,7 @@ resources:
   kommunenummer:
     type: collection
     title: kommunenummer
-    description: "<REPLACE_ME>"
+    description: Dette er en kodeliste og ikke en objekttyype
     keywords:
     - kommunenummer
     extents:
@@ -116,7 +116,7 @@ resources:
   analyseomraade:
     type: collection
     title: Analyseområde
-    description: "<REPLACE_ME>"
+    description: Denne objekttype definerer ..
     keywords:
     - Analyseområde
     extents:

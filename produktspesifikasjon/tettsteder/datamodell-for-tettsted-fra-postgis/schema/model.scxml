@@ -46,6 +46,13 @@
      <sc:stereotypes>
       <sc:Stereotype>featuretype</sc:Stereotype>
      </sc:stereotypes>
+     <sc:descriptors>
+      <sc:documentation>
+       <sc:descriptorValues>
+        <sc:DescriptorValue>Dette er en kodeliste og ikke en objekttyype</sc:DescriptorValue>
+       </sc:descriptorValues>
+      </sc:documentation>
+     </sc:descriptors>
      <sc:properties>
       <sc:Property>
        <sc:name>identifier</sc:name>
@@ -57,6 +64,13 @@
       <sc:Property>
        <sc:name>description</sc:name>
        <sc:id>C1_2</sc:id>
+       <sc:descriptors>
+        <sc:documentation>
+         <sc:descriptorValues>
+          <sc:DescriptorValue>Burde også hatt en tittel/navn</sc:DescriptorValue>
+         </sc:descriptorValues>
+        </sc:documentation>
+       </sc:descriptors>
        <sc:cardinality>0..1</sc:cardinality>
        <sc:sequenceNumber>2</sc:sequenceNumber>
        <sc:typeName>CharacterString</sc:typeName>
@@ -69,6 +83,13 @@
      <sc:stereotypes>
       <sc:Stereotype>featuretype</sc:Stereotype>
      </sc:stereotypes>
+     <sc:descriptors>
+      <sc:documentation>
+       <sc:descriptorValues>
+        <sc:DescriptorValue>Dette er en kodeliste og ikke en objekttyype</sc:DescriptorValue>
+       </sc:descriptorValues>
+      </sc:documentation>
+     </sc:descriptors>
      <sc:properties>
       <sc:Property>
        <sc:name>identifier</sc:name>
@@ -92,6 +113,13 @@
      <sc:stereotypes>
       <sc:Stereotype>featuretype</sc:Stereotype>
      </sc:stereotypes>
+     <sc:descriptors>
+      <sc:documentation>
+       <sc:descriptorValues>
+        <sc:DescriptorValue>Denne objekttype definerer ..</sc:DescriptorValue>
+       </sc:descriptorValues>
+      </sc:documentation>
+     </sc:descriptors>
      <sc:properties>
       <sc:Property>
        <sc:name>geometri</sc:name>
@@ -103,6 +131,13 @@
       <sc:Property>
        <sc:name>objid</sc:name>
        <sc:id>C3_2</sc:id>
+       <sc:descriptors>
+        <sc:documentation>
+         <sc:descriptorValues>
+          <sc:DescriptorValue>Intern ID</sc:DescriptorValue>
+         </sc:descriptorValues>
+        </sc:documentation>
+       </sc:descriptors>
        <sc:cardinality>0..1</sc:cardinality>
        <sc:sequenceNumber>2</sc:sequenceNumber>
        <sc:typeName>Integer</sc:typeName>
