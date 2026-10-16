@@ -10,6 +10,8 @@
 
 #### fylkesnummer
 
+Dette er en kodeliste og ikke en objekttyype
+
 Egenskaper
 
 <table class="feature-attribute-table">
@@ -44,6 +46,10 @@ Egenskaper
       <td><strong>description</strong></td>
     </tr>
     <tr>
+      <th scope="row">Definisjon:</th>
+      <td>Burde også hatt en tittel/navn</td>
+    </tr>
+    <tr>
       <th scope="row">Multiplisitet:</th>
       <td>0..1</td>
     </tr>
@@ -55,6 +61,8 @@ Egenskaper
 </table>
 
 #### kommunenummer
+
+Dette er en kodeliste og ikke en objekttyype
 
 Egenskaper
 
@@ -102,6 +110,8 @@ Egenskaper
 
 #### Analyseområde
 
+Denne objekttype definerer ..
+
 Geometri:<br />Elementtype: feature<br />Type: geometry<br />Lagrings-CRS:<br />• <a href="http://www.opengis.net/def/crs/EPSG/0/4258"><http://www.opengis.net/def/crs/EPSG/0/4258></a><br />Koordinatreferansesystem (crs):<br />• <a href="http://www.opengis.net/def/crs/EPSG/0/4258"><http://www.opengis.net/def/crs/EPSG/0/4258></a>
 
 Egenskaper
@@ -140,6 +150,10 @@ Egenskaper
     <tr>
       <th scope="row">Navn:</th>
       <td><strong>objid</strong></td>
+    </tr>
+    <tr>
+      <th scope="row">Definisjon:</th>
+      <td>Intern ID</td>
     </tr>
     <tr>
       <th scope="row">Multiplisitet:</th>

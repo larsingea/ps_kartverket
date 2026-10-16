@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><ShapeChangeResult xmlns="http://www.interactive-instruments.de/ShapeChange/Result" xmlns:r="http://www.interactive-instruments.de/ShapeChange/Result" config="/home/runner/work/ps_kartverket/ps_kartverket/produktspesifikasjon/tettsteder/datamodell-for-tettsted-fra-postgis/schema/shapechange-config.xml" end="Thu Oct 15 08:11:26 UTC 2026" resultCode="0" start="Thu Oct 15 08:11:20 UTC 2026" version="4.0.0">
+<?xml version="1.0" encoding="UTF-8"?><ShapeChangeResult xmlns="http://www.interactive-instruments.de/ShapeChange/Result" xmlns:r="http://www.interactive-instruments.de/ShapeChange/Result" config="/home/runner/work/ps_kartverket/ps_kartverket/produktspesifikasjon/tettsteder/datamodell-for-tettsted-fra-postgis/schema/shapechange-config.xml" end="Fri Oct 16 11:50:06 UTC 2026" resultCode="0" start="Fri Oct 16 11:50:01 UTC 2026" version="4.0.0">
   <Messages>
     <ProcessFlowInfo message="---------- Semantic validation of ShapeChange configuration: START ----------"/>
     <Info message="Validating input parameters."/>

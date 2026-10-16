@@ -1,7 +1,7 @@
 [
   {
     "name": "fylkesnummer",
-    "description": "",
+    "description": "Dette er en kodeliste og ikke en objekttyype",
     "attributes": [
       {
         "name": "identifier",
@@ -11,7 +11,8 @@
       {
         "name": "description",
         "type": "string",
-        "cardinality": "0..1"
+        "cardinality": "0..1",
+        "description": "Burde også hatt en tittel/navn"
       }
     ],
     "relationships": {
@@ -21,7 +22,7 @@
   },
   {
     "name": "kommunenummer",
-    "description": "",
+    "description": "Dette er en kodeliste og ikke en objekttyype",
     "attributes": [
       {
         "name": "identifier",
@@ -41,7 +42,7 @@
   },
   {
     "name": "Analyseområde",
-    "description": "",
+    "description": "Denne objekttype definerer ..",
     "geometry": {
       "itemType": "feature",
       "type": "geometry",
@@ -57,7 +58,8 @@
       {
         "name": "objid",
         "type": "integer",
-        "cardinality": "0..1"
+        "cardinality": "0..1",
+        "description": "Intern ID"
       },
       {
         "name": "kommunenavn",

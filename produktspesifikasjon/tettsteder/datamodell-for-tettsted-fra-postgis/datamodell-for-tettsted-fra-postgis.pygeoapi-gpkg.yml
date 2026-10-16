@@ -62,7 +62,7 @@ resources:
   analyseomraade:
     type: collection
     title: Analyseområde
-    description: "<REPLACE_ME>"
+    description: Denne objekttype definerer ..
     keywords:
     - Analyseområde
     extents:
