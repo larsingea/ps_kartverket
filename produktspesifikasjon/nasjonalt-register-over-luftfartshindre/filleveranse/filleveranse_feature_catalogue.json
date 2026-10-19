@@ -1007,7 +1007,9 @@
         {
           "target": "VertikalObjektKomponentLinjePkt",
           "role": "avgrensesAvPunkt",
-          "cardinality": "0..*"
+          "cardinality": "0..*",
+          "sourceRole": "avgrenserLinje",
+          "sourceCardinality": "0..*"
         }
       ]
     },
@@ -1974,7 +1976,9 @@
         {
           "target": "VertikalObjektKomponentLinje",
           "role": "avgrenserLinje",
-          "cardinality": "0..*"
+          "cardinality": "0..*",
+          "sourceRole": "avgrensesAvPunkt",
+          "sourceCardinality": "0..*"
         }
       ]
     },

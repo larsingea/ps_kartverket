@@ -4,6 +4,7 @@
   "$id": "https://skjema.geonorge.no/SOSI/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/filleveranse/filleveranse/filleveranse.json",
   "definitions": {
     "AnsvarligForMerking": {
+      "description": "hvem har ansvar for merking",
       "type": "string",
       "format": "uri"
     },
@@ -11,9 +12,11 @@
       "type": "object",
       "properties": {
         "typeEndring": {
+          "description": "endringsstatus for objektet",
           "$ref": "#/definitions/TypeEndring"
         },
         "tidspunktEndring": {
+          "description": "tidspunkt for endring av objektet",
           "type": "string",
           "format": "date"
         }
@@ -24,14 +27,17 @@
       ]
     },
     "Farge": {
+      "description": "kodeliste for merkingens farge. Består hovedsakelig av farger fra Vedlegg 1 til BSL E 2-1. I tillegg er det inkludert en del koder fra gammelt NRL-system.",
       "type": "string",
       "format": "uri"
     },
     "Høydereferanse": {
+      "description": "koordinatregistering utført på topp eller bunn av et objekt",
       "type": "string",
       "format": "uri"
     },
     "Høydereferansesystem": {
+      "description": "referanseflate som er utgangspunktet for høydekoordinat.",
       "type": "string",
       "format": "uri"
     },
@@ -39,12 +45,15 @@
       "type": "object",
       "properties": {
         "lokalId": {
+          "description": "lokal identifikator, tildelt av dataleverendør/dataforvalter. Den lokale identifikatoren er unik innenfor navnerommet, ingen andre objekter har samme identifikator.\n\nMerknad: Det er data leverendørens ansvar å sørge for at denne lokale identifikatoren er unik innenfor navnerommet.",
           "type": "string"
         },
         "navnerom": {
+          "description": "navnerom som unikt identifiserer datakilden til objektet, starter med to bokstavs kode jfr ISO 3166. Benytter understreking  (\"_\") dersom data produsenten ikke er assosiert med bare et land.\n\nMerknad : Verdien for nanverom vil eies av den dataprodusent som har ansvar for de unike identifikatorene og vil registreres i \"INSPIRE external  Object Identifier Namespaces Register\"\n\nEksempel: NO for Norge.",
           "type": "string"
         },
         "versjonId": {
+          "description": "identifikasjon av en spesiell versjon av et geografisk objekt (instans), maksimum lengde på 25 karakterer. Dersom spesifikasjonen av et geografisk objekt med en identifikasjon inkludererer livsløpssyklusinformasjon, benyttes denne versjonId for å skille mellom ulike versjoner av samme objekt. versjonId er en unik  identifikasjon av versjonen.\n\nMerknad: Maksimum lengde er valgt for å tillate tidsregistrering i henhold til  ISO 8601, slik som  \"2007-02-12T12:12:12+05:30\" som versjonId.",
           "type": "string"
         }
       },
@@ -57,12 +66,15 @@
       "type": "object",
       "properties": {
         "lokalId": {
+          "description": "lokal identifikator, tildelt av dataleverendør/dataforvalter. Den lokale identifikatoren er unik innenfor navnerommet, ingen andre objekter har samme identifikator.\n\nMerknad: Det er data leverendørens ansvar å sørge for at denne lokale identifikatoren er unik innenfor navnerommet.",
           "type": "string"
         },
         "navnerom": {
+          "description": "navnerom som unikt identifiserer datakilden til objektet, starter med to bokstavs kode jfr ISO 3166. Benytter understreking  (\"_\") dersom data produsenten ikke er assosiert med bare et land.\n\nMerknad : Verdien for nanverom vil eies av den dataprodusent som har ansvar for de unike identifikatorene og vil registreres i \"INSPIRE external  Object Identifier Namespaces Register\"\n\nEksempel: NO for Norge.",
           "type": "string"
         },
         "versjonId": {
+          "description": "identifikasjon av en spesiell versjon av et geografisk objekt (instans), maksimum lengde på 25 karakterer. Dersom spesifikasjonen av et geografisk objekt med en identifikasjon inkludererer livsløpssyklusinformasjon, benyttes denne versjonId for å skille mellom ulike versjoner av samme objekt. versjonId er en unik  identifikasjon av versjonen.\n\nMerknad: Maksimum lengde er valgt for å tillate tidsregistrering i henhold til  ISO 8601, slik som  \"2007-02-12T12:12:12+05:30\" som versjonId.",
           "type": "string"
         }
       },
@@ -75,12 +87,15 @@
       "type": "object",
       "properties": {
         "lokalId": {
+          "description": "lokal identifikator, tildelt av dataleverendør/dataforvalter. Den lokale identifikatoren er unik innenfor navnerommet, ingen andre objekter har samme identifikator.\n\nMerknad: Det er data leverendørens ansvar å sørge for at denne lokale identifikatoren er unik innenfor navnerommet.",
           "type": "string"
         },
         "navnerom": {
+          "description": "navnerom som unikt identifiserer datakilden til objektet, starter med to bokstavs kode jfr ISO 3166. Benytter understreking  (\"_\") dersom data produsenten ikke er assosiert med bare et land.\n\nMerknad : Verdien for nanverom vil eies av den dataprodusent som har ansvar for de unike identifikatorene og vil registreres i \"INSPIRE external  Object Identifier Namespaces Register\"\n\nEksempel: NO for Norge.",
           "type": "string"
         },
         "versjonId": {
+          "description": "identifikasjon av en spesiell versjon av et geografisk objekt (instans), maksimum lengde på 25 karakterer. Dersom spesifikasjonen av et geografisk objekt med en identifikasjon inkludererer livsløpssyklusinformasjon, benyttes denne versjonId for å skille mellom ulike versjoner av samme objekt. versjonId er en unik  identifikasjon av versjonen.\n\nMerknad: Maksimum lengde er valgt for å tillate tidsregistrering i henhold til  ISO 8601, slik som  \"2007-02-12T12:12:12+05:30\" som versjonId.",
           "type": "string"
         }
       },
@@ -93,12 +108,15 @@
       "type": "object",
       "properties": {
         "lokalId": {
+          "description": "lokal identifikator, tildelt av dataleverendør/dataforvalter. Den lokale identifikatoren er unik innenfor navnerommet, ingen andre objekter har samme identifikator.\n\nMerknad: Det er data leverendørens ansvar å sørge for at denne lokale identifikatoren er unik innenfor navnerommet.",
           "type": "string"
         },
         "navnerom": {
+          "description": "navnerom som unikt identifiserer datakilden til objektet, starter med to bokstavs kode jfr ISO 3166. Benytter understreking  (\"_\") dersom data produsenten ikke er assosiert med bare et land.\n\nMerknad : Verdien for nanverom vil eies av den dataprodusent som har ansvar for de unike identifikatorene og vil registreres i \"INSPIRE external  Object Identifier Namespaces Register\"\n\nEksempel: NO for Norge.",
           "type": "string"
         },
         "versjonId": {
+          "description": "identifikasjon av en spesiell versjon av et geografisk objekt (instans), maksimum lengde på 25 karakterer. Dersom spesifikasjonen av et geografisk objekt med en identifikasjon inkludererer livsløpssyklusinformasjon, benyttes denne versjonId for å skille mellom ulike versjoner av samme objekt. versjonId er en unik  identifikasjon av versjonen.\n\nMerknad: Maksimum lengde er valgt for å tillate tidsregistrering i henhold til  ISO 8601, slik som  \"2007-02-12T12:12:12+05:30\" som versjonId.",
           "type": "string"
         }
       },
@@ -108,14 +126,17 @@
       ]
     },
     "JaNei": {
+      "description": "alternativ til å bruke den generelle datatypen Boolean",
       "type": "string",
       "format": "uri"
     },
     "Lystype": {
+      "description": "hinderlys til bruk ved merking av luftfartshinder i henhold til vedlegg til forskrift om rapportering, registrering og merking av luftfartshinder, BSL E 2-1. \u003cfont color\u003d\"#0f0f0f\"\u003eI tillegg er det mulig å velge koder fra gammel NRL\u003c/font\u003e",
       "type": "string",
       "format": "uri"
     },
     "MerkeInformasjon": {
+      "description": "utdypende informasjon om merking",
       "type": "string",
       "format": "uri"
     },
@@ -123,18 +144,23 @@
       "type": "object",
       "properties": {
         "merkepliktig": {
+          "description": "hvorvidt hinder er merkepliktig",
           "$ref": "#/definitions/JaNei"
         },
         "merkepliktigIhenholdTil": {
+          "description": "regelverk som pålegger merking",
           "$ref": "#/definitions/RegelverkMerkeplikt"
         },
         "ansvarligForMerking": {
+          "description": "hvem har ansvar for merking",
           "$ref": "#/definitions/AnsvarligForMerking"
         },
         "merkeInformasjon": {
+          "description": "utdypende informasjon om merking",
           "$ref": "#/definitions/MerkeInformasjon"
         },
         "kommentarMerkeplikt": {
+          "description": "utfyllende informasjon om en eller flere av de andre attributtene",
           "type": "string"
         }
       },
@@ -146,6 +172,7 @@
       "type": "object",
       "properties": {
         "merkingFarge": {
+          "description": "skal brukes hvis merking består av en eller to farger",
           "type": "array",
           "maxItems": 2,
           "items": {
@@ -154,21 +181,27 @@
           "uniqueItems": true
         },
         "merkingType": {
+          "description": "ulike typer merking spesifiseres her",
           "$ref": "#/definitions/MerkingType"
         },
         "kommentarMerkingType": {
+          "description": "hvis \"annet\" velges på merkingType skal dette spesifiseres her",
           "type": "string"
         },
         "merkingMønster": {
+          "description": "mønster til merkingen",
           "$ref": "#/definitions/MerkingMønster"
         },
         "kommentarMerkingMønster": {
+          "description": "hvis \"Annet\" velges på merkingMønster skal dette spesifiseres her",
           "type": "string"
         },
         "merkingICAO": {
+          "description": "hvorvidt merking er ihht. ICAO standard",
           "$ref": "#/definitions/JaNei"
         },
         "merkingTilstand": {
+          "description": "informasjon om merkingens tilstand",
           "$ref": "#/definitions/MerkingTilstand"
         }
       },
@@ -181,15 +214,19 @@
       "type": "object",
       "properties": {
         "farge": {
+          "description": "farge angis med koder fra definert kodeliste",
           "$ref": "#/definitions/Farge"
         },
         "annet": {
+          "description": "hvis \"annet\" velges på attributt farge, må dette spesifiseres her",
           "type": "string"
         },
         "fluoriserende": {
+          "description": "om fargemerkingen er fluoriserende (selvlysende)",
           "$ref": "#/definitions/JaNei"
         },
         "reflekterende": {
+          "description": "om fargemerkingen er reflekterende",
           "$ref": "#/definitions/JaNei"
         }
       },
@@ -200,26 +237,32 @@
       ]
     },
     "MerkingMønster": {
+      "description": "ulike mønstertyper for merking.",
       "type": "string",
       "format": "uri"
     },
     "MerkingTilstand": {
+      "description": "Angivelse av merkingens tilstand.",
       "type": "string",
       "format": "uri"
     },
     "MerkingType": {
+      "description": "ulike typer merking spesifiseres her",
       "type": "string",
       "format": "uri"
     },
     "Måleenhet": {
+      "description": "kodeliste for måleenheter.",
       "type": "string",
       "format": "uri"
     },
     "Målemetode": {
+      "description": "metode som ligger til grunn for registrering av posisjon",
       "type": "string",
       "format": "uri"
     },
     "MålemetodeHøyde": {
+      "description": "metode for å måle objekttypens høydeverdi",
       "type": "string",
       "format": "uri"
     },
@@ -227,18 +270,23 @@
       "type": "object",
       "properties": {
         "målemetode": {
+          "description": "metode for måling i grunnriss (x,y), og høyde (z) når metoden er den samme som ved måling i grunnriss",
           "$ref": "#/definitions/Målemetode"
         },
         "nøyaktighet": {
+          "description": "punktstandardavviket i grunnriss for punkter\n\nMerknad:\nOppgitt i cm",
           "type": "integer"
         },
         "synbarhet": {
+          "description": "hvor godt den kartlagte detalj var synbar ved kartleggingen",
           "$ref": "#/definitions/Synbarhet"
         },
         "målemetodeHøyde": {
+          "description": "metode for å måle høyden",
           "$ref": "#/definitions/MålemetodeHøyde"
         },
         "nøyaktighetHøyde": {
+          "description": "nøyaktighet for høyden i cm",
           "type": "integer"
         }
       },
@@ -250,9 +298,11 @@
       "type": "object",
       "properties": {
         "registernavn": {
+          "description": "navn til eksternt register",
           "type": "string"
         },
         "eksternId": {
+          "description": "ekstern Id av samme objekt i et annet register",
           "type": "string"
         }
       },
@@ -261,14 +311,17 @@
       ]
     },
     "RegelverkMerkeplikt": {
+      "description": "hinder er merkepliktig i henhold til",
       "type": "string",
       "format": "uri"
     },
     "Status": {
+      "description": "objektets tilstand",
       "type": "string",
       "format": "uri"
     },
     "Supertype_VertikalObjekt": {
+      "description": "VertkalObjekt inneholder felles egenskaper for alle VertikalObjektKomponenter som til sammen utgjør et luftfartshinder. Her listes egenskaper som er arvet fra SOSI objekt.",
       "type": "object",
       "properties": {
         "@type": {
@@ -278,21 +331,26 @@
           "type": "string"
         },
         "datafangstdato": {
+          "description": "dato da objektet siste gang ble innmålt",
           "type": "string",
           "format": "date"
         },
         "endringsflagg": {
+          "description": "endringsinformasjon om et objekt",
           "$ref": "#/definitions/Endringsflagg"
         },
         "gyldigFra": {
+          "description": "Tidspunktet når objektet oppstod i den virkelige verden",
           "type": "string",
           "format": "date"
         },
         "gyldigTil": {
+          "description": "Tidspunktet når objektet opphørte å eksistere i den virkelige verden",
           "type": "string",
           "format": "date"
         },
         "informasjon": {
+          "description": "generell opplysning\n\nMerknad:\nmulighet til å legge inn utfyllende informasjon om objektet",
           "type": "array",
           "items": {
             "type": "string"
@@ -300,17 +358,21 @@
           "uniqueItems": true
         },
         "link": {
+          "description": "referanse  til et informasjonselement, enten lokalt eller globalt",
           "type": "array",
           "uniqueItems": true
         },
         "oppdateringsdato": {
+          "description": "dato for siste endring på objektdataene\n\nMerknad:\nOppdateringsdato refererer til en endring av dataene i registeret. Dataene kan dermed endres som følge av en forvaltningsmessig beslutning uten at det virkelige objektet i terrenget er endret.",
           "type": "string",
           "format": "date"
         },
         "opphav": {
+          "description": "referanse til opphavsmaterialet, kildematerialet, organisasjons/publiseringskilde\n\nMerknad:\nKan også beskrive navn på person og årsak til oppdatering",
           "type": "string"
         },
         "status": {
+          "description": "objektets tilstand, se gyldige koder i kodeliste Status",
           "$ref": "#/definitions/Status"
         }
       },
@@ -320,6 +382,7 @@
       ]
     },
     "Supertype_VertikalObjektKomponent": {
+      "description": "Et luftfartshinder kan bestå av ett eller flere VertikalObjektKomponent. Her listes egenskaper som er arvet fra SOSI-objekt.",
       "type": "object",
       "properties": {
         "@type": {
@@ -329,17 +392,21 @@
           "type": "string"
         },
         "verifiseringsdato": {
+          "description": "dato når dataene er fastslått å være i samsvar med virkeligheten\n\nMerknad: Verifiseringsdato er identisk med ..DATO i tidligere versjoner av SOSI",
           "type": "string",
           "format": "date"
         },
         "oppdateringsdato": {
+          "description": "dato for siste endring på objektdataene\n\nMerknad:\nOppdateringsdato refererer til en endring av dataene i registeret. Dataene kan dermed endres som følge av en forvaltningsmessig beslutning uten at det virkelige objektet i terrenget er endret.",
           "type": "string",
           "format": "date"
         },
         "endringsflagg": {
+          "description": "endringsinformasjon om et objekt",
           "$ref": "#/definitions/Endringsflagg"
         },
         "status": {
+          "description": "objektets tilstand, se gyldige koder i kodeliste Status",
           "$ref": "#/definitions/Status"
         }
       },
@@ -348,14 +415,17 @@
       ]
     },
     "Synbarhet": {
+      "description": "hvor godt den kartlagte detalj var synbar ved kartleggingen",
       "type": "string",
       "format": "uri"
     },
     "TypeEndring": {
+      "description": "endringsstatus for objektet",
       "type": "string",
       "format": "uri"
     },
     "VertikalObjekt": {
+      "description": "VertkalObjekt inneholder felles egenskaper for alle VertikalObjektKomponenter som til sammen utgjør et luftfartshinder. Her listes egenskaper som \u003ci\u003eikke\u003c/i\u003e er arvet fra SOSI objekt.",
       "allOf": [
         {
           "$ref": "#/definitions/Supertype_VertikalObjekt"
@@ -364,18 +434,23 @@
           "type": "object",
           "properties": {
             "kommentarVertikalObjektType": {
+              "description": "hvis \"Annet\" velges på vertikalObjektType skal dette spesifiseres her",
               "type": "string"
             },
             "vertikalObjektGruppe": {
+              "description": "indikerer om VertikalObjekt er en representant for et antall nært lokaliserte objekter av samme type",
               "$ref": "#/definitions/JaNei"
             },
             "vertikalObjektNavn": {
+              "description": "Navn på VertikalObjekt.",
               "type": "string"
             },
             "vertikalObjektType": {
+              "description": "her angis det hvilken type vertikalt objekt dette objektet er, se egen kodeliste",
               "$ref": "#/definitions/VertikalObjektType"
             },
             "identifikasjonObjekt": {
+              "description": "unik identifikasjon av et objekt",
               "$ref": "#/definitions/IdentifikasjonObjekt"
             },
             "bestårAvVertikalobjKompPunkt": {
@@ -403,6 +478,7 @@
       ]
     },
     "VertikalObjektKomponent": {
+      "description": "Et luftfartshinder kan bestå av ett eller flere VertikalObjektKomponent(er). Her listes egenskaper som \u003ci\u003eikke\u003c/i\u003e er arvet fra SOSI objekt. En VertikalObjektKomponent kan være enten en linje eller et punkt – se VertikalObjektKomponentLinje og VertikalObjektKomponentPunkt.",
       "allOf": [
         {
           "$ref": "#/definitions/Supertype_VertikalObjektKomponent"
@@ -411,6 +487,7 @@
           "type": "object",
           "properties": {
             "merking": {
+              "description": "samlet informasjon om merking. Gjelder ikke lyssetting. All informasjon om lyssetting ligger under featureType Lyssetting",
               "type": "array",
               "items": {
                 "$ref": "#/definitions/Merking"
@@ -418,15 +495,19 @@
               "uniqueItems": true
             },
             "vertikalUtstrekning": {
+              "description": "objektkomponentens maksimale høyde over terreng- eller vannoverflate",
               "type": "number"
             },
             "vertikalUtstrekningMåleenhet": {
+              "description": "her oppgis måleenheten til den vertikale utstrekningen av objektet",
               "$ref": "#/definitions/Måleenhet"
             },
             "merkeplikt": {
+              "description": "informasjon om merkeplikt. Gjelder lyssetting og annen merking.",
               "$ref": "#/definitions/Merkeplikt"
             },
             "eksternReferanse": {
+              "description": "referanse til et eksternt register",
               "type": "array",
               "items": {
                 "$ref": "#/definitions/ReferanseTilEksterntRegister"
@@ -434,12 +515,15 @@
               "uniqueItems": true
             },
             "komponentsekvensnummer": {
+              "description": "angir rekkefølge på VertikalObjektKomponent som tilhører samme VertikalObjekt",
               "type": "integer"
             },
             "BSLE-2-1_hinder": {
+              "description": "hvorvidt dette er et hinder ihht. forskrift BSL E 2-1",
               "$ref": "#/definitions/JaNei"
             },
             "lyssetting": {
+              "description": "hinderlys til bruk ved merking av luftfartshinder i henhold til vedlegg til forskrift om rapportering, registrering og merking av luftfartshinder, BSL E 2-1. \u003cfont color\u003d\"#0f0f0f\"\u003eI tillegg er det mulig å velge koder fra gammel NRL\u003c/font\u003e",
               "type": "array",
               "minItems": 1,
               "items": {
@@ -456,6 +540,7 @@
       ]
     },
     "VertikalObjektKomponentLinje": {
+      "description": "Egenskaper tilhørende en VertikalObjektKomponent som er en linje.",
       "allOf": [
         {
           "$ref": "#/definitions/VertikalObjektKomponent"
@@ -474,15 +559,19 @@
               ]
             },
             "identifikasjonLinje": {
+              "description": "unik identifikasjon av et objekt",
               "$ref": "#/definitions/IdentifikasjonLinje"
             },
             "linjespenn": {
+              "description": "informasjon om en VertikalObjektKomponentLinje er et spenn eller ei. Et linjespenn har vertikal utstrekning på 60 m eller høyere eller er av andre årsaker omfattet av merkepålegg fra Luftfartstilsynet.",
               "$ref": "#/definitions/JaNei"
             },
             "lengde": {
+              "description": "horisontal avstand mellom start- og sluttpunkt på linjesegment",
               "type": "number"
             },
             "lengdeMåleenhet": {
+              "description": "her oppgis måleenheten til lengden av linjesegmentet",
               "$ref": "#/definitions/Måleenhet"
             },
             "avgrensesAvPunkt": {
@@ -501,6 +590,7 @@
       ]
     },
     "VertikalObjektKomponentLinjePkt": {
+      "description": "Egenskaper tilhørende en VertikalObjektKomponent som er et punkt.",
       "allOf": [
         {
           "$ref": "#/definitions/VertikalObjektKomponent"
@@ -519,15 +609,19 @@
               ]
             },
             "href": {
+              "description": "hvorvidt koordinatregistering er utført på topp eller bunn av et objekt",
               "$ref": "#/definitions/Høydereferanse"
             },
             "hrefSystem": {
+              "description": "referanseflate som er utgangspunktet for høydekoordinat.",
               "$ref": "#/definitions/Høydereferansesystem"
             },
             "identifikasjonLinjePkt": {
+              "description": "unik identifikasjon av et objekt",
               "$ref": "#/definitions/IdentifikasjonLinjePkt"
             },
             "kvalitet": {
+              "description": "beskrivelse av kvaliteten på stedfestingen",
               "$ref": "#/definitions/Posisjonskvalitet"
             },
             "avgrenserLinje": {
@@ -549,6 +643,7 @@
       ]
     },
     "VertikalObjektKomponentPunkt": {
+      "description": "Egenskaper tilhørende en VertikalObjektKomponent som er et punkt.",
       "allOf": [
         {
           "$ref": "#/definitions/VertikalObjektKomponent"
@@ -567,15 +662,19 @@
               ]
             },
             "href": {
+              "description": "koordinatregistering utført på topp eller bunn av et objekt",
               "$ref": "#/definitions/Høydereferanse"
             },
             "hrefSystem": {
+              "description": "referanseflate som er utgangspunktet for høydekoordinat.",
               "$ref": "#/definitions/Høydereferansesystem"
             },
             "identifikasjonPunkt": {
+              "description": "unik identifikasjon av et objekt",
               "$ref": "#/definitions/IdentifikasjonPunkt"
             },
             "kvalitet": {
+              "description": "beskrivelse av kvaliteten på stedfestingen",
               "$ref": "#/definitions/Posisjonskvalitet"
             }
           },
@@ -589,6 +688,7 @@
       ]
     },
     "VertikalObjektType": {
+      "description": "ulike typer VertikalObjekter (luftfartshindre).",
       "type": "string",
       "format": "uri"
     }
