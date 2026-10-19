@@ -4,7 +4,7 @@
   "format": "text/html",
   "date": {
     "creation": "2014-04-01",
-    "revision": "2026-09-01"
+    "revision": "2026-10-16"
   },
   "language": "nor",
   "contact": {
@@ -38,10 +38,6 @@
       "NRL",
       "Luftfartshinder",
       "Nasjonalt register over luftfartshindre",
-      "Norge",
-      "Norsk kontinentalsokkel",
-      "Svalbard",
-      "Jan Mayen",
       "Åpne data",
       "beredskapsbase",
       "Norge digitalt",
@@ -116,17 +112,23 @@
     ],
     "maintenance": "Daglig",
     "extent": {
+      "geographicDescription": [
+        "Norge",
+        "Norsk kontinentalsokkel",
+        "Svalbard",
+        "Jan Mayen"
+      ],
       "temporalElement": {
         "timePeriod": {
           "beginPosition": "2014-04-01",
-          "endPosition": "2026-09-01"
+          "endPosition": "2026-10-16"
         }
       }
     },
     "date": {
       "creation": "2014-04-01",
       "publication": "2014-04-01",
-      "revision": "2026-09-01"
+      "revision": "2026-10-16"
     },
     "language": "nor"
   },
@@ -184,12 +186,10 @@
     "report": [
       {
         "nameOfMeasure": "SOSI produktspesifikasjon: NRL - Nasjonalt register over luftfartshindre distribusjon",
-        "measureDescription": "Dataene er ikke vurdert iht produktspesifikasjonen",
         "descriptiveResult": "Dataene er ikke vurdert iht produktspesifikasjonen"
       },
       {
         "nameOfMeasure": "Sosi applikasjonsskjema",
-        "measureDescription": "GML-filer er ikke vurdert i henhold til applikasjonsskjema",
         "descriptiveResult": "GML-filer er ikke vurdert i henhold til applikasjonsskjema"
       }
     ]
@@ -200,11 +200,7 @@
   },
   "dataCaptureAndProductionSection": {
     "DataAcquisitionAndProcessing": {
-      "processStep": [
-        {
-          "description": "«Forskrift om rapportering, registrering og merking av luftfartshinder» (luftfartshinderforskriften) definerer hva som regnes for å være et luftfartshinder. Forskriften slår fast at den som eier et luftfartshinder er ansvarlig for å rapportere til NRL.\n\nKartverket registrerer luftfartshindre i Nasjonalt register over luftfartshindre ut fra opplysninger i hindereiernes rapporter. Kartverket utfører også kontroller av datakvalitet så langt det er kapasitet til dette, men det må understrekes at registerets kvalitet i meget stor grad avhenger av at hindereierne faktisk overholder plikten til rapportering. Kartverket kan på ingen måte garantere at kravene til nøyaktighet i luftfartshinderforskriften er oppfylt for alle objekter i databasen. Videre er det usannsynlig at datasettet inneholder alle objekter som skal ligge i registeret. Registeret inneholder antakelig også hindre med ukorrekt status, for eksempel kondemnerte hindre som fremdeles er registrert med status «eksisterende». Andre feil kan også forekomme. Se produktspesifikasjonens kapittel 7 for mer informasjon om kvalitet."
-        }
-      ]
+      "dataCaptureStatement": "«Forskrift om rapportering, registrering og merking av luftfartshinder» (luftfartshinderforskriften) definerer hva som regnes for å være et luftfartshinder. Forskriften slår fast at den som eier et luftfartshinder er ansvarlig for å rapportere til NRL.\n\nKartverket registrerer luftfartshindre i Nasjonalt register over luftfartshindre ut fra opplysninger i hindereiernes rapporter. Kartverket utfører også kontroller av datakvalitet så langt det er kapasitet til dette, men det må understrekes at registerets kvalitet i meget stor grad avhenger av at hindereierne faktisk overholder plikten til rapportering. Kartverket kan på ingen måte garantere at kravene til nøyaktighet i luftfartshinderforskriften er oppfylt for alle objekter i databasen. Videre er det usannsynlig at datasettet inneholder alle objekter som skal ligge i registeret. Registeret inneholder antakelig også hindre med ukorrekt status, for eksempel kondemnerte hindre som fremdeles er registrert med status «eksisterende». Andre feil kan også forekomme. Se produktspesifikasjonens kapittel 7 for mer informasjon om kvalitet."
     }
   },
   "portrayal": {
@@ -218,7 +214,7 @@
           "unitsOfDelivery": "fylkesvis, landsfiler",
           "deliveryMediumName": "Geonorge nedlastning",
           "deliveryService": {
-            "serviceEndpoint": "https://nedlasting.geonorge.no/api/capabilities/",
+            "serviceEndpoint": "https://nedlasting.geonorge.no/api/capabilities/28c896d0-8a0d-4209-bf31-4931033b1082",
             "serviceProperty": {
               "type": "Geonorge nedlastning",
               "value": "GEONORGE:DOWNLOAD"
@@ -339,6 +335,25 @@
     {
       "delivery": {
         "deliveryMedium": {
+          "deliveryMediumName": "PostGIS-skript: filleveranse.postgis",
+          "deliveryService": {
+            "serviceEndpoint": "https://raw.githubusercontent.com/larsingea/ps_kartverket/main/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/filleveranse/filleveranse.postgis.sql",
+            "serviceProperty": {
+              "type": "Fil",
+              "value": "Nedlasting"
+            }
+          }
+        },
+        "deliveryFormat": [
+          {
+            "formatName": "SQL"
+          }
+        ]
+      }
+    },
+    {
+      "delivery": {
+        "deliveryMedium": {
           "deliveryMediumName": "GML/XSD-skjema: filleveranse",
           "deliveryService": {
             "serviceEndpoint": "https://raw.githubusercontent.com/larsingea/ps_kartverket/main/produktspesifikasjon/nasjonalt-register-over-luftfartshindre/filleveranse/schema/xsd/INPUT/filleveranse.xsd",
@@ -416,7 +431,7 @@
   "metadataSection": {
     "metadataStandard": "ISO19115",
     "metadataStandardVersion": "2003",
-    "metadataDate": "2026-09-02",
+    "metadataDate": "2026-10-18",
     "language": "nor",
     "contact": {
       "organizationName": "Kartverket",
@@ -441,5 +456,22 @@
       "title": "Produktside",
       "href": "https://kartverket.no/api-og-data/samferdselsdata"
     }
-  ]
+  ],
+  "chapterAutofill": {
+    "om_spesifikasjonen": 10,
+    "om_produktet": 210,
+    "formaal": 22,
+    "bruksomraade": 32,
+    "omfang": 24,
+    "datainnhold_og_struktur": 0,
+    "referansesystem": 49,
+    "datakvalitet": 26,
+    "datafangst_og_produksjon": 147,
+    "vedlikehold": 3,
+    "presentasjon": 2,
+    "leveranse": 84,
+    "metadata": 15,
+    "tilleggsinformasjon": 26,
+    "datamodell": 8658
+  }
 }

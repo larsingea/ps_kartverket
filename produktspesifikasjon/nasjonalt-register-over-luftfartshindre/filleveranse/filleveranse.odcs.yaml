@@ -5,6 +5,129 @@ id: urn:odcs:nasjonalt-register-over-luftfartshindre-filleveranse:1.0.0
 version: 1.0.0
 status: active
 name: Nasjonalt register over luftfartshindre - Filleveranse
+tags:
+- Konstruksjoner
+- Luftfartshindre
+- NRL
+- Luftfartshinder
+- Nasjonalt register over luftfartshindre
+- Åpne data
+- beredskapsbase
+- Norge digitalt
+- modellbaserteVegprosjekter
+- fellesDatakatalog
+- Samferdsel
+- Hinder
+- Hindring
+- Lufthinder
+- SOSI_Fellesegenskaper
+- Fellesegenskaper
+- NrlLinje
+- NrlMast
+- NrlPunkt
+- NrlLuftspenn
+- NrlFlate
+- verifisertRapporteringsnøyaktighet
+- registreringsdato
+- historiskNrlId
+- vertikalAvstand
+- luftfartshindermerking
+- luftfartshinderlyssetting
+- materiale
+- høydereferanse
+- linjeType
+- beliggenhet
+- anleggsbredde
+- mastType
+- horisontalAvstand
+- punktType
+- luftspennType
+- flateType
+- luftfartshinderId
+- geometriId
+- datafangstmetode
+- datafangstmetodeHøyde
+- Norge digitalt begrenset
+- Ugradert
+description:
+  usage: Luftfartshinder under 15 meter med registreringsdato etter 3.7.2025 vises
+    ikke. NRL-data er ikke komplett og må ikke benyttes til planlegging av flyvning.
+  limitations: Norge digitalt begrenset. Lisens. Ugradert
+  purpose: Nasjonalt register over luftfartshindre (NRL) inneholder luftfartshindre
+    som er samlet inn som følge av "Forskrift om rapportering, registrering og merking
+    av luftfartshinder".
+authoritativeDefinitions:
+- url: https://data.geonorge.no/sosi/samferdsel/luftfartshindre
+  type: businessDefinition
+  description: Produktets identifikator
+- url: https://kartkatalog.geonorge.no/metadata/28c896d0-8a0d-4209-bf31-4931033b1082
+  type: businessDefinition
+  description: Metadata i Kartkatalogen
+- url: https://register.geonorge.no/register/versjoner/produktark/kartverket/nasjonalt-register-over-luftfartshindre-nrl
+  type: businessDefinition
+  description: Produktark
+- url: https://kartverket.no/api-og-data/samferdselsdata
+  type: businessDefinition
+  description: Produktside
+- url: https://register.geonorge.no/tegneregler/nasjonalt-register-over-luftfartshindre-nrl
+  type: implementation
+  description: Tegneregler
+team:
+  members:
+  - username: kundesenter@kartverket.no
+    name: Geir Myhr Øien
+    description: Kartverket
+    role: owner, pointOfContact, publisher
+support:
+- channel: Kartverket
+  tool: email
+  url: mailto:kundesenter@kartverket.no
+  scope: issues
+  description: Kontaktpunkt hos Kartverket
+slaProperties:
+- property: frequency
+  value: Daglig
+  driver: operational
+  description: Kontinuerlig oppdatert
+customProperties:
+- property: license
+  value: Norge digitalt-lisens
+- property: licenseUrl
+  value: https://www.kartverket.no/geodataarbeid/norge-digitalt/partsinformasjon/avtaler-og-vilkar/norge-digitalt-lisens
+- property: accessConstraints
+  value: Norge digitalt begrenset
+- property: useConstraints
+  value: Lisens
+- property: useLimitations
+  value: Luftfartshinder under 15 meter med registreringsdato etter 3.7.2025 vises
+    ikke. NRL-data er ikke komplett og må ikke benyttes til planlegging av flyvning.
+- property: classification
+  value: Ugradert
+- property: equivalentScale
+  value: Ikke angitt
+- property: spatialRepresentationType
+  value: Vektor
+- property: language
+  value: nor
+- property: maintenanceAndUpdateStatement
+  value: Kontinuerlig oppdatert
+servers:
+- server: geonorge-nedlastning
+  type: api
+  location: https://nedlasting.geonorge.no/api/capabilities/28c896d0-8a0d-4209-bf31-4931033b1082
+  description: Geonorge nedlastning - FGDB, GML, PostGIS
+- server: atom-feed
+  type: api
+  location: http://nedlasting.geonorge.no/geonorge/ATOM-feeds/Luftfartshindre_AtomFeedFGDB.xml
+  description: Atom Feed - FGDB
+- server: atom-feed-gml
+  type: api
+  location: http://nedlasting.geonorge.no/geonorge/ATOM-feeds/Luftfartshindre_AtomFeedGML.xml
+  description: Atom Feed - GML
+- server: atom-feed-postgis
+  type: api
+  location: http://nedlasting.geonorge.no/geonorge/ATOM-feeds/Luftfartshindre_AtomFeedPostGIS.xml
+  description: Atom Feed - PostGIS
 schema:
 - name: VertikalObjektKomponentPunkt
   physicalName: vertikalobjektkomponentpunkt
