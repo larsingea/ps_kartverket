@@ -121,6 +121,13 @@
         "level": "dataset",
         "levelDescription": "OGC API-Features fra Kartverket"
       }
+    },
+    {
+      "specificationScope": {
+        "scopeIdentification": "UML",
+        "level": "dataset",
+        "levelDescription": "Datamodell fra SOSI UML-modell"
+      }
     }
   ],
   "dataQualitySection": {
@@ -260,7 +267,7 @@
     "om_produktet": 276,
     "formaal": 13,
     "bruksomraade": 85,
-    "omfang": 30,
+    "omfang": 36,
     "datainnhold_og_struktur": 0,
     "referansesystem": 0,
     "datakvalitet": 42,
