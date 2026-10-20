@@ -1,0 +1,275 @@
+{
+  "overview": "Denne produktspesifikasjonen er autogenerert fra metadata i Geonorge og datamodell fra SOSI modellregister og/eller OGC API Features. Noe ekstra informasjon kan ha blitt lagt til gjennom manuell prosess. Produktspesifikasjonen er i henhold til standarden: 'Geografisk informasjon - Dataproduktspesifikasjoner' (ISO19131:2022)",
+  "title": "Dybdedata - dekning",
+  "format": "text/html",
+  "date": {
+    "creation": "2021-11-26",
+    "revision": "2026-07-02"
+  },
+  "language": "eng",
+  "contact": {
+    "individualName": "Matilde Skjæveland Skår",
+    "organizationName": "Kartverket",
+    "logo": "https://register.geonorge.no/data/organizations/971040238_Kartverket_liten.png",
+    "electronicMailAddress": "kundesenter@kartverket.no",
+    "role": "owner"
+  },
+  "identificationSection": {
+    "title": "Dybdedata - dekning",
+    "abstract": "Datasettet viser en oversikt over hvilke norske sjøområder som har blitt dybdekartlagt/sjømålt. Dybdedata er samlet inn over en lang tidsperiode, av ulike aktører og med ulikt utstyr. I egenskapstabellen til datasettet finnes det opplysninger som måleårstall, kartleggingsmetode, dataeier/hvilken aktør som har samlet inn dataene, utstyr, ekkolodd-type, spesifikasjon og oppløsning. \nInnholdet i datasettet er basert på tilgjengelig data hos Kartverket.\n\nKvalitet på data oppgis som en egenskap i egenskapstabellen, med en kategorisering på 1-4, hvor 1 er best kvalitet og 4 er dårligst. Disse er kategorisert etter dybdesensor (i hovedsak ekkoloddtype, men andre dybdesensorer kan forekomme, eks. laser). Kategori 1 er moderne multistråle, kategori 2 er relativt gode data, men inneholder mer støy og hull enn kategori 1. Kategori 3 er eldre multistråle, vanlig før år 2000, og kategori 4 er enkeltstråledata eller andre innsamlingsmetoder med lav kvalitet. \n\nDatasettet har to verdier som beskriver oppløsning: resolution og target_resolution. Resolution viser hvilken oppløsning Kartverket allerede har griddet målingen til, begrenset med søkeradius-metoden. Target-resolution er et automatisk beregnet estimat som viser hvor grovt datasettet maksimalt bør griddes for at kvaliteten skal være tilfredstillende over hele måleoppdraget. Beregningen gjøres ved å analysere punkttettheten i datasettet (binning-metoden) og ta utgangspunkt i de 5 % av områdene som har lavest punkttetthet. Verdien gir dermed en konservativ og helhetlig anbefalt grid-oppløsning for hele datasettet.",
+    "purpose": {
+      "summary": "Formålet med datasettet er å gi en oversikt over innsamlede og tilgjengelige dybdedata.",
+      "useCase": {
+        "name": "Bruksområde",
+        "summary": "Datasettet kan benyttes til å få en oversikt over tilgjengelige dybdedata, f.eks. i forbindelse med planlagte aktiviteter i et spesifikt område. Ved hjelp av informasjon tilgjengelig i egenskapstabellen, vil man kunne få et innblikk i kvalitet og egnethet av dybdedata. Nyere data er å anse av best kvalitet, da det har hovedsakelig blitt samlet inn ved bruk av multistråle ekkolodd, mens eldre data er samlet inn med enkeltstråle ekkolodd eller annet eldre utstyr.  \nDatasettet kan også benyttes til kart, presentasjoner, ulike analyser eller som beslutningsgrunnlag."
+      }
+    },
+    "topicCategory": [
+      "Kyst og sjø"
+    ],
+    "spatialRepresentationType": "Vektor",
+    "spatialResolution": {
+      "distance": {
+        "uom": "meter",
+        "value": 50
+      }
+    },
+    "uniqueId": "https://data.geonorge.no/sosi/dybdedata/dybdedata_dekning_sjomaling",
+    "keyword": [
+      "MAREANO",
+      "batymetri",
+      "dybdedata",
+      "DTM",
+      "Marine grunnkart",
+      "sjømåling",
+      "ekkolodd",
+      "Høyde",
+      "Norge digitalt",
+      "fellesDatakatalog",
+      "Høydedata"
+    ],
+    "restriction": {
+      "legalConstraints": {
+        "accessConstraints": "Åpne data",
+        "useConstraints": "Lisens",
+        "license": "Creative Commons BY 4.0 (CC BY 4.0)",
+        "licenseUrl": "https://creativecommons.org/licenses/by/4.0/"
+      },
+      "securityConstraints": {
+        "classification": "Ugradert"
+      }
+    },
+    "contact": [
+      {
+        "individualName": "Matilde Skjæveland Skår",
+        "organizationName": "Kartverket",
+        "electronicMailAddress": "kundesenter@kartverket.no",
+        "role": "owner"
+      },
+      {
+        "individualName": "Matilde Skjæveland Skår",
+        "organizationName": "Kartverket",
+        "electronicMailAddress": "kundesenter@kartverket.no",
+        "role": "pointOfContact"
+      },
+      {
+        "organizationName": "Kartverket",
+        "electronicMailAddress": "kundesenter@kartverket.no",
+        "role": "publisher"
+      }
+    ],
+    "maintenance": "Kontinuerlig",
+    "extent": {
+      "geographicDescription": [
+        "Nordsjøen",
+        "Barentshavet",
+        "Havområde",
+        "Hav",
+        "Sjømåling",
+        "MAREANO",
+        "Norge",
+        "Svalbard",
+        "Dybdedata",
+        "Batymetri",
+        "Marine grunnkart"
+      ],
+      "temporalElement": {
+        "timePeriod": {
+          "beginPosition": "2021-11-26",
+          "endPosition": "2026-07-02"
+        }
+      }
+    },
+    "date": {
+      "creation": "2021-11-26",
+      "publication": "2021-11-26",
+      "revision": "2026-07-02"
+    },
+    "language": "eng"
+  },
+  "scopeSection": [
+    {
+      "specificationScope": {
+        "scopeIdentification": "Hele datasettet",
+        "level": "dataset",
+        "levelDescription": "Gjelder hele datasettet. Hvis omfang ikke er oppgitt under en overskrift, gjelder teksten for hele datasettet og alle leveranser"
+      }
+    },
+    {
+      "specificationScope": {
+        "scopeIdentification": "datamodell fra API",
+        "level": "dataset",
+        "levelDescription": "OGC API-Features fra Kartverket"
+      }
+    }
+  ],
+  "dataQualitySection": {
+    "scope": {
+      "level": "dataset"
+    },
+    "report": [
+      {
+        "nameOfMeasure": "Prosentvis dekning i forhold til datasettets utstrekning",
+        "measureDescription": "Datasettets faktiske kartlagte areal i forhold til datasettets spesifiserte utstrekning",
+        "result": "45"
+      },
+      {
+        "nameOfMeasure": "Prosentvis oppfyllelse av FAIR-prinsipper",
+        "measureDescription": "Angir fullstendighet i forhold til krav fra FAIR-prinsippene (The FAIR Guiding Principles for scientific data management and stewardship)",
+        "result": "77"
+      }
+    ]
+  },
+  "maintenanceSection": {
+    "maintenanceAndUpdateFrequency": "Kontinuerlig",
+    "maintenanceAndUpdateStatement": "Kontinuerlig oppdatert"
+  },
+  "dataCaptureAndProductionSection": {
+    "DataAcquisitionAndProcessing": {
+      "dataCaptureStatement": "Datasettet tar utgangspunkt i Kartverkets oversikt over dekning sjømålte områder. Datasettet er delt inn i polygoner, hvor hvert polygon representerer et måleoppdrag (et oppdrag, tokt eller datasett med dybdedata) og viser utstrekningen av sjømålt område. Måleoppdragene er identifisert med en unik og persistent ID, som benyttes som identifikator for det bestemte måleoppdraget/toktet."
+    }
+  },
+  "deliverySection": [
+    {
+      "delivery": {
+        "deliveryMedium": {
+          "unitsOfDelivery": "landsfiler",
+          "deliveryMediumName": "OGC API-Features",
+          "deliveryService": {
+            "serviceEndpoint": "https://hybasapi.atgcp1-prod.kartverket.cloud/",
+            "serviceProperty": {
+              "type": "OGC API-Features",
+              "value": "OGC:API-Features"
+            }
+          }
+        },
+        "deliveryFormat": [
+          {
+            "formatName": "GeoJSON"
+          }
+        ]
+      }
+    },
+    {
+      "delivery": {
+        "deliveryMedium": {
+          "unitsOfDelivery": "landsfiler",
+          "deliveryMediumName": "WMS-tjeneste",
+          "deliveryService": {
+            "serviceEndpoint": "https://survey.kartverket.no/?service=WMS&request=GetCapabilities",
+            "serviceProperty": {
+              "type": "WMS-tjeneste",
+              "value": "OGC:WMS"
+            }
+          }
+        }
+      }
+    },
+    {
+      "delivery": {
+        "deliveryMedium": {
+          "deliveryMediumName": "Dybdedata - dekning WMS",
+          "deliveryService": {
+            "serviceEndpoint": "https://survey.kartverket.no/?service=WMS&request=GetCapabilities",
+            "serviceProperty": {
+              "type": "Dybdedata - dekning WMS",
+              "value": "WMS-tjeneste"
+            }
+          }
+        },
+        "deliveryFormat": [
+          {
+            "formatName": "WMS"
+          }
+        ],
+        "deliveryScope": "Tjeneste"
+      }
+    },
+    {
+      "delivery": {
+        "deliveryMedium": {
+          "deliveryMediumName": "Dybdedata - dekning",
+          "deliveryService": {
+            "serviceEndpoint": "https://survey.kartverket.no/?service=WMS&request=GetCapabilities",
+            "serviceProperty": {
+              "type": "Dybdedata - dekning",
+              "value": "WMS-tjeneste"
+            }
+          }
+        },
+        "deliveryFormat": [
+          {
+            "formatName": "[{}]"
+          }
+        ],
+        "deliveryScope": "Tjeneste"
+      }
+    }
+  ],
+  "metadataSection": {
+    "metadataStandard": "ISO19115",
+    "metadataStandardVersion": "2003",
+    "metadataDate": "2026-07-02",
+    "language": "nor",
+    "contact": {
+      "organizationName": "Kartverket",
+      "individualName": "Matilde Skjæveland Skår",
+      "logo": "https://register.geonorge.no/data/organizations/971040238_Kartverket_liten.png",
+      "electronicMailAddress": "kundesenter@kartverket.no",
+      "role": "pointOfContact"
+    },
+    "metadataIdentifier": {
+      "authority": "Geonorge",
+      "code": "7fd4a1f7-be17-4dcb-8a16-df891dd0be9c",
+      "codeSpace": "https://kartkatalog.geonorge.no/metadata/",
+      "metadataLinkage": "https://kartkatalog.geonorge.no/metadata/7fd4a1f7-be17-4dcb-8a16-df891dd0be9c"
+    }
+  },
+  "additionalReferences": [
+    {
+      "title": "Produktark",
+      "href": "https://register.geonorge.no/produktark/dybdedata-dekning"
+    },
+    {
+      "title": "Produktside",
+      "href": "https://hybasapi.atgcp1-prod.kartverket.cloud/"
+    }
+  ],
+  "chapterAutofill": {
+    "om_spesifikasjonen": 10,
+    "om_produktet": 276,
+    "formaal": 13,
+    "bruksomraade": 85,
+    "omfang": 30,
+    "datainnhold_og_struktur": 0,
+    "referansesystem": 0,
+    "datakvalitet": 42,
+    "datafangst_og_produksjon": 52,
+    "vedlikehold": 3,
+    "presentasjon": 0,
+    "leveranse": 35,
+    "metadata": 15,
+    "tilleggsinformasjon": 4,
+    "datamodell": 92
+  }
+}
