@@ -86,6 +86,12 @@ Datasettet kan også benyttes til kart, presentasjoner, ulike analyser eller som
 
 **Nivåbeskrivelse**: OGC API-Features fra Kartverket
 
+### UML
+
+**Nivå**: dataset
+
+**Nivåbeskrivelse**: Datamodell fra SOSI UML-modell
+
 ## Datainnhold og struktur
 
 
@@ -99,6 +105,16 @@ Datasettet kan også benyttes til kart, presentasjoner, ulike analyser eller som
 
 
 ➡️ [Se full datamodell for omfang "datamodell fra API" (diagram per pakke og objektkatalog)](datamodell-fra-api/objektkatalog.html)
+
+### Datamodell - UML
+
+
+
+<a href="uml/uml_feature_catalogue.png" title="Klikk for stor visning"><img src="uml/uml_feature_catalogue.png" alt="Datamodell UML" style="max-width: 100%; height: auto;" /></a>
+
+
+
+➡️ [Se full datamodell for omfang "UML" (diagram per pakke og objektkatalog)](uml/objektkatalog.html)
 
 ## Datakvalitet
 
