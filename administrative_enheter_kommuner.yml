@@ -2,7 +2,7 @@ metadataId: 041f1e6e-bdbc-4091-b48f-8a5990f3cc5b
 output_directory: produktspesifikasjon
 product_slug: administrative_enheter_kommuner
 updated: '2026-08-18'
-outputs: geopackage,xsd,jsonschema,odcs
+outputs: geopackage,xsd,jsonschema,odcs,pygeoapi
 scopes:
 - name: Datamodell fra UML for dumpefelt
   url: https://sosi.geonorge.no/svn/SOSI/SOSI%20Del%203/Statens%20kartverk/DumpefeltSj%c3%b8-20260415.xml
