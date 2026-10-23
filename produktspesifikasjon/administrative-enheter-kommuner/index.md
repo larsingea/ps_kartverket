@@ -187,7 +187,7 @@ Forvaltningsmessig saksbehandling. Analyse og presentasjon i et GIS-system. Pres
 
 **Metadatastandardversjon**: 2003
 
-**Metadatadato**: 2026-10-08
+**Metadatadato**: 2026-10-23
 
 **språk**: nor
 
