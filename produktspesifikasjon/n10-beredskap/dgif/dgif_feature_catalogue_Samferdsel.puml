@@ -1,0 +1,130 @@
+@startuml
+' For wide diagrams, render with: plantuml -DPLANTUML_LIMIT_SIZE=16384 ...
+' The 'scale max' directive below caps the rendered output to prevent the
+' default PlantUML 4096px size limit from cropping the diagram.
+scale max 4000*4000
+
+title N50 Kartdata - DGIF - Samferdsel
+
+skinparam backgroundColor #F5F5F5
+skinparam shadowing false
+skinparam RoundCorner 6
+skinparam ArrowColor #6C8198
+skinparam wrapWidth 200
+skinparam class {
+  BackgroundColor #FBF2E8
+  BorderColor #9C8578
+  FontColor #2D201A
+  HeaderBackgroundColor #EFE1D6
+  HeaderFontColor #2D201A
+  AttributeIconSize 0
+}
+skinparam note {
+  BackgroundColor #FFFFFF
+  BorderColor #6C8198
+  FontColor #2D201A
+}
+skinparam stereotypeCBackgroundColor #EAD9CE
+skinparam stereotypeCBorderColor #9C8578
+skinparam stereotypeCFontColor #2D201A
+
+package "Samferdsel" {
+
+  class Stasjon <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_meansTransportation [1] : CharacterString
+    + dgif_fullName [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + posisjon [1] : GM_Point
+    + navn [1] : CharacterString
+    + retning [1] : Retning
+    + fylkesnummer [1] : CharacterString
+  }
+
+  class Vegsperring <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_structMatType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + posisjon [1] : GM_Point
+    + vegsperringtype [0..1] : Vegsperringtype
+    + retning [1] : CharacterString
+  }
+
+  class Veglenke <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_routeIdentification [0..1] : Integer
+    + dgif_physicalCondition [0..1] : Integer
+    + dgif_waySurfaceCategory [1] : CharacterString
+    + dgif_meansTransportation [1] : CharacterString
+    + dgif_divided [1] : CharacterString
+    + dgif_roadInterchangeRamp [1] : CharacterString
+    + dgif_verticalRelativeLocation [0..1] : Integer
+    + dgif_waySignificance [0..1] : Integer
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + senterlinje [1] : GM_Curve
+    + typeVeg [0..1] : TypeVeg
+    + vegsystem [0..1] : Vegsystem
+    + adressenavn [1] : CharacterString
+    + motorvegtype [0..1] : Motorvegtype
+    + vegklasse [0..1] : Integer
+    + rutemerking [0..1] : RuteMerking
+    + belysning [0..1] : Boolean
+    + medium [0..1] : Medium
+    + fylkesnummer [0..1] : CharacterString
+  }
+
+  class Bane <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_railwayUse [1] : CharacterString
+    + dgif_verticalRelativeLocation [1] : CharacterString
+    + dgif_transRteProtStructType [1] : CharacterString
+    + dgif_facilityOperationalStatus [1] : CharacterString
+    + dgif_physicalCondition [1] : CharacterString
+    + dgif_modificationDateTime [1] : CharacterString
+    + dgif_currencyDateTime [1] : CharacterString
+    + dgif_sourceIdentifier [1] : Date
+    + senterlinje [1] : GM_Curve
+    + jernbaneinformasjon [1] : Jernbaneinformasjon
+    + medium [1] : Medium
+    + fylkesnummer [1] : CharacterString
+  }
+
+  class Retning <<dataType>> {
+    + retningsverdi [1] : Real
+    + retningsenhet [1] : Retningsenhet
+    + retningsreferanse [1] : Retningsreferanse
+  }
+
+  class Vegsystem <<dataType>> {
+    + vegkategori [1] : Vegkategori
+    + vegfase [1] : Vegfase
+    + vegnummer [0..1] : Integer
+  }
+
+  class Jernbaneinformasjon <<dataType>> {
+    + anleggstype [0..1] : Jernbanetype
+    + banestatus [0..1] : Jernbanestatus
+  }
+}
+
+package "Eksterne referanser" <<Frame>> {
+  class "KvalitetPåkrevd" as KvalitetP_krevd <<Generelle typer>> {
+  }
+}
+
+KvalitetP_krevd <|-- Stasjon
+KvalitetP_krevd <|-- Vegsperring
+KvalitetP_krevd <|-- Veglenke
+KvalitetP_krevd <|-- Bane
+
+@enduml

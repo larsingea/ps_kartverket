@@ -1,0 +1,127 @@
+@startuml
+' For wide diagrams, render with: plantuml -DPLANTUML_LIMIT_SIZE=16384 ...
+' The 'scale max' directive below caps the rendered output to prevent the
+' default PlantUML 4096px size limit from cropping the diagram.
+scale max 4000*4000
+
+title N50 Kartdata - DGIF - Restriksjonsområder
+
+skinparam backgroundColor #F5F5F5
+skinparam shadowing false
+skinparam RoundCorner 6
+skinparam ArrowColor #6C8198
+skinparam wrapWidth 200
+skinparam class {
+  BackgroundColor #FBF2E8
+  BorderColor #9C8578
+  FontColor #2D201A
+  HeaderBackgroundColor #EFE1D6
+  HeaderFontColor #2D201A
+  AttributeIconSize 0
+}
+skinparam note {
+  BackgroundColor #FFFFFF
+  BorderColor #6C8198
+  FontColor #2D201A
+}
+skinparam stereotypeCBackgroundColor #EAD9CE
+skinparam stereotypeCBorderColor #9C8578
+skinparam stereotypeCFontColor #2D201A
+
+package "Restriksjonsområder" {
+
+  class "Naturvernområde" as Naturvernomr_de <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_creationDateTime [1] : Date
+    + dgif_conservatonAreaManageCat [1] : CharacterString
+    + dgif_fullName [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+    + vernedato [0..1] : Date
+    + verneform [1] : Verneform
+    + navn [1] : CharacterString
+  }
+
+  class Allmenning <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_fullName [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+    + allmenningtype [1] : Allmenningtype
+    + navn [1] : CharacterString
+  }
+
+  class Skytefeltgrense <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + grense [1] : GM_Curve
+  }
+
+  class Naturverngrense <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + grense [1] : GM_Curve
+  }
+
+  class Flyplassavgrensning <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + grense [1] : GM_Curve
+  }
+
+  class Skytefelt <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_fullName [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+    + navn [1] : CharacterString
+    + skytefeltstatus [1] : Skytefeltstatus
+  }
+
+  class Allmenninggrense <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + grense [1] : GM_Curve
+  }
+}
+
+package "Eksterne referanser" <<Frame>> {
+  class KvalitetOpsjonell <<Generelle typer>> {
+  }
+  class "KvalitetPåkrevd" as KvalitetP_krevd <<Generelle typer>> {
+  }
+}
+
+KvalitetOpsjonell <|-- Naturvernomr_de
+Naturvernomr_de --> Naturverngrense : avgrensesAvNaturverngrense [0..*]
+KvalitetOpsjonell <|-- Allmenning
+Allmenning --> Allmenninggrense : avgrensesAvAllmenninggrense [0..*]
+KvalitetP_krevd <|-- Skytefeltgrense
+KvalitetP_krevd <|-- Naturverngrense
+KvalitetP_krevd <|-- Flyplassavgrensning
+KvalitetOpsjonell <|-- Skytefelt
+Skytefelt --> Skytefeltgrense : avgrensesAvSkytefeltgrense [0..*]
+KvalitetP_krevd <|-- Allmenninggrense
+
+@enduml

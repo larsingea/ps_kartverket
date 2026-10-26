@@ -1,0 +1,102 @@
+@startuml
+' For wide diagrams, render with: plantuml -DPLANTUML_LIMIT_SIZE=16384 ...
+' The 'scale max' directive below caps the rendered output to prevent the
+' default PlantUML 4096px size limit from cropping the diagram.
+scale max 4000*4000
+
+title N50 Kartdata - DGIF - Bygninger
+
+skinparam backgroundColor #F5F5F5
+skinparam shadowing false
+skinparam RoundCorner 6
+skinparam ArrowColor #6C8198
+skinparam wrapWidth 200
+skinparam class {
+  BackgroundColor #FBF2E8
+  BorderColor #9C8578
+  FontColor #2D201A
+  HeaderBackgroundColor #EFE1D6
+  HeaderFontColor #2D201A
+  AttributeIconSize 0
+}
+skinparam note {
+  BackgroundColor #FFFFFF
+  BorderColor #6C8198
+  FontColor #2D201A
+}
+skinparam stereotypeCBackgroundColor #EAD9CE
+skinparam stereotypeCBorderColor #9C8578
+skinparam stereotypeCFontColor #2D201A
+
+package "Bygninger" {
+
+  class Takoverbygg <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : Date
+    + område [1] : GM_Surface
+  }
+
+  class Grunnmur <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_physicalCondition [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + grense [1] : GM_Curve
+    + høydereferanse [1] : Høydereferanse
+  }
+
+  class Bygningsflate <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_featureFunction [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + bygningstype [1] : Integer
+    + område [1] : GM_Surface
+  }
+
+  class Bygningspunkt <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_featureFunction [0..1] : CharacterString
+    + dgif_roadIdentification [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + posisjon [0..1] : GM_Point
+    + bygningstype [0..1] : BygningstypeKode
+    + registrertimatrikkelen [1] : Boolean
+    + bygningsnummer [0..1] : Integer
+    + nummer [1] : Integer
+    + adressenavn [1] : CharacterString
+    + bokstav [1] : CharacterString
+    + hytteinformasjon [1] : Hytteinformasjon
+  }
+
+  class Hytteinformasjon <<dataType>> {
+    + betjeningsgrad [0..1] : Betjeningsgrad
+    + hytteeier [0..1] : Hytteeier
+    + tilgjengelighet [0..1] : Tilgjengelighet
+  }
+}
+
+package "Eksterne referanser" <<Frame>> {
+  class KvalitetOpsjonell <<Generelle typer>> {
+  }
+  class "KvalitetPåkrevd" as KvalitetP_krevd <<Generelle typer>> {
+  }
+}
+
+KvalitetOpsjonell <|-- Takoverbygg
+KvalitetP_krevd <|-- Grunnmur
+KvalitetP_krevd <|-- Grunnmur
+KvalitetOpsjonell <|-- Bygningsflate
+KvalitetP_krevd <|-- Bygningspunkt
+KvalitetP_krevd <|-- Bygningspunkt
+
+@enduml

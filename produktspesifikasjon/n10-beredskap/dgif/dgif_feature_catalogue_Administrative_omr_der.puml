@@ -1,0 +1,107 @@
+@startuml
+' For wide diagrams, render with: plantuml -DPLANTUML_LIMIT_SIZE=16384 ...
+' The 'scale max' directive below caps the rendered output to prevent the
+' default PlantUML 4096px size limit from cropping the diagram.
+scale max 4000*4000
+
+title N50 Kartdata - DGIF - Administrative_områder
+
+skinparam backgroundColor #F5F5F5
+skinparam shadowing false
+skinparam RoundCorner 6
+skinparam ArrowColor #6C8198
+skinparam wrapWidth 200
+skinparam class {
+  BackgroundColor #FBF2E8
+  BorderColor #9C8578
+  FontColor #2D201A
+  HeaderBackgroundColor #EFE1D6
+  HeaderFontColor #2D201A
+  AttributeIconSize 0
+}
+skinparam note {
+  BackgroundColor #FFFFFF
+  BorderColor #6C8198
+  FontColor #2D201A
+}
+skinparam stereotypeCBackgroundColor #EAD9CE
+skinparam stereotypeCBorderColor #9C8578
+skinparam stereotypeCFontColor #2D201A
+
+package "Administrative_områder" {
+
+  class Teiggrensepunkt <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_modificationDateTime [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_sourceIdentifier [0..1] : ChracterString
+    + posisjon [0..1] : GM_Point
+    + grensepunkttype [0..1] : Grensepunkttype
+    + grensepunktnummer [0..1] : CharacterString
+  }
+
+  class Fylke <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_adminDivision [0..1] : CharacterString
+    + dgif_adminUnitTypeName [0..1] : CharacterString
+    + dgif_adminName [0..1] : CharacterString
+    + dgif_modificationDateTime [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + område [0..1] : GM_Surface
+    + fylkesnummer [0..1] : Fylkesnummer
+    + fylkesnavn [0..1] : CharacterString
+  }
+
+  class Kommune <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_featureType531 [0..1] : CharacterString
+    + dgif_adminDivision [0..1] : CharacterString
+    + dgif_adminUnitTypeName [0..1] : CharacterString
+    + dgif_adminName [0..1] : CharacterString
+    + dgif_modificationDateTime [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + område [0..1] : GM_Surface
+    + kommunenummer [0..1] : Kommunenummer
+    + kommunenavn [0..1] : CharacterString
+    + fylkesnummer [0..1] : Fylkesnummer
+  }
+
+  class Grense <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_adminDivision [0..1] : Integer
+    + dgif_maritimeGeoLimitType [0..1] : CharacterString
+    + dgif_modificationDateTime [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + grense [0..1] : GM_Curve
+    + avgrensningstype [0..1] : TypeAvgrensning
+  }
+
+  class Grunnlinjepunkt <<featureType>> {
+    + posisjon [0..1] : GM_Point
+    + grunnlinjepunktnavn [0..1] : CharacterString
+    + grunnlinjepunktnummer [0..1] : CharacterString
+  }
+}
+
+package "Eksterne referanser" <<Frame>> {
+  class KvalitetOpsjonell <<Generelle typer>> {
+  }
+  class "KvalitetPåkrevd" as KvalitetP_krevd <<Generelle typer>> {
+  }
+}
+
+KvalitetP_krevd <|-- Teiggrensepunkt
+KvalitetOpsjonell <|-- Fylke
+Fylke --> Grense : avgrensesAvGrense [0..*]
+KvalitetOpsjonell <|-- Kommune
+Kommune --> Grense : avgrensesAvGrense [0..*]
+KvalitetP_krevd <|-- Grense
+KvalitetP_krevd <|-- Grunnlinjepunkt
+
+@enduml

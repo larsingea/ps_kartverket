@@ -1,0 +1,88 @@
+@startuml
+' For wide diagrams, render with: plantuml -DPLANTUML_LIMIT_SIZE=16384 ...
+' The 'scale max' directive below caps the rendered output to prevent the
+' default PlantUML 4096px size limit from cropping the diagram.
+scale max 4000*4000
+
+title N50 Kartdata - DGIF - Interessepunkt (POI)
+
+skinparam backgroundColor #F5F5F5
+skinparam shadowing false
+skinparam RoundCorner 6
+skinparam ArrowColor #6C8198
+skinparam wrapWidth 200
+skinparam class {
+  BackgroundColor #FBF2E8
+  BorderColor #9C8578
+  FontColor #2D201A
+  HeaderBackgroundColor #EFE1D6
+  HeaderFontColor #2D201A
+  AttributeIconSize 0
+}
+skinparam note {
+  BackgroundColor #FFFFFF
+  BorderColor #6C8198
+  FontColor #2D201A
+}
+skinparam stereotypeCBackgroundColor #EAD9CE
+skinparam stereotypeCBorderColor #9C8578
+skinparam stereotypeCFontColor #2D201A
+
+package "Interessepunkt (POI)" {
+
+  class Interessepunkt <<featureType>> {
+    + posisjon [1] : GM_Point
+    + typeInteressepunkt [1] : CharacterString
+    + navn [0..1] : CharacterString
+    + dgif_FeatureType [1] : CharacterString
+    + FFN [1] : Integer
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+  }
+
+  class Flyplass <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + posisjon [1] : GM_Point
+    + lufthavntype [1] : Lufthavntype
+    + trafikktype [1] : Trafikktype
+    + iataKode [1] : IATAKode
+    + icaoKode [1] : ICAOKode
+    + lufthavneier [1] : CharacterString
+    + navn [1] : CharacterString
+    + retning [1] : Retning
+  }
+
+  class Sykehus <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_featureFunction [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + posisjon [1] : GM_Point
+    + bygningstype [1] : BygningstypeKode
+  }
+
+  class Retning <<dataType>> {
+    + retningsverdi [1] : Real
+    + retningsenhet [1] : Retningsenhet
+    + retningsreferanse [1] : Retningsreferanse
+  }
+}
+
+package "Eksterne referanser" <<Frame>> {
+  class "KvalitetPåkrevd" as KvalitetP_krevd <<Generelle typer>> {
+  }
+}
+
+KvalitetP_krevd <|-- Interessepunkt
+KvalitetP_krevd <|-- Flyplass
+KvalitetP_krevd <|-- Sykehus
+
+@enduml

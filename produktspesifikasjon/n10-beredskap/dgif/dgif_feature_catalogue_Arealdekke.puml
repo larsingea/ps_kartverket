@@ -1,0 +1,330 @@
+@startuml
+' For wide diagrams, render with: plantuml -DPLANTUML_LIMIT_SIZE=16384 ...
+' The 'scale max' directive below caps the rendered output to prevent the
+' default PlantUML 4096px size limit from cropping the diagram.
+scale max 4000*4000
+
+title N50 Kartdata - DGIF - Arealdekke
+
+skinparam backgroundColor #F5F5F5
+skinparam shadowing false
+skinparam RoundCorner 6
+skinparam ArrowColor #6C8198
+skinparam wrapWidth 200
+skinparam class {
+  BackgroundColor #FBF2E8
+  BorderColor #9C8578
+  FontColor #2D201A
+  HeaderBackgroundColor #EFE1D6
+  HeaderFontColor #2D201A
+  AttributeIconSize 0
+}
+skinparam note {
+  BackgroundColor #FFFFFF
+  BorderColor #6C8198
+  FontColor #2D201A
+}
+skinparam stereotypeCBackgroundColor #EAD9CE
+skinparam stereotypeCBorderColor #9C8578
+skinparam stereotypeCFontColor #2D201A
+
+package "Arealdekke" {
+
+  class IdrettsOmr <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class "Innsjø" as Innsj_ <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_inlandWaterType [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+    + vatnLøpenummer [0..1] : Integer
+    + høyde [0..1] : Integer
+    + regulert [1] : Boolean
+    + lavesteRegulerteVannstand [0..1] : Integer
+  }
+
+  class Skog <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + treslag [1] : ArealressursTreslag
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class Elveflate <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class Gravplass <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class LufthavnOmr <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_aerodromeOfficialName [1] : CharacterString
+    + dgif_ownerOrOperator [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [0..1] : GM_Surface
+    + posisjon [0..1] : GM_Point
+    + lufthavntype [0..1] : Lufthavntype
+    + trafikktype [0..1] : Trafikktype
+    + lufthavneier [0..1] : CharacterString
+    + navn [0..1] : CharacterString
+    + retning [0..1] : Retning
+  }
+
+  class Bergverk <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class Alpinbakke <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class Industri <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class Golfbane <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class "SnøIsbre" as Sn_Isbre <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class Samferdsel <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [0..1] : Flate
+    + posisjon [0..1] : Punkt
+    + arealtype [0..1] : ArealressursArealtype
+    + skogbonitet [0..1] : ArealressursSkogbonitet
+    + treslag [0..1] : ArealressursTreslag
+    + grunnforhold [0..1] : ArealressursGrunnforhold
+    + naturgrunnlagForJordbruk [0..1] : ArealressursNaturgrunnlagForJordbruk
+    + dyrkbarjord [0..1] : ArealressursDyrkbarjord
+    + vegetasjonsdekke [0..1] : ArealressursVegetasjonsdekke
+    + arealressursGruppertEnkel [0..1] : ArealressursGruppertEnkel
+    + arealressursGruppertVanlig [0..1] : ArealressursGruppertVanlig
+    + kartstandard [0..1] : ArealressursKartstandard
+    + kartbladindeks [0..1] : CharacterString
+    + areal [0..1] : Real
+  }
+
+  class Hav <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class Snaumark <<featureType>> {
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : Flate
+    + arealtype [1] : ArealressursArealtype
+    + skogbonitet [1] : ArealressursSkogbonitet
+    + treslag [1] : ArealressursTreslag
+    + jordbruk [1] : ArealressursJordbruk
+    + vegetasjonsdekke [1] : ArealressursVegetasjonsdekke
+    + dgif_FeatureType [1] : CharacterString
+    + kartstandard [1] : ArealressursKartstandard
+  }
+
+  class Kanal <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+    + vannBredde [1] : VannBredde
+  }
+
+  class Myr <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class Innmarksbeite <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+    + arealtype [1] : ArealressursArealtype
+    + treslag [1] : ArealressursTreslag
+    + skogbonitet [1] : ArealressursSkogbonitet
+    + grunnforhold [1] : ArealressursGrunnforhold
+    + klassifiseringsmetode [1] : Klassifiseringsmetode
+    + verifiseringsdato [1] : Date
+  }
+
+  class Park <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class Jordbruk <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [0..1] : Flate
+    + arealtype [0..1] : ArealressursArealtype
+    + skogbonitet [0..1] : ArealressursSkogbonitet
+    + treslag [0..1] : ArealressursTreslag
+    + grunnforhold [0..1] : ArealressursGrunnforhold
+    + naturgrunnlagForJordbruk [0..1] : ArealressursNaturgrunnlagForJordbruk
+    + dyrkbarjord [0..1] : ArealressursDyrkbarjord
+    + vegetasjonsdekke [0..1] : ArealressursVegetasjonsdekke
+    + arealressursGruppertEnkel [0..1] : ArealressursGruppertEnkel
+    + arealressursGruppertVanlig [0..1] : ArealressursGruppertVanlig
+    + kartstandard [0..1] : ArealressursKartstandard
+    + kartbladindeks [0..1] : CharacterString
+    + areal [0..1] : Real
+  }
+
+  class Bebygd <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [0..1] : GM_Surface
+  }
+
+  class "InnsjøRegulert" as Innsj_Regulert <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_inlandWaterType [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [0..1] : Flate
+    + vatnLøpenummer [0..1] : Integer
+    + vannstandHøyesteRegulert [0..1] : Real
+    + vannstandLavestRegulert [0..1] : Real
+    + vannstandRegHøyestRegistrerte [0..1] : Real
+    + vannstandHøyestRegistrert [0..1] : Real
+    + vannstandLavestRegistrert [0..1] : Real
+    + vassdragsnummer [0..1] : CharacterString
+    + arealNedbørfelt [0..1] : CharacterString
+  }
+
+  class Retning <<dataType>> {
+    + retningsverdi [1] : Real
+    + retningsenhet [1] : Retningsenhet
+    + retningsreferanse [1] : Retningsreferanse
+  }
+}
+
+package "Eksterne referanser" <<Frame>> {
+  class KvalitetOpsjonell <<Generelle typer>> {
+  }
+  class Kystkontur <<Hydrografi>> {
+  }
+}
+
+KvalitetOpsjonell <|-- IdrettsOmr
+IdrettsOmr --> Kystkontur : avgrensesAvKystkontur [0..*]
+KvalitetOpsjonell <|-- Innsj_
+KvalitetOpsjonell <|-- Skog
+Skog --> Kystkontur : avgrensesAvKystkontur [0..*]
+KvalitetOpsjonell <|-- Elveflate
+KvalitetOpsjonell <|-- Gravplass
+Gravplass --> Kystkontur : avgrensesAvKystkontur [0..*]
+KvalitetOpsjonell <|-- LufthavnOmr
+LufthavnOmr --> Kystkontur : avgrensesAvKystkontur [0..*]
+KvalitetOpsjonell <|-- Bergverk
+KvalitetOpsjonell <|-- Alpinbakke
+Alpinbakke --> Kystkontur : avgrensesAvKystkontur [0..*]
+KvalitetOpsjonell <|-- Industri
+Industri --> Kystkontur : avgrensesAvKystkontur [0..*]
+KvalitetOpsjonell <|-- Golfbane
+Golfbane --> Kystkontur : avgrensesAvKystkontur [0..*]
+KvalitetOpsjonell <|-- Sn_Isbre
+Sn_Isbre --> Kystkontur : avgrensesAvKystkontur [0..*]
+KvalitetOpsjonell <|-- Samferdsel
+KvalitetOpsjonell <|-- Hav
+Hav --> Kystkontur : avgrensesAvKystkontur [0..*]
+KvalitetOpsjonell <|-- Snaumark
+KvalitetOpsjonell <|-- Kanal
+KvalitetOpsjonell <|-- Myr
+Myr --> Kystkontur : avgrensesAvKystkontur [0..*]
+KvalitetOpsjonell <|-- Innmarksbeite
+KvalitetOpsjonell <|-- Park
+Park --> Kystkontur : avgrensesAvKystkontur [0..*]
+KvalitetOpsjonell <|-- Jordbruk
+KvalitetOpsjonell <|-- Bebygd
+KvalitetOpsjonell <|-- Innsj_Regulert
+
+@enduml

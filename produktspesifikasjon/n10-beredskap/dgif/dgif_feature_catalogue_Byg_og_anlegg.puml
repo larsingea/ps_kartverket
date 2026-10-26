@@ -1,0 +1,414 @@
+@startuml
+' For wide diagrams, render with: plantuml -DPLANTUML_LIMIT_SIZE=16384 ...
+' The 'scale max' directive below caps the rendered output to prevent the
+' default PlantUML 4096px size limit from cropping the diagram.
+scale max 4000*4000
+
+title N50 Kartdata - DGIF - Byg_og_anlegg
+
+skinparam backgroundColor #F5F5F5
+skinparam shadowing false
+skinparam RoundCorner 6
+skinparam ArrowColor #6C8198
+skinparam wrapWidth 200
+skinparam class {
+  BackgroundColor #FBF2E8
+  BorderColor #9C8578
+  FontColor #2D201A
+  HeaderBackgroundColor #EFE1D6
+  HeaderFontColor #2D201A
+  AttributeIconSize 0
+}
+skinparam note {
+  BackgroundColor #FFFFFF
+  BorderColor #6C8198
+  FontColor #2D201A
+}
+skinparam stereotypeCBackgroundColor #EAD9CE
+skinparam stereotypeCBorderColor #9C8578
+skinparam stereotypeCFontColor #2D201A
+
+package "Byg_og_anlegg" {
+
+  class Molo <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_shorelineConstructionType [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class Pir <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_shorelineConstructionType [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + senterlinje [1] : GM_Curve
+  }
+
+  class Transformatorstasjon <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class Ledning <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_cableType [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + senterlinje [1] : GM_Curve
+    + eier [0..1] : CharacterString
+    + ledningstrase [1] : FlerLinjer
+    + hovedbruk [1] : Ledningsnettverkstype
+  }
+
+  class Navigasjonsinstallasjon <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + posisjon [1] : GM_Point
+  }
+
+  class Skytebane <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class Taubane <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_cablewayType [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + senterlinje [1] : GM_Curve
+    + taubanetype [1] : Taubanetype
+    + høydereferanse [1] : Høydereferanse
+  }
+
+  class Gjerde <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_fenceFunction [0..1] : CharacterString
+    + dgif_fenceType [0..1] : CharacterString
+    + dgif_structMatType [0..1] : Integer
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + senterlinje [1] : GM_Curve
+    + gjerdetype [1] : Gjerdetype
+    + høydereferanse [1] : Høydereferanse
+  }
+
+  class "Rørgate" as R_rgate <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_verticalRelativeLocation [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + senterlinje [1] : GM_Curve
+  }
+
+  class Oppdrettslokalitet <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_aquacultureFacilityType [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class Tank <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [0..1] : GM_Surface
+    + posisjon [0..1] : GM_Point
+  }
+
+  class "Lysløype" as Lysl_ype <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + senterlinje [1] : GM_Curve
+  }
+
+  class KaiBrygge <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_shorelineConstructionType [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class Mast <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_maximumObstacleHeight [1] : Real
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + posisjon [1] : GM_Point
+    + belysning [0..1] : Boolean
+    + konstruksjon [0..1] : Mastekonstruksjon
+    + linjebredde [0..1] : Real
+    + masttype [0..1] : CharacterString
+    + vertikalAvstand [0..1] : Real
+  }
+
+  class Slipp <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_shorelineRampType [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + senterlinje [1] : GM_Curve
+    + høydereferanse [1] : Høydereferanse
+  }
+
+  class Demning <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class Voll <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + senterlinje [1] : GM_Curve
+    + skjermingsfunksjon [1] : CharacterString
+    + høydereferanse [1] : Høydereferanse
+    + høydeOverBakken [0..1] : Real
+  }
+
+  class Mur <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + grense [1] : GM_Curve
+    + høydereferanse [1] : Høydereferanse
+  }
+
+  class Skjerm <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_fenceFunction [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + senterlinje [1] : GM_Curve
+    + skjermingsfunksjon [1] : SkjermingsFunksjon
+    + høydereferanse [1] : Høydereferanse
+    + høydeOverBakken [0..1] : Real
+  }
+
+  class Campingplass <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + posisjon [1] : GM_Point
+  }
+
+  class Hoppbakke <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + posisjon [1] : GM_Point
+    + lengde [1] : Integer
+    + retning [1] : Retning
+  }
+
+  class Pipe <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_buildingSuperstructType [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + posisjon [1] : GM_Point
+    + høydereferanse [1] : Høydereferanse
+  }
+
+  class "Anleggsområde" as Anleggsomr_de <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_physicalCondition [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [0..1] : Flate
+  }
+
+  class Skytebaneinnretning <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + senterlinje [0..1] : GM_Curve
+  }
+
+  class Ruin <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + høydereferanse [1] : Høydereferanse
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + posisjon [1] : GM_Point
+  }
+
+  class Gruve <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_extractionMineType [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + posisjon [1] : GM_Point
+  }
+
+  class "Svømmebasseng" as Sv_mmebasseng <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class "Tårn" as T_rn <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + posisjon [1] : GM_Point
+  }
+
+  class Vindturbin <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_rotorDiameter [1] : Real
+    + dgif_maximumObstacleHeight [1] : Real
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + posisjon [1] : GM_Point
+    + rotorbladlengde [0..1] : Real
+    + navhøyde [0..1] : Real
+  }
+
+  class FlyteBrygge <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_shorelineConstructionType [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class "Parkeringsområde" as Parkeringsomr_de <<featureType>> {
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : int
+    + dgif_currencyDateTime [1] : int
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [0..1] : GM_Surface
+  }
+
+  class Tribune <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class Retning <<dataType>> {
+    + retningsverdi [1] : Real
+    + retningsenhet [1] : Retningsenhet
+    + retningsreferanse [1] : Retningsreferanse
+  }
+}
+
+package "Eksterne referanser" <<Frame>> {
+  class KvalitetOpsjonell <<Generelle typer>> {
+  }
+  class "KvalitetPåkrevd" as KvalitetP_krevd <<Generelle typer>> {
+  }
+}
+
+KvalitetOpsjonell <|-- Molo
+KvalitetP_krevd <|-- Pir
+KvalitetOpsjonell <|-- Transformatorstasjon
+KvalitetP_krevd <|-- Ledning
+KvalitetP_krevd <|-- Navigasjonsinstallasjon
+KvalitetOpsjonell <|-- Skytebane
+KvalitetP_krevd <|-- Taubane
+KvalitetP_krevd <|-- Gjerde
+KvalitetP_krevd <|-- R_rgate
+KvalitetOpsjonell <|-- Oppdrettslokalitet
+KvalitetP_krevd <|-- Tank
+KvalitetOpsjonell <|-- Tank
+KvalitetP_krevd <|-- Lysl_ype
+KvalitetOpsjonell <|-- KaiBrygge
+KvalitetP_krevd <|-- Mast
+KvalitetP_krevd <|-- Slipp
+KvalitetOpsjonell <|-- Demning
+KvalitetP_krevd <|-- Voll
+KvalitetP_krevd <|-- Mur
+KvalitetP_krevd <|-- Skjerm
+KvalitetP_krevd <|-- Campingplass
+KvalitetP_krevd <|-- Hoppbakke
+KvalitetP_krevd <|-- Pipe
+KvalitetOpsjonell <|-- Anleggsomr_de
+KvalitetP_krevd <|-- Skytebaneinnretning
+KvalitetP_krevd <|-- Ruin
+KvalitetP_krevd <|-- Gruve
+KvalitetOpsjonell <|-- Sv_mmebasseng
+KvalitetP_krevd <|-- T_rn
+KvalitetP_krevd <|-- Vindturbin
+KvalitetOpsjonell <|-- FlyteBrygge
+KvalitetOpsjonell <|-- Parkeringsomr_de
+KvalitetOpsjonell <|-- Tribune
+
+@enduml
