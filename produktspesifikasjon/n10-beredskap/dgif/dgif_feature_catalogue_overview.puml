@@ -1,0 +1,484 @@
+@startuml
+' For wide diagrams, render with: plantuml -DPLANTUML_LIMIT_SIZE=16384 ...
+' The 'scale max' directive below caps the rendered output to prevent the
+' default PlantUML 4096px size limit from cropping the diagram.
+scale max 4000*4000
+
+title N50 Kartdata - DGIF - Oversikt
+
+skinparam backgroundColor #F5F5F5
+skinparam shadowing false
+skinparam RoundCorner 6
+skinparam ArrowColor #6C8198
+skinparam wrapWidth 200
+skinparam class {
+  BackgroundColor #FBF2E8
+  BorderColor #9C8578
+  FontColor #2D201A
+  HeaderBackgroundColor #EFE1D6
+  HeaderFontColor #2D201A
+  AttributeIconSize 0
+}
+skinparam note {
+  BackgroundColor #FFFFFF
+  BorderColor #6C8198
+  FontColor #2D201A
+}
+skinparam stereotypeCBackgroundColor #EAD9CE
+skinparam stereotypeCBorderColor #9C8578
+skinparam stereotypeCFontColor #2D201A
+
+package "Administrative_områder" {
+  class Teiggrensepunkt <<featureType>> {
+  }
+  class Fylke <<featureType>> {
+  }
+  class Kommune <<featureType>> {
+  }
+  class Grense <<featureType>> {
+  }
+  class Grunnlinjepunkt <<featureType>> {
+  }
+}
+
+package "Arealdekke" {
+  class IdrettsOmr <<featureType>> {
+  }
+  class "Innsjø" as Innsj_ <<featureType>> {
+  }
+  class Skog <<featureType>> {
+  }
+  class Elveflate <<featureType>> {
+  }
+  class Gravplass <<featureType>> {
+  }
+  class LufthavnOmr <<featureType>> {
+  }
+  class Bergverk <<featureType>> {
+  }
+  class Alpinbakke <<featureType>> {
+  }
+  class Industri <<featureType>> {
+  }
+  class Golfbane <<featureType>> {
+  }
+  class "SnøIsbre" as Sn_Isbre <<featureType>> {
+  }
+  class Samferdsel <<featureType>> {
+  }
+  class Hav <<featureType>> {
+  }
+  class Snaumark <<featureType>> {
+  }
+  class Kanal <<featureType>> {
+  }
+  class Myr <<featureType>> {
+  }
+  class Innmarksbeite <<featureType>> {
+  }
+  class Park <<featureType>> {
+  }
+  class Jordbruk <<featureType>> {
+  }
+  class Bebygd <<featureType>> {
+  }
+  class "InnsjøRegulert" as Innsj_Regulert <<featureType>> {
+  }
+}
+
+package "Arealdekke_øvrige" {
+  class Rullebane <<featureType>> {
+  }
+  class Tregruppe <<featureType>> {
+  }
+}
+
+package "Byg_og_anlegg" {
+  class Molo <<featureType>> {
+  }
+  class Pir <<featureType>> {
+  }
+  class Transformatorstasjon <<featureType>> {
+  }
+  class Ledning <<featureType>> {
+  }
+  class Navigasjonsinstallasjon <<featureType>> {
+  }
+  class Skytebane <<featureType>> {
+  }
+  class Taubane <<featureType>> {
+  }
+  class Gjerde <<featureType>> {
+  }
+  class "Rørgate" as R_rgate <<featureType>> {
+  }
+  class Oppdrettslokalitet <<featureType>> {
+  }
+  class Tank <<featureType>> {
+  }
+  class "Lysløype" as Lysl_ype <<featureType>> {
+  }
+  class KaiBrygge <<featureType>> {
+  }
+  class Mast <<featureType>> {
+  }
+  class Slipp <<featureType>> {
+  }
+  class Demning <<featureType>> {
+  }
+  class Voll <<featureType>> {
+  }
+  class Mur <<featureType>> {
+  }
+  class Skjerm <<featureType>> {
+  }
+  class Campingplass <<featureType>> {
+  }
+  class Hoppbakke <<featureType>> {
+  }
+  class Pipe <<featureType>> {
+  }
+  class "Anleggsområde" as Anleggsomr_de <<featureType>> {
+  }
+  class Skytebaneinnretning <<featureType>> {
+  }
+  class Ruin <<featureType>> {
+  }
+  class Gruve <<featureType>> {
+  }
+  class "Svømmebasseng" as Sv_mmebasseng <<featureType>> {
+  }
+  class "Tårn" as T_rn <<featureType>> {
+  }
+  class Vindturbin <<featureType>> {
+  }
+  class FlyteBrygge <<featureType>> {
+  }
+  class "Parkeringsområde" as Parkeringsomr_de <<featureType>> {
+  }
+  class Tribune <<featureType>> {
+  }
+}
+
+package "Bygninger" {
+  class Takoverbygg <<featureType>> {
+  }
+  class Grunnmur <<featureType>> {
+  }
+  class Bygningsflate <<featureType>> {
+  }
+  class Bygningspunkt <<featureType>> {
+  }
+}
+
+package "Generelle typer" {
+  abstract class Fellesegenskaper <<featureType>> {
+  }
+  abstract class "KvalitetPåkrevd" as KvalitetP_krevd <<featureType>> {
+  }
+  abstract class KvalitetOpsjonell <<featureType>> {
+  }
+  class Konnekteringspunkt <<featureType>> {
+  }
+}
+
+package "Hydrografi" {
+  class KonnekteringVann <<featureType>> {
+  }
+  class ElvBekk <<featureType>> {
+  }
+  class "Flomløpkant" as Floml_pkant <<featureType>> {
+  }
+  class "MidtlinjeElvInnsjø" as MidtlinjeElvInnsj_ <<featureType>> {
+  }
+  class "Skjær" as Skj_r <<featureType>> {
+  }
+  class Foss <<featureType>> {
+  }
+  class Kystkontur <<featureType>> {
+  }
+  class "KanalGrøft" as KanalGr_ft <<featureType>> {
+  }
+}
+
+package "Høyde" {
+  class "Høydekurve" as H_ydekurve <<featureType>> {
+  }
+  class Terrengpunkt <<featureType>> {
+  }
+  class Trigonometriskpunkt <<featureType>> {
+  }
+}
+
+package "Interessepunkt (POI)" {
+  class Interessepunkt <<featureType>> {
+  }
+  class Flyplass <<featureType>> {
+  }
+  class Sykehus <<featureType>> {
+  }
+}
+
+package "POI" {
+  class ReligiousBuildings <<featureType>> {
+  }
+  class WasteWaterTreatmentPlants <<featureType>> {
+  }
+  class Museums <<featureType>> {
+  }
+  class SurveillanceProhibitedAreas <<featureType>> {
+  }
+  class PowerPlants <<featureType>> {
+  }
+  class RestrictedAirspace <<featureType>> {
+  }
+  class Embassies <<featureType>> {
+  }
+  class CulturalEnvironmentsUNESCO <<featureType>> {
+  }
+  class HarboursAggregatedPoints <<featureType>> {
+  }
+  class HazardousMaterialsFacilities <<featureType>> {
+  }
+  class PoliceStations <<featureType>> {
+  }
+  class PleasureBoats <<featureType>> {
+  }
+  class BaseStations <<featureType>> {
+  }
+  class AirRaidShelters <<featureType>> {
+  }
+  class MilitaryShipRepair <<featureType>> {
+  }
+  class UNESCO <<featureType>> {
+  }
+  class Culturalsites <<featureType>> {
+  }
+  class MajorAccidentFacilities <<featureType>> {
+  }
+  class MetalIndustry <<featureType>> {
+  }
+  class Immovableobjects <<featureType>> {
+  }
+  class AnchoringAreaPoints <<featureType>> {
+  }
+  class AirportHelipadTouchdownPoints <<featureType>> {
+  }
+  class DischargePoints <<featureType>> {
+  }
+  class CattleFarms <<featureType>> {
+  }
+  class CivilianShipyards <<featureType>> {
+  }
+  class DroneNoFlyZones <<featureType>> {
+  }
+  class FireStation <<featureType>> {
+  }
+  class EmergencyResponseServiceCenters <<featureType>> {
+  }
+  class ISPSPorts <<featureType>> {
+  }
+  class Daycares <<featureType>> {
+  }
+  class PharamaceuticalRawMaterials <<featureType>> {
+  }
+  class GasStations <<featureType>> {
+  }
+  class PorkFarms <<featureType>> {
+  }
+  class Hospitals <<featureType>> {
+  }
+  class Schools <<featureType>> {
+  }
+  class SportsCenters <<featureType>> {
+  }
+  class FireStationAreas <<featureType>> {
+  }
+  class Transformers <<featureType>> {
+  }
+  class Prisons <<featureType>> {
+  }
+  class SheepFarms <<featureType>> {
+  }
+  class PoultryFarms <<featureType>> {
+  }
+  class MixedLivestockFarms <<featureType>> {
+  }
+  class FireContagionAreas <<featureType>> {
+  }
+  class GoatFarms <<featureType>> {
+  }
+  class SmallWaterworks <<featureType>> {
+  }
+  class Laundromats <<featureType>> {
+  }
+  class ExplosiveFacilities <<featureType>> {
+  }
+  class ShipRepair <<featureType>> {
+  }
+  class PharmaceuticalPreparations <<featureType>> {
+  }
+  class UrbanAreas <<featureType>> {
+  }
+  class CustomsOffices <<featureType>> {
+  }
+  class AsylumReceptionCenters <<featureType>> {
+  }
+  class MilitaryShipyards <<featureType>> {
+  }
+}
+
+package "Restriksjonsområder" {
+  class "Naturvernområde" as Naturvernomr_de <<featureType>> {
+  }
+  class Allmenning <<featureType>> {
+  }
+  class Skytefeltgrense <<featureType>> {
+  }
+  class Naturverngrense <<featureType>> {
+  }
+  class Flyplassavgrensning <<featureType>> {
+  }
+  class Skytefelt <<featureType>> {
+  }
+  class Allmenninggrense <<featureType>> {
+  }
+}
+
+package "Samferdsel" {
+  class Stasjon <<featureType>> {
+  }
+  class Vegsperring <<featureType>> {
+  }
+  class Veglenke <<featureType>> {
+  }
+  class Bane <<featureType>> {
+  }
+}
+
+package "Stedsnavn" {
+  abstract class FellesTekst <<featureType>> {
+  }
+  class StedsnavnTekst <<featureType>> {
+  }
+  class PresentasjonTekst <<featureType>> {
+  }
+}
+
+
+Fellesegenskaper <|-- KvalitetP_krevd
+Fellesegenskaper <|-- KvalitetOpsjonell
+KvalitetP_krevd <|-- Konnekteringspunkt
+KvalitetP_krevd <|-- Teiggrensepunkt
+KvalitetOpsjonell <|-- Fylke
+Fylke --> Grense : avgrensesAvGrense [0..*]
+KvalitetOpsjonell <|-- Kommune
+Kommune --> Grense : avgrensesAvGrense [0..*]
+KvalitetP_krevd <|-- Grense
+KvalitetP_krevd <|-- Grunnlinjepunkt
+KvalitetOpsjonell <|-- IdrettsOmr
+IdrettsOmr --> Kystkontur : avgrensesAvKystkontur [0..*]
+KvalitetOpsjonell <|-- Innsj_
+KvalitetOpsjonell <|-- Skog
+Skog --> Kystkontur : avgrensesAvKystkontur [0..*]
+KvalitetOpsjonell <|-- Elveflate
+KvalitetOpsjonell <|-- Gravplass
+Gravplass --> Kystkontur : avgrensesAvKystkontur [0..*]
+KvalitetOpsjonell <|-- LufthavnOmr
+LufthavnOmr --> Kystkontur : avgrensesAvKystkontur [0..*]
+KvalitetOpsjonell <|-- Bergverk
+KvalitetOpsjonell <|-- Alpinbakke
+Alpinbakke --> Kystkontur : avgrensesAvKystkontur [0..*]
+KvalitetOpsjonell <|-- Industri
+Industri --> Kystkontur : avgrensesAvKystkontur [0..*]
+KvalitetOpsjonell <|-- Golfbane
+Golfbane --> Kystkontur : avgrensesAvKystkontur [0..*]
+KvalitetOpsjonell <|-- Sn_Isbre
+Sn_Isbre --> Kystkontur : avgrensesAvKystkontur [0..*]
+KvalitetOpsjonell <|-- Samferdsel
+KvalitetOpsjonell <|-- Hav
+Hav --> Kystkontur : avgrensesAvKystkontur [0..*]
+KvalitetOpsjonell <|-- Snaumark
+KvalitetOpsjonell <|-- Kanal
+KvalitetOpsjonell <|-- Myr
+Myr --> Kystkontur : avgrensesAvKystkontur [0..*]
+KvalitetOpsjonell <|-- Innmarksbeite
+KvalitetOpsjonell <|-- Park
+Park --> Kystkontur : avgrensesAvKystkontur [0..*]
+KvalitetOpsjonell <|-- Jordbruk
+KvalitetOpsjonell <|-- Bebygd
+KvalitetOpsjonell <|-- Innsj_Regulert
+KvalitetOpsjonell <|-- Rullebane
+Rullebane --> Kystkontur : avgrensesAvKystkontur [0..*]
+KvalitetP_krevd <|-- Tregruppe
+KvalitetP_krevd <|-- KonnekteringVann
+KvalitetP_krevd <|-- ElvBekk
+KvalitetP_krevd <|-- Floml_pkant
+KvalitetP_krevd <|-- MidtlinjeElvInnsj_
+KvalitetP_krevd <|-- Skj_r
+KvalitetP_krevd <|-- Foss
+KvalitetP_krevd <|-- Kystkontur
+KvalitetP_krevd <|-- KanalGr_ft
+KvalitetOpsjonell <|-- Takoverbygg
+KvalitetP_krevd <|-- Grunnmur
+KvalitetP_krevd <|-- Grunnmur
+KvalitetOpsjonell <|-- Bygningsflate
+KvalitetP_krevd <|-- Bygningspunkt
+KvalitetP_krevd <|-- Bygningspunkt
+KvalitetOpsjonell <|-- Molo
+KvalitetP_krevd <|-- Pir
+KvalitetOpsjonell <|-- Transformatorstasjon
+KvalitetP_krevd <|-- Ledning
+KvalitetP_krevd <|-- Navigasjonsinstallasjon
+KvalitetOpsjonell <|-- Skytebane
+KvalitetP_krevd <|-- Taubane
+KvalitetP_krevd <|-- Gjerde
+KvalitetP_krevd <|-- R_rgate
+KvalitetOpsjonell <|-- Oppdrettslokalitet
+KvalitetP_krevd <|-- Tank
+KvalitetOpsjonell <|-- Tank
+KvalitetP_krevd <|-- Lysl_ype
+KvalitetOpsjonell <|-- KaiBrygge
+KvalitetP_krevd <|-- Mast
+KvalitetP_krevd <|-- Slipp
+KvalitetOpsjonell <|-- Demning
+KvalitetP_krevd <|-- Voll
+KvalitetP_krevd <|-- Mur
+KvalitetP_krevd <|-- Skjerm
+KvalitetP_krevd <|-- Campingplass
+KvalitetP_krevd <|-- Hoppbakke
+KvalitetP_krevd <|-- Pipe
+KvalitetOpsjonell <|-- Anleggsomr_de
+KvalitetP_krevd <|-- Skytebaneinnretning
+KvalitetP_krevd <|-- Ruin
+KvalitetP_krevd <|-- Gruve
+KvalitetOpsjonell <|-- Sv_mmebasseng
+KvalitetP_krevd <|-- T_rn
+KvalitetP_krevd <|-- Vindturbin
+KvalitetOpsjonell <|-- FlyteBrygge
+KvalitetOpsjonell <|-- Parkeringsomr_de
+KvalitetOpsjonell <|-- Tribune
+KvalitetP_krevd <|-- H_ydekurve
+KvalitetP_krevd <|-- Terrengpunkt
+KvalitetP_krevd <|-- Trigonometriskpunkt
+KvalitetP_krevd <|-- Interessepunkt
+KvalitetP_krevd <|-- Flyplass
+KvalitetP_krevd <|-- Sykehus
+KvalitetOpsjonell <|-- Naturvernomr_de
+Naturvernomr_de --> Naturverngrense : avgrensesAvNaturverngrense [0..*]
+KvalitetOpsjonell <|-- Allmenning
+Allmenning --> Allmenninggrense : avgrensesAvAllmenninggrense [0..*]
+KvalitetP_krevd <|-- Skytefeltgrense
+KvalitetP_krevd <|-- Naturverngrense
+KvalitetP_krevd <|-- Flyplassavgrensning
+KvalitetOpsjonell <|-- Skytefelt
+Skytefelt --> Skytefeltgrense : avgrensesAvSkytefeltgrense [0..*]
+KvalitetP_krevd <|-- Allmenninggrense
+KvalitetP_krevd <|-- Stasjon
+KvalitetP_krevd <|-- Vegsperring
+KvalitetP_krevd <|-- Veglenke
+KvalitetP_krevd <|-- Bane
+FellesTekst <|-- StedsnavnTekst
+FellesTekst <|-- PresentasjonTekst
+
+@enduml

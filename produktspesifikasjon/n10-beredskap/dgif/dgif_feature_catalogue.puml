@@ -1,0 +1,2908 @@
+@startuml
+' For wide diagrams, render with: plantuml -DPLANTUML_LIMIT_SIZE=16384 ...
+' The 'scale max' directive below caps the rendered output to prevent the
+' default PlantUML 4096px size limit from cropping the diagram.
+scale max 4000*4000
+
+title N50 Kartdata - DGIF - Objekttyper
+
+skinparam backgroundColor #F5F5F5
+skinparam shadowing false
+skinparam RoundCorner 6
+skinparam ArrowColor #6C8198
+skinparam wrapWidth 200
+skinparam class {
+  BackgroundColor #FBF2E8
+  BorderColor #9C8578
+  FontColor #2D201A
+  HeaderBackgroundColor #EFE1D6
+  HeaderFontColor #2D201A
+  AttributeIconSize 0
+}
+skinparam note {
+  BackgroundColor #FFFFFF
+  BorderColor #6C8198
+  FontColor #2D201A
+}
+skinparam stereotypeCBackgroundColor #EAD9CE
+skinparam stereotypeCBorderColor #9C8578
+skinparam stereotypeCFontColor #2D201A
+
+package "Objekttyper" {
+
+  abstract class Fellesegenskaper <<featureType>> {
+    + identifikasjon [1] : Identifikasjon
+    + oppdateringsdato [1] : Date
+    + datafangstdato [1] : Date
+    + sluttdato [0..1] : Date
+    + verifiseringsdato [0..1] : Date
+    + informasjon [0..1] : CharacterString
+    + opphav [1] : Opphavsinformasjon
+  }
+
+  abstract class "KvalitetPåkrevd" as KvalitetP_krevd <<featureType>> {
+    + kvalitet [1] : Posisjonskvalitet
+  }
+
+  abstract class KvalitetOpsjonell <<featureType>> {
+    + kvalitet [0..1] : Posisjonskvalitet
+  }
+
+  class Konnekteringspunkt <<featureType>> {
+    + posisjon [1] : GM_Point
+  }
+
+  class Teiggrensepunkt <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_modificationDateTime [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_sourceIdentifier [0..1] : ChracterString
+    + posisjon [0..1] : GM_Point
+    + grensepunkttype [0..1] : Grensepunkttype
+    + grensepunktnummer [0..1] : CharacterString
+  }
+
+  class Fylke <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_adminDivision [0..1] : CharacterString
+    + dgif_adminUnitTypeName [0..1] : CharacterString
+    + dgif_adminName [0..1] : CharacterString
+    + dgif_modificationDateTime [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + område [0..1] : GM_Surface
+    + fylkesnummer [0..1] : Fylkesnummer
+    + fylkesnavn [0..1] : CharacterString
+  }
+
+  class Kommune <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_featureType531 [0..1] : CharacterString
+    + dgif_adminDivision [0..1] : CharacterString
+    + dgif_adminUnitTypeName [0..1] : CharacterString
+    + dgif_adminName [0..1] : CharacterString
+    + dgif_modificationDateTime [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + område [0..1] : GM_Surface
+    + kommunenummer [0..1] : Kommunenummer
+    + kommunenavn [0..1] : CharacterString
+    + fylkesnummer [0..1] : Fylkesnummer
+  }
+
+  class Grense <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_adminDivision [0..1] : Integer
+    + dgif_maritimeGeoLimitType [0..1] : CharacterString
+    + dgif_modificationDateTime [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + grense [0..1] : GM_Curve
+    + avgrensningstype [0..1] : TypeAvgrensning
+  }
+
+  class Grunnlinjepunkt <<featureType>> {
+    + posisjon [0..1] : GM_Point
+    + grunnlinjepunktnavn [0..1] : CharacterString
+    + grunnlinjepunktnummer [0..1] : CharacterString
+  }
+
+  class IdrettsOmr <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class "Innsjø" as Innsj_ <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_inlandWaterType [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+    + vatnLøpenummer [0..1] : Integer
+    + høyde [0..1] : Integer
+    + regulert [1] : Boolean
+    + lavesteRegulerteVannstand [0..1] : Integer
+  }
+
+  class Skog <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + treslag [1] : ArealressursTreslag
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class Elveflate <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class Gravplass <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class LufthavnOmr <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_aerodromeOfficialName [1] : CharacterString
+    + dgif_ownerOrOperator [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [0..1] : GM_Surface
+    + posisjon [0..1] : GM_Point
+    + lufthavntype [0..1] : Lufthavntype
+    + trafikktype [0..1] : Trafikktype
+    + lufthavneier [0..1] : CharacterString
+    + navn [0..1] : CharacterString
+    + retning [0..1] : Retning
+  }
+
+  class Bergverk <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class Alpinbakke <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class Industri <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class Golfbane <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class "SnøIsbre" as Sn_Isbre <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class Samferdsel <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [0..1] : Flate
+    + posisjon [0..1] : Punkt
+    + arealtype [0..1] : ArealressursArealtype
+    + skogbonitet [0..1] : ArealressursSkogbonitet
+    + treslag [0..1] : ArealressursTreslag
+    + grunnforhold [0..1] : ArealressursGrunnforhold
+    + naturgrunnlagForJordbruk [0..1] : ArealressursNaturgrunnlagForJordbruk
+    + dyrkbarjord [0..1] : ArealressursDyrkbarjord
+    + vegetasjonsdekke [0..1] : ArealressursVegetasjonsdekke
+    + arealressursGruppertEnkel [0..1] : ArealressursGruppertEnkel
+    + arealressursGruppertVanlig [0..1] : ArealressursGruppertVanlig
+    + kartstandard [0..1] : ArealressursKartstandard
+    + kartbladindeks [0..1] : CharacterString
+    + areal [0..1] : Real
+  }
+
+  class Hav <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class Snaumark <<featureType>> {
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : Flate
+    + arealtype [1] : ArealressursArealtype
+    + skogbonitet [1] : ArealressursSkogbonitet
+    + treslag [1] : ArealressursTreslag
+    + jordbruk [1] : ArealressursJordbruk
+    + vegetasjonsdekke [1] : ArealressursVegetasjonsdekke
+    + dgif_FeatureType [1] : CharacterString
+    + kartstandard [1] : ArealressursKartstandard
+  }
+
+  class Kanal <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+    + vannBredde [1] : VannBredde
+  }
+
+  class Myr <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class Innmarksbeite <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+    + arealtype [1] : ArealressursArealtype
+    + treslag [1] : ArealressursTreslag
+    + skogbonitet [1] : ArealressursSkogbonitet
+    + grunnforhold [1] : ArealressursGrunnforhold
+    + klassifiseringsmetode [1] : Klassifiseringsmetode
+    + verifiseringsdato [1] : Date
+  }
+
+  class Park <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class Jordbruk <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [0..1] : Flate
+    + arealtype [0..1] : ArealressursArealtype
+    + skogbonitet [0..1] : ArealressursSkogbonitet
+    + treslag [0..1] : ArealressursTreslag
+    + grunnforhold [0..1] : ArealressursGrunnforhold
+    + naturgrunnlagForJordbruk [0..1] : ArealressursNaturgrunnlagForJordbruk
+    + dyrkbarjord [0..1] : ArealressursDyrkbarjord
+    + vegetasjonsdekke [0..1] : ArealressursVegetasjonsdekke
+    + arealressursGruppertEnkel [0..1] : ArealressursGruppertEnkel
+    + arealressursGruppertVanlig [0..1] : ArealressursGruppertVanlig
+    + kartstandard [0..1] : ArealressursKartstandard
+    + kartbladindeks [0..1] : CharacterString
+    + areal [0..1] : Real
+  }
+
+  class Bebygd <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [0..1] : GM_Surface
+  }
+
+  class "InnsjøRegulert" as Innsj_Regulert <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_inlandWaterType [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [0..1] : Flate
+    + vatnLøpenummer [0..1] : Integer
+    + vannstandHøyesteRegulert [0..1] : Real
+    + vannstandLavestRegulert [0..1] : Real
+    + vannstandRegHøyestRegistrerte [0..1] : Real
+    + vannstandHøyestRegistrert [0..1] : Real
+    + vannstandLavestRegistrert [0..1] : Real
+    + vassdragsnummer [0..1] : CharacterString
+    + arealNedbørfelt [0..1] : CharacterString
+  }
+
+  class Rullebane <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class Tregruppe <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + posisjon [1] : GM_Point
+  }
+
+  class KonnekteringVann <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + senterlinje [1] : GM_Curve
+  }
+
+  class ElvBekk <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + senterlinje [1] : GM_Curve
+    + vannbredde [1] : VannBredde
+  }
+
+  class "Flomløpkant" as Floml_pkant <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + grense [1] : GM_Curve
+  }
+
+  class "MidtlinjeElvInnsjø" as MidtlinjeElvInnsj_ <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + senterlinje [1] : GM_Curve
+  }
+
+  class "Skjær" as Skj_r <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + posisjon [1] : GM_Point
+  }
+
+  class Foss <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + posisjon [1] : GM_Point
+    + retning [1] : Retning
+  }
+
+  class Kystkontur <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + grense [1] : GM_Curve
+  }
+
+  class "KanalGrøft" as KanalGr_ft <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + senterlinje [0..1] : Kurve
+    + dgif_currencyDateTime [1] : Date
+    + vannBredde [1] : VannBredde
+  }
+
+  class Takoverbygg <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : Date
+    + område [1] : GM_Surface
+  }
+
+  class Grunnmur <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_physicalCondition [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + grense [1] : GM_Curve
+    + høydereferanse [1] : Høydereferanse
+  }
+
+  class Bygningsflate <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_featureFunction [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + bygningstype [1] : Integer
+    + område [1] : GM_Surface
+  }
+
+  class Bygningspunkt <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_featureFunction [0..1] : CharacterString
+    + dgif_roadIdentification [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + posisjon [0..1] : GM_Point
+    + bygningstype [0..1] : BygningstypeKode
+    + registrertimatrikkelen [1] : Boolean
+    + bygningsnummer [0..1] : Integer
+    + nummer [1] : Integer
+    + adressenavn [1] : CharacterString
+    + bokstav [1] : CharacterString
+    + hytteinformasjon [1] : Hytteinformasjon
+  }
+
+  class Molo <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_shorelineConstructionType [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class Pir <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_shorelineConstructionType [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + senterlinje [1] : GM_Curve
+  }
+
+  class Transformatorstasjon <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class Ledning <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_cableType [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + senterlinje [1] : GM_Curve
+    + eier [0..1] : CharacterString
+    + ledningstrase [1] : FlerLinjer
+    + hovedbruk [1] : Ledningsnettverkstype
+  }
+
+  class Navigasjonsinstallasjon <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + posisjon [1] : GM_Point
+  }
+
+  class Skytebane <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class Taubane <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_cablewayType [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + senterlinje [1] : GM_Curve
+    + taubanetype [1] : Taubanetype
+    + høydereferanse [1] : Høydereferanse
+  }
+
+  class Gjerde <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_fenceFunction [0..1] : CharacterString
+    + dgif_fenceType [0..1] : CharacterString
+    + dgif_structMatType [0..1] : Integer
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + senterlinje [1] : GM_Curve
+    + gjerdetype [1] : Gjerdetype
+    + høydereferanse [1] : Høydereferanse
+  }
+
+  class "Rørgate" as R_rgate <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_verticalRelativeLocation [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + senterlinje [1] : GM_Curve
+  }
+
+  class Oppdrettslokalitet <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_aquacultureFacilityType [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class Tank <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [0..1] : GM_Surface
+    + posisjon [0..1] : GM_Point
+  }
+
+  class "Lysløype" as Lysl_ype <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + senterlinje [1] : GM_Curve
+  }
+
+  class KaiBrygge <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_shorelineConstructionType [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class Mast <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_maximumObstacleHeight [1] : Real
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + posisjon [1] : GM_Point
+    + belysning [0..1] : Boolean
+    + konstruksjon [0..1] : Mastekonstruksjon
+    + linjebredde [0..1] : Real
+    + masttype [0..1] : CharacterString
+    + vertikalAvstand [0..1] : Real
+  }
+
+  class Slipp <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_shorelineRampType [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + senterlinje [1] : GM_Curve
+    + høydereferanse [1] : Høydereferanse
+  }
+
+  class Demning <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class Voll <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + senterlinje [1] : GM_Curve
+    + skjermingsfunksjon [1] : CharacterString
+    + høydereferanse [1] : Høydereferanse
+    + høydeOverBakken [0..1] : Real
+  }
+
+  class Mur <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + grense [1] : GM_Curve
+    + høydereferanse [1] : Høydereferanse
+  }
+
+  class Skjerm <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_fenceFunction [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + senterlinje [1] : GM_Curve
+    + skjermingsfunksjon [1] : SkjermingsFunksjon
+    + høydereferanse [1] : Høydereferanse
+    + høydeOverBakken [0..1] : Real
+  }
+
+  class Campingplass <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + posisjon [1] : GM_Point
+  }
+
+  class Hoppbakke <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + posisjon [1] : GM_Point
+    + lengde [1] : Integer
+    + retning [1] : Retning
+  }
+
+  class Pipe <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_buildingSuperstructType [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + posisjon [1] : GM_Point
+    + høydereferanse [1] : Høydereferanse
+  }
+
+  class "Anleggsområde" as Anleggsomr_de <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_physicalCondition [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [0..1] : Flate
+  }
+
+  class Skytebaneinnretning <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + senterlinje [0..1] : GM_Curve
+  }
+
+  class Ruin <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + høydereferanse [1] : Høydereferanse
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + posisjon [1] : GM_Point
+  }
+
+  class Gruve <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_extractionMineType [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + posisjon [1] : GM_Point
+  }
+
+  class "Svømmebasseng" as Sv_mmebasseng <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class "Tårn" as T_rn <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + posisjon [1] : GM_Point
+  }
+
+  class Vindturbin <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_rotorDiameter [1] : Real
+    + dgif_maximumObstacleHeight [1] : Real
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + posisjon [1] : GM_Point
+    + rotorbladlengde [0..1] : Real
+    + navhøyde [0..1] : Real
+  }
+
+  class FlyteBrygge <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_shorelineConstructionType [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class "Parkeringsområde" as Parkeringsomr_de <<featureType>> {
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : int
+    + dgif_currencyDateTime [1] : int
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [0..1] : GM_Surface
+  }
+
+  class Tribune <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+  }
+
+  class "Høydekurve" as H_ydekurve <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_elevationSurfaceCategory [1] : CharacterString
+    + dgif_hypsographyPortrayalType [1] : CharacterString
+    + dgif_elevationMsl [1] : Integer
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + senterlinje [1] : GM_Curve
+    + høydekurvetype [1] : Høydekurvetype
+    + høyde [1] : Integer
+    + medium [1] : MediumHøyde
+  }
+
+  class Terrengpunkt <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_elevationSurfaceCategory [1] : CharacterString
+    + dgif_elevationMsl [1] : Integer
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + posisjon [1] : GM_Point
+    + høydepunkttype [1] : Høydepunkttype
+    + høyde [1] : Integer
+    + medium [1] : MediumHøyde
+  }
+
+  class Trigonometriskpunkt <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatyreType531 [1] : CharacterString
+    + dgif_elevationSurfaceCategory [1] : CharacterString
+    + dgif_SurveyPointType [1] : CharacterString
+    + dgif_elevationMsl [1] : Integer
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + posisjon [1] : GM_Point
+    + høydepunkttype [1] : Høydepunkttype
+    + høyde [1] : Integer
+    + medium [1] : MediumHøyde
+  }
+
+  class Interessepunkt <<featureType>> {
+    + posisjon [1] : GM_Point
+    + typeInteressepunkt [1] : CharacterString
+    + navn [0..1] : CharacterString
+    + dgif_FeatureType [1] : CharacterString
+    + FFN [1] : Integer
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+  }
+
+  class Flyplass <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + posisjon [1] : GM_Point
+    + lufthavntype [1] : Lufthavntype
+    + trafikktype [1] : Trafikktype
+    + iataKode [1] : IATAKode
+    + icaoKode [1] : ICAOKode
+    + lufthavneier [1] : CharacterString
+    + navn [1] : CharacterString
+    + retning [1] : Retning
+  }
+
+  class Sykehus <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_featureFunction [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + posisjon [1] : GM_Point
+    + bygningstype [1] : BygningstypeKode
+  }
+
+  class ReligiousBuildings <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_featureFunction [0..1] : CharacterString
+    + religion [0..1] : CharacterString
+    + dgif_religiousDesignation [0..1] : CharacterString
+    + capacity [0..1] : Real
+    + postalCode [0..1] : Real
+    + postalAddress [0..1] : CharacterString
+    + municipalityNumber [0..1] : Real
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + dataWithdrawalDate [0..1] : Date
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class WasteWaterTreatmentPlants <<featureType>> {
+    + dataset [0..1] : CharacterString
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + objectType [0..1] : CharacterString
+    + dgif_featureFunction [0..1] : CharacterString
+    + dgif_controllingAuthority_1 [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + facilityNumber [0..1] : CharacterString
+    + organizationNumber [0..1] : CharacterString
+    + dgif_controllingAuthorityIdent [0..1] : CharacterString
+    + dgif_controllingAuthority_2 [0..1] : CharacterString
+    + factSheet [0..1] : CharacterString
+    + dgif_purificationProcess [0..1] : CharacterString
+    + cleaningProcess [0..1] : CharacterString
+    + dgif_sourceOfWater [0..1] : CharacterString
+    + dgif_capacityValue [0..1] : CharacterString
+    + dgif_verticalRelativeLocation [0..1] : CharacterString
+    + biologicOxygenUsageTonsPerYear [0..1] : Real
+    + chemicalOxygenUsageTonsPerYear [0..1] : Real
+    + totalNitrogenTonsPerYear [0..1] : Real
+    + totalSulphurTonsPerYear [0..1] : Real
+    + totalSolidsSuspendedTonsPerYear [0..1] : Real
+    + totalOrganicCarbonTonsPerYear [0..1] : Real
+    + lastReportingYear [0..1] : Real
+    + municipalityNumber [0..1] : Real
+    + dgif_addressAdministrativeArea [0..1] : CharacterString
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + objekttype [0..1] : CharacterString
+    + anleggstype [0..1] : CharacterString
+    + typeAktivitet [0..1] : CharacterString
+    + navn [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class Museums <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_featureFunction [0..1] : CharacterString
+    + dgif_capacityValue [0..1] : Real
+    + description [0..1] : CharacterString
+    + dgif_hoursOfOperation [0..1] : CharacterString
+    + dgif_controllingAuthorityIdent [0..1] : CharacterString
+    + dgif_contactInfo_3 [0..1] : CharacterString
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + dataWithdrawalDate [0..1] : Date
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class SurveillanceProhibitedAreas <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_airspaceType [0..1] : CharacterString
+    + dataset [0..1] : CharacterString
+    + objectType [0..1] : CharacterString
+    + icaoCode [0..1] : CharacterString
+    + airportType [0..1] : CharacterString
+    + flightType [0..1] : CharacterString
+    + dgif_airfieldUse [0..1] : CharacterString
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + datasettType [0..1] : CharacterString
+    + navn [0..1] : CharacterString
+    + icaoKode [0..1] : CharacterString
+    + lufthavnType [0..1] : CharacterString
+    + flyvningType [0..1] : CharacterString
+    + trafikkType [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+  }
+
+  class PowerPlants <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dataset [0..1] : CharacterString
+    + dgif_controllingAuthorityIdent [0..1] : CharacterString
+    + dgif_powerSource [0..1] : CharacterString
+    + dgif_facilityOperationalStatus [0..1] : CharacterString
+    + dgif_electricPowerGenerateCap [0..1] : Real
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + useRestrictions [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + gradering [0..1] : CharacterString
+    + bruksbegrensning [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class RestrictedAirspace <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_airspaceType [0..1] : CharacterString
+    + dataset [0..1] : CharacterString
+    + objectType [0..1] : CharacterString
+    + icaoCode [0..1] : CharacterString
+    + airportType [0..1] : CharacterString
+    + flightType [0..1] : CharacterString
+    + dgif_airfieldUse [0..1] : CharacterString
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + datasettType [0..1] : CharacterString
+    + navn [0..1] : CharacterString
+    + icaoKode [0..1] : CharacterString
+    + lufthavnType [0..1] : CharacterString
+    + flyvningType [0..1] : CharacterString
+    + trafikkType [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+  }
+
+  class Embassies <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_featureFunction [0..1] : CharacterString
+    + type [0..1] : CharacterString
+    + nation [0..1] : CharacterString
+    + dgif_contactInfo_1 [0..1] : CharacterString
+    + dgif_contactInfo_2 [0..1] : CharacterString
+    + dgif_contactInfo_3 [0..1] : CharacterString
+    + streetName [0..1] : CharacterString
+    + postalCode [0..1] : Real
+    + postalAddress [0..1] : CharacterString
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class CulturalEnvironmentsUNESCO <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : Real
+    + dgif_worldHeritageSite [0..1] : CharacterString
+    + dgif_structMatType [0..1] : CharacterString
+    + status [0..1] : CharacterString
+    + category [0..1] : CharacterString
+    + description [0..1] : CharacterString
+    + longitude [0..1] : CharacterString
+    + latitude [0..1] : CharacterString
+    + mgrs [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : CharacterString
+    + dgif_modificationDateTime [0..1] : CharacterString
+    + dgif_currencyDateTime [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + dgif_builtUpAreaDensityCat [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+  }
+
+  class HarboursAggregatedPoints <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dataset [0..1] : CharacterString
+    + objectType [0..1] : CharacterString
+    + anchoringID [0..1] : Real
+    + dgif_anchorageType [0..1] : Real
+    + coastalMappingRegion [0..1] : CharacterString
+    + information [0..1] : CharacterString
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + datasettType [0..1] : CharacterString
+    + navn [0..1] : CharacterString
+    + informasjon [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class HazardousMaterialsFacilities <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dataset [0..1] : CharacterString
+    + objectType [0..1] : CharacterString
+    + identification [0..1] : Real
+    + owner [0..1] : CharacterString
+    + majorAccident [0..1] : CharacterString
+    + dsbLocalising [0..1] : CharacterString
+    + dgif_product [0..1] : CharacterString
+    + amount [0..1] : CharacterString
+    + unit [0..1] : CharacterString
+    + substanceGroup [0..1] : CharacterString
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + useRestrictions [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + datasettType [0..1] : CharacterString
+    + bruksrestriksjon [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class PoliceStations <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_ContactInfo [0..1] : CharacterString
+    + dgif_contactInfo_1 [0..1] : CharacterString
+    + dgif_contactInfo_2 [0..1] : CharacterString
+    + dgif_featureFunction [0..1] : CharacterString
+    + services [0..1] : CharacterString
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + dataWithdrawalDate [0..1] : Date
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class PleasureBoats <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_featureFunction [0..1] : CharacterString
+    + dgif_controllingAuthority [0..1] : CharacterString
+    + dataset [0..1] : CharacterString
+    + objectType [0..1] : CharacterString
+    + organizationNumber [0..1] : CharacterString
+    + type [0..1] : CharacterString
+    + employees [0..1] : CharacterString
+    + dgif_contactInfo_1 [0..1] : CharacterString
+    + dgif_contactInfo_2 [0..1] : CharacterString
+    + dgif_contactInfo_3 [0..1] : CharacterString
+    + address [0..1] : CharacterString
+    + postTown [0..1] : CharacterString
+    + postalCode [0..1] : CharacterString
+    + latitude [0..1] : CharacterString
+    + longitude [0..1] : CharacterString
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : CharacterString
+    + dgif_currencyDateTime [0..1] : CharacterString
+    + dgif_modificationDateTime [0..1] : CharacterString
+    + datasettType [0..1] : CharacterString
+    + navn [0..1] : CharacterString
+    + vedtektsfestetformaal [0..1] : CharacterString
+    + aktivitet [0..1] : CharacterString
+    + naeringskode2Beskrivelse [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class BaseStations <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + altitude [0..1] : Integer
+    + range [0..1] : Integer
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + dataWithdrawalDate [0..1] : Date
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class AirRaidShelters <<featureType>> {
+    + dataset [0..1] : CharacterString
+    + shelterID [0..1] : Real
+    + dgif_controllingAuthority [0..1] : CharacterString
+    + category [0..1] : CharacterString
+    + dgif_capacityValue [0..1] : Real
+    + preparednesstime [0..1] : CharacterString
+    + usableAreaM2 [0..1] : Real
+    + ventilation [0..1] : CharacterString
+    + generator [0..1] : CharacterString
+    + kVA [0..1] : Real
+    + dgif_structMatType [0..1] : CharacterString
+    + dgif_facilityOperationalStatus [0..1] : CharacterString
+    + constructionDate [0..1] : Real
+    + addressNotes [0..1] : CharacterString
+    + dgif_controllingAuthorityIdent [0..1] : CharacterString
+    + streetName [0..1] : CharacterString
+    + postCode [0..1] : CharacterString
+    + postTown [0..1] : CharacterString
+    + dgif_contactInfo_1 [0..1] : CharacterString
+    + dgif_contactInfo_2 [0..1] : CharacterString
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + useRestrictions [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + datasettType [0..1] : CharacterString
+    + tilfluktsromID [0..1] : Real
+    + type [0..1] : CharacterString
+    + kategori [0..1] : CharacterString
+    + kapasitet [0..1] : Real
+    + material [0..1] : CharacterString
+    + tilstand [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + bruksrestriksjon [0..1] : CharacterString
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_featureFunction [0..1] : CharacterString
+    + dgif_hazardShelterIntendedUse [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class MilitaryShipRepair <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_featureFunction [0..1] : CharacterString
+    + dgif_controllingAuthority [0..1] : CharacterString
+    + dataset [0..1] : CharacterString
+    + objectType [0..1] : CharacterString
+    + organizationNumber [0..1] : CharacterString
+    + type [0..1] : CharacterString
+    + employees [0..1] : CharacterString
+    + dgif_contactInfo_1 [0..1] : CharacterString
+    + dgif_contactInfo_2 [0..1] : CharacterString
+    + dgif_contactInfo_3 [0..1] : CharacterString
+    + address [0..1] : CharacterString
+    + postTown [0..1] : CharacterString
+    + postalCode [0..1] : CharacterString
+    + latitude [0..1] : CharacterString
+    + longitude [0..1] : CharacterString
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : CharacterString
+    + dgif_currencyDateTime [0..1] : CharacterString
+    + dgif_modificationDateTime [0..1] : CharacterString
+    + datasettType [0..1] : CharacterString
+    + navn [0..1] : CharacterString
+    + vedtektsfestetformaal [0..1] : CharacterString
+    + aktivitet [0..1] : CharacterString
+    + naeringskode2Beskrivelse [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class UNESCO <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : Real
+    + dgif_worldHeritageSite [0..1] : CharacterString
+    + dgif_structMatType [0..1] : CharacterString
+    + status [0..1] : CharacterString
+    + category [0..1] : CharacterString
+    + description [0..1] : CharacterString
+    + longitude [0..1] : CharacterString
+    + latitude [0..1] : CharacterString
+    + mgrs [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : CharacterString
+    + dgif_modificationDateTime [0..1] : CharacterString
+    + dgif_currencyDateTime [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + dgif_builtUpAreaDensityCat [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+  }
+
+  class Culturalsites <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : Real
+    + dgif_religiousFacilityType [0..1] : CharacterString
+    + category [0..1] : CharacterString
+    + status [0..1] : CharacterString
+    + presentFunction [0..1] : CharacterString
+    + originalFunction [0..1] : CharacterString
+    + description [0..1] : CharacterString
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+  }
+
+  class MajorAccidentFacilities <<featureType>> {
+    + dataset [0..1] : CharacterString
+    + objectType [0..1] : CharacterString
+    + identification [0..1] : Real
+    + dgif_fullName [0..1] : CharacterString
+    + owner [0..1] : CharacterString
+    + majorAccidentID [0..1] : CharacterString
+    + paragraph [0..1] : CharacterString
+    + note [0..1] : CharacterString
+    + dsbLocalising [0..1] : CharacterString
+    + amount [0..1] : CharacterString
+    + materials [0..1] : CharacterString
+    + unit [0..1] : CharacterString
+    + materialsGroup [0..1] : CharacterString
+    + dgif_product [0..1] : CharacterString
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + useRestrictions [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + datasettType [0..1] : CharacterString
+    + bruksrestriksjon [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class MetalIndustry <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_featureFunction [0..1] : CharacterString
+    + dataset [0..1] : CharacterString
+    + organizationNumber [0..1] : Real
+    + dgif_contactInfo_3 [0..1] : CharacterString
+    + employees [0..1] : Real
+    + dgif_contactInfo_2 [0..1] : CharacterString
+    + dgif_contactInfo_1 [0..1] : CharacterString
+    + address [0..1] : CharacterString
+    + postTown [0..1] : CharacterString
+    + postalCode [0..1] : Real
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + datasetType [0..1] : CharacterString
+    + navn [0..1] : CharacterString
+    + vedtektsfestetFormaal [0..1] : CharacterString
+    + aktivitet [0..1] : CharacterString
+    + naeringskode2Beskrivelse [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class Immovableobjects <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_religiousFacilityType [0..1] : CharacterString
+    + dgif_culturalThreatAssessment [0..1] : CharacterString
+    + category [0..1] : CharacterString
+    + status [0..1] : CharacterString
+    + description [0..1] : CharacterString
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+  }
+
+  class AnchoringAreaPoints <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dataset [0..1] : CharacterString
+    + objectType [0..1] : CharacterString
+    + anchoringID [0..1] : Real
+    + dgif_anchorageType [0..1] : Real
+    + coastalMappingRegion [0..1] : CharacterString
+    + information [0..1] : CharacterString
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + datasettType [0..1] : CharacterString
+    + navn [0..1] : CharacterString
+    + informasjon [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class AirportHelipadTouchdownPoints <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_helipadAssociatedFacility [0..1] : CharacterString
+    + dataset [0..1] : CharacterString
+    + objectType [0..1] : CharacterString
+    + dgif_aerodromeOfficialName [0..1] : CharacterString
+    + touchdownDesignator [0..1] : CharacterString
+    + military [0..1] : CharacterString
+    + dgif_operatingAgency [0..1] : CharacterString
+    + dgif_controllingAuthorityName [0..1] : CharacterString
+    + airportType [0..1] : CharacterString
+    + dgif_airfieldUse [0..1] : CharacterString
+    + dgif_icaoLocationIndicator [0..1] : CharacterString
+    + dgif_iataLocationIdentifier [0..1] : CharacterString
+    + dgif_aerodromeElevation [0..1] : Real
+    + elevationUOM [0..1] : CharacterString
+    + geoidUndulation [0..1] : Real
+    + geoidUndulationUOM [0..1] : CharacterString
+    + length [0..1] : Real
+    + lengthUOM [0..1] : CharacterString
+    + width [0..1] : Real
+    + widthUOM [0..1] : CharacterString
+    + slope [0..1] : Real
+    + helicopterClass [0..1] : Real
+    + composition [0..1] : CharacterString
+    + pavementTypePCN [0..1] : CharacterString
+    + classPCN [0..1] : Real
+    + pavementSubgradePCN [0..1] : CharacterString
+    + maxTyrePressurePCN [0..1] : CharacterString
+    + evaluationMethodPCN [0..1] : CharacterString
+    + surfaceCondition [0..1] : CharacterString
+    + fuelAndOilTypes [0..1] : CharacterString
+    + fuelingCapacity [0..1] : CharacterString
+    + notes [0..1] : CharacterString
+    + dgif_medicalResponseServices [0..1] : CharacterString
+    + fireAndRescueADCategori [0..1] : CharacterString
+    + municipalityNumber [0..1] : Real
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + datasettType [0..1] : CharacterString
+    + landingspunktNavn [0..1] : CharacterString
+    + lufthavnNavn [0..1] : CharacterString
+    + militaer [0..1] : CharacterString
+    + administrasjon [0..1] : CharacterString
+    + lufthavneier [0..1] : CharacterString
+    + lufthavntype [0..1] : CharacterString
+    + trafikktype [0..1] : CharacterString
+    + typerBrennstoffOgOlje [0..1] : CharacterString
+    + tankningKapasitet [0..1] : CharacterString
+    + notat [0..1] : CharacterString
+    + legehjelp [0..1] : CharacterString
+    + brannOgRedningsKategori [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class DischargePoints <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dataset [0..1] : CharacterString
+    + objectType [0..1] : CharacterString
+    + dgif_featureFunction [0..1] : CharacterString
+    + dgif_controllingAuthority_1 [0..1] : CharacterString
+    + facilityNumber [0..1] : CharacterString
+    + organizationNumber [0..1] : CharacterString
+    + dgif_controllingAuthorityIdent [0..1] : CharacterString
+    + dgif_controllingAuthority_2 [0..1] : CharacterString
+    + factSheet [0..1] : CharacterString
+    + dgif_purificationProcess [0..1] : CharacterString
+    + cleaningProcess [0..1] : CharacterString
+    + dgif_sourceOfWater [0..1] : CharacterString
+    + dgif_capacityValue [0..1] : CharacterString
+    + dgif_verticalRelativeLocation [0..1] : CharacterString
+    + biologicOxygenUsageTonsPerYear [0..1] : Real
+    + chemicalOxygenUsageTonsPerYear [0..1] : Real
+    + totalNitrogenTonsPerYear [0..1] : Real
+    + totalSulphurTonsPerYear [0..1] : Real
+    + totalSolidsSuspendedTonsPerYear [0..1] : Real
+    + totalOrganicCarbonTonsPerYear [0..1] : Real
+    + lastReportingYear [0..1] : Real
+    + municipalityNumber [0..1] : Real
+    + dgif_addressAdministrativeArea [0..1] : CharacterString
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + objekttype [0..1] : CharacterString
+    + anleggstype [0..1] : CharacterString
+    + typeAktivitet [0..1] : CharacterString
+    + navn [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class CattleFarms <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_featureFunction [0..1] : CharacterString
+    + dgif_product [0..1] : CharacterString
+    + dataset [0..1] : CharacterString
+    + objectType [0..1] : CharacterString
+    + dgif_controllingAuthorityIdent [0..1] : CharacterString
+    + ownerType [0..1] : CharacterString
+    + organizationNumber [0..1] : Real
+    + producerNumber [0..1] : Real
+    + numberCattleRegistered [0..1] : Real
+    + numberCattleFarmSubsidiesAutumn [0..1] : Real
+    + numberCattleFarmSubsidiesSpring [0..1] : Real
+    + cattlefarmSubsidiesYear [0..1] : Real
+    + geoSourceType [0..1] : CharacterString
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + useRestrictions [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + datasettType [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + bruksrestriksjon [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class CivilianShipyards <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_featureFunction [0..1] : CharacterString
+    + dgif_controllingAuthority [0..1] : CharacterString
+    + dataset [0..1] : CharacterString
+    + objectType [0..1] : CharacterString
+    + organizationNumber [0..1] : CharacterString
+    + type [0..1] : CharacterString
+    + employees [0..1] : CharacterString
+    + dgif_contactInfo_1 [0..1] : CharacterString
+    + dgif_contactInfo_2 [0..1] : CharacterString
+    + dgif_contactInfo_3 [0..1] : CharacterString
+    + address [0..1] : CharacterString
+    + postTown [0..1] : CharacterString
+    + postalCode [0..1] : CharacterString
+    + latitude [0..1] : CharacterString
+    + longitude [0..1] : CharacterString
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : CharacterString
+    + dgif_currencyDateTime [0..1] : CharacterString
+    + dgif_modificationDateTime [0..1] : CharacterString
+    + datasettType [0..1] : CharacterString
+    + navn [0..1] : CharacterString
+    + vedtektsfestetformaal [0..1] : CharacterString
+    + aktivitet [0..1] : CharacterString
+    + naeringskode2Beskrivelse [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class DroneNoFlyZones <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_airspaceType [0..1] : CharacterString
+    + dataset [0..1] : CharacterString
+    + objectType [0..1] : CharacterString
+    + icaoCode [0..1] : CharacterString
+    + airportType [0..1] : CharacterString
+    + flightType [0..1] : CharacterString
+    + dgif_airfieldUse [0..1] : CharacterString
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + datasettType [0..1] : CharacterString
+    + navn [0..1] : CharacterString
+    + icaoKode [0..1] : CharacterString
+    + lufthavnType [0..1] : CharacterString
+    + flyvningType [0..1] : CharacterString
+    + trafikkType [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+  }
+
+  class FireStation <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_featureFunction [0..1] : CharacterString
+    + dataset [0..1] : CharacterString
+    + objectType [0..1] : CharacterString
+    + dgif_controllingAuthorityIdent [0..1] : CharacterString
+    + stationType [0..1] : CharacterString
+    + dgif_hoursOfOperation [0..1] : CharacterString
+    + partTimeFireman [0..1] : Real
+    + partTimeResponseLeader [0..1] : Real
+    + fullTimeFireman [0..1] : Real
+    + fullTimeResponseLeader [0..1] : Real
+    + dgif_vehicleCapacity [0..1] : CharacterString
+    + equipmentOther [0..1] : CharacterString
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + useRestrictions [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + datasettType [0..1] : CharacterString
+    + bruksbegrensning [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class EmergencyResponseServiceCenters <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_featureFunction_1 [0..1] : CharacterString
+    + dgif_featureFunction_2 [0..1] : CharacterString
+    + areaOfResponsibility [0..1] : CharacterString
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawlDate [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class ISPSPorts <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dataset [0..1] : CharacterString
+    + objectType [0..1] : CharacterString
+    + anchoringID [0..1] : Real
+    + dgif_anchorageType [0..1] : Real
+    + coastalMappingRegion [0..1] : CharacterString
+    + information [0..1] : CharacterString
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + datasettType [0..1] : CharacterString
+    + navn [0..1] : CharacterString
+    + informasjon [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class Daycares <<featureType>> {
+    + dgif_fullName [0..1] : CharacterString
+    + type [0..1] : CharacterString
+    + dgif_controllingAuthority [0..1] : CharacterString
+    + dgif_facilityOperationalStatus [0..1] : CharacterString
+    + dgif_capacity [0..1] : Real
+    + highestAge [0..1] : Real
+    + lowestAge [0..1] : Real
+    + dgif_facilityOnSiteStaff [0..1] : Real
+    + dgif_contactInfo_1 [0..1] : CharacterString
+    + dgif_contactInfo_2 [0..1] : CharacterString
+    + dgif_contactInfo_3 [0..1] : CharacterString
+    + streetName [0..1] : CharacterString
+    + postalCode [0..1] : Real
+    + postalAddress [0..1] : CharacterString
+    + dgif_addressAdministrativeArea [0..1] : CharacterString
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + dataWithdrawalDate [0..1] : Date
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_featureFuction [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class PharamaceuticalRawMaterials <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_featureFunction [0..1] : CharacterString
+    + dataset [0..1] : CharacterString
+    + objectType [0..1] : CharacterString
+    + organizationNumber [0..1] : Real
+    + dgif_contactInfo_3 [0..1] : CharacterString
+    + employees [0..1] : Real
+    + dgif_contactInfo_2 [0..1] : CharacterString
+    + dgif_contactInfo_1 [0..1] : CharacterString
+    + address [0..1] : CharacterString
+    + postTown [0..1] : CharacterString
+    + postalCode [0..1] : Real
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + datasetType [0..1] : CharacterString
+    + navn [0..1] : CharacterString
+    + vedtektsfestetformaal [0..1] : CharacterString
+    + aktivitet [0..1] : CharacterString
+    + naeringskode2Beskrivelse [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class GasStations <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_controllingAuthorityName [0..1] : CharacterString
+    + diesel [0..1] : CharacterString
+    + octane95 [0..1] : CharacterString
+    + dgif_hoursOfOperation [0..1] : CharacterString
+    + dgif_contactInfo [0..1] : CharacterString
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + dataWithdrawalDate [0..1] : Date
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class PorkFarms <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_featureFunction [0..1] : CharacterString
+    + dgif_product [0..1] : CharacterString
+    + dataset [0..1] : CharacterString
+    + objectType [0..1] : CharacterString
+    + dgif_controllingAuthorityIdent [0..1] : CharacterString
+    + ownerType [0..1] : CharacterString
+    + organizationNumber [0..1] : Real
+    + producerNumber [0..1] : Real
+    + numberCattleRegistered [0..1] : Real
+    + numberCattleFarmSubsidiesAutumn [0..1] : Real
+    + numberCattleFarmSubsidiesSpring [0..1] : Real
+    + cattlefarmSubsidiesYear [0..1] : Real
+    + geoSourceType [0..1] : CharacterString
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + useRestrictions [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + datasettType [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + bruksrestriksjon [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class Hospitals <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_featureFunction [0..1] : featureFunction
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + objekttype [0..1] : CharacterString
+    + bygningstype [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class Schools <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_featureFunction [0..1] : CharacterString
+    + dgif_securityClassification [0..1] : CharacterString
+    + dgif_facilityOperationalStatus [0..1] : CharacterString
+    + type [0..1] : CharacterString
+    + dgif_controllingAuthority [0..1] : CharacterString
+    + lowestGrade [0..1] : Real
+    + highestGrade [0..1] : Real
+    + dgif_numberOfPupils [0..1] : Real
+    + employees [0..1] : Real
+    + dgif_contactInfo_1 [0..1] : CharacterString
+    + dgif_contactInfo_2 [0..1] : CharacterString
+    + postalAddress [0..1] : CharacterString
+    + postalCode [0..1] : Real
+    + municipality [0..1] : CharacterString
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class SportsCenters <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + facilityType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_featureFunction [0..1] : CharacterString
+    + dataset [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + areaM2 [0..1] : Real
+    + dgif_predominantStructHeight [0..1] : Real
+    + dgif_capacityValue [0..1] : CharacterString
+    + dgif_facilityOperationalStatus [0..1] : CharacterString
+    + buildingYear [0..1] : Real
+    + streetName [0..1] : CharacterString
+    + postCode [0..1] : Integer
+    + postTown [0..1] : CharacterString
+    + dgif_contactInfo_1 [0..1] : CharacterString
+    + dgif_contactInfo_2 [0..1] : CharacterString
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + navn [0..1] : CharacterString
+    + anleggstype [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class FireStationAreas <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_featureFunction [0..1] : CharacterString
+    + dataset [0..1] : CharacterString
+    + objectType [0..1] : CharacterString
+    + associatedFireStation [0..1] : CharacterString
+    + dgif_controllingAuthorityIdent [0..1] : CharacterString
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + useRestrictions [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + datasettType [0..1] : CharacterString
+    + bruksbegrensning [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+  }
+
+  class Transformers <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_substationType [0..1] : CharacterString
+    + dataset [0..1] : CharacterString
+    + dgif_controllingAuthorityIdent [0..1] : CharacterString
+    + voltage [0..1] : Real
+    + functionalArea [0..1] : CharacterString
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class Prisons <<featureType>> {
+    + dgif_fullName [0..1] : CharacterString
+    + category [0..1] : CharacterString
+    + dgif_capacityValue [0..1] : Real
+    + gender [0..1] : CharacterString
+    + region [0..1] : CharacterString
+    + dgif_contactInfo_1 [0..1] : CharacterString
+    + dgif_contactInfo_2 [0..1] : CharacterString
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + gradering [0..1] : CharacterString
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_featureFunction [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class SheepFarms <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_featureFunction [0..1] : CharacterString
+    + dgif_product [0..1] : CharacterString
+    + dataset [0..1] : CharacterString
+    + objectType [0..1] : CharacterString
+    + dgif_controllingAuthorityIdent [0..1] : CharacterString
+    + ownerType [0..1] : CharacterString
+    + organizationNumber [0..1] : Real
+    + producerNumber [0..1] : Real
+    + numberCattleRegistered [0..1] : Real
+    + numberCattleFarmSubsidiesAutumn [0..1] : Real
+    + numberCattleFarmSubsidiesSpring [0..1] : Real
+    + cattlefarmSubsidiesYear [0..1] : Real
+    + geoSourceType [0..1] : CharacterString
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + useRestrictions [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + datasettType [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + bruksrestriksjon [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class PoultryFarms <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_featureFunction [0..1] : CharacterString
+    + dgif_product [0..1] : CharacterString
+    + dataset [0..1] : CharacterString
+    + objectType [0..1] : CharacterString
+    + dgif_controllingAuthorityIdent [0..1] : CharacterString
+    + ownerType [0..1] : CharacterString
+    + organizationNumber [0..1] : Real
+    + producerNumber [0..1] : Real
+    + numberCattleRegistered [0..1] : Real
+    + numberCattleFarmSubsidiesAutumn [0..1] : Real
+    + numberCattleFarmSubsidiesSpring [0..1] : Real
+    + cattlefarmSubsidiesYear [0..1] : Real
+    + geoSourceType [0..1] : CharacterString
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + useRestrictions [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + datasettType [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + bruksrestriksjon [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class MixedLivestockFarms <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_featureFunction [0..1] : CharacterString
+    + dgif_product [0..1] : CharacterString
+    + dataset [0..1] : CharacterString
+    + objectType [0..1] : CharacterString
+    + dgif_controllingAuthorityIdent [0..1] : CharacterString
+    + ownerType [0..1] : CharacterString
+    + organizationNumber [0..1] : Real
+    + producerNumber [0..1] : Real
+    + numberCattleRegistered [0..1] : Real
+    + numberCattleFarmSubsidiesAutumn [0..1] : Real
+    + numberCattleFarmSubsidiesSpring [0..1] : Real
+    + cattlefarmSubsidiesYear [0..1] : Real
+    + geoSourceType [0..1] : CharacterString
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + useRestrictions [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + datasettType [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + bruksrestriksjon [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class FireContagionAreas <<featureType>> {
+    + dgif_fullName [0..1] : CharacterString
+    + description [0..1] : CharacterString
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + gradering [0..1] : CharacterString
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_culturalThreatAssessment [0..1] : CharacterString
+    + dgif_structMatType [0..1] : CharacterString
+    + dgif_builtUpAreaDensityCat [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+  }
+
+  class GoatFarms <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_featureFunction [0..1] : CharacterString
+    + dgif_product [0..1] : CharacterString
+    + dataset [0..1] : CharacterString
+    + objectType [0..1] : CharacterString
+    + dgif_controllingAuthorityIdent [0..1] : CharacterString
+    + ownerType [0..1] : CharacterString
+    + organizationNumber [0..1] : Real
+    + producerNumber [0..1] : Real
+    + numberCattleRegistered [0..1] : Real
+    + numberCattleFarmSubsidiesAutumn [0..1] : Real
+    + numberCattleFarmSubsidiesSpring [0..1] : Real
+    + cattlefarmSubsidiesYear [0..1] : Real
+    + geoSourceType [0..1] : CharacterString
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + useRestrictions [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + datasettType [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + bruksrestriksjon [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class SmallWaterworks <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_featureFunction [0..1] : CharacterString
+    + dataset [0..1] : CharacterString
+    + nameIntakePoint [0..1] : CharacterString
+    + dgif_controllingAuthorityIdent [0..1] : CharacterString
+    + numberOfSubscribers [0..1] : Real
+    + numberOfPermanentResidents [0..1] : Real
+    + maxWaterQuantity [0..1] : Real
+    + dgif_sourceOfWater [0..1] : CharacterString
+    + dgif_waterPotability [0..1] : CharacterString
+    + organizationNumber [0..1] : Real
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + useRestrictions [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + datasettType [0..1] : CharacterString
+    + navnVannverk [0..1] : CharacterString
+    + navnInntakspunkt [0..1] : CharacterString
+    + eier [0..1] : CharacterString
+    + kildetype [0..1] : CharacterString
+    + bruksrestriksjon [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class Laundromats <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_featureFunction [0..1] : CharacterString
+    + streetName [0..1] : CharacterString
+    + dgif_BuildingOnSiteStaff [0..1] : Real
+    + postalCode [0..1] : Real
+    + postalAddress [0..1] : CharacterString
+    + dgif_addressAdministrativeArea [0..1] : CharacterString
+    + dgif_contactInfo [0..1] : CharacterString
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + dataWithdrawalDate [0..1] : Date
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class ExplosiveFacilities <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dataset [0..1] : CharacterString
+    + objectType [0..1] : CharacterString
+    + identification [0..1] : Real
+    + owner [0..1] : CharacterString
+    + majorAccident [0..1] : CharacterString
+    + dsbLocalising [0..1] : CharacterString
+    + amount [0..1] : CharacterString
+    + unit [0..1] : CharacterString
+    + substance [0..1] : CharacterString
+    + dgif_product [0..1] : CharacterString
+    + hazardGroup [0..1] : CharacterString
+    + compatibilityGroup [0..1] : CharacterString
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + useRestrictions [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + datasettType [0..1] : CharacterString
+    + bruksrestriksjon [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class ShipRepair <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_featureFunction [0..1] : CharacterString
+    + dgif_controllingAuthority [0..1] : CharacterString
+    + dataset [0..1] : CharacterString
+    + objectType [0..1] : CharacterString
+    + organizationNumber [0..1] : CharacterString
+    + type [0..1] : CharacterString
+    + employees [0..1] : CharacterString
+    + dgif_contactInfo_1 [0..1] : CharacterString
+    + dgif_contactInfo_2 [0..1] : CharacterString
+    + dgif_contactInfo_3 [0..1] : CharacterString
+    + address [0..1] : CharacterString
+    + postTown [0..1] : CharacterString
+    + postalCode [0..1] : CharacterString
+    + latitude [0..1] : CharacterString
+    + longitude [0..1] : CharacterString
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : CharacterString
+    + dgif_currencyDateTime [0..1] : CharacterString
+    + dgif_modificationDateTime [0..1] : CharacterString
+    + datasettType [0..1] : CharacterString
+    + navn [0..1] : CharacterString
+    + vedtektsfestetformaal [0..1] : CharacterString
+    + aktivitet [0..1] : CharacterString
+    + naeringskode2Beskrivelse [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class PharmaceuticalPreparations <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_featureFunction [0..1] : CharacterString
+    + dgif_product [0..1] : CharacterString
+    + dataset [0..1] : CharacterString
+    + objectType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + organizationNumber [0..1] : Real
+    + dgif_contactInfo_3 [0..1] : CharacterString
+    + employees [0..1] : Real
+    + dgif_contactInfo_2 [0..1] : CharacterString
+    + dgif_contactInfo_1 [0..1] : CharacterString
+    + address [0..1] : CharacterString
+    + postTown [0..1] : CharacterString
+    + postalCode [0..1] : Real
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + datasetType [0..1] : CharacterString
+    + navn [0..1] : CharacterString
+    + vedtektsfestetformaal [0..1] : CharacterString
+    + aktivitet [0..1] : CharacterString
+    + naeringskode2Beskrivelse [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class UrbanAreas <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_populationDensity [0..1] : Real
+    + dgif_population [0..1] : Real
+    + area [0..1] : Real
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+  }
+
+  class CustomsOffices <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_featureFunction [0..1] : CharacterString
+    + dataset [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + address [0..1] : CharacterString
+    + municipalityNumber [0..1] : Real
+    + dgif_addressAdministrativeArea [0..1] : CharacterString
+    + dgif_addressCountry [0..1] : CharacterString
+    + longitude [0..1] : Real
+    + latitude [0..1] : CharacterString
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : Date
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + datasett [0..1] : CharacterString
+    + navn [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class AsylumReceptionCenters <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_featureFunction [0..1] : CharacterString
+    + dgif_contactInfo_1 [0..1] : CharacterString
+    + dgif_contactInfo_2 [0..1] : CharacterString
+    + dgif_controllingAuthorityIdent [0..1] : CharacterString
+    + postalAddress [0..1] : CharacterString
+    + latitude [0..1] : Real
+    + longitude [0..1] : Real
+    + mgrs [0..1] : CharacterString
+    + dgif_currencyDateTime [0..1] : Date
+    + dgif_modificationDateTime [0..1] : Date
+    + dataWithdrawalDate [0..1] : Date
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class MilitaryShipyards <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_fullName [0..1] : CharacterString
+    + dgif_FeatureType531 [0..1] : CharacterString
+    + dgif_featureFunction [0..1] : CharacterString
+    + dgif_controllingAuthority [0..1] : CharacterString
+    + dataset [0..1] : CharacterString
+    + objectType [0..1] : CharacterString
+    + organizationNumber [0..1] : CharacterString
+    + type [0..1] : CharacterString
+    + employees [0..1] : CharacterString
+    + dgif_contactInfo_1 [0..1] : CharacterString
+    + dgif_contactInfo_2 [0..1] : CharacterString
+    + dgif_contactInfo_3 [0..1] : CharacterString
+    + address [0..1] : CharacterString
+    + postTown [0..1] : CharacterString
+    + postalCode [0..1] : CharacterString
+    + latitude [0..1] : CharacterString
+    + longitude [0..1] : CharacterString
+    + mgrs [0..1] : CharacterString
+    + classification [0..1] : CharacterString
+    + dgif_sourceIdentifier [0..1] : CharacterString
+    + dataWithdrawalDate [0..1] : CharacterString
+    + dgif_currencyDateTime [0..1] : CharacterString
+    + dgif_modificationDateTime [0..1] : CharacterString
+    + datasettType [0..1] : CharacterString
+    + navn [0..1] : CharacterString
+    + vedtektsfestetformaal [0..1] : CharacterString
+    + aktivitet [0..1] : CharacterString
+    + naeringskode2Beskrivelse [0..1] : CharacterString
+    + gradering [0..1] : CharacterString
+    + uuid [0..1] : CharacterString
+    + fylkesnummer [0..1] : CharacterString
+    + fylkesnavn [0..1] : CharacterString
+    + posisjon [0..1] : GM_Point
+  }
+
+  class "Naturvernområde" as Naturvernomr_de <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_creationDateTime [1] : Date
+    + dgif_conservatonAreaManageCat [1] : CharacterString
+    + dgif_fullName [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+    + vernedato [0..1] : Date
+    + verneform [1] : Verneform
+    + navn [1] : CharacterString
+  }
+
+  class Allmenning <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_fullName [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+    + allmenningtype [1] : Allmenningtype
+    + navn [1] : CharacterString
+  }
+
+  class Skytefeltgrense <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + grense [1] : GM_Curve
+  }
+
+  class Naturverngrense <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + grense [1] : GM_Curve
+  }
+
+  class Flyplassavgrensning <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + grense [1] : GM_Curve
+  }
+
+  class Skytefelt <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_fullName [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + område [1] : GM_Surface
+    + navn [1] : CharacterString
+    + skytefeltstatus [1] : Skytefeltstatus
+  }
+
+  class Allmenninggrense <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + grense [1] : GM_Curve
+  }
+
+  class Stasjon <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_meansTransportation [1] : CharacterString
+    + dgif_fullName [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + posisjon [1] : GM_Point
+    + navn [1] : CharacterString
+    + retning [1] : Retning
+    + fylkesnummer [1] : CharacterString
+  }
+
+  class Vegsperring <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_structMatType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_modificationDateTime [1] : Date
+    + currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + posisjon [1] : GM_Point
+    + vegsperringtype [0..1] : Vegsperringtype
+    + retning [1] : CharacterString
+  }
+
+  class Veglenke <<featureType>> {
+    + dgif_FeatureType [0..1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_routeIdentification [0..1] : Integer
+    + dgif_physicalCondition [0..1] : Integer
+    + dgif_waySurfaceCategory [1] : CharacterString
+    + dgif_meansTransportation [1] : CharacterString
+    + dgif_divided [1] : CharacterString
+    + dgif_roadInterchangeRamp [1] : CharacterString
+    + dgif_verticalRelativeLocation [0..1] : Integer
+    + dgif_waySignificance [0..1] : Integer
+    + dgif_modificationDateTime [1] : Date
+    + dgif_currencyDateTime [1] : Date
+    + dgif_sourceIdentifier [1] : CharacterString
+    + senterlinje [1] : GM_Curve
+    + typeVeg [0..1] : TypeVeg
+    + vegsystem [0..1] : Vegsystem
+    + adressenavn [1] : CharacterString
+    + motorvegtype [0..1] : Motorvegtype
+    + vegklasse [0..1] : Integer
+    + rutemerking [0..1] : RuteMerking
+    + belysning [0..1] : Boolean
+    + medium [0..1] : Medium
+    + fylkesnummer [0..1] : CharacterString
+  }
+
+  class Bane <<featureType>> {
+    + dgif_FeatureType [1] : CharacterString
+    + dgif_FeatureType531 [1] : CharacterString
+    + dgif_railwayUse [1] : CharacterString
+    + dgif_verticalRelativeLocation [1] : CharacterString
+    + dgif_transRteProtStructType [1] : CharacterString
+    + dgif_facilityOperationalStatus [1] : CharacterString
+    + dgif_physicalCondition [1] : CharacterString
+    + dgif_modificationDateTime [1] : CharacterString
+    + dgif_currencyDateTime [1] : CharacterString
+    + dgif_sourceIdentifier [1] : Date
+    + senterlinje [1] : GM_Curve
+    + jernbaneinformasjon [1] : Jernbaneinformasjon
+    + medium [1] : Medium
+    + fylkesnummer [1] : CharacterString
+  }
+
+  abstract class FellesTekst <<featureType>> {
+    + geometri [1] : GM_Curve
+    + streng [1] : CharacterString
+    + oppdateringsdato [0..1] : Date
+    + datafangstdato [0..1] : Date
+    + tekstformatering [1] : Tekstformatering
+    + fulltekst [1] : CharacterString
+  }
+
+  class StedsnavnTekst <<featureType>> {
+    + navneobjekthovedgruppe [1] : Navneobjekthovedgruppe
+    + navneobjektgruppe [1] : Navneobjektgruppe
+    + navneobjekttype [1] : Navneobjekttype
+    + språk [0..1] : SpråkKode
+    + stedsnavnnummer [1] : Integer
+    + FNA [1] : CharacterString
+    + språkprioritering [0..1] : SpråkprioriteringKode
+    + stedsnummer [1] : Integer
+    + SCL [1] : CharacterString
+    + skrivemåtenummer [1] : Integer
+    + LAN [1] : CharacterString
+    + LAO [1] : CharacterString
+  }
+
+  class PresentasjonTekst <<featureType>> {
+    + teksttype [1] : Teksttype
+    + FNA [1] : Integer
+    + SCL [1] : CharacterString
+  }
+
+  class Identifikasjon <<dataType>> {
+    + lokalId [1] : CharacterString
+    + navnerom [1] : CharacterString
+    + versjonId [0..1] : CharacterString
+  }
+
+  class Opphavsinformasjon <<dataType>> {
+    + opphavData [1] : CharacterString
+    + objektpeker [0..1] : CharacterString
+  }
+
+  class Posisjonskvalitet <<dataType>> {
+    + datafangstmetode [1] : Datafangstmetode
+    + nøyaktighet [0..1] : Integer
+    + synbarhet [0..1] : Synbarhet
+    + datafangstmetodeHøyde [0..1] : Datafangstmetode
+    + nøyaktighetHøyde [0..1] : Integer
+  }
+
+  class Retning <<dataType>> {
+    + retningsverdi [1] : Real
+    + retningsenhet [1] : Retningsenhet
+    + retningsreferanse [1] : Retningsreferanse
+  }
+
+  class Hytteinformasjon <<dataType>> {
+    + betjeningsgrad [0..1] : Betjeningsgrad
+    + hytteeier [0..1] : Hytteeier
+    + tilgjengelighet [0..1] : Tilgjengelighet
+  }
+
+  class Vegsystem <<dataType>> {
+    + vegkategori [1] : Vegkategori
+    + vegfase [1] : Vegfase
+    + vegnummer [0..1] : Integer
+  }
+
+  class Jernbaneinformasjon <<dataType>> {
+    + anleggstype [0..1] : Jernbanetype
+    + banestatus [0..1] : Jernbanestatus
+  }
+
+  class Tekstformatering <<dataType>> {
+    + tekstReferansepunkt [0..1] : TekstReferansePunkt
+    + tegnavstand [0..1] : Integer
+    + skriftkode [0..1] : Skriftkode
+    + skrifttype [0..1] : CharacterString
+    + referansemålestokk [0..1] : Integer
+  }
+
+  class TekstReferansePunkt <<dataType>> {
+    + tekstReferansePunktNord [1] : TekstReferansePunktNord
+    + tekstReferansePunktØst [1] : TekstReferansePunktØst
+  }
+}
+
+  Fellesegenskaper <|-- KvalitetP_krevd
+  Fellesegenskaper <|-- KvalitetOpsjonell
+  KvalitetP_krevd <|-- Konnekteringspunkt
+  KvalitetP_krevd <|-- Teiggrensepunkt
+  KvalitetOpsjonell <|-- Fylke
+  Fylke --> Grense : avgrensesAvGrense [0..*]
+  KvalitetOpsjonell <|-- Kommune
+  Kommune --> Grense : avgrensesAvGrense [0..*]
+  KvalitetP_krevd <|-- Grense
+  KvalitetP_krevd <|-- Grunnlinjepunkt
+  KvalitetOpsjonell <|-- IdrettsOmr
+  IdrettsOmr --> Kystkontur : avgrensesAvKystkontur [0..*]
+  KvalitetOpsjonell <|-- Innsj_
+  KvalitetOpsjonell <|-- Skog
+  Skog --> Kystkontur : avgrensesAvKystkontur [0..*]
+  KvalitetOpsjonell <|-- Elveflate
+  KvalitetOpsjonell <|-- Gravplass
+  Gravplass --> Kystkontur : avgrensesAvKystkontur [0..*]
+  KvalitetOpsjonell <|-- LufthavnOmr
+  LufthavnOmr --> Kystkontur : avgrensesAvKystkontur [0..*]
+  KvalitetOpsjonell <|-- Bergverk
+  KvalitetOpsjonell <|-- Alpinbakke
+  Alpinbakke --> Kystkontur : avgrensesAvKystkontur [0..*]
+  KvalitetOpsjonell <|-- Industri
+  Industri --> Kystkontur : avgrensesAvKystkontur [0..*]
+  KvalitetOpsjonell <|-- Golfbane
+  Golfbane --> Kystkontur : avgrensesAvKystkontur [0..*]
+  KvalitetOpsjonell <|-- Sn_Isbre
+  Sn_Isbre --> Kystkontur : avgrensesAvKystkontur [0..*]
+  KvalitetOpsjonell <|-- Samferdsel
+  KvalitetOpsjonell <|-- Hav
+  Hav --> Kystkontur : avgrensesAvKystkontur [0..*]
+  KvalitetOpsjonell <|-- Snaumark
+  KvalitetOpsjonell <|-- Kanal
+  KvalitetOpsjonell <|-- Myr
+  Myr --> Kystkontur : avgrensesAvKystkontur [0..*]
+  KvalitetOpsjonell <|-- Innmarksbeite
+  KvalitetOpsjonell <|-- Park
+  Park --> Kystkontur : avgrensesAvKystkontur [0..*]
+  KvalitetOpsjonell <|-- Jordbruk
+  KvalitetOpsjonell <|-- Bebygd
+  KvalitetOpsjonell <|-- Innsj_Regulert
+  KvalitetOpsjonell <|-- Rullebane
+  Rullebane --> Kystkontur : avgrensesAvKystkontur [0..*]
+  KvalitetP_krevd <|-- Tregruppe
+  KvalitetP_krevd <|-- KonnekteringVann
+  KvalitetP_krevd <|-- ElvBekk
+  KvalitetP_krevd <|-- Floml_pkant
+  KvalitetP_krevd <|-- MidtlinjeElvInnsj_
+  KvalitetP_krevd <|-- Skj_r
+  KvalitetP_krevd <|-- Foss
+  KvalitetP_krevd <|-- Kystkontur
+  KvalitetP_krevd <|-- KanalGr_ft
+  KvalitetOpsjonell <|-- Takoverbygg
+  KvalitetP_krevd <|-- Grunnmur
+  KvalitetP_krevd <|-- Grunnmur
+  KvalitetOpsjonell <|-- Bygningsflate
+  KvalitetP_krevd <|-- Bygningspunkt
+  KvalitetP_krevd <|-- Bygningspunkt
+  KvalitetOpsjonell <|-- Molo
+  KvalitetP_krevd <|-- Pir
+  KvalitetOpsjonell <|-- Transformatorstasjon
+  KvalitetP_krevd <|-- Ledning
+  KvalitetP_krevd <|-- Navigasjonsinstallasjon
+  KvalitetOpsjonell <|-- Skytebane
+  KvalitetP_krevd <|-- Taubane
+  KvalitetP_krevd <|-- Gjerde
+  KvalitetP_krevd <|-- R_rgate
+  KvalitetOpsjonell <|-- Oppdrettslokalitet
+  KvalitetP_krevd <|-- Tank
+  KvalitetOpsjonell <|-- Tank
+  KvalitetP_krevd <|-- Lysl_ype
+  KvalitetOpsjonell <|-- KaiBrygge
+  KvalitetP_krevd <|-- Mast
+  KvalitetP_krevd <|-- Slipp
+  KvalitetOpsjonell <|-- Demning
+  KvalitetP_krevd <|-- Voll
+  KvalitetP_krevd <|-- Mur
+  KvalitetP_krevd <|-- Skjerm
+  KvalitetP_krevd <|-- Campingplass
+  KvalitetP_krevd <|-- Hoppbakke
+  KvalitetP_krevd <|-- Pipe
+  KvalitetOpsjonell <|-- Anleggsomr_de
+  KvalitetP_krevd <|-- Skytebaneinnretning
+  KvalitetP_krevd <|-- Ruin
+  KvalitetP_krevd <|-- Gruve
+  KvalitetOpsjonell <|-- Sv_mmebasseng
+  KvalitetP_krevd <|-- T_rn
+  KvalitetP_krevd <|-- Vindturbin
+  KvalitetOpsjonell <|-- FlyteBrygge
+  KvalitetOpsjonell <|-- Parkeringsomr_de
+  KvalitetOpsjonell <|-- Tribune
+  KvalitetP_krevd <|-- H_ydekurve
+  KvalitetP_krevd <|-- Terrengpunkt
+  KvalitetP_krevd <|-- Trigonometriskpunkt
+  KvalitetP_krevd <|-- Interessepunkt
+  KvalitetP_krevd <|-- Flyplass
+  KvalitetP_krevd <|-- Sykehus
+  KvalitetOpsjonell <|-- Naturvernomr_de
+  Naturvernomr_de --> Naturverngrense : avgrensesAvNaturverngrense [0..*]
+  KvalitetOpsjonell <|-- Allmenning
+  Allmenning --> Allmenninggrense : avgrensesAvAllmenninggrense [0..*]
+  KvalitetP_krevd <|-- Skytefeltgrense
+  KvalitetP_krevd <|-- Naturverngrense
+  KvalitetP_krevd <|-- Flyplassavgrensning
+  KvalitetOpsjonell <|-- Skytefelt
+  Skytefelt --> Skytefeltgrense : avgrensesAvSkytefeltgrense [0..*]
+  KvalitetP_krevd <|-- Allmenninggrense
+  KvalitetP_krevd <|-- Stasjon
+  KvalitetP_krevd <|-- Vegsperring
+  KvalitetP_krevd <|-- Veglenke
+  KvalitetP_krevd <|-- Bane
+  FellesTekst <|-- StedsnavnTekst
+  FellesTekst <|-- PresentasjonTekst
+
+@enduml
