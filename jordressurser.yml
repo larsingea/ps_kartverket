@@ -2,6 +2,7 @@ metadataId: 3690c283-a1f2-4e95-8cd4-2d6115eb28f7
 output_directory: produktspesifikasjon
 product_slug: jordressurser
 updated: '2026-11-05'
+outputs: geopackage,jsonschema,xsd
 scopes:
 - name: Filleveranser basert på SOSI-datamodell
   url: https://sosi.geonorge.no/svn/SOSI/SOSI%20Del%203/Skog%20og%20landskap/Produktspesifikasjon%20Jordressurser%20-%2020260901.xml
