@@ -2,129 +2,119 @@
   {
     "attributes": [
       {
+        "name": "geometri",
+        "type": "GM_Surface",
+        "cardinality": "1",
+        "description": "Flate"
+      },
+      {
         "cardinality": "0..1",
         "description": "Unik og varig identifikator for oppmålingen.",
         "name": "survey_id",
         "ogcRole": "id",
-        "type": "string"
+        "type": "CharacterString"
       },
       {
         "cardinality": "0..1",
         "description": "Aktøren som har samlet inn dybdedataene (dataeier).",
         "name": "data_owner",
-        "type": "string"
+        "type": "CharacterString"
       },
       {
         "cardinality": "0..1",
         "description": "Året målingen ble gjort.",
         "name": "year",
-        "type": "integer"
+        "type": "Integer"
       },
       {
         "cardinality": "0..1",
         "description": "Datoen oppmålingen startet.",
         "name": "date_start",
-        "type": "date (string)"
+        "type": "Date"
       },
       {
         "cardinality": "0..1",
         "description": "Datoen oppmålingen ble avsluttet.",
         "name": "date_end",
-        "type": "date (string)"
+        "type": "Date"
       },
       {
         "cardinality": "0..1",
         "description": "Ekkoloddet eller dybdesensoren som ble brukt, f.eks. «EM 2040». Kan inneholde flere verdier skilt med komma.",
         "name": "depth_sensor",
-        "type": "string"
+        "type": "CharacterString"
       },
       {
         "cardinality": "0..1",
         "description": "Om det ble logget backscatter (tilbakespredning) under oppmålingen.",
         "name": "logged_backscatter",
-        "type": "boolean"
+        "type": "Boolean"
       },
       {
         "cardinality": "0..1",
         "description": "Om det ble logget vannsøyledata under oppmålingen.",
         "name": "logged_water_column",
-        "type": "boolean"
+        "type": "Boolean"
       },
       {
         "cardinality": "0..1",
         "description": "Metoden som ble brukt, f.eks. multibeam (flerstråle) eller singlebeam (enkeltstråle).",
         "name": "survey_method",
-        "type": "string"
+        "type": "CharacterString"
       },
       {
         "cardinality": "0..1",
         "description": "Totalt oppmålt areal. Enheten må avklares.",
         "name": "total_area",
-        "type": "number"
+        "type": "Real"
       },
       {
         "cardinality": "0..1",
         "description": "Normalisert areal. Både betydning og enhet må avklares.",
         "name": "normalised_area",
-        "type": "number"
+        "type": "Real"
       },
       {
         "cardinality": "0..1",
         "description": "Standarden oppmålingen er utført etter, f.eks. IHO S-44-ordre eller «NHS general».",
         "name": "quality_specification",
-        "type": "string"
+        "type": "CharacterString"
       },
       {
         "cardinality": "0..1",
         "description": "Oppløsningen på dybdedataene. Enheten (trolig meter) må avklares.",
         "name": "resolution",
-        "type": "string"
+        "type": "CharacterString"
       },
       {
         "cardinality": "0..1",
         "description": "Om det er laget en dybdemodell av oppmålingen.",
         "name": "modeled",
-        "type": "boolean"
+        "type": "Boolean"
       },
       {
         "cardinality": "0..1",
         "description": "Aktøren som har finansiert oppmålingen.",
         "name": "financier",
-        "type": "string"
+        "type": "CharacterString"
       },
       {
         "cardinality": "0..1",
         "description": "Kvalitetskode for dataene. Kodelisten er ukjent; verdien «1» er sett i API-et.",
         "name": "data_quality",
-        "type": "string"
+        "type": "CharacterString"
       },
       {
         "cardinality": "0..1",
         "description": "Oppløsningen oppmålingen skulle oppnå. Verdiene 1, 5 og 9 er sett i API-et.",
         "name": "target_resolution",
-        "type": "string"
+        "type": "CharacterString"
       }
     ],
     "description": "Avgrensning av området som er dybdemålt i ett oppmålingsoppdrag (oppdrag, tokt eller dybdedatasett).",
-    "geometry": {
-      "crs": [
-        "http://www.opengis.net/def/crs/OGC/1.3/CRS84",
-        "http://www.opengis.net/def/crs/EPSG/0/4326",
-        "http://www.opengis.net/def/crs/EPSG/0/4258",
-        "http://www.opengis.net/def/crs/EPSG/0/25831",
-        "http://www.opengis.net/def/crs/EPSG/0/25832",
-        "http://www.opengis.net/def/crs/EPSG/0/25833",
-        "http://www.opengis.net/def/crs/EPSG/0/25834",
-        "http://www.opengis.net/def/crs/EPSG/0/25835",
-        "http://www.opengis.net/def/crs/EPSG/0/25836",
-        "http://www.opengis.net/def/crs/EPSG/0/3575"
-      ],
-      "format": "geometry-any",
-      "itemType": "feature",
-      "ogcRole": "primary-geometry",
-      "storageCrs": "http://www.opengis.net/def/crs/OGC/1.3/CRS84",
-      "type": "geometry-any"
-    },
-    "name": "SurveyCoverage"
+    "name": "SurveyCoverage",
+    "relationships": {
+      "associations": []
+    }
   }
 ]
