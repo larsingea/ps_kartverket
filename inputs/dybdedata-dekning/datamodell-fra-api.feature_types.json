@@ -2,10 +2,36 @@
   {
     "attributes": [
       {
-        "name": "geometri",
-        "type": "GM_Surface",
+        "attributes": [
+          {
+            "cardinality": "1",
+            "description": "Lokal identifikator, tildelt av dataleverandøren eller dataforvalteren.",
+            "name": "lokalId",
+            "type": "CharacterString"
+          },
+          {
+            "cardinality": "1",
+            "description": "Navnerom som unikt identifiserer datakilden til objektet.",
+            "name": "navnerom",
+            "type": "CharacterString"
+          },
+          {
+            "cardinality": "0..1",
+            "description": "Identifikasjon av en spesiell versjon av et geografisk objekt (instans).",
+            "name": "versjonId",
+            "type": "CharacterString"
+          }
+        ],
         "cardinality": "1",
-        "description": "Flate"
+        "description": "Unik identifikasjon av et objekt.",
+        "name": "identifikasjon",
+        "type": "Identifikasjon"
+      },
+      {
+        "cardinality": "1",
+        "description": "Flate",
+        "name": "geometri",
+        "type": "GM_Surface"
       },
       {
         "cardinality": "0..1",
