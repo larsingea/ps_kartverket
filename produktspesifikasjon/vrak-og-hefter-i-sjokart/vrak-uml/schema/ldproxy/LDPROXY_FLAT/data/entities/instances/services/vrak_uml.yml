@@ -1,0 +1,19 @@
+---
+id: vrak_uml
+label: FIXME
+description: FIXME
+enabled: true
+serviceType: OGC_API
+collections:
+  hefteurenbunn:
+    id: hefteurenbunn
+    label: hefteurenbunn
+    enabled: true
+  vrak:
+    id: vrak
+    label: vrak
+    enabled: true
+  vrakgrense:
+    id: vrakgrense
+    label: vrakgrense
+    enabled: true

@@ -1,0 +1,230 @@
+# pygeoapi-konfigurasjon — generert fra datamodellen og metadata i Geonorge.
+# Verdier merket "<REPLACE_ME>" må fylles inn før tjenesten kan startes.
+server:
+  bind:
+    host: 0.0.0.0
+    port: 5000
+  cors: false
+  url: ${PYGEOAPI_SERVER_URL:-http://localhost:5000}
+  mimetype: application/json; charset=UTF-8
+  encoding: utf-8
+  gzip: false
+  languages:
+  - nb-NO
+  pretty_print: true
+  admin: ${PYGEOAPI_SERVER_ADMIN:-false}
+  limits:
+    default_items: 20
+    max_items: 100
+  map:
+    url: https://tile.openstreetmap.org/{z}/{x}/{y}.png
+    attribution: '&copy; <a href="https://openstreetmap.org/copyright">OpenStreetMap
+      contributors</a>'
+logging:
+  level: ERROR
+metadata:
+  identification:
+    title: Vrak og hefter i sjøkart
+    description: "Datasettet angir geografisk posisjon for vrak og hefter i sjøkartene\
+      \ langs i norske kyst og havområder og på Svalbard. \nDatasettet inneholder\
+      \ informasjon om posisjon og informasjon om vraket er farlig for navigasjon.\n\
+      Vrak er pr definisjon de ødelagte restene av et strandet eller sunket fartøy\
+      \ som har blitt ubrukelig.\nHefte er pr definisjon uren bunn pga hindring for\
+      \ seilas, eller rester av skrot, vrak og annet på sjøbunnen som kan være til\
+      \ hinder.\nFormålet med datasettet er å redusere risiko for skade på vrak, overseilende\
+      \ fartøy, fiskeredskap og bidra til kyst- og fiskeriforvaltning, arealplanlegging,\
+      \ samferdsel og samfunnssikkerhet.\nVrak og hefter i sjøkart er et datasett\
+      \ som kan være nyttige å ha som underliggende informasjon når en skal planlegge\
+      \ aktiviteter i norske kyst- og havområder.\n\nVrak og hefter publiseres i dag\
+      \ i navigasjonsproduktene sjøkart og elektroniske sjøkart. De publiseres også\
+      \ i karttjenesten i Den norske los. \nDatasettet forvaltes kontinuerlig og publiseres\
+      \ av Kartverket."
+    keywords:
+    - Vrak
+    - Hefte
+    - Forurenset sjøbunn
+    - Uren sjøbunn
+    - HefteUrenBunn
+    - Arealbruk
+    - Nautisk informasjon
+    - Det offentlige kartgrunnlaget
+    - geodataloven
+    - Kyst og fiskeri
+    - Plan
+    - Samfunnssikkerhet
+    - Forurensning
+    - Vrakgrense
+    - vraktype
+    - vertikalDatum
+    - hefteUrenBunntype
+    keywords_type: theme
+    terms_of_service: Åpne data
+    url: https://kartkatalog.geonorge.no/metadata/a5821b74-096d-4923-aa3c-387cfa0e6218
+  license:
+    name: Creative Commons BY 4.0 (CC BY 4.0)
+    url: https://creativecommons.org/licenses/by/4.0/
+  provider:
+    name: Kartverket
+    url: "<REPLACE_ME>"
+  contact:
+    name: Kartverket
+    email: kundesenter@kartverket.no
+    url: "<REPLACE_ME>"
+resources:
+  vrakgrense:
+    type: collection
+    title: Vrakgrense
+    description: 'avgrensning av rest av fartøy som har strandet eller sunket og er
+      etterlatt i ubrukbar tilstand
+
+      Delimitation of remains of vessel which has run aground or sunk and has been
+      abandoned in useless condition'
+    keywords:
+    - Vrakgrense
+    extents:
+      spatial:
+        bbox:
+        - "<REPLACE_ME>"
+        - "<REPLACE_ME>"
+        - "<REPLACE_ME>"
+        - "<REPLACE_ME>"
+        crs: http://www.opengis.net/def/crs/OGC/1.3/CRS84
+    providers:
+    - type: feature
+      name: SQLiteGPKG
+      data: ./vrak-uml.gpkg
+      id_field: objid
+      table: Vrakgrense
+      crs:
+      - http://www.opengis.net/def/crs/OGC/1.3/CRS84
+      - http://www.opengis.net/def/crs/EPSG/0/25832
+      - http://www.opengis.net/def/crs/EPSG/0/25833
+      - http://www.opengis.net/def/crs/EPSG/0/25835
+      - http://www.opengis.net/def/crs/EPSG/0/5972
+      - http://www.opengis.net/def/crs/EPSG/0/5973
+      - http://www.opengis.net/def/crs/EPSG/0/5975
+      - http://www.opengis.net/def/crs/EPSG/0/3857
+      - http://www.opengis.net/def/crs/EPSG/0/3575
+      - http://www.opengis.net/def/crs/EPSG/0/4326
+      - http://www.opengis.net/def/crs/EPSG/0/3035
+      - http://www.opengis.net/def/crs/EPSG/0/4258
+      - http://www.opengis.net/def/crs/EPSG/0/5942
+      storage_crs: http://www.opengis.net/def/crs/EPSG/0/25833
+  vrak-flate:
+    type: collection
+    title: Vrak_flate
+    description: 'de ødelagte restene av et strandet eller senket fartøy som har blitt
+      gjort ubrukelig.
+
+      The ruined remains of a stranded or sunken vessel which has been rendered useless.'
+    keywords:
+    - Vrak_flate
+    extents:
+      spatial:
+        bbox:
+        - "<REPLACE_ME>"
+        - "<REPLACE_ME>"
+        - "<REPLACE_ME>"
+        - "<REPLACE_ME>"
+        crs: http://www.opengis.net/def/crs/OGC/1.3/CRS84
+    providers:
+    - type: feature
+      name: SQLiteGPKG
+      data: ./vrak-uml.gpkg
+      id_field: objid
+      table: Vrak_flate
+      crs:
+      - http://www.opengis.net/def/crs/OGC/1.3/CRS84
+      - http://www.opengis.net/def/crs/EPSG/0/25832
+      - http://www.opengis.net/def/crs/EPSG/0/25833
+      - http://www.opengis.net/def/crs/EPSG/0/25835
+      - http://www.opengis.net/def/crs/EPSG/0/5972
+      - http://www.opengis.net/def/crs/EPSG/0/5973
+      - http://www.opengis.net/def/crs/EPSG/0/5975
+      - http://www.opengis.net/def/crs/EPSG/0/3857
+      - http://www.opengis.net/def/crs/EPSG/0/3575
+      - http://www.opengis.net/def/crs/EPSG/0/4326
+      - http://www.opengis.net/def/crs/EPSG/0/3035
+      - http://www.opengis.net/def/crs/EPSG/0/4258
+      - http://www.opengis.net/def/crs/EPSG/0/5942
+      storage_crs: http://www.opengis.net/def/crs/EPSG/0/25833
+  vrak-punkt:
+    type: collection
+    title: Vrak_punkt
+    description: 'de ødelagte restene av et strandet eller senket fartøy som har blitt
+      gjort ubrukelig.
+
+      The ruined remains of a stranded or sunken vessel which has been rendered useless.'
+    keywords:
+    - Vrak_punkt
+    extents:
+      spatial:
+        bbox:
+        - "<REPLACE_ME>"
+        - "<REPLACE_ME>"
+        - "<REPLACE_ME>"
+        - "<REPLACE_ME>"
+        crs: http://www.opengis.net/def/crs/OGC/1.3/CRS84
+    providers:
+    - type: feature
+      name: SQLiteGPKG
+      data: ./vrak-uml.gpkg
+      id_field: objid
+      table: Vrak_punkt
+      crs:
+      - http://www.opengis.net/def/crs/OGC/1.3/CRS84
+      - http://www.opengis.net/def/crs/EPSG/0/25832
+      - http://www.opengis.net/def/crs/EPSG/0/25833
+      - http://www.opengis.net/def/crs/EPSG/0/25835
+      - http://www.opengis.net/def/crs/EPSG/0/5972
+      - http://www.opengis.net/def/crs/EPSG/0/5973
+      - http://www.opengis.net/def/crs/EPSG/0/5975
+      - http://www.opengis.net/def/crs/EPSG/0/3857
+      - http://www.opengis.net/def/crs/EPSG/0/3575
+      - http://www.opengis.net/def/crs/EPSG/0/4326
+      - http://www.opengis.net/def/crs/EPSG/0/3035
+      - http://www.opengis.net/def/crs/EPSG/0/4258
+      - http://www.opengis.net/def/crs/EPSG/0/5942
+      storage_crs: http://www.opengis.net/def/crs/EPSG/0/25833
+  hefte-uren-bunn:
+    type: collection
+    title: HefteUrenBunn
+    description: 'i marin navigasjon, alt som hindrer eller forhindrer bevegelse,
+      spesielt alt som truer eller hindrer passasje av et fartøy. Begrepet brukes
+      vanligvis for å referere til en isolert fare for navigering
+
+
+      In marine navigation, anything that hinders or impedes movement, particularly
+      anything that endangers or prevents the safe passage of a vessel. The term is
+      usually used to refer to an isolated danger to navigation'
+    keywords:
+    - HefteUrenBunn
+    extents:
+      spatial:
+        bbox:
+        - "<REPLACE_ME>"
+        - "<REPLACE_ME>"
+        - "<REPLACE_ME>"
+        - "<REPLACE_ME>"
+        crs: http://www.opengis.net/def/crs/OGC/1.3/CRS84
+    providers:
+    - type: feature
+      name: SQLiteGPKG
+      data: ./vrak-uml.gpkg
+      id_field: objid
+      table: HefteUrenBunn
+      crs:
+      - http://www.opengis.net/def/crs/OGC/1.3/CRS84
+      - http://www.opengis.net/def/crs/EPSG/0/25832
+      - http://www.opengis.net/def/crs/EPSG/0/25833
+      - http://www.opengis.net/def/crs/EPSG/0/25835
+      - http://www.opengis.net/def/crs/EPSG/0/5972
+      - http://www.opengis.net/def/crs/EPSG/0/5973
+      - http://www.opengis.net/def/crs/EPSG/0/5975
+      - http://www.opengis.net/def/crs/EPSG/0/3857
+      - http://www.opengis.net/def/crs/EPSG/0/3575
+      - http://www.opengis.net/def/crs/EPSG/0/4326
+      - http://www.opengis.net/def/crs/EPSG/0/3035
+      - http://www.opengis.net/def/crs/EPSG/0/4258
+      - http://www.opengis.net/def/crs/EPSG/0/5942
+      storage_crs: http://www.opengis.net/def/crs/EPSG/0/25833

@@ -25,14 +25,14 @@ Datasettet forvaltes kontinuerlig og publiseres av Kartverket.*
 
 - **Tidsperiode**:
   - **Fra**: 2026-01-14
-  - **Til**: 2026-09-16
+  - **Til**: 2026-11-18
 
 ## Om spesifikasjonen
 
 
 > **Denne versjonen av produktspesifikasjonen:** <br>
 > **Opprettet dato:** 2026-01-14<br>
-> **Endret dato:** 2026-09-16<br>
+> **Endret dato:** 2026-11-18<br>
 > **Språk:** nor<br>
 > **Kontaktinformasjon:** Kartverket, [reisir@kartverket.no](mailto:reisir@kartverket.no)
 
@@ -129,14 +129,10 @@ Riksantikvaren, Kystverket og Forsvaret er andre etater som kan ha ytterligere i
 
 ## Datafangst og produksjon
 
-**Datainnsamling og prosessering**:
-
-- **Prosesstrinn**:
-  - **Beskrivelse**:
-    De fleste vrak og hefter i sjøkart stammer fra det gamle vrak- og hefteregisteret som ble opprettet på 80-tallet. Disse ble overført i sin helhet til maritim primærdatabase i 1999. 
-    I 2011 ble det gjort en ryddejobb der alle vrak og hefter uten metadata og som lå utenfor midtlinja ble pensjonert.
-    Datasettet holdes i dag løpende oppdatert basert på innsendt informasjon om vrak og hefter. 
-    Vrak og hefter i sjøkart er ikke systematisk innsamlet og det kan være feil og mangler.
+De fleste vrak og hefter i sjøkart stammer fra det gamle vrak- og hefteregisteret som ble opprettet på 80-tallet. Disse ble overført i sin helhet til maritim primærdatabase i 1999. 
+I 2011 ble det gjort en ryddejobb der alle vrak og hefter uten metadata og som lå utenfor midtlinja ble pensjonert.
+Datasettet holdes i dag løpende oppdatert basert på innsendt informasjon om vrak og hefter. 
+Vrak og hefter i sjøkart er ikke systematisk innsamlet og det kan være feil og mangler.
 
 ## Vedlikehold
 
@@ -155,7 +151,7 @@ Riksantikvaren, Kystverket og Forsvaret er andre etater som kan ha ytterligere i
 
 | Tjeneste | Endepunkt | Type | Format | Leveranseenheter |
 | --- | --- | --- | --- | --- |
-| Geonorge nedlastning | [Lenke](https://nedlasting.geonorge.no/api/capabilities/) | GEONORGE:DOWNLOAD | FGDB, GML, GPKG | fylkesvis, kommunevis, landsfiler |
+| Geonorge nedlastning | [Lenke](https://nedlasting.geonorge.no/api/capabilities/a5821b74-096d-4923-aa3c-387cfa0e6218) | GEONORGE:DOWNLOAD | FGDB, GML, GPKG | fylkesvis, kommunevis, landsfiler |
 | Atom Feed | [Lenke](http://nedlasting.geonorge.no/geonorge/ATOM-feeds/VrakogHefterSjokart_AtomFeedFGDB.xml) | W3C:AtomFeed | FGDB | fylkesvis, kommunevis, landsfiler |
 | Atom Feed | [Lenke](http://nedlasting.geonorge.no/geonorge/ATOM-feeds/VrakogHefterSjokart_AtomFeedGML.xml) | W3C:AtomFeed | GML | fylkesvis, kommunevis, landsfiler |
 | Atom Feed | [Lenke](http://nedlasting.geonorge.no/geonorge/ATOM-feeds/VrakogHefterSjokart_AtomFeedGPKG.xml) | W3C:AtomFeed | GPKG | fylkesvis, kommunevis, landsfiler |
@@ -168,7 +164,7 @@ Riksantikvaren, Kystverket og Forsvaret er andre etater som kan ha ytterligere i
 
 **Metadatastandardversjon**: 2003
 
-**Metadatadato**: 2026-09-24
+**Metadatadato**: 2026-11-22
 
 **språk**: nor
 
