@@ -4,7 +4,7 @@
   "format": "text/html",
   "date": {
     "creation": "2026-01-14",
-    "revision": "2026-09-16"
+    "revision": "2026-11-18"
   },
   "language": "nor",
   "contact": {
@@ -88,14 +88,14 @@
       "temporalElement": {
         "timePeriod": {
           "beginPosition": "2026-01-14",
-          "endPosition": "2026-09-16"
+          "endPosition": "2026-11-18"
         }
       }
     },
     "date": {
       "creation": "2026-01-14",
       "publication": "2026-01-14",
-      "revision": "2026-09-16"
+      "revision": "2026-11-18"
     },
     "language": "nor"
   },
@@ -168,11 +168,7 @@
   },
   "dataCaptureAndProductionSection": {
     "DataAcquisitionAndProcessing": {
-      "processStep": [
-        {
-          "description": "De fleste vrak og hefter i sjøkart stammer fra det gamle vrak- og hefteregisteret som ble opprettet på 80-tallet. Disse ble overført i sin helhet til maritim primærdatabase i 1999. \nI 2011 ble det gjort en ryddejobb der alle vrak og hefter uten metadata og som lå utenfor midtlinja ble pensjonert.\nDatasettet holdes i dag løpende oppdatert basert på innsendt informasjon om vrak og hefter. \nVrak og hefter i sjøkart er ikke systematisk innsamlet og det kan være feil og mangler."
-        }
-      ]
+      "dataCaptureStatement": "De fleste vrak og hefter i sjøkart stammer fra det gamle vrak- og hefteregisteret som ble opprettet på 80-tallet. Disse ble overført i sin helhet til maritim primærdatabase i 1999. \nI 2011 ble det gjort en ryddejobb der alle vrak og hefter uten metadata og som lå utenfor midtlinja ble pensjonert.\nDatasettet holdes i dag løpende oppdatert basert på innsendt informasjon om vrak og hefter. \nVrak og hefter i sjøkart er ikke systematisk innsamlet og det kan være feil og mangler."
     }
   },
   "portrayal": {
@@ -186,7 +182,7 @@
           "unitsOfDelivery": "fylkesvis, kommunevis, landsfiler",
           "deliveryMediumName": "Geonorge nedlastning",
           "deliveryService": {
-            "serviceEndpoint": "https://nedlasting.geonorge.no/api/capabilities/",
+            "serviceEndpoint": "https://nedlasting.geonorge.no/api/capabilities/a5821b74-096d-4923-aa3c-387cfa0e6218",
             "serviceProperty": {
               "type": "Geonorge nedlastning",
               "value": "GEONORGE:DOWNLOAD"
@@ -310,7 +306,7 @@
   "metadataSection": {
     "metadataStandard": "ISO19115",
     "metadataStandardVersion": "2003",
-    "metadataDate": "2026-09-24",
+    "metadataDate": "2026-11-22",
     "language": "nor",
     "contact": {
       "organizationName": "Kartverket",
@@ -348,5 +344,6 @@
     "metadata": 13,
     "tilleggsinformasjon": 24,
     "datamodell": 896
-  }
+  },
+  "specificationContact": "Kartverket, [reisir@kartverket.no](mailto:reisir@kartverket.no)"
 }

@@ -1,0 +1,6 @@
+---
+label: VertikalDatum
+description: |-
+  vertikal referanse brukes til å spesifisere referansenivået for både høyder og dybder .
+  Vertical datum is used to specify the datum to which both heights (vertical datum) and soundings (sounding datum) are referred.
+sourceType: TEMPLATES

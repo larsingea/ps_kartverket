@@ -1,0 +1,187 @@
+---
+id: vrak_uml
+enabled: true
+providerType: FEATURE
+providerSubType: SQL
+nativeCrs:
+  code: 25833
+  forceAxisOrder: NONE
+nativeTimeZone: Europe/Oslo
+connectionInfo:
+  database: FIXME
+  host: FIXME
+  user: FIXME
+  password: FIXME-base64-encoded
+  schemas:
+  - public
+sourcePathDefaults:
+  primaryKey: objid
+  sortKey: objid
+types:
+  hefteurenbunn:
+    sourcePath: /hefteurenbunn
+    type: OBJECT
+    objectType: HefteUrenBunn
+    description: |-
+      i marin navigasjon, alt som hindrer eller forhindrer bevegelse, spesielt alt som truer eller hindrer passasje av et fartøy. Begrepet brukes vanligvis for å referere til en isolert fare for navigering
+
+      In marine navigation, anything that hinders or impedes movement, particularly anything that endangers or prevents the safe passage of a vessel. The term is usually used to refer to an isolated danger to navigation
+    properties:
+      oid:
+        sourcePath: objid
+        type: INTEGER
+        role: ID
+      posisjon:
+        sourcePath: posisjon
+        type: GEOMETRY
+        role: PRIMARY_GEOMETRY
+        geometryType: POINT
+        description: |-
+          sted som objektet eksisterer på
+
+          -- Definition --
+          location where the object exists
+        constraints:
+          required: true
+      hefteUrenBunntype:
+        sourcePath: hefteurenbunntype
+        type: STRING
+        description: |-
+          klassifisering av uren bunn.
+          Category of obstruction.
+        constraints:
+          codelist: HefteUrenBunntype
+      dybde:
+        sourcePath: dybde
+        type: FLOAT
+        description: |-
+          loddrett avstand fra et gitt referansenivå ned til bunnen eller annet objekt
+
+          -- Definition --
+          vertical distance from a given reference level down to the bottom or another object??
+      vertikalDatum:
+        sourcePath: vertikaldatum
+        type: STRING
+        description: |-
+          vertikal referanse brukes til å spesifisere referansenivået for både høyder og dybder .
+          Vertical datum is used to specify the datum to which both heights (vertical datum) and soundings (sounding datum) are referred.
+        constraints:
+          codelist: VertikalDatum
+      objektnavnEngelsk:
+        sourcePath: objektnavnengelsk
+        type: STRING
+        description: |-
+          heftets navn på engelsk
+          The name of the obstruction in English
+      objektnavnNorsk:
+        sourcePath: objektnavnnorsk
+        type: STRING
+        description: |-
+          heftets navn på norsk
+          The name of the obstruction in Norwegian
+  vrak:
+    sourcePath: /vrak
+    type: OBJECT
+    objectType: Vrak
+    description: |-
+      de ødelagte restene av et strandet eller senket fartøy som har blitt gjort ubrukelig.
+      The ruined remains of a stranded or sunken vessel which has been rendered useless.
+    properties:
+      oid:
+        sourcePath: objid
+        type: INTEGER
+        role: ID
+      område:
+        sourcePath: område
+        type: GEOMETRY
+        role: PRIMARY_GEOMETRY
+        geometryType: POLYGON
+        description: |-
+          objektets utstrekning
+
+          -- Definition --
+          area over which an object extends
+      posisjon:
+        sourcePath: posisjon
+        type: GEOMETRY
+        geometryType: POINT
+        description: |-
+          sted som objektet eksisterer på
+
+          -- Definition --
+          location where the object exists
+      vraktype:
+        sourcePath: vraktype
+        type: STRING
+        description: |-
+          kategori vrak.
+          The category of the wreck.  Note:  S-57 CATWRK
+        constraints:
+          codelist: Vraktype
+      dybde:
+        sourcePath: dybde
+        type: FLOAT
+        description: |-
+          loddrett avstand fra et gitt referansenivå ned til bunnen eller annet objekt.
+          Vertical distance from a given reference level down to the bottom or another object.
+      vertikalDatum:
+        sourcePath: vertikaldatum
+        type: STRING
+        description: |-
+          vertikal referanse brukes til å spesifisere referansenivået for både høyder og dybder .
+          Vertical datum is used to specify the datum to which both heights (vertical datum) and soundings (sounding datum) are referred.
+        constraints:
+          codelist: VertikalDatum
+      objektnavnEngelsk:
+        sourcePath: objektnavnengelsk
+        type: STRING
+        description: |-
+          vrakets navn på engelsk
+          The name of the wreck in English
+      objektnavnNorsk:
+        sourcePath: objektnavnnorsk
+        type: STRING
+        description: |-
+          vrakets navn på norsk
+          The name of the wreck in Norwegian
+      avgrensesAvVrakgrense:
+        sourcePath: "[objid=vrakobjid]Vrak_avgrensesAvVrakgrense/[vrakgrenseobjid=objid]vrakgrense"
+        type: OBJECT_ARRAY
+        objectType: Link
+        constraints:
+          minOccurrence: 0
+        properties:
+          title:
+            sourcePath: objid
+            type: STRING
+            label: Vrakgrense-title
+          href:
+            sourcePath: objid
+            type: STRING
+            label: Vrakgrense-ID
+            transformations:
+            - stringFormat: "{{serviceUrl}}/collections/vrakgrense/items/{{value}}"
+  vrakgrense:
+    sourcePath: /vrakgrense
+    type: OBJECT
+    objectType: Vrakgrense
+    description: |-
+      avgrensning av rest av fartøy som har strandet eller sunket og er etterlatt i ubrukbar tilstand
+      Delimitation of remains of vessel which has run aground or sunk and has been abandoned in useless condition
+    properties:
+      oid:
+        sourcePath: objid
+        type: INTEGER
+        role: ID
+      grense:
+        sourcePath: grense
+        type: GEOMETRY
+        role: PRIMARY_GEOMETRY
+        geometryType: LINE_STRING
+        description: |-
+          forløp som følger overgang mellom ulike fenomener
+
+          -- Definition --
+          course follwing the transition between different real world phenomena
+        constraints:
+          required: true

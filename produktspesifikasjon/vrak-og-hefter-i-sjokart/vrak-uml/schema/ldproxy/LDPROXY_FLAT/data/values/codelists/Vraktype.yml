@@ -1,0 +1,6 @@
+---
+label: Vraktype
+description: |-
+  angir hvilke kategori vrak dette er.
+  The category of the wreck.  Note:  S-57 CATWRK.
+sourceType: TEMPLATES
